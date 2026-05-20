@@ -1,0 +1,70 @@
+<script lang="ts">
+  type Audience = "4bio" | "4math";
+  type AudienceStore = {
+    audience: Audience;
+    setAudience: (value: Audience) => void;
+  };
+
+  type AudienceOption = {
+    value: Audience;
+    label: string;
+  };
+
+  let {
+    audienceStore,
+    options,
+  }: {
+    audienceStore: AudienceStore;
+    options: AudienceOption[];
+  } = $props();
+</script>
+
+<div
+  class="audience-toggle"
+  role="group"
+  aria-label="Audience"
+>
+  {#each options as option (option.value)}
+    <button
+      class="toggle-btn"
+      class:active={audienceStore.audience === option.value}
+      onclick={() => audienceStore.setAudience(option.value)}
+      aria-pressed={audienceStore.audience === option.value}
+    >
+      {option.label}
+    </button>
+  {/each}
+</div>
+
+<style>
+  .audience-toggle {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .toggle-btn {
+    transition:
+      background-color 0.15s,
+      color 0.15s;
+    cursor: pointer;
+    border: none;
+    background: var(--color-bg);
+    padding: var(--space-1) var(--space-3);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: 0.85rem;
+  }
+
+  .toggle-btn:hover {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .toggle-btn.active {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+</style>

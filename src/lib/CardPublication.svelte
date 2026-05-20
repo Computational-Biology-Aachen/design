@@ -1,0 +1,106 @@
+<script lang="ts">
+  import { H2, Link } from "@computational-biology-aachen/design";
+  import { faGithub, faGitlab } from "@fortawesome/free-brands-svg-icons";
+  import { faHome, faNewspaper } from "@fortawesome/free-solid-svg-icons";
+  import type { Snippet } from "svelte";
+  import Fa from "svelte-fa";
+
+  let {
+    children,
+    title,
+    img,
+    github = null,
+    gitlab = null,
+    href = null,
+    doi = null,
+    format = "full",
+    color = "light",
+  }: {
+    children: Snippet;
+    title: string;
+    img?: string | null;
+    github?: string | null;
+    gitlab?: string | null;
+    doi?: string | null;
+    href?: string | null;
+    format?: "full" | "fixed";
+    color?: "dark" | "light" | "primary" | "secondary";
+  } = $props();
+</script>
+
+<div class={`card ${color} ${format}`}>
+  <div
+    class="inner"
+    style:background-image={`url(${img})`}
+  >
+    <H2>{title}</H2>
+    {@render children()}
+    {#if github != null}
+      <Link href={github}><Fa icon={faGithub} /> Check me out at Github</Link>
+    {:else if gitlab != null}
+      <Link href={gitlab}><Fa icon={faGitlab} /> Check me out at GitLab</Link>
+    {/if}
+    {#if href != null}
+      <Link href={href}><Fa icon={faHome} />Website</Link>
+    {/if}
+    {#if doi != null}
+      <Link href="https://doi.org/{doi}"
+        ><Fa icon={faNewspaper} />Publication</Link
+      >
+    {/if}
+  </div>
+</div>
+
+<style>
+  .card {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    box-shadow:
+      0px 18px 36px -18px rgba(0, 0, 0, 0.1),
+      0px 30px 45px -30px rgba(50, 50, 93, 0.25);
+    border-top: 8px var(--color-primary) solid;
+    border-radius: 8px;
+    padding: 0;
+  }
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow:
+      0px 18px 36px -18px rgba(0, 0, 0, 0.4),
+      0px 30px 45px -30px rgba(50, 50, 93, 0.4);
+  }
+  .inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-position-x: 98%;
+    background-position-y: 90%;
+
+    background-size: 250px;
+    background-repeat: no-repeat;
+    background-color: color-mix(in srgb, var(--color-bg) 75%, transparent);
+    background-blend-mode: lighten;
+    padding: 2.5rem 2.5rem;
+    width: 100%;
+    height: 100%;
+  }
+
+  .full {
+    width: 100%;
+  }
+  .fixed {
+    width: 26rem;
+    height: 26rem;
+  }
+  .dark {
+    background-color: var(--color-text);
+  }
+  .light {
+    background-color: color-mix(in srgb, var(--color-bg), white 10%);
+  }
+  .primary {
+    background-color: var(--color-surface);
+  }
+  .secondary {
+    background-color: var(--color-accent);
+  }
+</style>
