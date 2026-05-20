@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Icon, Row } from "@computational-biology-aachen/design";
+  import Icon from "./Icon.svelte";
+  import Row from "./Row.svelte";
 
   interface Props {
     color: "c1" | "c2" | "c3" | "c4";

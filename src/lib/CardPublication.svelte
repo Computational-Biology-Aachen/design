@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { H2, Link } from "@computational-biology-aachen/design";
+  import H2 from "./H2.svelte";
+  import Link from "./Link.svelte";
   import { faGithub, faGitlab } from "@fortawesome/free-brands-svg-icons";
   import { faHome, faNewspaper } from "@fortawesome/free-solid-svg-icons";
   import type { Snippet } from "svelte";

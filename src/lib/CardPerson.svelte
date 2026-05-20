@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Link } from "@computational-biology-aachen/design";
+  import Link from "./Link.svelte";
 
   const images = import.meta.glob(["$lib/assets/people/*"], {
     eager: true,
@@ -15,6 +15,7 @@
     slug: string;
   } = $props();
 
+  // svelte-ignore state_referenced_locally
   let filename = `/src/lib/assets/people/${slug}.jpg`;
   let img = images[filename] ?? "/src/lib/assets/people/placeholder.jpg";
 </script>

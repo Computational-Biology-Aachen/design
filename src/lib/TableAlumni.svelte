@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Bold, Text } from "@computational-biology-aachen/design";
+  import Bold from "./Bold.svelte";
+  import Text from "./Text.svelte";
   import { MediaQuery } from "svelte/reactivity";
 
   const small = new MediaQuery("max-width: 800px");

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { H1 } from "@computational-biology-aachen/design";
   import { MediaQuery } from "svelte/reactivity";
+  import H1 from "./H1.svelte";
 
   let {
     n,

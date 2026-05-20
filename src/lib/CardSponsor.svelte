@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Link } from "@computational-biology-aachen/design";
+  import Link from "./Link.svelte";
 
   let {
     href,

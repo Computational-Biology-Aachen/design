@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { H1, Link, Text } from "@computational-biology-aachen/design";
+  import H1 from "./H1.svelte";
+  import Link from "./Link.svelte";
+  import Text from "./Text.svelte";
   import {
     faGithub,
     faGitlab,

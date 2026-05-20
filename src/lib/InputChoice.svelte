@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { InlineGrid } from "@computational-biology-aachen/design";
+  import InlineGrid from "./InlineGrid.svelte";
   import type { Snippet } from "svelte";
 
   type Props = {

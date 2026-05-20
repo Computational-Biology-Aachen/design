@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { InlineGrid, Row } from "@computational-biology-aachen/design";
+  import InlineGrid from "./InlineGrid.svelte";
+  import Row from "./Row.svelte";
 
   type Props = {
     id: string;
