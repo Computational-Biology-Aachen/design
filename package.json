@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
+		"watch": "svelte-kit sync && svelte-package --watch",
 		"build": "vite build && npm run prepack",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
@@ -12,6 +13,7 @@
 	},
 	"files": [
 		"dist",
+		"src/lib",
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
@@ -23,9 +25,11 @@
 	"type": "module",
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
-		}
+			"svelte": "./src/lib/index.ts",
+			"types": "./src/lib/index.ts",
+			"default": "./dist/index.js"
+		},
+		"./tokens.css": "./src/lib/tokens.css"
 	},
 	"dependencies": {
 		"@inlang/paraglide-js": "^2.18.0",
@@ -35,7 +39,8 @@
 		"chart.js": ">=4"
 	},
 	"peerDependencies": {
-		"svelte": "^5.0.0"
+		"svelte": "^5.0.0",
+		"@sveltejs/kit": "^2.57.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": ">=3",
@@ -51,8 +56,5 @@
 	},
 	"keywords": [
 		"svelte"
-	],
-	"workspaces": [
-		"showcase"
 	]
 }
