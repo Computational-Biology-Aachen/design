@@ -50,5 +50,8 @@
 	},
 	"keywords": [
 		"svelte"
+	],
+	"workspaces": [
+		"showcase"
 	]
 }
