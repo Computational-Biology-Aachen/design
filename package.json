@@ -39,6 +39,7 @@
 		"chart.js": ">=4"
 	},
 	"peerDependencies": {
+		"katex": "^0.17.0",
 		"svelte": "^5.0.0",
 		"@sveltejs/kit": "^2.57.0"
 	},
