@@ -21,6 +21,7 @@ export { default as CardSoftware } from "./CardSoftware.svelte";
 export { default as CardSoftwareMain } from "./CardSoftwareMain.svelte";
 export { default as CardSponsor } from "./CardSponsor.svelte";
 export { default as Code } from "./Code.svelte";
+export { default as CollapseToBurger } from "./CollapseToBurger.svelte";
 export { default as CompareCheckbox } from "./CompareCheckbox.svelte";
 export { default as Deleted } from "./Deleted.svelte";
 export { default as DynBoxGrid } from "./DynBoxGrid.svelte";

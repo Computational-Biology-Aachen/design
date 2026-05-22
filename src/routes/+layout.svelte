@@ -1,17 +1,33 @@
 <script lang="ts">
+  import favicon from "$lib/assets/cpbl-favicon.svg";
+  import CollapseToBurger from "$lib/CollapseToBurger.svelte";
   import { Navbar, NavItem } from "$lib/index.js";
+  import NavGH from "$lib/NavGH.svelte";
   import "../app.css";
 
   let { children } = $props();
 </script>
 
+<!-- SEO -->
+<svelte:head>
+  <link
+    rel="icon"
+    href={favicon}
+  />
+</svelte:head>
+
 <Navbar>
   {#snippet brand()}
     <span class="brand">CPBL Design</span>
   {/snippet}
-  <NavItem href="/">Overview</NavItem>
-  <NavItem href="/tokens">Tokens</NavItem>
-  <NavItem href="/components">Components</NavItem>
+
+  <CollapseToBurger collapseAt="512px">
+    <NavItem href="/">Overview</NavItem>
+    <NavItem href="/tokens">Tokens</NavItem>
+    <NavItem href="/components">Components</NavItem>
+  </CollapseToBurger>
+
+  <NavGH href="https://github.com/Computational-Biology-Aachen/design" />
 </Navbar>
 
 {@render children()}

@@ -31,9 +31,7 @@
     display: flex;
     align-items: center;
     transition: var(--transition);
-    margin-left: var(--space-3);
     border-radius: var(--radius-md);
-    padding-top: var(--space-2);
     color: var(--color-text-muted);
   }
 

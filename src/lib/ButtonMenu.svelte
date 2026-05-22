@@ -3,9 +3,10 @@
   import { setContext } from "svelte";
   import Button from "./Button.svelte";
   import Icon from "./Icon.svelte";
+  import { isString } from "./utils";
 
   interface Props {
-    label: string;
+    label: string | Snippet;
     variant?: "primary" | "secondary";
     children: Snippet;
   }
@@ -72,8 +73,12 @@
     variant={variant}
     onclick={toggle}
   >
-    <span>{label}</span>
-    <Icon>arrow_drop_down</Icon>
+    {#if isString(label)}
+      <span>{label}</span>
+      <Icon>arrow_drop_down</Icon>
+    {:else}
+      {@render label()}
+    {/if}
   </Button>
   {#if open}
     <div class="menu">
