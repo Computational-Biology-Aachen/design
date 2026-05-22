@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import { Footer, Icon, InfoBox, Link, PageNav, Row } from "$lib/index.js";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
@@ -128,7 +129,7 @@
                 color="light">GitHub</Link
               >
               <Link
-                href="/imprint"
+                href="{base}/imprint"
                 color="light">Imprint</Link
               >
             </Row>

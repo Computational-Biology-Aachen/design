@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import favicon from "$lib/assets/cpbl-favicon.svg";
   import CollapseToBurger from "$lib/CollapseToBurger.svelte";
   import { Navbar, NavItem } from "$lib/index.js";
@@ -22,9 +23,9 @@
   {/snippet}
 
   <CollapseToBurger collapseAt="512px">
-    <NavItem href="/">Overview</NavItem>
-    <NavItem href="/tokens">Tokens</NavItem>
-    <NavItem href="/components">Components</NavItem>
+    <NavItem href="{base}/">Overview</NavItem>
+    <NavItem href="{base}/tokens">Tokens</NavItem>
+    <NavItem href="{base}/components">Components</NavItem>
   </CollapseToBurger>
 
   <NavGH href="https://github.com/Computational-Biology-Aachen/design" />

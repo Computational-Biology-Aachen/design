@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import { Button, Row, Section } from "$lib/index.js";
 </script>
 
@@ -11,8 +12,8 @@
   <p>Shared tokens and components for CPBL lab websites.</p>
   <div style="margin-top: var(--space-6)">
     <Row gap="var(--space-3)">
-      <a href="/tokens"><Button>Browse tokens</Button></a>
-      <a href="/components"
+      <a href="{base}/tokens"><Button>Browse tokens</Button></a>
+      <a href="{base}/components"
         ><Button variant="secondary">Browse components</Button></a
       >
     </Row>
@@ -27,7 +28,7 @@
         CSS custom properties for color, typography, spacing, shadows, and
         borders — all anchored to the RWTH institutional palette.
       </p>
-      <a href="/tokens">View tokens →</a>
+      <a href="{base}/tokens">View tokens →</a>
     </div>
     <div class="card">
       <h3>Svelte components</h3>
@@ -36,7 +37,7 @@
         <code>Button</code>, <code>Section</code>, <code>Row</code>,
         <code>Footer</code>.
       </p>
-      <a href="/components">View components →</a>
+      <a href="{base}/components">View components →</a>
     </div>
     <div class="card">
       <h3>Package</h3>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import {
     Navbar,
     NavGH,
@@ -37,10 +38,10 @@
           {#snippet brand()}
             <span class="brand-demo">Lab Name</span>
           {/snippet}
-          <NavItem href="/">Home</NavItem>
-          <NavItem href="/research">Research</NavItem>
-          <NavItem href="/team">Team</NavItem>
-          <NavItem href="/publications">Publications</NavItem>
+          <NavItem href="{base}/">Home</NavItem>
+          <NavItem href="{base}/research">Research</NavItem>
+          <NavItem href="{base}/team">Team</NavItem>
+          <NavItem href="{base}/publications">Publications</NavItem>
         </Navbar>
       </div>
       <pre><code

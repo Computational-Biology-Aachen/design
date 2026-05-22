@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import {
     Aside,
     Blockquote,
@@ -143,16 +144,16 @@ preformatted block</Pre>
     >
       <h3>Color variants</h3>
       <div class="preview">
-        <p><Link href="/">Primary link (default)</Link></p>
+        <p><Link href="{base}/">Primary link (default)</Link></p>
         <p>
           <Link
-            href="/"
+            href="{base}/"
             color="secondary">Secondary link</Link
           >
         </p>
         <p>
           <Link
-            href="/"
+            href="{base}/"
             color="dark">Dark link</Link
           >
         </p>
@@ -160,7 +161,7 @@ preformatted block</Pre>
       <div class="preview-primary">
         <p>
           <Link
-            href="/"
+            href="{base}/"
             color="light">Light link on dark background</Link
           >
         </p>
