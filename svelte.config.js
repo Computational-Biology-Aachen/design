@@ -18,7 +18,7 @@ const config = {
       strict: true,
     }),
     paths: {
-      base: process.argv.includes("dev") ? "" : "/mxl-web",
+      base: process.argv.includes("dev") ? "" : "/design",
     },
     prerender: {
       handleHttpError: ({ status, path }) => {
