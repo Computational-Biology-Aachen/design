@@ -17,15 +17,15 @@ const config = {
       precompress: false,
       strict: true,
     }),
-    paths: {
-      base: process.argv.includes("dev") ? "" : "/design",
-    },
     prerender: {
       handleHttpError: ({ status, path }) => {
         // Demo links in component examples don't map to real routes
         if (status === 404) return;
         throw new Error(`${status} ${path}`);
       },
+    },
+    paths: {
+      base: process.argv.includes("dev") ? "" : "/design",
     },
   },
 };
