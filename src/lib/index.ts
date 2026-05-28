@@ -89,6 +89,7 @@ export { default as Sub } from "./Sub.svelte";
 export { default as Sup } from "./Sup.svelte";
 export { default as TableAlumni } from "./TableAlumni.svelte";
 export { default as ParameterTable } from "./TableParameter.svelte";
+export { default as Tabs } from "./Tabs.svelte";
 export { default as Text } from "./Text.svelte";
 export { default as AudienceToggle } from "./ToggleAudience.svelte";
 export { default as Ul } from "./Ul.svelte";
