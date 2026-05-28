@@ -63,6 +63,7 @@ export { default as Math } from "./Math.svelte";
 export { default as Navbar } from "./Navbar.svelte";
 export { default as NavGH } from "./NavGH.svelte";
 export { default as NavItem } from "./NavItem.svelte";
+export { default as Ol } from "./Ol.svelte";
 export { default as PageNav } from "./PageNav.svelte";
 export { default as Pair } from "./Pair.svelte";
 export { default as Popover } from "./Popover.svelte";
