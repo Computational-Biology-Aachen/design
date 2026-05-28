@@ -46,7 +46,9 @@
           >@computational-biology-aachen/design</code
         >. Built with <code>@sveltejs/package</code>.
       </p>
-      <a href="https://github.com/Computational-Biology-Aachen">GitHub →</a>
+      <a href="https://github.com/Computational-Biology-Aachen/design"
+        >GitHub →</a
+      >
     </div>
   </div>
 </Section>
