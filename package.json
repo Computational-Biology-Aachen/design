@@ -31,8 +31,8 @@
 		},
 		"./tokens.css": "./src/lib/tokens.css",
 		"./*.svelte": {
-			"svelte": "./src/lib/*.svelte",
 			"types": "./src/lib/*.svelte",
+			"svelte": "./src/lib/*.svelte",
 			"default": "./src/lib/*.svelte"
 		}
 	},
