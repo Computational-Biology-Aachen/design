@@ -29,7 +29,12 @@
 			"types": "./src/lib/index.ts",
 			"default": "./dist/index.js"
 		},
-		"./tokens.css": "./src/lib/tokens.css"
+		"./tokens.css": "./src/lib/tokens.css",
+		"./*.svelte": {
+			"svelte": "./src/lib/*.svelte",
+			"types": "./src/lib/*.svelte",
+			"default": "./src/lib/*.svelte"
+		}
 	},
 	"dependencies": {
 		"@inlang/paraglide-js": "^2.18.0",
