@@ -1,6 +1,6 @@
 <script lang="ts">
-  import ButtonTab from "./ButtonTab.svelte";
   import type { Snippet } from "svelte";
+  import ButtonTab from "./ButtonTab.svelte";
 
   let {
     tabs,
@@ -19,7 +19,10 @@
   });
 </script>
 
-<div class="tab-bar" role="tablist">
+<div
+  class="tab-bar"
+  role="tablist"
+>
   {#each tabs as tab (tab.key)}
     <ButtonTab
       selected={activeKey === tab.key}
@@ -39,11 +42,15 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0;
-    border-bottom: 1px solid var(--color-border);
     margin-bottom: var(--space-4, 16px);
+    border-bottom: 1px solid var(--color-border);
+    width: 100%;
   }
 
   .tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
     min-height: 4rem;
   }
 </style>
