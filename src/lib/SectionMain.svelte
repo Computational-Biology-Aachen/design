@@ -3,10 +3,12 @@
 
   let {
     width = "full",
+    pad = "full",
     gap = "normal",
     align = "center",
     children,
   }: {
+    pad?: "full" | "tight";
     width?: "full" | "narrow" | "90ch";
     gap?: "normal" | "large";
     align?: "center" | "start";
@@ -14,7 +16,7 @@
   } = $props();
 </script>
 
-<main class="width-{width} gap-{gap} align-{align}">
+<main class="width-{width} pad-{pad} gap-{gap} align-{align}">
   {@render children()}
 </main>
 
@@ -23,9 +25,15 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    padding: 1rem;
     width: 100%;
     min-height: calc(100vh - var(--nav-height));
+  }
+  .pad-tight {
+    padding: 1rem;
+  }
+
+  .pad-full {
+    padding: 1rem;
 
     @media (min-width: 50rem) {
       padding: 3rem 1rem;

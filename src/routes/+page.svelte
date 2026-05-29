@@ -26,7 +26,7 @@
       <h3>Design tokens</h3>
       <p>
         CSS custom properties for color, typography, spacing, shadows, and
-        borders — all anchored to the RWTH institutional palette.
+        borders - all anchored to the RWTH institutional palette.
       </p>
       <a href="{base}/tokens">View tokens →</a>
     </div>

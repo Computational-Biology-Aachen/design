@@ -9,6 +9,7 @@
     InputText,
     PageNav,
   } from "$lib/index.js";
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
 
@@ -32,16 +33,16 @@
   let compareVal = $state(true);
 </script>
 
-<svelte:head><title>Inputs — CPBL Design</title></svelte:head>
+<svelte:head><title>Inputs - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="inputtext"
       title="InputText"
     >
-      <h3>Labeled text input — inline grid layout</h3>
+      <h3>Labeled text input - inline grid layout</h3>
       <div class="preview">
         <InputText
           id="demo-text"
@@ -63,7 +64,7 @@
       id="inputnumber"
       title="InputNumber"
     >
-      <h3>Labeled number input — with and without label</h3>
+      <h3>Labeled number input - with and without label</h3>
       <div class="preview">
         <InputNumber
           id="demo-num"
@@ -108,7 +109,7 @@
       title="InputNumberOptional"
     >
       <h3>
-        Number input with an enable/disable checkbox — for optional parameters
+        Number input with an enable/disable checkbox - for optional parameters
       </h3>
       <div class="preview">
         <InputNumberOptional
@@ -135,7 +136,7 @@
       id="inputcheckbox"
       title="InputCheckbox"
     >
-      <h3>Labeled checkbox — solid or none border</h3>
+      <h3>Labeled checkbox - solid or none border</h3>
       <div class="preview">
         <InputCheckbox
           id="demo-check"
@@ -214,7 +215,7 @@
       prev={{ href: "/components/layout", label: "Layout" }}
       next={{ href: "/components/interactive", label: "Interactive" }}
     />
-  </div>
+  </ShowcaseContainer>
 </div>
 
 <style>

@@ -43,7 +43,7 @@
 <label>
   <div class="row">
     <span class="name">{name}{desc ? ` (${desc})` : ""}</span>
-    <span class="number">{liveVal}</span>
+    <span class="value">{liveVal}</span>
   </div>
   <input
     type="range"
@@ -60,26 +60,33 @@
 </label>
 
 <style>
-  span {
-    font-size: var(--text-sm);
-  }
-  span.name {
-    font-weight: var(--weight-medium);
-  }
-  span.number {
-    color: var(--color-surface);
-    font-weight: var(--weight-bold);
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: 0 var(--space-2);
   }
   .row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-size: var(--text-sm);
   }
-  label {
-    padding: 0 0.5rem;
+  span.name {
+    font-weight: var(--weight-medium);
   }
-  input {
+  span.value {
+    color: var(--color-surface);
+    font-weight: var(--weight-bold);
+  }
+  input[type="range"] {
+    cursor: pointer;
     width: 100%;
+    accent-color: var(--color-primary);
+  }
+  input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 </style>

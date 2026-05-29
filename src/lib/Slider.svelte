@@ -22,10 +22,10 @@
   }: Props = $props();
 </script>
 
-<label class="slider">
-  <div class="slider-row">
-    <span class="slider-name">{name}{desc ? ` (${desc})` : ""}</span>
-    <span class="slider-value">{value}</span>
+<label>
+  <div class="row">
+    <span class="name">{name}{desc ? ` (${desc})` : ""}</span>
+    <span class="value">{value}</span>
   </div>
   <input
     type="range"
@@ -39,36 +39,32 @@
 </label>
 
 <style>
-  .slider {
+  label {
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
     padding: 0 var(--space-2);
   }
-
-  .slider-row {
+  .row {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-size: var(--text-sm, 0.875rem);
+    font-size: var(--text-sm);
   }
-
-  .slider-name {
-    font-weight: 500;
+  span.name {
+    font-weight: var(--weight-medium);
   }
-
-  .slider-value {
+  span.value {
     color: var(--color-primary);
     font-weight: 700;
     font-variant-numeric: tabular-nums;
   }
-
   input[type="range"] {
     cursor: pointer;
     width: 100%;
     accent-color: var(--color-primary);
   }
-
   input:disabled {
     opacity: 0.5;
     cursor: not-allowed;

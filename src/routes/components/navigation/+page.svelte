@@ -8,6 +8,7 @@
     Sidebar,
     Text,
   } from "$lib/index.js";
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
 
@@ -20,16 +21,16 @@
   ];
 </script>
 
-<svelte:head><title>Navigation — CPBL Design</title></svelte:head>
+<svelte:head><title>Navigation - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="navbar"
       title="Navbar + NavItem"
     >
-      <h3>Sticky top bar — responsive hamburger below 768px</h3>
+      <h3>Sticky top bar - responsive hamburger below 768px</h3>
       <div
         class="preview"
         style="padding: 0; overflow: hidden"
@@ -86,7 +87,7 @@
       id="sidebar"
       title="Sidebar"
     >
-      <h3>Left navigation — collapses to hamburger below 768px</h3>
+      <h3>Left navigation - collapses to hamburger below 768px</h3>
       <div
         class="preview"
         style="padding: 0; overflow: hidden; height: 200px; display: flex"
@@ -121,7 +122,7 @@
       id="sidebar2"
       title="Sidebar2"
     >
-      <h3>Sidebar with audience toggle — used in comphot</h3>
+      <h3>Sidebar with audience toggle - used in comphot</h3>
       <div class="preview note">
         <Text color="secondary">
           <strong>Sidebar2</strong> combines a navigation link list with a
@@ -166,7 +167,7 @@
   next={{ href: "/model", label: "Model" }}
 />
 
-<!-- First page — no prev -->
+<!-- First page - no prev -->
 <PageNav next={{ href: "/photosynthesis", label: "Photosynthesis" }} />
 
 <!-- With base path (e.g. comphot) -->
@@ -178,7 +179,7 @@
       prev={{ href: "/components/data", label: "Data & Science" }}
       next={{ href: "/components/heroes", label: "Heroes" }}
     />
-  </div>
+  </ShowcaseContainer>
 </div>
 
 <style>

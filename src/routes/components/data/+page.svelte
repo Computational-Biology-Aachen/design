@@ -10,6 +10,7 @@
     TableAlumni,
     Text,
   } from "$lib/index.js";
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
 
@@ -67,16 +68,16 @@
   ];
 </script>
 
-<svelte:head><title>Data & Science — CPBL Design</title></svelte:head>
+<svelte:head><title>Data & Science - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="linechart"
       title="LineChart"
     >
-      <h3>Chart.js wrapper — time-course visualization with phase regions</h3>
+      <h3>Chart.js wrapper - time-course visualization with phase regions</h3>
       <div
         class="preview"
         style="height: 320px"
@@ -117,7 +118,7 @@ const data: ChartData = {
       title="SimChart"
     >
       <h3>
-        Lightweight canvas chart for simulation results — supports old/new run
+        Lightweight canvas chart for simulation results - supports old/new run
         overlay
       </h3>
       <div
@@ -147,7 +148,7 @@ const data: ChartData = {
       id="math"
       title="Math"
     >
-      <h3>KaTeX renderer — inline and display modes</h3>
+      <h3>KaTeX renderer - inline and display modes</h3>
       <div class="preview">
         <p>
           Inline: <MathComponent
@@ -188,7 +189,7 @@ const data: ChartData = {
       title="TableAlumni"
     >
       <h3>
-        Alumni table — hardcoded CPBL data, responsive card view on mobile
+        Alumni table - hardcoded CPBL data, responsive card view on mobile
       </h3>
       <div
         class="preview"
@@ -197,7 +198,7 @@ const data: ChartData = {
         <TableAlumni />
       </div>
       <pre><code
-          >{`<!-- No props — data is hardcoded inside the component -->
+          >{`<!-- No props - data is hardcoded inside the component -->
 <TableAlumni />`}</code
         ></pre>
     </ShowcaseSection>
@@ -207,7 +208,7 @@ const data: ChartData = {
       title="TableParameter"
     >
       <h3>
-        Parameter comparison table — shows new (and optionally old) values
+        Parameter comparison table - shows new (and optionally old) values
       </h3>
       <div class="preview">
         <ParameterTable rows={paramRows} />
@@ -238,7 +239,7 @@ const data: ChartData = {
       id="literatureexpander"
       title="LiteratureExpander"
     >
-      <h3>Collapsible literature list — requires paraglide-js i18n</h3>
+      <h3>Collapsible literature list - requires paraglide-js i18n</h3>
       <div class="preview note">
         <Text color="secondary">
           <strong>LiteratureExpander</strong> wraps an <code>Accordion</code>
@@ -310,7 +311,7 @@ const data: ChartData = {
       prev={{ href: "/components/interactive", label: "Interactive" }}
       next={{ href: "/components/navigation", label: "Navigation" }}
     />
-  </div>
+  </ShowcaseContainer>
 </div>
 
 <style>

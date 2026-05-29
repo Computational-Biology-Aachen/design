@@ -8,6 +8,7 @@
     PageNav,
     Row,
   } from "$lib/index.js";
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
 
@@ -22,11 +23,11 @@
   const tabs = ["Euler", "RK45", "Tsit5"];
 </script>
 
-<svelte:head><title>Buttons — CPBL Design</title></svelte:head>
+<svelte:head><title>Buttons - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="button"
       title="Button"
@@ -57,7 +58,7 @@
       id="buttonicon"
       title="ButtonIcon"
     >
-      <h3>Icon-only button — used to trigger popovers or actions</h3>
+      <h3>Icon-only button - used to trigger popovers or actions</h3>
       <div class="preview">
         <Row
           gap="var(--space-3)"
@@ -92,7 +93,7 @@
       id="buttonmenu"
       title="ButtonMenu + ButtonMenuItem"
     >
-      <h3>Dropdown menu — open on hover/focus, closes on item click</h3>
+      <h3>Dropdown menu - open on hover/focus, closes on item click</h3>
       <div class="preview">
         <Row
           gap="var(--space-4)"
@@ -143,7 +144,7 @@
       id="buttontab"
       title="ButtonTab"
     >
-      <h3>Tab-style toggle button — use with a selected state</h3>
+      <h3>Tab-style toggle button - use with a selected state</h3>
       <div class="preview">
         <Row gap="var(--space-1)">
           {#each tabs as tab, i}
@@ -183,7 +184,7 @@ const tabs = ["Euler", "RK45", "Tsit5"];
       prev={{ href: "/components/heroes", label: "Heroes" }}
       next={{ href: "/components/media", label: "Media" }}
     />
-  </div>
+  </ShowcaseContainer>
 </div>
 
 <style>

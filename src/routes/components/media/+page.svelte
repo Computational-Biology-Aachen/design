@@ -6,6 +6,7 @@
     PageNav,
     YouTubeEmbed,
   } from "$lib/index.js";
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
 
@@ -17,11 +18,11 @@
   ];
 </script>
 
-<svelte:head><title>Media — CPBL Design</title></svelte:head>
+<svelte:head><title>Media - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="image"
       title="Image"
@@ -56,7 +57,7 @@
           />
           <ImageRound
             path="/does-not-exist.jpg"
-            alt="Missing image — shows placeholder"
+            alt="Missing image - shows placeholder"
           />
         </div>
       </div>
@@ -71,7 +72,7 @@
       id="imageroundplaceholder"
       title="ImageRoundPlaceholder"
     >
-      <h3>SVG silhouette placeholder — shown when no photo is available</h3>
+      <h3>SVG silhouette placeholder - shown when no photo is available</h3>
       <div
         class="preview"
         style="display: flex; gap: var(--space-4)"
@@ -81,7 +82,7 @@
         <ImageRoundPlaceholder />
       </div>
       <pre><code
-          >{`<!-- No props — renders a generic circular silhouette -->
+          >{`<!-- No props - renders a generic circular silhouette -->
 <ImageRoundPlaceholder />`}</code
         ></pre>
     </ShowcaseSection>
@@ -90,7 +91,7 @@
       id="youtubeembed"
       title="YouTubeEmbed"
     >
-      <h3>Privacy-safe 16:9 iframe — uses youtube-nocookie.com</h3>
+      <h3>Privacy-safe 16:9 iframe - uses youtube-nocookie.com</h3>
       <div class="preview">
         <YouTubeEmbed
           videoId="KvyjIWLD8rU"
@@ -106,5 +107,5 @@
       prev={{ href: "/components/buttons", label: "Buttons" }}
       next={{ href: "/components/utilities", label: "Utilities" }}
     />
-  </div>
+  </ShowcaseContainer>
 </div>

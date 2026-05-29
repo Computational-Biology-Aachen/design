@@ -29,6 +29,7 @@
     Ul,
     Underline,
   } from "$lib/index.js";
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
 
@@ -47,16 +48,16 @@
   ];
 </script>
 
-<svelte:head><title>Typography — CPBL Design</title></svelte:head>
+<svelte:head><title>Typography - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="headings"
       title="H1 – H6"
+      subtitle="Color variants: dark (default), light, primary, secondary"
     >
-      <h3>Color variants: dark (default), light, primary, secondary</h3>
       <div class="preview">
         <H1>Heading 1</H1>
         <H2>Heading 2</H2>
@@ -65,16 +66,21 @@
         <H5>Heading 5</H5>
         <H6>Heading 6</H6>
       </div>
-      <div class="preview-primary">
-        <H1 color="light">Heading 1 — light</H1>
-        <H2 color="light">Heading 2 — light</H2>
-      </div>
       <pre><code
           >{`<H1>Heading 1</H1>
 <H2>Heading 2</H2>
 <H3>Heading 3</H3>
-<H1 color="light">Light on dark bg</H1>
-<H1 color="primary">Primary color</H1>`}</code
+<H4>Heading 4</H4>
+<H5>Heading 5</H5>
+<H6>Heading 6</H6>`}</code
+        ></pre>
+      <div class="preview-primary">
+        <H1 color="light">Heading 1 - light</H1>
+        <H2 color="light">Heading 2 - light</H2>
+      </div>
+      <pre><code
+          >{`<H1 color="light">Heading 1 - light</H1>
+<H2 color="light">Heading 2 - light</H2>`}</code
         ></pre>
     </ShowcaseSection>
 
@@ -84,7 +90,7 @@
     >
       <h3>Color variants</h3>
       <div class="preview">
-        <Text>Default text — color="dark"</Text>
+        <Text>Default text - color="dark"</Text>
         <Text color="primary">Primary colored text</Text>
         <Text color="secondary">Secondary colored text</Text>
       </div>
@@ -218,7 +224,7 @@ preformatted block</Pre>
     >
       <div class="preview">
         <Aside>
-          This is an aside — supplementary content that relates to the main text
+          This is an aside - supplementary content that relates to the main text
           but sits outside its flow.
         </Aside>
       </div>
@@ -268,8 +274,8 @@ preformatted block</Pre>
       title="Sub / Sup"
     >
       <div class="preview">
-        <p>H<Sub>2</Sub>O — water molecule</p>
-        <p>E = mc<Sup>2</Sup> — mass–energy equivalence</p>
+        <p>H<Sub>2</Sub>O - water molecule</p>
+        <p>E = mc<Sup>2</Sup> - mass–energy equivalence</p>
         <p>CO<Sub>2</Sub> + H<Sub>2</Sub>O → glucose + O<Sub>2</Sub></p>
       </div>
       <pre><code
@@ -280,5 +286,5 @@ CO<Sub>2</Sub> + H<Sub>2</Sub>O → glucose + O<Sub>2</Sub>`}</code
     </ShowcaseSection>
 
     <PageNav next={{ href: "/components/cards", label: "Cards" }} />
-  </div>
+  </ShowcaseContainer>
 </div>

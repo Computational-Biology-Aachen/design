@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
   import {
@@ -29,11 +30,11 @@
   ];
 </script>
 
-<svelte:head><title>Cards — CPBL Design</title></svelte:head>
+<svelte:head><title>Cards - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="card"
       title="Card"
@@ -127,7 +128,7 @@
       id="cardmodel"
       title="CardModel"
     >
-      <h3>Model card — with and without image</h3>
+      <h3>Model card - with and without image</h3>
       <div class="preview">
         <Row
           gap="var(--space-4)"
@@ -158,7 +159,7 @@
       title="CardPerson"
     >
       <h3>
-        Site-specific — loads images from <code
+        Site-specific - loads images from <code
           >$lib/assets/people/{"{slug}"}.jpg</code
         >
       </h3>
@@ -180,7 +181,7 @@
       id="cardpublication"
       title="CardPublication"
     >
-      <h3>Publication card — full and fixed format, link variants</h3>
+      <h3>Publication card - full and fixed format, link variants</h3>
       <div class="preview">
         <CardPublication
           title="A mathematical model of non-photochemical quenching"
@@ -316,7 +317,7 @@
       id="cardsponsor"
       title="CardSponsor"
     >
-      <h3>Sponsor logo card — links to sponsor site</h3>
+      <h3>Sponsor logo card - links to sponsor site</h3>
       <div
         class="preview"
         style="max-width: 320px"
@@ -340,7 +341,7 @@
       prev={{ href: "/components/typography", label: "Typography" }}
       next={{ href: "/components/layout", label: "Layout" }}
     />
-  </div>
+  </ShowcaseContainer>
 </div>
 
 <style>

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { base } from "$app/paths";
   import { Footer, Icon, InfoBox, Link, PageNav, Row } from "$lib/index.js";
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
 
@@ -11,16 +12,16 @@
   ];
 </script>
 
-<svelte:head><title>Utilities — CPBL Design</title></svelte:head>
+<svelte:head><title>Utilities - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="icon"
       title="Icon"
     >
-      <h3>Material Symbols icon — color and size variants</h3>
+      <h3>Material Symbols icon - color and size variants</h3>
       <div class="preview">
         <Row
           gap="var(--space-4)"
@@ -69,7 +70,7 @@
       id="infobox"
       title="InfoBox"
     >
-      <h3>Contextual callouts — four semantic variants</h3>
+      <h3>Contextual callouts - four semantic variants</h3>
       <div class="preview">
         <InfoBox
           header="info"
@@ -112,7 +113,7 @@
       id="footer"
       title="Footer"
     >
-      <h3>Full-width dark footer — slot-based content</h3>
+      <h3>Full-width dark footer - slot-based content</h3>
       <div
         class="preview"
         style="padding: 0; overflow: hidden"
@@ -150,5 +151,5 @@
     </ShowcaseSection>
 
     <PageNav prev={{ href: "/components/media", label: "Media" }} />
-  </div>
+  </ShowcaseContainer>
 </div>

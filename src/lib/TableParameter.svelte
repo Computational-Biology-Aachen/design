@@ -37,7 +37,7 @@
           <td>{row.label}</td>
           <td class="val">{row.newVal}</td>
           {#if showOld}
-            <td class="val">{row.oldVal ?? "—"}</td>
+            <td class="val">{row.oldVal ?? "-"}</td>
           {/if}
         </tr>
       {/each}

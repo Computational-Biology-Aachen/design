@@ -5,13 +5,17 @@
   import Icon from "./Icon.svelte";
   import { isString } from "./utils";
 
-  interface Props {
+  let {
+    label,
+    variant = "secondary",
+    href,
+    children,
+  }: {
     label: string | Snippet;
     variant?: "primary" | "secondary";
+    href?: string;
     children: Snippet;
-  }
-
-  let { label, variant = "secondary", children }: Props = $props();
+  } = $props();
 
   let open = $state(false);
   let wrapEl = $state<HTMLDivElement | null>(null);
@@ -70,6 +74,7 @@
   onmouseleave={scheduleClose}
 >
   <Button
+    href={href}
     variant={variant}
     onclick={toggle}
   >

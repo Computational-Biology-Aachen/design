@@ -227,7 +227,7 @@
 
   $effect(() => {
     // phases is read inside phaseShadingPlugin.beforeDraw which runs outside
-    // any reactive context — explicitly track it here so chart.update() fires
+    // any reactive context - explicitly track it here so chart.update() fires
     // when phases change. All other props are tracked through buildDatasets/getXMax.
     void phases;
     if (chart) {

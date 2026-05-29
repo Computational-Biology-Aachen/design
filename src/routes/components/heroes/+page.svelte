@@ -8,6 +8,7 @@
     SectionHeaderPerson,
     Text,
   } from "$lib/index.js";
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
 
@@ -23,11 +24,11 @@
   ];
 </script>
 
-<svelte:head><title>Heroes — CPBL Design</title></svelte:head>
+<svelte:head><title>Heroes - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="hero"
       title="Hero"
@@ -54,14 +55,14 @@
       id="herogradient"
       title="HeroGradient"
     >
-      <h3>Hero with gradient overlay and CPBL logo — requires image URLs</h3>
+      <h3>Hero with gradient overlay and CPBL logo - requires image URLs</h3>
       <div class="preview note">
         <Text color="secondary">
           <strong>HeroGradient</strong> renders a full-width hero with a
           primary-color gradient overlay and an overlaid logo image. It requires
           <code>src</code>
           (background image) and
-          <code>cpblLogo</code> (logo image) props — both site-provided image URLs
+          <code>cpblLogo</code> (logo image) props - both site-provided image URLs
           or imports.
         </Text>
       </div>
@@ -81,7 +82,7 @@ import cpblLogo from "$lib/assets/cpbl-logo.svg";
       title="Section"
     >
       <h3>
-        Content section — constrained to max-width with responsive padding
+        Content section - constrained to max-width with responsive padding
       </h3>
       {#each sectionVariants as variant (variant)}
         <div
@@ -110,7 +111,7 @@ import cpblLogo from "$lib/assets/cpbl-logo.svg";
       id="sectionheader"
       title="SectionHeader"
     >
-      <h3>Primary-colored section header — full-width, min 12rem tall</h3>
+      <h3>Primary-colored section header - full-width, min 12rem tall</h3>
       <div
         class="preview"
         style="padding: 0; overflow: hidden"
@@ -166,7 +167,7 @@ import cpblLogo from "$lib/assets/cpbl-logo.svg";
       id="boxheadingmain"
       title="BoxHeadingMain"
     >
-      <h3>Large styled heading box — adapts to screen size</h3>
+      <h3>Large styled heading box - adapts to screen size</h3>
       <div class="preview">
         <BoxHeadingMain
           n="01"
@@ -192,7 +193,7 @@ import cpblLogo from "$lib/assets/cpbl-logo.svg";
       prev={{ href: "/components/navigation", label: "Navigation" }}
       next={{ href: "/components/buttons", label: "Buttons" }}
     />
-  </div>
+  </ShowcaseContainer>
 </div>
 
 <style>

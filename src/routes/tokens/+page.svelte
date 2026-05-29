@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
 
@@ -69,11 +70,11 @@
   ];
 </script>
 
-<svelte:head><title>Tokens — CPBL Design</title></svelte:head>
+<svelte:head><title>Tokens - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="rwth-palette"
       title="RWTH Color Palette"
@@ -144,7 +145,7 @@
         <div class="type-row">
           <span class="type-label">--font-sans</span>
           <span style="font-family: var(--font-sans); font-size: 1.25rem"
-            >Space Grotesk — The quick brown fox</span
+            >Space Grotesk - The quick brown fox</span
           >
         </div>
         <div class="type-row">
@@ -220,7 +221,7 @@
         {/each}
       </div>
     </ShowcaseSection>
-  </div>
+  </ShowcaseContainer>
 </div>
 
 <style>

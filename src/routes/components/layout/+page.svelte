@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
   import {
@@ -26,11 +27,11 @@
   ];
 </script>
 
-<svelte:head><title>Layout — CPBL Design</title></svelte:head>
+<svelte:head><title>Layout - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="row"
       title="Row"
@@ -78,7 +79,7 @@
       id="grid"
       title="Grid"
     >
-      <h3>Responsive CSS grid — 1 to 4 columns</h3>
+      <h3>Responsive CSS grid - 1 to 4 columns</h3>
       <div class="preview">
         <p class="demo-label">columns={2}</p>
         <Grid
@@ -113,7 +114,7 @@
       id="inlinegrid"
       title="InlineGrid"
     >
-      <h3>Inline label–value grid — 2, 3, or 4 columns</h3>
+      <h3>Inline label–value grid - 2, 3, or 4 columns</h3>
       <div class="preview">
         <p class="demo-label">cols={2} (default)</p>
         <InlineGrid>
@@ -185,7 +186,7 @@
       title="Pair"
     >
       <h3>
-        Flex row with centered alignment — for icon+label or two related
+        Flex row with centered alignment - for icon+label or two related
         elements
       </h3>
       <div class="preview">
@@ -211,7 +212,7 @@
       id="main"
       title="Main"
     >
-      <h3>Page main wrapper — centered, padded, full-height column</h3>
+      <h3>Page main wrapper - centered, padded, full-height column</h3>
       <div class="preview">
         <Text color="secondary">
           <code>Main</code> wraps page content with responsive padding, centered
@@ -280,7 +281,7 @@
       id="dynbox"
       title="DynBoxGrid / DynBoxRow"
     >
-      <h3>Interactive drag-and-resize box grid — used in the model editor</h3>
+      <h3>Interactive drag-and-resize box grid - used in the model editor</h3>
       <div class="preview note">
         <Text color="secondary">
           <strong>DynBoxGrid</strong> and <strong>DynBoxRow</strong> implement a
@@ -302,7 +303,7 @@
       prev={{ href: "/components/cards", label: "Cards" }}
       next={{ href: "/components/inputs", label: "Inputs" }}
     />
-  </div>
+  </ShowcaseContainer>
 </div>
 
 <style>

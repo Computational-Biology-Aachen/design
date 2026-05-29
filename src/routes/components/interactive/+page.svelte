@@ -2,8 +2,6 @@
   import {
     Accordion,
     Accordion2,
-    ActivationSliders,
-    AudienceToggle,
     ButtonIcon,
     Icon,
     PageNav,
@@ -14,6 +12,7 @@
     Text,
     VideoTranscriptToggle,
   } from "$lib/index.js";
+  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
 
@@ -23,7 +22,6 @@
     { label: "Popover", id: "popover" },
     { label: "Slider", id: "slider" },
     { label: "Slider2", id: "slider2" },
-    { label: "SliderActivation", id: "slideractivation" },
     { label: "ToggleAudience", id: "toggleaudience" },
     { label: "ToggleLanguage", id: "togglelanguage" },
     { label: "VideoTranscriptToggle", id: "videotranscripttoggle" },
@@ -59,16 +57,16 @@
   ];
 </script>
 
-<svelte:head><title>Interactive — CPBL Design</title></svelte:head>
+<svelte:head><title>Interactive - CPBL Design</title></svelte:head>
 
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
-  <div>
+  <ShowcaseContainer>
     <ShowcaseSection
       id="accordion"
       title="Accordion"
     >
-      <h3>CSS-only disclosure — no JS required</h3>
+      <h3>CSS-only disclosure - no JS required</h3>
       <div class="preview">
         <Accordion title="What is photosynthesis?">
           <p>
@@ -111,7 +109,7 @@
           {/snippet}
           <p style="padding: var(--space-4) 0 0">
             Unlike <code>Accordion</code>, this variant accepts a full snippet
-            as its header — useful for icons, badges, or complex trigger
+            as its header - useful for icons, badges, or complex trigger
             layouts.
           </p>
         </Accordion2>
@@ -131,7 +129,7 @@
       id="popover"
       title="Popover"
     >
-      <h3>Native popover API panel — anchored to a trigger button</h3>
+      <h3>Native popover API panel - anchored to a trigger button</h3>
       <div class="preview">
         <Row
           align="center"
@@ -193,7 +191,7 @@
       id="slider2"
       title="Slider2"
     >
-      <h3>Alternative slider — debounced callback, string min/max/step</h3>
+      <h3>Alternative slider - debounced callback, string min/max/step</h3>
       <div class="preview">
         <Slider2
           name="kcat"
@@ -212,90 +210,6 @@
   bind:val={myVal}
   min="0" max="10" step="0.1"
   callback={() => runSimulation()}
-/>`}</code
-        ></pre>
-    </ShowcaseSection>
-
-    <ShowcaseSection
-      id="slideractivation"
-      title="SliderActivation"
-    >
-      <h3>Paired activation / deactivation sliders for kinetic parameters</h3>
-      <div class="preview">
-        <ActivationSliders
-          bind:activationIdx={actIdx}
-          bind:deactivationIdx={deactIdx}
-          activationLabel="Activation"
-          deactivationLabel="Deactivation"
-          activationMultiplier={actMul}
-          deactivationMultiplier={deactMul}
-        />
-        <p class="demo-label">act: ×{actMul} / deact: ×{deactMul}</p>
-      </div>
-      <pre><code
-          >{`<ActivationSliders
-  bind:activationIdx
-  bind:deactivationIdx
-  activationLabel="Activation"
-  deactivationLabel="Deactivation"
-  activationMultiplier={multipliers[activationIdx]}
-  deactivationMultiplier={multipliers[deactivationIdx]}
-/>`}</code
-        ></pre>
-    </ShowcaseSection>
-
-    <ShowcaseSection
-      id="toggleaudience"
-      title="ToggleAudience"
-    >
-      <h3>Segmented button toggle for audience selection</h3>
-      <div class="preview">
-        <AudienceToggle
-          audienceStore={audienceStore}
-          options={audienceOptions}
-        />
-        <p class="demo-label">Selected: {audience}</p>
-      </div>
-      <pre><code
-          >{`<!-- Create a store with audience state -->
-let audience = $state<"4bio" | "4math">("4bio");
-const audienceStore = {
-  get audience() { return audience; },
-  setAudience(v) { audience = v; }
-};
-
-<ToggleAudience
-  {audienceStore}
-  options={[
-    { value: "4bio",  label: "Biology" },
-    { value: "4math", label: "Mathematics" },
-  ]}
-/>`}</code
-        ></pre>
-    </ShowcaseSection>
-
-    <ShowcaseSection
-      id="togglelanguage"
-      title="ToggleLanguage"
-    >
-      <h3>Locale switcher — requires paraglide-js i18n setup</h3>
-      <div class="preview note">
-        <Text color="secondary">
-          <strong>ToggleLanguage</strong> reads and sets the active locale via
-          <code>getLocale()</code> / <code>setLocale()</code> from
-          <code>$lib/paraglide/runtime</code>. It is used in comphot (EN/DE/FR)
-          and requires the paraglide-js adapter to be configured in the
-          consuming site.
-        </Text>
-      </div>
-      <pre><code
-          >{`<!-- Requires @inlang/paraglide-js in the consuming site -->
-<ToggleLanguage
-  locales={[
-    { code: "en", label: "EN" },
-    { code: "de", label: "DE" },
-    { code: "fr", label: "FR" },
-  ]}
 />`}</code
         ></pre>
     </ShowcaseSection>
@@ -323,7 +237,7 @@ const audienceStore = {
       prev={{ href: "/components/inputs", label: "Inputs" }}
       next={{ href: "/components/data", label: "Data & Science" }}
     />
-  </div>
+  </ShowcaseContainer>
 </div>
 
 <style>
@@ -332,9 +246,5 @@ const audienceStore = {
     color: var(--color-text-muted);
     font-size: 0.75rem;
     font-family: var(--font-mono);
-  }
-
-  .note {
-    font-size: 0.9rem;
   }
 </style>

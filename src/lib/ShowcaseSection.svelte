@@ -1,30 +1,50 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  interface Props {
+  let {
+    id,
+    title,
+    subtitle,
+    children,
+  }: {
     id: string;
     title: string;
+    subtitle?: string;
     children: Snippet;
-  }
-
-  let { id, title, children }: Props = $props();
+  } = $props();
 </script>
 
-<div {id} class="section">
+<div
+  id={id}
+  class="section"
+>
   <h2>{title}</h2>
+  {#if subtitle}
+    <h3>{subtitle}</h3>
+  {/if}
   {@render children()}
 </div>
 
 <style>
   .section {
-    margin-bottom: var(--space-12);
-    scroll-margin-top: calc(var(--nav-height) + var(--space-4));
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
     border-radius: var(--radius-md);
+    scroll-margin-top: calc(var(--nav-height) + var(--space-8));
   }
 
   @keyframes section-target-flash {
-    from { background-color: color-mix(in srgb, var(--color-primary) 8%, transparent); }
-    to { background-color: transparent; }
+    from {
+      background-color: color-mix(
+        in srgb,
+        var(--color-primary) 8%,
+        transparent
+      );
+    }
+    to {
+      background-color: transparent;
+    }
   }
 
   .section:target {
@@ -32,19 +52,19 @@
   }
 
   h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
     margin-bottom: var(--space-6);
-    padding-bottom: var(--space-3);
     border-bottom: var(--border);
+    padding-bottom: var(--space-3);
+    font-weight: 600;
+    font-size: 1.5rem;
   }
 
-  .section :global(h3) {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--color-text-muted);
+  h3 {
     margin-bottom: var(--space-4);
-    text-transform: uppercase;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: 0.75rem;
     letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 </style>
