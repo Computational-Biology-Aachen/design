@@ -27,6 +27,7 @@ export { default as Deleted } from "./Deleted.svelte";
 export { default as DynBoxGrid } from "./DynBoxGrid.svelte";
 export { default as DynBoxRow } from "./DynBoxRow.svelte";
 export type { Box } from "./DynBoxRow.svelte";
+export { default as Figure } from "./Figure.svelte";
 export { default as Footer } from "./Footer.svelte";
 export { default as Grid } from "./Grid.svelte";
 export { default as GridPerson } from "./GridPerson.svelte";

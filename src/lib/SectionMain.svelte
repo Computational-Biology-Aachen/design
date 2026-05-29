@@ -7,7 +7,7 @@
     align = "center",
     children,
   }: {
-    width?: "full" | "narrow";
+    width?: "full" | "narrow" | "90ch";
     gap?: "normal" | "large";
     align?: "center" | "start";
     children: Snippet;
@@ -48,6 +48,9 @@
   }
   .width-narrow {
     max-width: 100ch;
+  }
+  .width-90ch {
+    max-width: 90ch;
   }
 
   .align-center {
