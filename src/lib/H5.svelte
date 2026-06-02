@@ -28,7 +28,7 @@
     color: var(--color-bg);
   }
   .primary {
-    color: var(--color-surface);
+    color: var(--color-primary);
   }
   .secondary {
     color: var(--color-accent);
