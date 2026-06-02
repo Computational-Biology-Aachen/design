@@ -19,6 +19,7 @@
   />
 </svelte:head>
 
+<!-- <div id="page"> -->
 <Navbar>
   {#snippet brand()}
     <span class="brand">CPBL Design</span>
@@ -53,8 +54,9 @@
 
   <NavGH href="https://github.com/Computational-Biology-Aachen/design" />
 </Navbar>
-
 {@render children()}
+
+<!-- </div> -->
 
 <style>
   .brand {

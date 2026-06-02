@@ -30,7 +30,6 @@
     margin: 0;
     padding: 0 var(--space-4);
     width: 100%;
-    min-height: calc(100vh - var(--nav-height));
   }
 
   .inner {

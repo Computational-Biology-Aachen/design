@@ -19,6 +19,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: auto;
     background-color: var(--color-text);
     padding: var(--space-12) var(--space-4);
     width: 100%;
