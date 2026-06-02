@@ -1,8 +1,21 @@
 <script lang="ts">
-  let { children } = $props();
+  import type { Snippet } from "svelte";
+
+  let {
+    columns = 3,
+    gap = "var(--gap)",
+    children,
+  }: {
+    gap?: string;
+    columns?: number;
+    children: Snippet;
+  } = $props();
 </script>
 
-<div>
+<div
+  class="cols-{columns}"
+  style:gap={gap}
+>
   {@render children()}
 </div>
 
@@ -12,6 +25,37 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     justify-content: center;
     align-items: center;
-    grid-gap: 10px;
+  }
+
+  .cols-1 {
+    grid-template-columns: 1fr;
+  }
+  .cols-2 {
+    grid-template-columns: 1fr;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .cols-3 {
+    grid-template-columns: 1fr;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .cols-4 {
+    grid-template-columns: 1fr;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .cols-5 {
+    grid-template-columns: 1fr;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(5, 1fr);
+    }
   }
 </style>

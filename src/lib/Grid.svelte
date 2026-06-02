@@ -7,7 +7,7 @@
     children: Snippet;
   }
 
-  let { columns = 1, gap = "var(--space-4)", children }: Props = $props();
+  let { columns = 1, gap = "var(--gap)", children }: Props = $props();
 </script>
 
 <div

@@ -10,24 +10,31 @@
   let {
     title,
     slug,
+    href = `team/${slug}`,
+    img,
   }: {
     title: string;
     slug: string;
+    href?: string;
+    img?: string;
   } = $props();
 
-  // svelte-ignore state_referenced_locally
-  let filename = `/src/lib/assets/people/${slug}.jpg`;
-  let img = images[filename] ?? "/src/lib/assets/people/placeholder.jpg";
+  let resolvedImg = $derived(
+    img ??
+      images[`/src/lib/assets/people/${slug}.jpg`] ??
+      "/src/lib/assets/people/placeholder.jpg",
+  ) as string;
 </script>
 
 <Link
   color="light"
-  href="team/{slug}"
+  href={href}
 >
-  <div
-    class="card"
-    style:background-image="url({img})"
-  >
+  <div class="card">
+    <img
+      src={resolvedImg}
+      alt={title}
+    />
     <div class="bar">
       <h4 class="white">{title}</h4>
     </div>
@@ -36,29 +43,38 @@
 
 <style>
   .card {
-    display: flex;
+    display: inline-flex;
+    position: relative;
     flex-direction: column;
     justify-content: end;
     transition: transform 0.3s ease;
     margin: 0 auto;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
     padding: 0;
-    aspect-ratio: 4/3;
     width: 100%;
+    height: 300px;
+    overflow: hidden;
   }
   .card:hover {
-    transform: scale(1.01);
+    transform: scale(1.02);
+  }
+  .card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
   .bar {
     display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
     flex-direction: column;
     margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 0.5rem;
-    width: 75%;
-    color: var(--color-bg);
+    color: var(--white);
   }
   h4 {
     margin: 0;
