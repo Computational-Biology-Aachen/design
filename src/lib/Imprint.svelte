@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { Footer, Link, Text } from "@computational-biology-aachen/design";
   import { faGithub } from "@fortawesome/free-brands-svg-icons";
   import Fa from "svelte-fa";
-  import "../app.css";
   import H2 from "./H2.svelte";
+  import Link from "./Link.svelte";
+  import Footer from "./SectionFooter.svelte";
+  import Text from "./Text.svelte";
 
   let {
     github,
