@@ -3,7 +3,6 @@
   import ShowcaseSection from "$lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
   import {
-    Card,
     CardImage,
     CardImageHighlight,
     CardModel,
@@ -12,12 +11,10 @@
     CardSoftware,
     CardSoftwareMain,
     CardSponsor,
-    Icon,
     PageNav,
     Row,
   } from "$lib/index.js";
   const links = [
-    { label: "Card", id: "card" },
     { label: "CardImage", id: "cardimage" },
     { label: "CardImageHighlight", id: "cardimagehighlight" },
     { label: "CardModel", id: "cardmodel" },
@@ -35,36 +32,6 @@
 <div class="showcase-page">
   <ShowcaseSidebar links={links} />
   <ShowcaseContainer>
-    <ShowcaseSection
-      id="card"
-      title="Card"
-    >
-      <h3>Color variants: c1, c2, c3, c4</h3>
-      <div class="preview">
-        <Row
-          gap="var(--space-3)"
-          wrap
-        >
-          <Card color="primary"
-            ><Icon color="primary">interactive_space</Icon> primary</Card
-          >
-          <Card color="secondary"
-            ><Icon color="inherit">group</Icon> secondary</Card
-          >
-          <Card color="dark"><Icon color="inherit">genetics</Icon> dark</Card>
-          <Card color="light"
-            ><Icon color="primary">open_in_browser</Icon> light</Card
-          >
-        </Row>
-      </div>
-      <pre><code
-          >{`<Card color="c1">
-  <Icon color="c1">interactive_space</Icon>
-  Feature description
-</Card>`}</code
-        ></pre>
-    </ShowcaseSection>
-
     <ShowcaseSection
       id="cardimage"
       title="CardImage"

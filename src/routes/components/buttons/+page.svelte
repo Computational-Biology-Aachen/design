@@ -67,18 +67,22 @@
         >
           <ButtonIcon
             icon="settings"
+            size="lg"
             onclick={() => alert("settings")}
           />
           <ButtonIcon
             icon="info"
+            size="lg"
             onclick={() => alert("info")}
           />
           <ButtonIcon
             icon="delete"
+            size="lg"
             onclick={() => alert("delete")}
           />
           <ButtonIcon
             icon="add"
+            size="lg"
             onclick={() => alert("add")}
           />
         </Row>

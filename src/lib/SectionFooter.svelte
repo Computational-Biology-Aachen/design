@@ -16,20 +16,22 @@
 
 <style>
   footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: var(--color-text);
-    padding: var(--space-12) 0;
+    padding: var(--space-12) var(--space-4);
+    width: 100%;
+    min-height: 12rem;
     color: var(--color-text-inverse);
   }
 
   .inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
     margin: 0 auto;
-    padding: 0 var(--space-4);
+    width: 100%;
     max-width: var(--max-width);
-  }
-
-  @media (min-width: 768px) {
-    .inner {
-      padding: 0;
-    }
   }
 </style>

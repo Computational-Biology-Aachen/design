@@ -119,22 +119,15 @@
         style="padding: 0; overflow: hidden"
       >
         <Footer>
-          <Row
-            justify="between"
-            align="center"
-          >
-            <span>© 2026 Computational Biology Lab, RWTH Aachen</span>
-            <Row gap="var(--space-4)">
-              <Link
-                href="https://github.com/Computational-Biology-Aachen"
-                color="light">GitHub</Link
-              >
-              <Link
-                href="{base}/imprint"
-                color="light">Imprint</Link
-              >
-            </Row>
-          </Row>
+          <span>© 2026 Computational Biology Lab, RWTH Aachen</span> <br />
+          <Link
+            href="https://github.com/Computational-Biology-Aachen"
+            color="light">GitHub</Link
+          > <br />
+          <Link
+            href="{base}/imprint"
+            color="light">Imprint</Link
+          > <br />
         </Footer>
       </div>
       <pre><code

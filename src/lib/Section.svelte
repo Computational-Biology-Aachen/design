@@ -24,7 +24,13 @@
 
 <style>
   section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0 var(--space-4);
     width: 100%;
+    min-height: 12rem;
   }
 
   .inner {
@@ -32,6 +38,7 @@
     flex-direction: column;
     gap: var(--gap);
     margin: 0 auto;
+    width: 100%;
     max-width: var(--max-width);
   }
 

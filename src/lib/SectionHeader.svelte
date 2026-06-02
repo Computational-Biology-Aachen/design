@@ -27,21 +27,18 @@
     justify-content: center;
     margin: 0;
     background-color: var(--color-primary);
-    padding: var(--space-8) 0;
+    padding: var(--space-8) var(--space-4);
     min-height: 12rem;
   }
   .inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
     margin: 0 auto;
-    padding: 0 1rem;
     width: 100%;
     max-width: var(--max-width);
   }
 
-  @media (min-width: 768px) {
-    .inner {
-      padding: 0;
-    }
-  }
   .gap-normal {
     gap: var(--gap);
   }

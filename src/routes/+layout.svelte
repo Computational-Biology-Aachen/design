@@ -41,7 +41,7 @@
       </ButtonMenuItem>
       <ButtonMenuItem href="{base}/components/layout">Layout</ButtonMenuItem>
       <ButtonMenuItem href="{base}/components/media">Media</ButtonMenuItem>
-      <ButtonMenuItem href="{base}/components/naviation">Nav</ButtonMenuItem>
+      <ButtonMenuItem href="{base}/components/navigation">Nav</ButtonMenuItem>
       <ButtonMenuItem href="{base}/components/typography"
         >Typography
       </ButtonMenuItem>

@@ -1,7 +1,4 @@
 <script lang="ts">
-  import H1 from "./H1.svelte";
-  import Link from "./Link.svelte";
-  import Text from "./Text.svelte";
   import {
     faGithub,
     faGitlab,
@@ -9,6 +6,9 @@
   } from "@fortawesome/free-brands-svg-icons";
   import { faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
   import Fa from "svelte-fa";
+  import H1 from "./H1.svelte";
+  import Link from "./Link.svelte";
+  import Text from "./Text.svelte";
 
   let {
     name,
@@ -36,7 +36,7 @@
   }
 </script>
 
-<section>
+<header>
   <div class="grid">
     <div class="info">
       <H1 color="light">{name}</H1>
@@ -88,20 +88,24 @@
       />
     {/if}
   </div>
-</section>
+</header>
 
 <style>
-  section {
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
     background-color: var(--color-primary);
-    padding: var(--space-8) 0;
+    padding: var(--space-8) var(--space-4);
     width: 100%;
+    min-height: 12rem;
   }
   .grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: var(--gap);
     margin: 0 auto;
-    padding: 0 1rem;
     width: 100%;
     max-width: var(--max-width);
   }

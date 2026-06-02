@@ -16,18 +16,33 @@
   } = $props();
 </script>
 
-<main class="width-{width} pad-{pad} gap-{gap} align-{align}">
-  {@render children()}
+<main>
+  <div class="inner width-{width} pad-{pad} gap-{gap} align-{align}">
+    {@render children()}
+  </div>
 </main>
 
 <style>
   main {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    justify-content: center;
+    margin: 0;
+    padding: 0 var(--space-4);
     width: 100%;
     min-height: calc(100vh - var(--nav-height));
   }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--max-width);
+  }
+
+  /* Conditional styles */
   .pad-tight {
     padding: 1rem;
   }

@@ -80,7 +80,7 @@
       <h3>Chart.js wrapper - time-course visualization with phase regions</h3>
       <div
         class="preview"
-        style="height: 320px"
+        style="width: 100%"
       >
         <LineChart
           data={lineChartData}
@@ -123,7 +123,7 @@ const data: ChartData = {
       </h3>
       <div
         class="preview"
-        style="height: 280px"
+        style="width: 100%"
       >
         <SimChart
           xNew={simX}
