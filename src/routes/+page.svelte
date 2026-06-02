@@ -1,6 +1,6 @@
 <script lang="ts">
   import { base } from "$app/paths";
-  import { Button, Row, Section } from "$lib/index.js";
+  import { Button, Imprint, Row, Section } from "$lib/index.js";
 </script>
 
 <svelte:head>
@@ -52,6 +52,8 @@
     </div>
   </div>
 </Section>
+
+<Imprint github="https://github.com/Computational-Biology-Aachen/design" />
 
 <style>
   h1 {
