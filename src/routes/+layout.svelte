@@ -13,6 +13,7 @@
 
 <!-- SEO -->
 <svelte:head>
+  <title>CPBL Design</title>
   <link
     rel="icon"
     href={favicon}

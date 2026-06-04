@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-  <title>CPBL Design System</title>
+  <title>CPBL Design</title>
 </svelte:head>
 
 <Section variant="primary">
