@@ -77,7 +77,7 @@
     font-weight: var(--weight-medium);
   }
   span.value {
-    color: var(--color-surface);
+    color: var(--color-primary);
     font-weight: var(--weight-bold);
   }
   input[type="range"] {
