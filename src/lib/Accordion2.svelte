@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Icon from "./Icon.svelte";
   import type { Snippet } from "svelte";
+  import Icon from "./Icon.svelte";
 
   let {
     header,
@@ -43,7 +43,7 @@
     cursor: pointer;
     border: none;
     border-radius: var(--radius-full);
-    background-color: var(--color-surface);
+    background-color: var(--color-primary);
     width: 1.8rem;
     height: 1.8rem;
     color: white;
@@ -51,6 +51,7 @@
   }
   span:hover {
     background-color: lch(from var(--color-surface) calc(l - 10) c h);
+    color: var(--color-primary);
   }
   .accordion {
     width: 100%;
