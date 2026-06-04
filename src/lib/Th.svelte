@@ -1,0 +1,25 @@
+<script lang="ts">
+  import type { Snippet } from "svelte";
+
+  let {
+    children,
+    ...rest
+  }: {
+    children: Snippet;
+    [key: string]: unknown;
+  } = $props();
+</script>
+
+<th {...rest}>
+  {@render children()}
+</th>
+
+<style>
+  th {
+    background: var(--color-surface);
+    padding: 0.5rem 0.75rem;
+    font-weight: 600;
+    text-align: left;
+    white-space: nowrap;
+  }
+</style>
