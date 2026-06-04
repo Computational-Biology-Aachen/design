@@ -24,7 +24,8 @@
     /* text-decoration: currentcolor underline dashed auto; */
     transition: var(--transition);
     padding: 0;
-    font-family: sans-serif;
+    font-size: 1rem;
+    font-family: var(--font-sans);
     text-decoration: none;
   }
   a:hover {
