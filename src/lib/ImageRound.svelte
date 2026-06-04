@@ -2,9 +2,13 @@
   let {
     path,
     alt = "profile",
+    objectFit = "unset",
+    objectPosition = "unset",
   }: {
     path: string;
     alt?: string;
+    objectFit?: "unset" | "cover";
+    objectPosition?: "unset" | "top";
   } = $props();
 
   let imageError = $state(false);
@@ -23,6 +27,8 @@
     src={path}
     alt={alt}
     onerror={handleError}
+    style:object-fit={objectFit}
+    style:object-position={objectPosition}
   />
 {/if}
 
