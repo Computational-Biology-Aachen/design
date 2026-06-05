@@ -4,6 +4,7 @@
   import ButtonMenu from "$lib/ButtonMenu.svelte";
   import ButtonMenuItem from "$lib/ButtonMenuItem.svelte";
   import CollapseToBurger from "$lib/CollapseToBurger.svelte";
+  import Imprint from "$lib/Imprint.svelte";
   import { Navbar, NavItem } from "$lib/index.js";
   import NavGH from "$lib/NavGH.svelte";
   import "../app.css";
@@ -56,6 +57,8 @@
   <NavGH href="https://github.com/Computational-Biology-Aachen/design" />
 </Navbar>
 {@render children()}
+
+<Imprint github="https://github.com/Computational-Biology-Aachen/design" />
 
 <!-- </div> -->
 
