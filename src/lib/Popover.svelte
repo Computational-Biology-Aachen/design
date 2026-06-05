@@ -32,6 +32,7 @@
     box-shadow: var(--shadow);
     border: var(--border-heavy);
     border-radius: var(--radius-lg);
+    max-height: 100vh; /* Fallback, should be set in xs/sm/md/lg */
     overflow-y: scroll;
   }
   [popover]::backdrop {
@@ -52,16 +53,22 @@
     max-height: calc(100vh - 2 * clamp(1rem, var(--dist), 10rem));
   }
   .md {
-    --dist: 4rem;
+    --dist: 0rem;
     top: var(--dist);
     left: var(--dist);
-    width: calc(100% - 2 * var(--dist));
+
+    @media (min-width: 768px) {
+      --dist: 4rem;
+      width: calc(100% - 2 * var(--dist));
+      max-height: calc(100vh - 2 * var(--dist));
+    }
   }
   .lg {
     --dist: 0;
     top: var(--dist);
     left: var(--dist);
     width: 100%;
+    max-height: calc(100vh - 2 * var(--dist));
 
     @media (min-width: 768px) {
       --dist: 2rem;
