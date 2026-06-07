@@ -10,6 +10,11 @@
  */
 
 :root {
+  /* ── breakpoints ──────────────────────────── */
+  --sm: 640px;
+  --md: 768px;
+  --lg: 1024px;
+
   /* ── RWTH palette (raw values) ──────────────────────────── */
   --rwth-blue: rgb(0, 84, 159);
   --rwth-petrol: rgb(0, 97, 101);

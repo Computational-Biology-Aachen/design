@@ -65,6 +65,7 @@
     flex-direction: column;
     gap: var(--space-1);
     padding: 0 var(--space-2);
+    width: 100%;
   }
   .row {
     display: flex;

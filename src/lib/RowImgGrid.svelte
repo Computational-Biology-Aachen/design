@@ -52,8 +52,18 @@
 
   .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     justify-content: space-between;
     gap: var(--gap);
+
+    @media (min-width: 500px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (min-width: 800px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media (min-width: 1100px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
   }
 </style>

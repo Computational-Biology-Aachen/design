@@ -76,7 +76,7 @@
     border-radius: var(--radius-md);
     background-color: var(--color-bg);
     padding: var(--space-2);
-    min-width: 10rem;
+    min-width: 15rem;
     list-style: none;
   }
 </style>

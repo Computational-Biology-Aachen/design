@@ -26,13 +26,18 @@
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    margin: 0 1rem;
+    margin: 0;
     border: none;
     background-color: transparent;
-    padding: 0.3rem 0.2rem;
+    padding: 0;
     color: var(--slate-500);
     font-weight: 700;
     font-size: 0.84rem;
+
+    @media (min-width: 768px) {
+      margin: 0 1rem;
+      padding: 0.3rem 0.2rem;
+    }
   }
   button:hover {
     color: var(--color-primary);

@@ -50,7 +50,7 @@
     top: clamp(1rem, var(--dist), 10rem);
     left: var(--dist);
     width: calc(100% - 2 * var(--dist));
-    max-height: calc(100vh - 2 * clamp(1rem, var(--dist), 10rem));
+    height: calc(100vh - 2 * clamp(1rem, var(--dist), 10rem));
   }
   .md {
     --dist: 0rem;
@@ -60,7 +60,7 @@
     @media (min-width: 768px) {
       --dist: 4rem;
       width: calc(100% - 2 * var(--dist));
-      max-height: calc(100vh - 2 * var(--dist));
+      height: calc(100vh - 2 * var(--dist));
     }
   }
   .lg {
@@ -68,7 +68,7 @@
     top: var(--dist);
     left: var(--dist);
     width: 100%;
-    max-height: calc(100vh - 2 * var(--dist));
+    height: calc(100vh - 2 * var(--dist));
 
     @media (min-width: 768px) {
       --dist: 2rem;

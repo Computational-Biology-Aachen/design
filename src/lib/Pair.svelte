@@ -15,6 +15,7 @@
   div {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
     width: 100%;

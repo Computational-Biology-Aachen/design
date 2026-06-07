@@ -205,8 +205,11 @@
 <style>
   .chart-container {
     width: 100%;
-    height: auto;
-    min-height: 400px;
+    height: 300px;
+
+    @media (min-width: 640px) {
+      height: 400px;
+    }
   }
 
   canvas {

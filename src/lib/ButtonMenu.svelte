@@ -96,6 +96,11 @@
   .wrap {
     display: inline-block;
     position: relative;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: auto;
+    }
   }
   .menu {
     display: grid;

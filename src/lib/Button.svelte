@@ -72,11 +72,16 @@
     border: none;
     border-radius: var(--radius-md);
     padding: var(--space-2) var(--space-6);
+    width: 100%;
     font-weight: 500;
     font-size: 0.9375rem;
     line-height: 1.5;
     font-family: var(--font-sans);
     text-decoration: none;
+
+    @media (min-width: 768px) {
+      width: auto;
+    }
   }
 
   .full-width {
