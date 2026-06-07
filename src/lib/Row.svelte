@@ -4,15 +4,6 @@
   type Justify = "start" | "center" | "end" | "between" | "around";
   type Align = "start" | "center" | "end" | "stretch";
 
-  interface Props {
-    gap?: string;
-    align?: Align;
-    justify?: Justify;
-    wrap?: boolean;
-    stack?: boolean;
-    children: Snippet;
-  }
-
   let {
     gap = "var(--space-4)",
     align = "center",
@@ -20,7 +11,14 @@
     wrap = false,
     stack = false,
     children,
-  }: Props = $props();
+  }: {
+    gap?: string;
+    align?: Align;
+    justify?: Justify;
+    wrap?: boolean;
+    stack?: boolean;
+    children: Snippet;
+  } = $props();
 
   const justifyMap: Record<Justify, string> = {
     start: "flex-start",
@@ -45,7 +43,6 @@
   div {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     width: 100%;
   }
 

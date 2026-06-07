@@ -36,6 +36,7 @@
     border-radius: var(--radius-full);
     background-color: var(--color-surface);
     color: var(--color-primary);
+    white-space: nowrap;
   }
   button:hover {
     background-color: lch(from var(--color-primary) calc(l - 10) c h);

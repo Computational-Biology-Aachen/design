@@ -78,6 +78,7 @@
     line-height: 1.5;
     font-family: var(--font-sans);
     text-decoration: none;
+    white-space: nowrap;
 
     @media (min-width: 768px) {
       width: auto;

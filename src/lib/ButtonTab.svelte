@@ -33,6 +33,7 @@
     color: var(--slate-500);
     font-weight: 700;
     font-size: 0.84rem;
+    white-space: nowrap;
 
     @media (min-width: 768px) {
       margin: 0 1rem;

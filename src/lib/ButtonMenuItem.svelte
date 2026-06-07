@@ -55,6 +55,7 @@
     color: var(--text);
     font-size: 0.875rem;
     text-align: left;
+    white-space: nowrap;
   }
   a:hover,
   button:hover {

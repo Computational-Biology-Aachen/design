@@ -42,6 +42,7 @@
     transition:
       transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
       box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0 auto;
     box-shadow: var(--shadow-md);
     border-radius: var(--radius-lg);
     background: var(--color-surface);

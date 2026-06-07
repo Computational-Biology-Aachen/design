@@ -4,10 +4,15 @@
   let {
     children,
     justify = "start",
-  }: { children: Snippet; justify?: "start" | "end" } = $props();
+    wrap = "wrap",
+  }: {
+    children: Snippet;
+    justify?: "start" | "end";
+    wrap?: "wrap" | "nowrap";
+  } = $props();
 </script>
 
-<div class="justify-{justify}">
+<div class="justify-{justify} wrap-{wrap}">
   {@render children()}
 </div>
 
@@ -15,7 +20,6 @@
   div {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
     width: 100%;
@@ -25,11 +29,16 @@
   }
   .justify-end {
     justify-content: start;
-  }
 
-  @media (min-width: 768px) {
-    .justify-end {
+    @media (min-width: 768px) {
       justify-content: end;
     }
+  }
+
+  .wrap-wrap {
+    flex-wrap: wrap;
+  }
+  .wrap-nowrap {
+    flex-wrap: nowrap;
   }
 </style>

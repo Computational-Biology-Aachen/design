@@ -37,6 +37,7 @@
     transition:
       border-color 0.5s ease,
       background 0.5s ease;
+    margin: 0 auto;
     border: 1px solid rgba(from var(--color) r g b / 0.5);
     border-radius: 20px;
     background: linear-gradient(
@@ -45,9 +46,9 @@
       rgba(from var(--color) r g b / 0.05)
     );
     padding: 1rem;
-    width: 290px;
+    width: 19rem;
     height: 10rem;
-    overflow-y: scroll;
+    overflow-y: hidden;
   }
 
   .box:hover {
