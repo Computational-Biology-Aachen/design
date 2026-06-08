@@ -1,65 +1,56 @@
-# Svelte library
+# @computational-biology-aachen/design
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+Shared CPBL (Computational and Plant Biology Lab) design system. Ships the RWTH-derived design tokens and a small set of Svelte 5 components that all lab sites build on. SvelteKit library packaged with `svelte-package`.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+**What it ships:**
 
-## Creating a project
+- `@computational-biology-aachen/design/tokens.css` — all CSS custom properties: RWTH palette, semantic colors, spacing, typography, shadows, radii
+- `@computational-biology-aachen/design` — Svelte 5 components: `Navbar`, `NavItem`, `Button`, `Section`, `Row`, `Footer`
 
-If you're seeing this, you've probably already done this step. Congrats!
+**Key tokens:**
 
-```sh
-# create a new project in the current directory
-npx sv create
+- Primary: `--color-primary` = RWTH petrol `rgb(0, 97, 101)`
+- Accent: `--color-accent` = RWTH orange `rgb(246, 168, 0)`
+- Font: `--font-sans` = Space Grotesk (loaded separately via Google Fonts in each site's `app.html`)
+- Spacing scale: `--space-1` (4px) through `--space-16` (64px)
 
-# create a new project in my-app
-npx sv create my-app
+## Dev
+
+```bash
+npm install
+npm run dev          # dev server on :5173 (src/routes is a preview/showcase app)
+npm run watch        # svelte-package in watch mode (for live editing while a consumer runs)
+npm run build        # vite build + prepack → dist/
+npm run preview      # preview the build
+npm run check        # TypeScript + Svelte type checking
 ```
 
-To recreate this project with the same configuration:
+Everything inside `src/lib` is the published library; `src/routes` is a local preview app.
 
-```sh
-# recreate this project
-npx sv@0.15.3 create --template library --types ts --install npm .
+## Consuming a site
+
+Sites pull this package directly from GitHub (`"@computational-biology-aachen/design": "github:Computational-Biology-Aachen/design"`).
+
+In `app.html`:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
 ```
 
-## Developing
+In `app.css`:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```css
+@import '@computational-biology-aachen/design/tokens.css';
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+## Consumers
 
-## Building
-
-To build your library:
-
-```sh
-npm pack
-```
-
-To create a production version of your showcase app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```sh
-npm publish
-```
+- [cpbl](https://github.com/Computational-Biology-Aachen/Computational-Biology-Aachen.github.io) — main lab website
+- [mxl-web](https://github.com/Computational-Biology-Aachen/mxl-web) — browser-side ODE model explorer
+- [comphot](https://github.com/Computational-Biology-Aachen/comphot) — educational photosynthesis site
+- [GreenSloth](https://github.com/Computational-Biology-Aachen/green-sloth) — photosynthesis model explorer
+- the 2022/2023/2026 hackathon and 2027 photosynthesis-school sites
