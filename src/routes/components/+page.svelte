@@ -1,26 +1,28 @@
 <script lang="ts">
+  import { base } from "$app/paths";
+
   const groups = [
     {
       name: "Typography",
-      href: "/components/typography",
+      href: `${base}/components/typography`,
       count: 22,
       desc: "Headings, text, inline elements, links",
     },
     {
       name: "Cards",
-      href: "/components/cards",
+      href: `${base}/components/cards`,
       count: 10,
       desc: "Content cards for people, publications, software, models",
     },
     {
       name: "Layout",
-      href: "/components/layout",
+      href: `${base}/components/layout`,
       count: 11,
       desc: "Grid, row, flex, spacing containers",
     },
     {
       name: "Inputs",
-      href: "/components/inputs",
+      href: `${base}/components/inputs`,
       count: 7,
       desc: "Form controls: text, number, checkbox, select",
     },
@@ -32,25 +34,25 @@
     },
     {
       name: "Data & Science",
-      href: "/components/data",
+      href: `${base}/components/data`,
       count: 8,
       desc: "Charts, tables, math rendering, model gallery",
     },
     {
       name: "Navigation",
-      href: "/components/navigation",
+      href: `${base}/components/navigation`,
       count: 6,
       desc: "Navbar, sidebar, page navigation",
     },
     {
       name: "Heroes",
-      href: "/components/heroes",
+      href: `${base}/components/heroes`,
       count: 6,
       desc: "Hero banners and section headers",
     },
     {
       name: "Buttons",
-      href: "/components/buttons",
+      href: `${base}/components/buttons`,
       count: 5,
       desc: "Button variants: icon, menu, tab",
     },
@@ -62,7 +64,7 @@
     },
     {
       name: "Utilities",
-      href: "/components/utilities",
+      href: `${base}/components/utilities`,
       count: 3,
       desc: "Icon, info box, footer",
     },
@@ -93,6 +95,7 @@
   .index-page {
     margin: 0 auto;
     padding: var(--space-12) var(--space-4);
+    width: 100%;
     max-width: 1100px;
   }
 
