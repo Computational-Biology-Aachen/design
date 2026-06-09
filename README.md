@@ -36,7 +36,10 @@ Sites pull this package directly from GitHub (`"@computational-biology-aachen/de
 In `app.html`:
 
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+/>
 <link
   href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
   rel="stylesheet"
@@ -46,7 +49,7 @@ In `app.html`:
 In `app.css`:
 
 ```css
-@import '@computational-biology-aachen/design/tokens.css';
+@import "@computational-biology-aachen/design/tokens.css";
 ```
 
 ## Consumers

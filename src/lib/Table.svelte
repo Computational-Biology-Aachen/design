@@ -48,8 +48,8 @@
   table {
     border-collapse: collapse;
     width: 100%;
-    font-family: var(--font-sans);
     font-size: 0.9rem;
+    font-family: var(--font-sans);
     text-align: left;
     text-indent: 0;
   }

@@ -17,12 +17,15 @@
   ```
 -->
 <script lang="ts">
-  import { onMount, untrack } from 'svelte';
+  import { onMount, untrack } from "svelte";
 
-  interface Link { label: string; id: string; }
+  interface Link {
+    label: string;
+    id: string;
+  }
   let { links }: { links: Link[] } = $props();
 
-  let active = $state(untrack(() => links[0]?.id ?? ''));
+  let active = $state(untrack(() => links[0]?.id ?? ""));
 
   onMount(() => {
     const observer = new IntersectionObserver(
@@ -31,7 +34,7 @@
           if (entry.isIntersecting) active = entry.target.id;
         }
       },
-      { rootMargin: '-10% 0px -80% 0px' }
+      { rootMargin: "-10% 0px -80% 0px" },
     );
 
     for (const { id } of links) {
@@ -47,7 +50,10 @@
   <ul>
     {#each links as link}
       <li>
-        <a href="#{link.id}" class:active={active === link.id}>{link.label}</a>
+        <a
+          href="#{link.id}"
+          class:active={active === link.id}>{link.label}</a
+        >
       </li>
     {/each}
   </ul>
@@ -60,32 +66,35 @@
   }
 
   ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   a {
     display: block;
-    padding: var(--space-2) var(--space-3);
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    text-decoration: none;
+    transition:
+      color 0.15s,
+      border-color 0.15s,
+      background-color 0.15s;
     border-left: 2px solid transparent;
-    transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    text-decoration: none;
   }
 
   a:hover {
-    color: var(--color-text);
     background-color: var(--color-surface);
+    color: var(--color-text);
   }
 
   a.active {
-    color: var(--color-primary);
     border-left-color: var(--color-primary);
+    color: var(--color-primary);
     font-weight: 500;
   }
 </style>

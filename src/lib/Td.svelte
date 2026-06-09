@@ -29,8 +29,8 @@
 
 <style>
   td {
+    vertical-align: middle;
     padding: 0.5rem 0.75rem;
     text-align: left;
-    vertical-align: middle;
   }
 </style>

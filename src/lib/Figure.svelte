@@ -36,7 +36,10 @@
 </script>
 
 <figure>
-  <img {src} {alt} />
+  <img
+    src={src}
+    alt={alt}
+  />
   {#if caption}
     <figcaption>{@render caption()}</figcaption>
   {/if}

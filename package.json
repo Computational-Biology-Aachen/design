@@ -1,66 +1,66 @@
 {
-	"name": "@computational-biology-aachen/design",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "vite dev",
-		"watch": "svelte-kit sync && svelte-package --watch",
-		"build": "vite build && npm run prepack",
-		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''",
-		"prepack": "svelte-kit sync && svelte-package && publint",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
-	},
-	"files": [
-		"dist",
-		"src/lib",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
-	"sideEffects": [
-		"**/*.css"
-	],
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"type": "module",
-	"exports": {
-		".": {
-			"svelte": "./src/lib/index.ts",
-			"types": "./src/lib/index.ts",
-			"default": "./dist/index.js"
-		},
-		"./tokens.css": "./src/lib/tokens.css",
-		"./*.svelte": {
-			"types": "./src/lib/*.svelte",
-			"svelte": "./src/lib/*.svelte",
-			"default": "./src/lib/*.svelte"
-		}
-	},
-	"dependencies": {
-		"@inlang/paraglide-js": "^2.18.2",
-		"@fortawesome/free-brands-svg-icons": ">=7.2.0",
-		"@fortawesome/free-solid-svg-icons": ">=7.2.0",
-		"svelte-fa": ">=4.0.4",
-		"katex": "^0.17.0",
-		"chart.js": ">=4"
-	},
-	"peerDependencies": {
-		"svelte": "^5.0.0",
-		"@sveltejs/kit": "^2.63.0"
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-static": ">=3",
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.63.0",
-		"@sveltejs/package": "^2.5.8",
-		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"publint": "^0.3.18",
-		"svelte": ">=5.56.2",
-		"svelte-check": "^4.6.0",
-		"typescript": "^6.0.2",
-		"vite": "^8.0.16"
-	},
-	"keywords": [
-		"svelte"
-	]
+  "name": "@computational-biology-aachen/design",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vite dev",
+    "watch": "svelte-kit sync && svelte-package --watch",
+    "build": "vite build && npm run prepack",
+    "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''",
+    "prepack": "svelte-kit sync && svelte-package && publint",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+  },
+  "files": [
+    "dist",
+    "src/lib",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "svelte": "./src/lib/index.ts",
+      "types": "./src/lib/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./tokens.css": "./src/lib/tokens.css",
+    "./*.svelte": {
+      "types": "./src/lib/*.svelte",
+      "svelte": "./src/lib/*.svelte",
+      "default": "./src/lib/*.svelte"
+    }
+  },
+  "dependencies": {
+    "@inlang/paraglide-js": "^2.18.2",
+    "@fortawesome/free-brands-svg-icons": ">=7.2.0",
+    "@fortawesome/free-solid-svg-icons": ">=7.2.0",
+    "svelte-fa": ">=4.0.4",
+    "katex": "^0.17.0",
+    "chart.js": ">=4"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0",
+    "@sveltejs/kit": "^2.63.0"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": ">=3",
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/kit": "^2.63.0",
+    "@sveltejs/package": "^2.5.8",
+    "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "publint": "^0.3.18",
+    "svelte": ">=5.56.2",
+    "svelte-check": "^4.6.0",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.16"
+  },
+  "keywords": [
+    "svelte"
+  ]
 }
