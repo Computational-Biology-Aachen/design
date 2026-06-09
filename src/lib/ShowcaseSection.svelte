@@ -1,3 +1,29 @@
+<!--
+  @component
+
+  An anchored documentation section for the showcase: a titled (and optionally
+  subtitled) block with a scroll-margin offset for the sticky nav and a brief
+  highlight flash when navigated to via its `id`. Pairs with [[ShowcaseSidebar]].
+
+  ### Props
+
+  - `id: string`
+    Anchor id used for in-page navigation and the `:target` flash.
+  - `title: string`
+    Section heading.
+  - `subtitle?: string`
+    Optional uppercased sub-label.
+  - `children: Snippet`
+    The section content.
+
+  ### Example
+
+  ```svelte
+  <ShowcaseSection id="tokens" title="Colour tokens" subtitle="Palette">
+    …
+  </ShowcaseSection>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

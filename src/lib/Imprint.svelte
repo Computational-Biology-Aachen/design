@@ -1,3 +1,21 @@
+<!--
+  @component
+
+  The lab's legal imprint (Impressum) rendered inside a [[SectionFooter]], with
+  the statutory provider/contact details and a GitHub link. Content is specific
+  to the CPBL site.
+
+  ### Props
+
+  - `github: string`
+    URL of the maintainer's GitHub profile shown in the imprint.
+
+  ### Example
+
+  ```svelte
+  <Imprint github="https://github.com/marvinvanaalst" />
+  ```
+-->
 <script lang="ts">
   import { faGithub } from "@fortawesome/free-brands-svg-icons";
   import Fa from "svelte-fa";

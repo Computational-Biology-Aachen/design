@@ -1,3 +1,32 @@
+<!--
+  @component
+
+  A larger image tile that pairs a thumbnail with a name and short description,
+  used to highlight a featured model or item. Falls back to a gradient "biotech"
+  placeholder when no image is supplied.
+
+  ### Props
+
+  - `name: string`
+    Heading shown in the label; also used in the image `alt` text.
+  - `desc: string`
+    Short description shown beneath the name.
+  - `href: string`
+    Destination the whole card links to.
+  - `image?: string`
+    Optional image URL; omitted shows the placeholder.
+
+  ### Example
+
+  ```svelte
+  <CardImageHighlight
+    name="Calvin cycle"
+    desc="Carbon fixation in C3 plants"
+    href="/models/calvin"
+    image="/calvin.png"
+  />
+  ```
+-->
 <script lang="ts">
   let {
     name,

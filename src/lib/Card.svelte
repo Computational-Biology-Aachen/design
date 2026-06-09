@@ -1,3 +1,28 @@
+<!--
+  @component
+
+  An elevated content card with a coloured top border that lifts and deepens its
+  shadow on hover. Can be a fixed square or stretch to fill its container.
+
+  ### Props
+
+  - `children: Snippet`
+    The card content.
+  - `format?: "full" | "fixed"`
+    `"fixed"` renders a 26rem × 26rem square; `"full"` fills the available
+    width. Defaults to `"fixed"`.
+  - `color?: "dark" | "light" | "primary" | "secondary"`
+    Background colour. Defaults to `"light"`.
+
+  ### Example
+
+  ```svelte
+  <Card format="full">
+    <H3>Project</H3>
+    <Text>Description…</Text>
+  </Card>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

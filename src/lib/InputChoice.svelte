@@ -1,3 +1,32 @@
+<!--
+  @component
+
+  A labelled `<select>` dropdown laid out as a label/control pair in an
+  [[InlineGrid]]. Provide `<option>` elements as children. The `value` is
+  `$bindable`.
+
+  ### Props
+
+  - `id: string`
+    Element id linking the label to the select.
+  - `label: string`
+    The field label text.
+  - `value: string | undefined` (bindable)
+    The selected option value.
+  - `border?: "transparent" | "solid"`
+    Border style of the control. Defaults to `"solid"`.
+  - `children: Snippet`
+    The `<option>` elements.
+
+  ### Example
+
+  ```svelte
+  <InputChoice id="method" label="Integrator" bind:value={method}>
+    <option value="rk45">RK45</option>
+    <option value="tsit5">Tsit5</option>
+  </InputChoice>
+  ```
+-->
 <script lang="ts">
   import InlineGrid from "./InlineGrid.svelte";
   import type { Snippet } from "svelte";

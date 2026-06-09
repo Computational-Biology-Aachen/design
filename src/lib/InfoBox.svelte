@@ -1,3 +1,26 @@
+<!--
+  @component
+
+  A callout box with a coloured left border, status icon and bold header, for
+  info/warning/success/error notes.
+
+  ### Props
+
+  - `header: string`
+    The callout heading (rendered bold next to the status icon).
+  - `variant?: "info" | "warning" | "success" | "error"`
+    Colour scheme and icon. Defaults to `"info"`.
+  - `children?: Snippet`
+    Optional body content.
+
+  ### Example
+
+  ```svelte
+  <InfoBox header="Heads up" variant="warning">
+    <Text>This model is experimental.</Text>
+  </InfoBox>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
   import Bold from "./Bold.svelte";

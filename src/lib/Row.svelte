@@ -1,3 +1,34 @@
+<!--
+  @component
+
+  A flexible horizontal flex row with configurable gap, alignment, justification
+  and wrapping. With `stack` enabled it collapses to a vertical column below
+  768px and becomes a row above it.
+
+  ### Props
+
+  - `gap?: string`
+    CSS gap between items. Defaults to `"var(--space-4)"`.
+  - `align?: "start" | "center" | "end" | "stretch"`
+    Cross-axis (`align-items`). Defaults to `"center"`.
+  - `justify?: "start" | "center" | "end" | "between" | "around"`
+    Main-axis (`justify-content`). Defaults to `"start"`.
+  - `wrap?: boolean`
+    Allow items to wrap. Defaults to `false`.
+  - `stack?: boolean`
+    Stack vertically on mobile, row on desktop. Defaults to `false`.
+  - `children: Snippet`
+    The row items.
+
+  ### Example
+
+  ```svelte
+  <Row justify="between" stack>
+    <Logo />
+    <Navbar />
+  </Row>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

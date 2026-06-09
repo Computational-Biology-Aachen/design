@@ -1,3 +1,27 @@
+<!--
+  @component
+
+  An ordered list (`<ol>`) that can lay its items out in one or two columns
+  (two columns only above 800px). Pair with [[Li]] items.
+
+  ### Props
+
+  - `color?: "dark" | "light" | "primary" | "secondary"`
+    Text colour. Defaults to `"dark"`.
+  - `columns?: "one" | "two"`
+    Column layout on wide viewports. Defaults to `"one"`.
+  - `children: Snippet`
+    The [[Li]] items.
+
+  ### Example
+
+  ```svelte
+  <Ol columns="two">
+    <Li>Prepare sample</Li>
+    <Li>Run measurement</Li>
+  </Ol>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

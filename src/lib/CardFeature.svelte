@@ -1,3 +1,32 @@
+<!--
+  @component
+
+  A fixed-size feature card pairing an [[Icon]] and coloured heading with a body
+  paragraph, on a tinted gradient that intensifies on hover. The accent colour
+  comes from the RWTH palette (`--color-c1`…`--color-c4`).
+
+  ### Props
+
+  - `color: "c1" | "c2" | "c3" | "c4"`
+    Accent colour used for the border, icon, heading and gradient.
+  - `icon: string`
+    Material Symbols ligature name.
+  - `header: string`
+    Card heading text.
+  - `body: string`
+    Card body text.
+
+  ### Example
+
+  ```svelte
+  <CardFeature
+    color="c2"
+    icon="biotech"
+    header="Modelling"
+    body="We build kinetic models of plant metabolism."
+  />
+  ```
+-->
 <script lang="ts">
   import Icon from "./Icon.svelte";
   import Row from "./Row.svelte";

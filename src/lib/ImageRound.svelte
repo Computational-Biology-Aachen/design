@@ -1,3 +1,27 @@
+<!--
+  @component
+
+  A circular 300×300 avatar image with a background-coloured ring. Falls back to
+  an "Image not found" placeholder if the source fails to load. Used for team
+  member photos.
+
+  ### Props
+
+  - `path: string`
+    Image source URL.
+  - `alt?: string`
+    Alternative text. Defaults to `"profile"`.
+  - `objectFit?: "unset" | "cover"`
+    `object-fit` for the image. Defaults to `"unset"`.
+  - `objectPosition?: "unset" | "top"`
+    `object-position` for the image. Defaults to `"unset"`.
+
+  ### Example
+
+  ```svelte
+  <ImageRound path="/team/jane.jpg" alt="Jane Doe" objectFit="cover" />
+  ```
+-->
 <script lang="ts">
   let {
     path,

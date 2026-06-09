@@ -1,3 +1,16 @@
+<!--
+  @component
+
+  Table row (`<tr>`) with a bottom border and a subtle hover highlight. Use
+  inside [[Thead]] or [[Tbody]].
+
+  ### Props
+
+  - `children: Snippet`
+    The [[Th]] / [[Td]] cells.
+  - `...rest`
+    Additional attributes spread onto the `<tr>` element.
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

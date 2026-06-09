@@ -1,3 +1,28 @@
+<!--
+  @component
+
+  A responsive navigation list that renders inline on wide viewports and
+  collapses into a ☰ burger dropdown (native `<details>`) below the `collapseAt`
+  breakpoint. Place [[NavItem]]s as children.
+
+  ### Props
+
+  - `brand?: Snippet`
+    Optional brand content (currently reserved for layout use).
+  - `collapseAt?: string`
+    Max-width at which the bar collapses to a burger. Defaults to `"768px"`.
+  - `children: Snippet`
+    The navigation items.
+
+  ### Example
+
+  ```svelte
+  <CollapseToBurger>
+    <NavItem href="/team">Team</NavItem>
+    <NavItem href="/news">News</NavItem>
+  </CollapseToBurger>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
   import { MediaQuery } from "svelte/reactivity";

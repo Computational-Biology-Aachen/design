@@ -1,3 +1,38 @@
+<!--
+  @component
+
+  Headline variant of [[CardPublication]] for featuring a primary publication or
+  software project. Same props and behaviour: a title and slot content over a
+  watermark image, with optional GitHub/GitLab, website and DOI links.
+
+  ### Props
+
+  - `title: string`
+    Card heading.
+  - `children: Snippet`
+    Body content (e.g. authors, abstract).
+  - `img?: string | null`
+    Watermark/background image URL.
+  - `github?: string | null`, `gitlab?: string | null`
+    Repository links (GitHub takes precedence if both set).
+  - `href?: string | null`
+    Project website link.
+  - `doi?: string | null`
+    DOI; rendered as a `https://doi.org/{doi}` publication link.
+  - `format?: "full" | "fixed"`
+    `"fixed"` renders a 26rem square; `"full"` fills the width. Defaults to
+    `"full"`.
+  - `color?: "dark" | "light" | "primary" | "secondary"`
+    Background colour. Defaults to `"light"`.
+
+  ### Example
+
+  ```svelte
+  <CardPublicationMain title="Featured paper" doi="10.1234/example">
+    Authors et al., 2026.
+  </CardPublicationMain>
+  ```
+-->
 <script lang="ts">
   import Link from "./Link.svelte";
   import type { Snippet } from "svelte";

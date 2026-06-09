@@ -1,3 +1,20 @@
+<!--
+  @component
+
+  A preformatted block (`<pre>`) for code or fixed-width text, rendered on a
+  dark surface with a monospaced font and horizontal scrolling for long lines.
+
+  ### Props
+
+  - `children: Snippet`
+    The preformatted content; whitespace is preserved verbatim.
+
+  ### Example
+
+  ```svelte
+  <Pre>npm run build</Pre>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
   let {

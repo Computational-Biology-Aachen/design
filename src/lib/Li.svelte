@@ -1,3 +1,25 @@
+<!--
+  @component
+
+  A list item (`<li>`) with a selectable palette colour. Use inside [[Ul]] or
+  [[Ol]].
+
+  ### Props
+
+  - `color?: "inherit" | "dark" | "light" | "primary" | "secondary"`
+    Text colour. Defaults to `"inherit"`.
+  - `children: Snippet`
+    The list-item content.
+
+  ### Example
+
+  ```svelte
+  <Ul>
+    <Li>First item</Li>
+    <Li>Second item</Li>
+  </Ul>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

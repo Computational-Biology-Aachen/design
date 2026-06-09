@@ -1,3 +1,29 @@
+<!--
+  @component
+
+  A page header band on the primary colour with a centred, max-width inner
+  column. Use at the top of a page for a title/intro. See [[SectionHeaderPerson]]
+  for the team-member variant.
+
+  ### Props
+
+  - `variant?: "light" | "surface" | "dark" | "primary" | "accent"`
+    Colour scheme. Defaults to `"light"`.
+  - `width?: "full" | "narrow"`
+    Inner column width. Defaults to `"full"`.
+  - `gap?: "normal" | "large"`
+    Vertical gap between children. Defaults to `"normal"`.
+  - `children: Snippet`
+    The header content.
+
+  ### Example
+
+  ```svelte
+  <SectionHeader>
+    <H1 color="light">Publications</H1>
+  </SectionHeader>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

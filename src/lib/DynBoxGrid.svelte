@@ -1,3 +1,19 @@
+<!--
+  @component
+
+  A self-contained, drag-and-drop dashboard grid demo: boxes can be moved and
+  resized on a 6-column grid with pointer drag, with live placement previews and
+  buttons to add boxes to the right of a row or below the grid. State (the boxes)
+  is managed internally, so this component takes no props — it serves as a
+  reference/playground implementation. See [[DynBoxRow]] for a prop-driven,
+  controlled version.
+
+  ### Example
+
+  ```svelte
+  <DynBoxGrid />
+  ```
+-->
 <script lang="ts">
   type Box = {
     id: number;

@@ -1,3 +1,22 @@
+<!--
+  @component
+
+  A button that toggles the visibility of a video transcript panel, with a
+  rotating arrow indicator. Transcript text preserves whitespace.
+
+  ### Props
+
+  - `message: string`
+    The toggle button label (e.g. "Show transcript").
+  - `transcript: string`
+    The transcript text revealed when expanded.
+
+  ### Example
+
+  ```svelte
+  <VideoTranscriptToggle message="Show transcript" transcript={text} />
+  ```
+-->
 <script lang="ts">
   let {
     message,

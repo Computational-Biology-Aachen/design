@@ -1,3 +1,26 @@
+<!--
+  @component
+
+  A centred `<figure>` pairing an image with an optional caption rendered in
+  muted, smaller text.
+
+  ### Props
+
+  - `src: string`
+    Image source URL.
+  - `alt: string`
+    Alternative text (required).
+  - `caption?: Snippet`
+    Optional caption content rendered in a `<figcaption>`.
+
+  ### Example
+
+  ```svelte
+  <Figure src="/img/scheme.svg" alt="Pathway scheme">
+    {#snippet caption()}Figure 1. The Calvin–Benson cycle.{/snippet}
+  </Figure>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

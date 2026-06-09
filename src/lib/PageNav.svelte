@@ -1,3 +1,27 @@
+<!--
+  @component
+
+  Previous/next pager links shown at the bottom of a page (e.g. tutorial steps).
+  Each link is optional; `base` is prefixed to both hrefs.
+
+  ### Props
+
+  - `prev?: { href: string; label: string }`
+    The previous-page link (left, with a ← arrow).
+  - `next?: { href: string; label: string }`
+    The next-page link (right, with a → arrow).
+  - `base?: string`
+    Path prefix prepended to both hrefs. Defaults to `""`.
+
+  ### Example
+
+  ```svelte
+  <PageNav
+    prev={{ href: "/intro", label: "Introduction" }}
+    next={{ href: "/setup", label: "Setup" }}
+  />
+  ```
+-->
 <script lang="ts">
   interface NavLink {
     href: string;

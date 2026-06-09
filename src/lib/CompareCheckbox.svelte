@@ -1,3 +1,25 @@
+<!--
+  @component
+
+  A standalone checkbox with an inline label and accent styling, used to toggle
+  comparison against a previous simulation. The `checked` state is `$bindable`
+  and an `onchange` callback receives the new value.
+
+  ### Props
+
+  - `checked?: boolean` (bindable)
+    Whether comparison is enabled. Defaults to `true`.
+  - `label?: string`
+    The checkbox label. Defaults to `"Compare with last simulation"`.
+  - `onchange?: (checked: boolean) => void`
+    Called with the new checked value when toggled.
+
+  ### Example
+
+  ```svelte
+  <CompareCheckbox bind:checked={compare} onchange={rerun} />
+  ```
+-->
 <script lang="ts">
   interface Props {
     checked?: boolean;

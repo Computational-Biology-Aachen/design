@@ -1,3 +1,29 @@
+<!--
+  @component
+
+  A segmented toggle for switching the page's target audience (e.g. biologists
+  vs. mathematicians). Reads/writes an external audience store and highlights the
+  active option.
+
+  ### Props
+
+  - `audienceStore: { audience: "4bio" | "4math"; setAudience: (v) => void }`
+    Store holding the current audience and a setter.
+  - `options: { value: "4bio" | "4math"; label: string }[]`
+    The selectable audience options, in display order.
+
+  ### Example
+
+  ```svelte
+  <ToggleAudience
+    audienceStore={store}
+    options={[
+      { value: "4bio", label: "For biologists" },
+      { value: "4math", label: "For mathematicians" },
+    ]}
+  />
+  ```
+-->
 <script lang="ts">
   type Audience = "4bio" | "4math";
   type AudienceStore = {

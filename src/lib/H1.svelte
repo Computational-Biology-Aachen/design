@@ -1,3 +1,23 @@
+<!--
+  @component
+
+  Top-level page heading (`<h1>`, 2rem) in the design-system font, with a
+  selectable palette colour. Margins/padding are reset so spacing is controlled
+  by the surrounding layout.
+
+  ### Props
+
+  - `children: Snippet`
+    The heading text.
+  - `color?: "dark" | "light" | "primary" | "secondary"`
+    Text colour. Defaults to `"dark"`. Use `"light"` on dark backgrounds.
+
+  ### Example
+
+  ```svelte
+  <H1>Computational and Plant Biology Lab</H1>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

@@ -1,3 +1,25 @@
+<!--
+  @component
+
+  A width-flexible linked image tile with a name label, used in responsive
+  galleries. Falls back to a gradient "biotech" placeholder when no image is
+  supplied. See [[CardImageFixed]] for a fixed-size variant.
+
+  ### Props
+
+  - `name: string`
+    Label shown beneath the image; also used in the image `alt` text.
+  - `href: string`
+    Destination the whole card links to.
+  - `image?: string`
+    Optional image URL; omitted shows the placeholder.
+
+  ### Example
+
+  ```svelte
+  <CardImageFlex name="Photosystem II" href="/models/psii" image="/psii.png" />
+  ```
+-->
 <script lang="ts">
   let {
     name,

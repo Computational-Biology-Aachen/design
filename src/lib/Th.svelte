@@ -1,3 +1,16 @@
+<!--
+  @component
+
+  Table header cell (`<th>`) with surface background and bold, left-aligned,
+  non-wrapping text. Use inside a header [[Tr]].
+
+  ### Props
+
+  - `children: Snippet`
+    The header label.
+  - `...rest`
+    Additional attributes (e.g. `colspan`, `scope`) spread onto the `<th>`.
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

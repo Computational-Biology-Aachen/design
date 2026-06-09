@@ -1,3 +1,39 @@
+<!--
+  @component
+
+  A card for a publication or software project: a title and slot content over a
+  watermark image, with optional GitHub/GitLab, website and DOI links rendered
+  as labelled icons. See [[CardPublicationMain]] (identical) for the headline
+  variant.
+
+  ### Props
+
+  - `title: string`
+    Card heading.
+  - `children: Snippet`
+    Body content (e.g. authors, abstract).
+  - `img?: string | null`
+    Watermark/background image URL.
+  - `github?: string | null`, `gitlab?: string | null`
+    Repository links (GitHub takes precedence if both set).
+  - `href?: string | null`
+    Project website link.
+  - `doi?: string | null`
+    DOI; rendered as a `https://doi.org/{doi}` publication link.
+  - `format?: "full" | "fixed"`
+    `"fixed"` renders a 26rem square; `"full"` fills the width. Defaults to
+    `"full"`.
+  - `color?: "dark" | "light" | "primary" | "secondary"`
+    Background colour. Defaults to `"light"`.
+
+  ### Example
+
+  ```svelte
+  <CardPublication title="mxlpy" github="https://github.com/..." doi="10.1/x">
+    A Python package for metabolic modelling.
+  </CardPublication>
+  ```
+-->
 <script lang="ts">
   import H2 from "./H2.svelte";
   import Link from "./Link.svelte";

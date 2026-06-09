@@ -1,3 +1,22 @@
+<!--
+  @component
+
+  A responsive, privacy-friendly (youtube-nocookie) YouTube video embed that
+  keeps a 16:9 aspect ratio and lazy-loads the iframe.
+
+  ### Props
+
+  - `videoId: string`
+    The YouTube video id (the part after `v=`).
+  - `title?: string`
+    Accessible iframe title. Defaults to `"YouTube video"`.
+
+  ### Example
+
+  ```svelte
+  <YouTubeEmbed videoId="dQw4w9WgXcQ" title="Intro to photosynthesis" />
+  ```
+-->
 <script lang="ts">
   interface Props {
     videoId: string;

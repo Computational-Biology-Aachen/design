@@ -1,3 +1,33 @@
+<!--
+  @component
+
+  A labelled range slider that shows the current value next to its name and
+  updates live as it is dragged. The `value` is `$bindable`. See [[Slider2]] for
+  a variant that only commits on release.
+
+  ### Props
+
+  - `name: string`
+    The slider label.
+  - `desc?: string`
+    Optional descriptor shown in parentheses after the name. Defaults to `""`.
+  - `value: number` (bindable)
+    The current value.
+  - `min: number | string`, `max: number | string`
+    The range bounds.
+  - `step?: number | string`
+    Step increment. Defaults to `"any"`.
+  - `disabled?: boolean`
+    Disables the slider. Defaults to `false`.
+  - `onchange?: () => void`
+    Called when the value changes.
+
+  ### Example
+
+  ```svelte
+  <Slider name="Light intensity" value={i} min={0} max={1000} bind:value={i} />
+  ```
+-->
 <script lang="ts">
   interface Props {
     name: string;

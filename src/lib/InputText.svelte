@@ -1,3 +1,26 @@
+<!--
+  @component
+
+  A labelled text input laid out as a label/control pair in an [[InlineGrid]].
+  The `value` is `$bindable`.
+
+  ### Props
+
+  - `id: string`
+    Element id linking the label to the input.
+  - `label: string`
+    The field label text.
+  - `value: string | undefined` (bindable)
+    The text value.
+  - `border?: "transparent" | "solid"`
+    Border style. Defaults to `"solid"`.
+
+  ### Example
+
+  ```svelte
+  <InputText id="name" label="Model name" bind:value={name} />
+  ```
+-->
 <script lang="ts">
   import InlineGrid from "./InlineGrid.svelte";
 

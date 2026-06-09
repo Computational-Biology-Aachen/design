@@ -1,3 +1,29 @@
+<!--
+  @component
+
+  A tall, linked software card with a full-bleed background image (dimmed by an
+  overlay) and a dark info bar at the bottom holding a title and slot content.
+  See [[CardSoftwareMain]] for the headline variant.
+
+  ### Props
+
+  - `title: string`
+    Card heading shown in the info bar.
+  - `href?: string`
+    Destination link. Defaults to `"/"`.
+  - `img?: string`
+    Background image URL. Defaults to `"/placeholder.jpg"`.
+  - `children: Snippet`
+    Additional info-bar content (e.g. a short description).
+
+  ### Example
+
+  ```svelte
+  <CardSoftware title="mxlpy" href="/software/mxlpy" img="/mxlpy.png">
+    Metabolic modelling in Python.
+  </CardSoftware>
+  ```
+-->
 <script lang="ts">
   import H2 from "./H2.svelte";
   import Link from "./Link.svelte";

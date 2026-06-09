@@ -1,3 +1,25 @@
+<!--
+  @component
+
+  A fixed-height (10rem) linked image tile with a name label, used in galleries
+  (e.g. model thumbnails). Falls back to a gradient "biotech" placeholder when no
+  image is supplied. See [[CardImageFlex]] for a width-flexible variant.
+
+  ### Props
+
+  - `name: string`
+    Label shown beneath the image; also used in the image `alt` text.
+  - `href: string`
+    Destination the whole card links to.
+  - `image?: string`
+    Optional image URL; omitted shows the placeholder.
+
+  ### Example
+
+  ```svelte
+  <CardImageFixed name="Lotka–Volterra" href="/models/lv" image="/lv.png" />
+  ```
+-->
 <script lang="ts">
   let {
     name,

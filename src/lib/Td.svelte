@@ -1,3 +1,16 @@
+<!--
+  @component
+
+  Table data cell (`<td>`), left-aligned and vertically centred. Use inside a
+  body [[Tr]].
+
+  ### Props
+
+  - `children: Snippet`
+    The cell content.
+  - `...rest`
+    Additional attributes (e.g. `colspan`) spread onto the `<td>`.
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

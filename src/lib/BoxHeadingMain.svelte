@@ -1,3 +1,24 @@
+<!--
+  @component
+
+  A centred main heading block that renders an uppercased title as an [[H1]],
+  adapting its layout direction below/above 800px.
+
+  ### Props
+
+  - `n: string`
+    A section number/identifier associated with the heading.
+  - `title: string`
+    The heading text (rendered uppercased).
+  - `color?: "dark" | "light" | "primary" | "secondary"`
+    Heading colour. Defaults to `"dark"`.
+
+  ### Example
+
+  ```svelte
+  <BoxHeadingMain n="01" title="Research" />
+  ```
+-->
 <script lang="ts">
   import { MediaQuery } from "svelte/reactivity";
   import H1 from "./H1.svelte";

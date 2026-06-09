@@ -1,3 +1,15 @@
+<!--
+  @component
+
+  A circular 150×150 placeholder shown where a round avatar image is expected but
+  not yet available. Takes no props.
+
+  ### Example
+
+  ```svelte
+  <ImageRoundPlaceholder />
+  ```
+-->
 <script lang="ts"></script>
 
 <div>

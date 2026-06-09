@@ -1,3 +1,26 @@
+<!--
+  @component
+
+  A single tab button with an underline indicator when selected. Drive several
+  from parent state to build a tab bar; see [[Tabs]] for a higher-level wrapper.
+
+  ### Props
+
+  - `selected: boolean`
+    Whether this tab is the active one (shows the underline).
+  - `onclick: MouseEventHandler<HTMLButtonElement>`
+    Handler that should set this tab as selected.
+  - `children: Snippet`
+    The tab label.
+
+  ### Example
+
+  ```svelte
+  <ButtonTab selected={tab === "info"} onclick={() => (tab = "info")}>
+    Info
+  </ButtonTab>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
   import type { MouseEventHandler } from "svelte/elements";

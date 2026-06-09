@@ -1,3 +1,28 @@
+<!--
+  @component
+
+  A horizontal flex row that lays its children side by side with a small gap,
+  vertically centred. Items wrap by default; on viewports ≥768px the `justify`
+  prop can push them to the end.
+
+  ### Props
+
+  - `children: Snippet`
+    The items to lay out in a row.
+  - `justify?: "start" | "end"`
+    Horizontal alignment. Defaults to `"start"`.
+  - `wrap?: "wrap" | "nowrap"`
+    Whether items wrap onto multiple lines. Defaults to `"wrap"`.
+
+  ### Example
+
+  ```svelte
+  <Pair justify="end">
+    <Button>Cancel</Button>
+    <Button>Save</Button>
+  </Pair>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

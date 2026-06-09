@@ -1,3 +1,22 @@
+<!--
+  @component
+
+  Fifth-level heading (`<h5>`, 1.125rem) in the design-system font, with a
+  selectable palette colour. Margins/padding are reset.
+
+  ### Props
+
+  - `children: Snippet`
+    The heading text.
+  - `color?: "dark" | "light" | "primary" | "secondary"`
+    Text colour. Defaults to `"dark"`.
+
+  ### Example
+
+  ```svelte
+  <H5>Notes</H5>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

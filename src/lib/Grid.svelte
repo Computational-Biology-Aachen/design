@@ -1,3 +1,29 @@
+<!--
+  @component
+
+  A responsive CSS grid that is single-column on mobile and expands to the
+  requested column count at wider breakpoints (2 cols ≥640px, 3 cols ≥768px,
+  4 cols ramps 2→4 from 768px to 1024px).
+
+  ### Props
+
+  - `columns?: number`
+    Target column count on wide viewports (1–4). Defaults to `1`.
+  - `gap?: string`
+    CSS grid gap. Defaults to `"var(--gap)"`.
+  - `children: Snippet`
+    The grid items.
+
+  ### Example
+
+  ```svelte
+  <Grid columns={3}>
+    <Card>…</Card>
+    <Card>…</Card>
+    <Card>…</Card>
+  </Grid>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

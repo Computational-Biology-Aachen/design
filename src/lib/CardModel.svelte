@@ -1,3 +1,24 @@
+<!--
+  @component
+
+  A linked card representing a model, showing its scheme image (or a gradient
+  "biotech" placeholder) above a name label.
+
+  ### Props
+
+  - `name: string`
+    Model name shown in the label and image `alt` text.
+  - `href: string`
+    Destination the whole card links to.
+  - `image?: string`
+    Optional scheme image URL; omitted shows the placeholder.
+
+  ### Example
+
+  ```svelte
+  <CardModel name="Poolman 2000" href="/models/poolman2000" image="/p2000.svg" />
+  ```
+-->
 <script lang="ts">
   let {
     name,

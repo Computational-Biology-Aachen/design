@@ -1,3 +1,29 @@
+<!--
+  @component
+
+  Renders a Material Symbols (Outlined) icon from its ligature name. The icon
+  font must be loaded separately by the consuming app. Colour and size are
+  selected via props, with extra `style`/`klass` escape hatches.
+
+  ### Props
+
+  - `children: Snippet`
+    The Material Symbols ligature name, e.g. `arrow_drop_down`.
+  - `color?: "primary" | "inherit" | "c1" | "c2" | "c3" | "c4"`
+    Icon colour; `c1`–`c4` map to RWTH palette accents. Defaults to `"primary"`.
+  - `fontSize?: "inherit" | "sm" | "md" | "lg"`
+    Icon size. Defaults to `"inherit"`.
+  - `style?: string`
+    Inline style passthrough. Defaults to `""`.
+  - `klass?: string`
+    Extra class names. Defaults to `""`.
+
+  ### Example
+
+  ```svelte
+  <Icon color="c2" fontSize="lg">science</Icon>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

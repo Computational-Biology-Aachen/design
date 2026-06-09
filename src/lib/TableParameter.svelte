@@ -1,3 +1,29 @@
+<!--
+  @component
+
+  A compact, horizontally scrollable parameter table with monospaced values and
+  an optional second column for comparing old vs. new values.
+
+  ### Props
+
+  - `rows: { label: string; newVal: string | number; oldVal?: string | number }[]`
+    The parameter rows.
+  - `showOld?: boolean`
+    Show the old-value column. Defaults to `false`.
+  - `newLabel?: string`
+    Header for the new-value column. Defaults to `"New"`.
+  - `oldLabel?: string`
+    Header for the old-value column. Defaults to `"Old"`.
+
+  ### Example
+
+  ```svelte
+  <TableParameter
+    rows={[{ label: "k_cat", newVal: 1.2, oldVal: 1.0 }]}
+    showOld
+  />
+  ```
+-->
 <script lang="ts">
   interface ParamRow {
     label: string;

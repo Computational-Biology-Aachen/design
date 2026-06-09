@@ -1,3 +1,22 @@
+<!--
+  @component
+
+  Fourth-level heading (`<h4>`, 1.25rem) in the design-system font, with a
+  selectable palette colour. Margins/padding are reset.
+
+  ### Props
+
+  - `children: Snippet`
+    The heading text.
+  - `color?: "dark" | "light" | "primary" | "secondary"`
+    Text colour. Defaults to `"dark"`.
+
+  ### Example
+
+  ```svelte
+  <H4>Methods</H4>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

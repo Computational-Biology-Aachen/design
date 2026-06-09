@@ -1,3 +1,17 @@
+<!--
+  @component
+
+  Renders the lab's alumni/thesis list as a table on wider screens and as a
+  stack of cards below 800px. The data (semester, name, degree, thesis title) is
+  hard-coded in the component, so it takes no props. Cell content may contain
+  inline HTML (rendered via `{@html}`).
+
+  ### Example
+
+  ```svelte
+  <TableAlumni />
+  ```
+-->
 <script lang="ts">
   import Bold from "./Bold.svelte";
   import Text from "./Text.svelte";

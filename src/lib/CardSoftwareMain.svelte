@@ -1,3 +1,29 @@
+<!--
+  @component
+
+  Headline variant of [[CardSoftware]]: a tall linked card with a contained
+  background image and a dark info bar holding a title and slot content. Note the
+  link prop here is named `url` (not `href`).
+
+  ### Props
+
+  - `title: string`
+    Card heading shown in the info bar.
+  - `url?: string`
+    Destination link. Defaults to `"/"`.
+  - `img?: string`
+    Background image URL. Defaults to `"/placeholder.jpg"`.
+  - `children: Snippet`
+    Additional info-bar content.
+
+  ### Example
+
+  ```svelte
+  <CardSoftwareMain title="Featured tool" url="/software/x" img="/x.png">
+    A short tagline.
+  </CardSoftwareMain>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

@@ -1,3 +1,26 @@
+<!--
+  @component
+
+  An inline text hyperlink styled with the design-system palette. Underlines on
+  hover; the `color` prop selects which palette colour the link text uses.
+
+  ### Props
+
+  - `href: string`
+    Destination URL.
+  - `color?: "dark" | "light" | "primary" | "secondary"`
+    Link colour. Defaults to `"primary"` (RWTH petrol). Use `"light"` on dark
+    backgrounds and `"secondary"` for the accent colour.
+  - `children: Snippet`
+    The link label.
+
+  ### Example
+
+  ```svelte
+  <p>See the <Link href="/docs">documentation</Link>.</p>
+  <Link href="/" color="light">Home</Link>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

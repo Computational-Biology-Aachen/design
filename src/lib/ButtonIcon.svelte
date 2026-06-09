@@ -1,3 +1,26 @@
+<!--
+  @component
+
+  A circular icon-only button rendering a single [[Icon]] (Material Symbols
+  ligature name). Useful for compact actions in toolbars and cards.
+
+  ### Props
+
+  - `icon: string`
+    Material Symbols ligature name (e.g. `"close"`, `"menu"`).
+  - `onclick?: MouseEventHandler<HTMLButtonElement>`
+    Click handler.
+  - `popovertarget?: string`
+    Native popover target id to toggle.
+  - `size?: "sm" | "md" | "lg"`
+    Button size. Defaults to `"sm"`.
+
+  ### Example
+
+  ```svelte
+  <ButtonIcon icon="close" size="md" onclick={dismiss} />
+  ```
+-->
 <script lang="ts">
   import type { MouseEventHandler } from "svelte/elements";
   import Icon from "./Icon.svelte";

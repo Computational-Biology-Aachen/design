@@ -1,3 +1,20 @@
+<!--
+  @component
+
+  A GitHub icon link for the [[Navbar]], rendered as an accessible `<li><a>`
+  with an inline GitHub logo SVG.
+
+  ### Props
+
+  - `href: string`
+    URL of the GitHub repository or organisation.
+
+  ### Example
+
+  ```svelte
+  <NavGH href="https://github.com/Computational-Biology-Aachen" />
+  ```
+-->
 <script lang="ts">
   let { href }: { href: string } = $props();
 </script>

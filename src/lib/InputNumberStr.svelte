@@ -1,3 +1,28 @@
+<!--
+  @component
+
+  A numeric input whose value is bound as a `string` (useful when the raw text,
+  including in-progress/empty states, must be preserved). Renders a label/control
+  pair in an [[InlineGrid]]; `label` is optional. See [[InputNumber]] for the
+  number-typed variant.
+
+  ### Props
+
+  - `id: string`
+    Element id linking the label to the input.
+  - `label?: string`
+    Optional field label.
+  - `value: string` (bindable)
+    The value as a string.
+  - `border?: "transparent" | "solid"`
+    Border style. Defaults to `"solid"`.
+
+  ### Example
+
+  ```svelte
+  <InputNumberStr id="k" label="k" bind:value={kStr} />
+  ```
+-->
 <script lang="ts">
   import InlineGrid from "./InlineGrid.svelte";
 

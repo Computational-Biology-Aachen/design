@@ -1,3 +1,35 @@
+<!--
+  @component
+
+  A controlled, drag-and-drop dashboard grid: boxes laid out on a 6-column grid
+  (stacked on mobile) can be moved, resized and removed, with add buttons per row
+  and below. Layout is derived from the `items` seed list, and add/remove are
+  delegated to callbacks so the parent owns the data. Each box's body is rendered
+  via the `children` snippet, which receives the box. See [[DynBoxGrid]] for a
+  self-contained demo variant.
+
+  ### Props
+
+  - `items: BoxSeed[]`
+    Seed descriptors (`id`, `idx`, `span`, optional `col`, `title`) used to lay
+    out the initial boxes.
+  - `children: Snippet<[{ box: Box }]>`
+    Renders the body of each box; receives `{ box }`.
+  - `onAdd: (box: Box) => void`
+    Called when the user adds a box.
+  - `onRemove: (box: Box) => void`
+    Called when the user removes a box.
+
+  ### Example
+
+  ```svelte
+  <DynBoxRow {items} onAdd={handleAdd} onRemove={handleRemove}>
+    {#snippet children({ box })}
+      <AnalysisPanel idx={box.idx} />
+    {/snippet}
+  </DynBoxRow>
+  ```
+-->
 <script lang="ts">
   import Icon from "./Icon.svelte";
   import type { Snippet } from "svelte";

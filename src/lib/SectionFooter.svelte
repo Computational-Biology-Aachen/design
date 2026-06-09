@@ -1,3 +1,22 @@
+<!--
+  @component
+
+  A page footer with a dark background and a centred, max-width inner column.
+  Sticks to the bottom of the layout via `margin-top: auto`.
+
+  ### Props
+
+  - `children: Snippet`
+    The footer content (links, imprint, copyright).
+
+  ### Example
+
+  ```svelte
+  <SectionFooter>
+    <Text color="light">© 2026 CPBL</Text>
+  </SectionFooter>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

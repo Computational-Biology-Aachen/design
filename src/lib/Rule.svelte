@@ -1,3 +1,17 @@
+<!--
+  @component
+
+  A thin horizontal divider (`<hr>`) used to separate content sections. Takes no
+  props.
+
+  ### Example
+
+  ```svelte
+  <section>…</section>
+  <Rule />
+  <section>…</section>
+  ```
+-->
 <script lang="ts"></script>
 
 <hr />

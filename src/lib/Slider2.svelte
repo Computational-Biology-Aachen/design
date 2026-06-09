@@ -1,3 +1,33 @@
+<!--
+  @component
+
+  A range slider that shows the value live while dragging but only commits the
+  bound `val` (and fires `callback`) on release — useful when each committed
+  change triggers an expensive recomputation. External updates (e.g. reset) sync
+  back in when not dragging. See [[Slider]] for the commit-on-every-change
+  variant.
+
+  ### Props
+
+  - `name: string`
+    The slider label.
+  - `desc?: string`
+    Optional descriptor shown in parentheses. Defaults to `""`.
+  - `val: number` (bindable)
+    The committed value (updated on release).
+  - `min: string`, `max: string`, `step: string`
+    The range bounds and step.
+  - `disabled?: boolean`
+    Disables the slider. Defaults to `false`.
+  - `callback?: () => void`
+    Called once when dragging ends.
+
+  ### Example
+
+  ```svelte
+  <Slider2 name="k_cat" bind:val={kcat} min="0" max="10" step="0.1" callback={rerun} />
+  ```
+-->
 <script lang="ts">
   let {
     name,

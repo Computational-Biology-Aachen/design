@@ -1,3 +1,23 @@
+<!--
+  @component
+
+  A minimal vertical flex container that stacks its children in a column with the
+  design-system `--gap` spacing. The simplest layout primitive.
+
+  ### Props
+
+  - `children: Snippet`
+    The content to stack vertically.
+
+  ### Example
+
+  ```svelte
+  <Box>
+    <H2>Title</H2>
+    <Text>Body copy.</Text>
+  </Box>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
   let {

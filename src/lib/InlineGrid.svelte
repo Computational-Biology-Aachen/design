@@ -1,3 +1,27 @@
+<!--
+  @component
+
+  A fixed-column inline grid (does not collapse on mobile) for laying out small,
+  evenly sized items such as icons or badges.
+
+  ### Props
+
+  - `cols?: 2 | 3 | 4`
+    Number of equal-width columns. Defaults to `2`.
+  - `children: Snippet`
+    The grid items.
+
+  ### Example
+
+  ```svelte
+  <InlineGrid cols={4}>
+    <Icon name="github" />
+    <Icon name="mail" />
+    <Icon name="orcid" />
+    <Icon name="scholar" />
+  </InlineGrid>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

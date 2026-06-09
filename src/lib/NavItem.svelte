@@ -1,3 +1,23 @@
+<!--
+  @component
+
+  A navigation link (`<li><a>`) for use inside [[Navbar]]. Highlights itself
+  when the current route matches `href` (exactly, or as a path prefix for
+  non-root links).
+
+  ### Props
+
+  - `href: string`
+    Destination route; also drives the active-state highlight.
+  - `children: Snippet`
+    The link label.
+
+  ### Example
+
+  ```svelte
+  <NavItem href="/team">Team</NavItem>
+  ```
+-->
 <script lang="ts">
   import { page } from "$app/state";
   import type { Snippet } from "svelte";

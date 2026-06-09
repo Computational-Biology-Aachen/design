@@ -1,3 +1,24 @@
+<!--
+  @component
+
+  Renders a LaTeX expression to HTML using KaTeX (errors are rendered inline
+  rather than thrown). Supports inline and display modes.
+
+  ### Props
+
+  - `tex: string`
+    The LaTeX source to render.
+  - `display: boolean`
+    `true` for block/display math, `false` for inline.
+  - `fontSize?: string`
+    CSS font size for the rendered math. Defaults to `"1rem"`.
+
+  ### Example
+
+  ```svelte
+  <Math tex="\\frac{dC}{dt} = v_1 - v_2" display={true} />
+  ```
+-->
 <script lang="ts">
   import katex from "katex";
   import "katex/dist/katex.min.css";

@@ -1,3 +1,27 @@
+<!--
+  @component
+
+  A single entry inside a [[ButtonMenu]]. Renders an `<a>` when `href` is given,
+  otherwise a `<button>`. Link items highlight automatically when their route is
+  active, and activating any item closes the parent menu via context.
+
+  ### Props
+
+  - `onclick?: () => void`
+    Handler for the button variant (runs before the menu closes).
+  - `active?: boolean`
+    Force the active highlight for the button variant. Defaults to `false`.
+  - `href?: string`
+    When set, renders a navigation link with automatic active state.
+  - `children: Snippet`
+    The item label.
+
+  ### Example
+
+  ```svelte
+  <ButtonMenuItem href="/settings">Settings</ButtonMenuItem>
+  ```
+-->
 <script lang="ts">
   import { page } from "$app/state";
   import type { Snippet } from "svelte";

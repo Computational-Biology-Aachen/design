@@ -1,3 +1,27 @@
+<!--
+  @component
+
+  A tabbed panel: renders a [[ButtonTab]] bar from a `tabs` list and shows the
+  active tab's content via a snippet that receives the active key. Defaults to
+  the first tab and self-heals if the active key disappears.
+
+  ### Props
+
+  - `tabs: { key: string; label: string }[]`
+    The tab definitions, in display order.
+  - `children: Snippet<[string]>`
+    Renders the panel body; receives the active tab `key`.
+
+  ### Example
+
+  ```svelte
+  <Tabs tabs={[{ key: "code", label: "Code" }, { key: "preview", label: "Preview" }]}>
+    {#snippet children(key)}
+      {#if key === "code"}<Pre>…</Pre>{:else}<Preview />{/if}
+    {/snippet}
+  </Tabs>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
   import ButtonTab from "./ButtonTab.svelte";

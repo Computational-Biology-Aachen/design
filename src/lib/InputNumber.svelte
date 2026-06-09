@@ -1,3 +1,28 @@
+<!--
+  @component
+
+  A numeric input bound to a `number`. Renders as a label/control pair in an
+  [[InlineGrid]] when `label` is given, otherwise as a bare input inside a
+  [[Row]]. The `value` is `$bindable`. See [[InputNumberStr]] for a string-typed
+  variant and [[InputNumberOptional]] for one gated by a checkbox.
+
+  ### Props
+
+  - `id: string`
+    Element id linking the label to the input.
+  - `label?: string`
+    Optional field label.
+  - `value: number` (bindable)
+    The numeric value.
+  - `border?: "transparent" | "solid"`
+    Border style. Defaults to `"solid"`.
+
+  ### Example
+
+  ```svelte
+  <InputNumber id="tend" label="t end" bind:value={tEnd} />
+  ```
+-->
 <script lang="ts">
   import InlineGrid from "./InlineGrid.svelte";
   import Row from "./Row.svelte";

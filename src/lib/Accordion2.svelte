@@ -1,3 +1,28 @@
+<!--
+  @component
+
+  A JS-controlled collapsible section with a custom header row and an
+  expand/collapse [[Icon]] toggle. The `open` state is `$bindable`. See
+  [[Accordion]] for a native `<details>`-based variant.
+
+  ### Props
+
+  - `header: Snippet`
+    The always-visible header content (e.g. an [[H3]]).
+  - `children: Snippet`
+    The collapsible content (scrolls past 40vh).
+  - `open?: boolean` (bindable)
+    Whether the section is expanded. Defaults to `false`.
+
+  ### Example
+
+  ```svelte
+  <Accordion2 bind:open>
+    {#snippet header()}<H3>Section</H3>{/snippet}
+    <Text>Body…</Text>
+  </Accordion2>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
   import Icon from "./Icon.svelte";

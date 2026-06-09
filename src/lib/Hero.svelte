@@ -1,3 +1,26 @@
+<!--
+  @component
+
+  A full-width hero banner (≥50vh) with a centred max-width content column. When
+  `src` is given it shows that image under a petrol gradient overlay; otherwise
+  it falls back to a solid primary background. See [[HeroGradient]] for the
+  logo-overlaid variant.
+
+  ### Props
+
+  - `src?: string`
+    Optional background image URL.
+  - `children: Snippet`
+    The hero content (heading, tagline, CTAs).
+
+  ### Example
+
+  ```svelte
+  <Hero src="/img/lab.jpg">
+    <H1 color="light">Computational and Plant Biology Lab</H1>
+  </Hero>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

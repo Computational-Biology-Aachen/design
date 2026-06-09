@@ -1,3 +1,21 @@
+<!--
+  @component
+
+  A sticky in-page navigation sidebar for the showcase that scroll-spies the
+  documented sections: it highlights the link whose [[ShowcaseSection]] is
+  currently in view using an IntersectionObserver.
+
+  ### Props
+
+  - `links: { label: string; id: string }[]`
+    The section links, each pointing at a [[ShowcaseSection]] `id`.
+
+  ### Example
+
+  ```svelte
+  <ShowcaseSidebar links={[{ label: "Buttons", id: "buttons" }]} />
+  ```
+-->
 <script lang="ts">
   import { onMount, untrack } from 'svelte';
 

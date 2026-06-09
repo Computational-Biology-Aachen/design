@@ -1,3 +1,37 @@
+<!--
+  @component
+
+  A responsive Chart.js line chart for time-series data with configurable axes,
+  optional shaded phase regions, a delayed loading spinner, and a comparison mode
+  that overlays the first/last run as dashed reference lines. See [[SimChart]]
+  for a simpler new-vs-old simulation chart.
+
+  ### Props
+
+  - `data: ChartData`
+    Chart.js line-chart data (labels + datasets).
+  - `yMin?: number`, `yMax?: number`, `xMin?: number`, `xMax?: number`
+    Axis bounds (`yMin` defaults to `0`).
+  - `phases?: PhaseRegion[]`
+    Background shaded regions (`{ start, end, color, label? }`).
+  - `xScale?`, `yScale?: "linear" | "logarithmic" | "category" | "time" | "timeseries"`
+    Axis scale types. Default `"linear"`.
+  - `xLabel?: string`, `yLabel?: string`
+    Axis titles.
+  - `loading?: boolean`
+    Show the loading spinner. Defaults to `true`.
+  - `loadingDelay?: number`
+    Delay (ms) before the spinner appears. Defaults to `500`.
+  - `lineDisplay?: "current" | "last" | "first"`
+    Comparison mode — overlay the first/last datasets as dashed references.
+    Defaults to `"current"`.
+
+  ### Example
+
+  ```svelte
+  <LineChart {data} yLabel="Concentration" loading={isRunning} />
+  ```
+-->
 <script lang="ts">
   import Chart, { type ChartData } from "chart.js/auto";
   import type { Attachment } from "svelte/attachments";

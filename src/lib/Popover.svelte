@@ -1,3 +1,33 @@
+<!--
+  @component
+
+  A modal-style overlay built on the native HTML Popover API, sized via presets
+  and dimmed with a backdrop. Open/close it by pointing a [[Button]] (or
+  [[ButtonIcon]]) `popovertarget` at this popover's id. The element is `$bindable`
+  via `el` for imperative control.
+
+  ### Props
+
+  - `size: "xs" | "sm" | "md" | "lg"`
+    Size/position preset, from a small centred dialog (`xs`) to near-fullscreen
+    (`lg`).
+  - `popovertarget: string`
+    The popover's id; a trigger's `popovertarget` must match this.
+  - `el?: HTMLDivElement | null` (bindable)
+    Reference to the popover element for imperative `showPopover()` /
+    `hidePopover()` calls.
+  - `children: Snippet`
+    The popover content.
+
+  ### Example
+
+  ```svelte
+  <Button popovertarget="settings" popovertargetaction="show">Settings</Button>
+  <Popover size="sm" popovertarget="settings">
+    <H3>Settings</H3>
+  </Popover>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

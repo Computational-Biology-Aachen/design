@@ -1,3 +1,33 @@
+<!--
+  @component
+
+  A Chart.js line/scatter chart tailored to simulation output: plots a new run
+  (and an optional old run as a dashed overlay) against time, with dual x-axes in
+  seconds and minutes and optional shaded phase regions. See [[LineChart]] for a
+  more general/configurable chart.
+
+  ### Props
+
+  - `xNew: number[]`, `yNew: number[]`
+    X (seconds) and Y data for the current run.
+  - `xOld?: number[]`, `yOld?: number[]`
+    Optional X/Y data for a previous run, drawn dashed for comparison.
+  - `phases?: PhaseRegion[]`
+    Background shaded regions (`{ start, end, color, label? }`).
+  - `yLabel?: string`
+    Y-axis title. Defaults to `""`.
+  - `showLine?: boolean`
+    Connect points with a line (`true`) or show as scatter (`false`). Defaults
+    to `true`.
+  - `totalTime?: number`
+    Fixes the x-axis maximum (seconds); otherwise derived from the data.
+
+  ### Example
+
+  ```svelte
+  <SimChart {xNew} {yNew} {xOld} {yOld} yLabel="Fluorescence" totalTime={300} />
+  ```
+-->
 <script lang="ts">
   import {
     Chart,

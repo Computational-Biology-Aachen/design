@@ -1,3 +1,32 @@
+<!--
+  @component
+
+  A hero banner with a background image under a petrol gradient and a lab logo
+  pinned to the top-right corner. See [[Hero]] for the simpler variant.
+
+  ### Props
+
+  - `src: string`
+    Background image URL.
+  - `cpblLogo: string`
+    URL of the logo image overlaid in the corner.
+  - `variant?: "light" | "surface" | "dark" | "primary" | "accent"`
+    Colour scheme. Defaults to `"light"`.
+  - `width?: "full" | "narrow"`
+    Inner column width. Defaults to `"full"`.
+  - `gap?: "normal" | "large"`
+    Vertical gap between children. Defaults to `"normal"`.
+  - `children: Snippet`
+    The hero content.
+
+  ### Example
+
+  ```svelte
+  <HeroGradient src="/img/plants.jpg" cpblLogo="/logo.svg">
+    <H1 color="light">Welcome</H1>
+  </HeroGradient>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

@@ -1,3 +1,24 @@
+<!--
+  @component
+
+  A linked sponsor/logo tile that displays a contained background image and
+  scales up slightly on hover. Typically placed in a [[GridSponsor]].
+
+  ### Props
+
+  - `href: string`
+    Destination link (the sponsor's website).
+  - `img: string`
+    Logo image URL (rendered as a contained background image).
+  - `name: string`
+    Sponsor name (currently used for identification/accessibility context).
+
+  ### Example
+
+  ```svelte
+  <CardSponsor href="https://rwth-aachen.de" img="/rwth.svg" name="RWTH" />
+  ```
+-->
 <script lang="ts">
   import Link from "./Link.svelte";
 

@@ -1,3 +1,27 @@
+<!--
+  @component
+
+  A navigation sidebar that renders links from a `navLinks` list (with automatic
+  active-state detection) plus a [[ToggleAudience]] control, collapsing to a
+  hamburger panel below 768px. See [[Sidebar]] for the children-driven variant.
+
+  ### Props
+
+  - `navLinks: { href: string; label: string }[]`
+    Navigation links (hrefs are prefixed with the app `base`).
+  - `audienceStore: { audience: "4bio" | "4math"; setAudience: (v) => void }`
+    Store backing the audience toggle.
+  - `audienceOptions: { value: "4bio" | "4math"; label: string }[]`
+    Options for the audience toggle.
+  - `children?: Snippet`
+    Optional extra content rendered above the links.
+
+  ### Example
+
+  ```svelte
+  <Sidebar2 {navLinks} {audienceStore} {audienceOptions} />
+  ```
+-->
 <script lang="ts">
   import { base } from "$app/paths";
   import { page } from "$app/state";

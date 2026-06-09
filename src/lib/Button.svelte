@@ -1,3 +1,38 @@
+<!--
+  @component
+
+  The primary call-to-action button. Renders a `<button>` by default, or an
+  `<a>` styled identically when `href` is supplied. Supports a loading spinner,
+  disabled state, and the native popover attributes for toggling [[Popover]]s.
+
+  ### Props
+
+  - `variant?: "primary" | "secondary"`
+    Filled (`"primary"`) vs. outlined (`"secondary"`). Defaults to `"primary"`.
+  - `type?: "button" | "submit" | "reset"`
+    Native button type (ignored when rendered as a link). Defaults to `"button"`.
+  - `disabled?: boolean`
+    Disables interaction and dims the button. Defaults to `false`.
+  - `loading?: boolean`
+    Shows a spinner and disables the button. Defaults to `false`.
+  - `fullWidth?: boolean`
+    Forces 100% width even on desktop. Defaults to `false`.
+  - `href?: string`
+    When set, renders an anchor instead of a button.
+  - `popovertarget?: string`, `popovertargetaction?: "hide" | "show" | "toggle"`
+    Native popover controls, e.g. to open a [[Popover]].
+  - `onclick?: (e: MouseEvent) => void`
+    Click handler (button variant only).
+  - `children: Snippet`
+    The button label.
+
+  ### Example
+
+  ```svelte
+  <Button variant="primary" onclick={save}>Save</Button>
+  <Button href="/signup" variant="secondary">Sign up</Button>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

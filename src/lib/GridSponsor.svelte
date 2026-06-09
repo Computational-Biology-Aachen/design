@@ -1,3 +1,23 @@
+<!--
+  @component
+
+  A responsive grid for sponsor logos: one column on mobile, two from 768px, and
+  auto-filled ~150px tracks from 1024px. Pair with [[CardSponsor]].
+
+  ### Props
+
+  - `children: Snippet`
+    The [[CardSponsor]] tiles.
+
+  ### Example
+
+  ```svelte
+  <GridSponsor>
+    <CardSponsor href="…" img="/a.svg" name="A" />
+    <CardSponsor href="…" img="/b.svg" name="B" />
+  </GridSponsor>
+  ```
+-->
 <script lang="ts">
   let { children } = $props();
 </script>

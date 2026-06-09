@@ -1,3 +1,30 @@
+<!--
+  @component
+
+  A responsive logo bar that displays logos statically when they fit, and
+  switches to an infinite marquee (paused on hover, edge-masked) when there are
+  more than the per-breakpoint threshold. Uses a ResizeObserver to pick the
+  threshold.
+
+  ### Props
+
+  - `logos: { src: string; href: string; alt: string; height?: string }[]`
+    The logos to display.
+  - `max?: number`
+    Max static logos on wide viewports before scrolling. Defaults to `5`.
+  - `maxMd?: number`
+    Threshold below 1024px. Defaults to `3`.
+  - `maxSm?: number`
+    Threshold below 768px. Defaults to `2`.
+  - `speed?: number`
+    Marquee speed factor (higher is faster). Defaults to `40`.
+
+  ### Example
+
+  ```svelte
+  <RowImgScrolling logos={partnerLogos} max={6} />
+  ```
+-->
 <script lang="ts">
   import { onMount } from "svelte";
 

@@ -1,3 +1,35 @@
+<!--
+  @component
+
+  A paired control with two 0–20 index sliders for activation and deactivation
+  factors, each showing its resolved multiplier value. Both indices are
+  `$bindable`; the multipliers are computed by the parent and passed in for
+  display.
+
+  ### Props
+
+  - `activationIdx: number` (bindable)
+    Index (0–20) of the activation slider.
+  - `deactivationIdx: number` (bindable)
+    Index (0–20) of the deactivation slider.
+  - `activationMultiplier: number`, `deactivationMultiplier: number`
+    The resolved multiplier values shown next to each label.
+  - `activationLabel: string`, `deactivationLabel: string`
+    Labels for the two sliders.
+
+  ### Example
+
+  ```svelte
+  <SliderActivation
+    bind:activationIdx={aIdx}
+    bind:deactivationIdx={dIdx}
+    activationMultiplier={aMul}
+    deactivationMultiplier={dMul}
+    activationLabel="Activation"
+    deactivationLabel="Deactivation"
+  />
+  ```
+-->
 <script lang="ts">
   interface Props {
     activationIdx: number;

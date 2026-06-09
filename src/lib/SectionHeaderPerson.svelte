@@ -1,3 +1,32 @@
+<!--
+  @component
+
+  A team-member page header on the primary colour: name and lab address beside a
+  round photo, with optional contact/profile icon links (email, GitHub, GitLab,
+  ORCID, website). Falls back to a placeholder if the photo fails to load.
+
+  ### Props
+
+  - `name: string`
+    The person's name.
+  - `img: string`
+    Photo URL.
+  - `mail?: string | null`
+    Email address (rendered as a `mailto:` link).
+  - `github?: string | null`, `gitlab?: string | null`, `orcid?: string | null`, `website?: string | null`
+    Optional profile links, each shown as an icon when provided.
+
+  ### Example
+
+  ```svelte
+  <SectionHeaderPerson
+    name="Jane Doe"
+    img="/team/jane.jpg"
+    mail="jane@example.org"
+    orcid="https://orcid.org/0000-0000-0000-0000"
+  />
+  ```
+-->
 <script lang="ts">
   import {
     faGithub,

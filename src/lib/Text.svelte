@@ -1,3 +1,23 @@
+<!--
+  @component
+
+  A paragraph of body text (`<p>`) in the design-system font, justified with
+  automatic hyphenation. Offers a broader colour set than the heading
+  components.
+
+  ### Props
+
+  - `children: Snippet`
+    The paragraph content.
+  - `color?: "inherit" | "black" | "white" | "dark" | "light" | "primary" | "secondary"`
+    Text colour. Defaults to `"inherit"`.
+
+  ### Example
+
+  ```svelte
+  <Text>We study photosynthesis using computational models.</Text>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

@@ -1,3 +1,32 @@
+<!--
+  @component
+
+  The main content region (`<main>`) of a page: a centred, max-width column with
+  configurable width, padding, gap and alignment.
+
+  ### Props
+
+  - `width?: "full" | "narrow" | "90ch"`
+    Inner column width. Defaults to `"full"`.
+  - `pad?: "full" | "tight"`
+    Vertical padding (`"full"` scales up at wider breakpoints). Defaults to
+    `"full"`.
+  - `gap?: "normal" | "large"`
+    Vertical gap between children. Defaults to `"normal"`.
+  - `align?: "center" | "start"`
+    Cross-axis alignment. Defaults to `"center"`.
+  - `children: Snippet`
+    The page content.
+
+  ### Example
+
+  ```svelte
+  <SectionMain width="90ch" align="start">
+    <H1>Tutorial</H1>
+    <Text>…</Text>
+  </SectionMain>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

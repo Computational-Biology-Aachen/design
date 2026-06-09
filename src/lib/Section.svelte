@@ -1,3 +1,33 @@
+<!--
+  @component
+
+  A full-width page section with a coloured background band and a centred,
+  max-width inner column. The primary building block for page layouts; stack
+  several to compose a page.
+
+  ### Props
+
+  - `variant?: "light" | "surface" | "dark" | "primary" | "accent"`
+    Background/foreground colour scheme. Defaults to `"light"`.
+  - `width?: "full" | "narrow"`
+    Inner column width — `"narrow"` caps at 100ch for readable prose. Defaults
+    to `"full"`.
+  - `gap?: "normal" | "large"`
+    Vertical gap between children. Defaults to `"normal"`.
+  - `pad?: "no" | "lg"`
+    Vertical padding of the band. Defaults to `"lg"`.
+  - `children: Snippet`
+    The section content.
+
+  ### Example
+
+  ```svelte
+  <Section variant="primary" width="narrow">
+    <H2 color="light">About</H2>
+    <Text color="light">…</Text>
+  </Section>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

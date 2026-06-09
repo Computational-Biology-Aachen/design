@@ -1,3 +1,29 @@
+<!--
+  @component
+
+  A collapsible disclosure section built on the native `<details>`/`<summary>`
+  elements, with a rotating chevron marker. See [[Accordion2]] for a
+  JS-controlled, bindable variant.
+
+  ### Props
+
+  - `title?: string`
+    Plain-text summary label (used when `header` is not provided).
+  - `header?: Snippet`
+    Custom summary content, overriding `title`.
+  - `open?: boolean`
+    Whether the section starts expanded. Defaults to `false`.
+  - `children: Snippet`
+    The collapsible content.
+
+  ### Example
+
+  ```svelte
+  <Accordion title="Details" open>
+    <Text>Expanded content.</Text>
+  </Accordion>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

@@ -5,7 +5,9 @@ Shared CPBL (Computational and Plant Biology Lab) design system. Ships the RWTH-
 **What it ships:**
 
 - `@computational-biology-aachen/design/tokens.css` — all CSS custom properties: RWTH palette, semantic colors, spacing, typography, shadows, radii
-- `@computational-biology-aachen/design` — Svelte 5 components: `Navbar`, `NavItem`, `Button`, `Section`, `Row`, `Footer`
+- `@computational-biology-aachen/design` — a Svelte 5 component library (~100 components): layout primitives (`Section`, `Row`, `Grid`, `Box`, `Card`), navigation (`Navbar`, `NavItem`, `Sidebar`), typography (`H1`–`H6`, `Text`, `Link`, inline marks), form controls (`Button`, `Input*`, `Slider*`), data display (`Table*`, `LineChart`, `SimChart`, `Math`), content cards (`Card*`), and more
+
+Every component carries an [`@component`](https://svelte.dev/docs/svelte/faq#How-do-I-document-my-components) doc comment (description, props, usage example), so editors surface its API on hover and the `src/routes` showcase can render it.
 
 **Key tokens:**
 

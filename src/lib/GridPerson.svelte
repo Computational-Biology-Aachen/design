@@ -1,3 +1,27 @@
+<!--
+  @component
+
+  A responsive grid for [[CardPerson]] tiles: single column on mobile, expanding
+  to the requested column count at ≥1024px.
+
+  ### Props
+
+  - `columns?: number`
+    Target columns on wide viewports (1–5). Defaults to `3`.
+  - `gap?: string`
+    CSS grid gap. Defaults to `"var(--gap)"`.
+  - `children: Snippet`
+    The [[CardPerson]] tiles.
+
+  ### Example
+
+  ```svelte
+  <GridPerson columns={4}>
+    <CardPerson title="Jane Doe" slug="jane-doe" />
+    <CardPerson title="John Roe" slug="john-roe" />
+  </GridPerson>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

@@ -1,3 +1,28 @@
+<!--
+  @component
+
+  A linked team-member card showing a cover photo with the person's name in an
+  overlay bar. The photo is resolved automatically from
+  `$lib/assets/people/{slug}.jpg` (falling back to `placeholder.jpg`) unless an
+  explicit `img` is given.
+
+  ### Props
+
+  - `title: string`
+    The person's name.
+  - `slug: string`
+    Identifier used to resolve the photo and build the default link.
+  - `href?: string`
+    Destination link. Defaults to `team/{slug}`.
+  - `img?: string`
+    Explicit photo URL, overriding slug-based resolution.
+
+  ### Example
+
+  ```svelte
+  <CardPerson title="Jane Doe" slug="jane-doe" />
+  ```
+-->
 <script lang="ts">
   import Link from "./Link.svelte";
 

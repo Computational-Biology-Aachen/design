@@ -1,3 +1,22 @@
+<!--
+  @component
+
+  Sixth-level heading (`<h6>`, 1rem) in the design-system font, with a
+  selectable palette colour. Margins/padding are reset.
+
+  ### Props
+
+  - `children: Snippet`
+    The heading text.
+  - `color?: "dark" | "light" | "primary" | "secondary"`
+    Text colour. Defaults to `"dark"`.
+
+  ### Example
+
+  ```svelte
+  <H6>Acknowledgements</H6>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
 

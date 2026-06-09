@@ -1,3 +1,32 @@
+<!--
+  @component
+
+  A dropdown menu triggered by a [[Button]]. Opens on hover or click and closes
+  on mouse-leave (after a short delay) or an outside click. Provides a `close`
+  function via context so [[ButtonMenuItem]] children dismiss the menu when
+  activated.
+
+  ### Props
+
+  - `label: string | Snippet`
+    The trigger label. A string adds a dropdown arrow; a Snippet renders custom
+    trigger content.
+  - `variant?: "primary" | "secondary"`
+    Trigger button variant. Defaults to `"secondary"`.
+  - `href?: string`
+    Optional href for the trigger button.
+  - `children: Snippet`
+    The menu contents, typically [[ButtonMenuItem]] entries.
+
+  ### Example
+
+  ```svelte
+  <ButtonMenu label="Account">
+    <ButtonMenuItem href="/profile">Profile</ButtonMenuItem>
+    <ButtonMenuItem onclick={logout}>Log out</ButtonMenuItem>
+  </ButtonMenu>
+  ```
+-->
 <script lang="ts">
   import type { Snippet } from "svelte";
   import { setContext } from "svelte";
