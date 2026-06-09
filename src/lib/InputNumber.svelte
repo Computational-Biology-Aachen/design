@@ -32,8 +32,15 @@
     label?: string;
     value: number;
     border?: "transparent" | "solid";
+    width?: "full" | "auto";
   };
-  let { id, label, value = $bindable(), border = "solid" }: Props = $props();
+  let {
+    id,
+    label,
+    value = $bindable(),
+    border = "solid",
+    width = "full",
+  }: Props = $props();
 </script>
 
 {#if label}
@@ -53,7 +60,7 @@
   >
     <input
       id={id}
-      class={border}
+      class="border-{border} width-{width}"
       type="number"
       bind:value={value}
     />
@@ -65,7 +72,6 @@
     border-radius: var(--radius-lg);
     background-color: transparent;
     padding: 0.35rem 0.5rem;
-    width: 100%;
     font-size: 0.875rem;
   }
 
@@ -73,11 +79,19 @@
     border: var(--border-primary);
   }
 
-  .transparent {
+  .border-transparent {
     border: var(--border-transparent);
   }
 
-  .solid {
+  .border-solid {
     border: var(--border);
+  }
+
+  .width-full {
+    width: 100%;
+  }
+
+  .width-auto {
+    width: auto;
   }
 </style>
