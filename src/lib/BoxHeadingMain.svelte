@@ -24,6 +24,8 @@
   import H1 from "./H1.svelte";
 
   let {
+    // public prop, documented but not yet rendered
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     n,
     title,
     color = "dark",

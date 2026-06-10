@@ -58,7 +58,7 @@
       </tr>
     </thead>
     <tbody>
-      {#each rows as row}
+      {#each rows as row (row.label)}
         <tr>
           <td>{row.label}</td>
           <td class="val">{row.newVal}</td>

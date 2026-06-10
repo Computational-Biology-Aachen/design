@@ -28,6 +28,8 @@
   import { MediaQuery } from "svelte/reactivity";
 
   let {
+    // public prop, reserved for layout use (not yet rendered)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     brand,
     children,
     collapseAt = "768px",

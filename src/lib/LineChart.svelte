@@ -186,7 +186,7 @@
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          // @ts-ignore
+          // @ts-expect-error chart.js scale config type is narrower than the dynamic scale value
           x: {
             type: xScale,
             min: xMin,
@@ -196,7 +196,7 @@
               format: { maximumFractionDigits: 2, maximumSignificantDigits: 2 },
             },
           },
-          // @ts-ignore
+          // @ts-expect-error chart.js scale config type is narrower than the dynamic scale value
           y: {
             type: yScale,
             beginAtZero: true,

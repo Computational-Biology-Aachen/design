@@ -30,31 +30,6 @@
   let sliderVal = $state(42);
   let slider2Val = $state(1.5);
   let accordion2Open = $state(false);
-
-  let actIdx = $state(10);
-  let deactIdx = $state(10);
-
-  const activationMultipliers = [
-    0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 4, 5, 6, 8, 10, 15, 20,
-    30, 50, 100,
-  ];
-  const actMul = $derived(activationMultipliers[actIdx] ?? 1);
-  const deactMul = $derived(activationMultipliers[deactIdx] ?? 1);
-
-  type Audience = "4bio" | "4math";
-  let audience = $state<Audience>("4bio");
-  const audienceStore = {
-    get audience() {
-      return audience;
-    },
-    setAudience(v: Audience) {
-      audience = v;
-    },
-  };
-  const audienceOptions = [
-    { value: "4bio" as Audience, label: "Biology" },
-    { value: "4math" as Audience, label: "Mathematics" },
-  ];
 </script>
 
 <svelte:head><title>Interactive - CPBL Design</title></svelte:head>

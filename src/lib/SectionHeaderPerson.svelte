@@ -39,6 +39,7 @@
   import Link from "./Link.svelte";
   import Text from "./Text.svelte";
 
+  // eslint-disable-next-line svelte/no-unused-props -- `doi` is reserved for future use
   let {
     name,
     img,
@@ -53,6 +54,7 @@
     mail?: string | null;
     github?: string | null;
     gitlab?: string | null;
+    // reserved for a future DOI link (declared but not yet rendered)
     doi?: string | null;
     website?: string | null;
     orcid?: string | null;

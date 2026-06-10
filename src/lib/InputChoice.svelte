@@ -11,8 +11,8 @@
     Element id linking the label to the select.
   - `label: string`
     The field label text.
-  - `value: string | undefined` (bindable)
-    The selected option value.
+  - `value: T | undefined` (bindable)
+    The selected option value (generic — matches the `<option>` value type).
   - `border?: "transparent" | "solid"`
     Border style of the control. Defaults to `"solid"`.
   - `children: Snippet`
@@ -27,14 +27,14 @@
   </InputChoice>
   ```
 -->
-<script lang="ts">
+<script lang="ts" generics="T">
   import InlineGrid from "./InlineGrid.svelte";
   import type { Snippet } from "svelte";
 
   type Props = {
     id: string;
     label: string;
-    value: string | any | undefined;
+    value: T | undefined;
     border?: "transparent" | "solid";
     children: Snippet;
   };

@@ -56,7 +56,7 @@
           ></CardImage>
         </Row>
       </div>
-      <pre><code>{`<CardImage name="Anna Müller" href="/team/anna" />`}</code
+      <pre><code>&lt;CardImage name="Anna Müller" href="/team/anna" /&gt;</code
         ></pre>
     </ShowcaseSection>
 

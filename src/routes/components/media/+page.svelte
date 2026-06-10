@@ -99,7 +99,7 @@
         />
       </div>
       <pre><code
-          >{`<YouTubeEmbed videoId="KvyjIWLD8rU" title="Introduction to ComPhot" />`}</code
+          >&lt;YouTubeEmbed videoId="KvyjIWLD8rU" title="Introduction to ComPhot" /&gt;</code
         ></pre>
     </ShowcaseSection>
 

@@ -48,7 +48,7 @@
 
 <nav class="sidebar">
   <ul>
-    {#each links as link}
+    {#each links as link (link.id)}
       <li>
         <a
           href="#{link.id}"

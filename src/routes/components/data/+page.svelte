@@ -55,17 +55,6 @@
     { label: "Vmax", newVal: "60 nmol/s" },
     { label: "koff", newVal: "0.02 s⁻¹" },
   ];
-
-  const logos = [
-    {
-      href: "https://www.rwth-aachen.de",
-      img: "/placeholder-logo.svg",
-      name: "RWTH Aachen",
-    },
-    { href: "https://www.dfg.de", img: "/placeholder-logo.svg", name: "DFG" },
-    { href: "https://www.bmbf.de", img: "/placeholder-logo.svg", name: "BMBF" },
-    { href: "https://www.daad.de", img: "/placeholder-logo.svg", name: "DAAD" },
-  ];
 </script>
 
 <svelte:head><title>Data & Science - CPBL Design</title></svelte:head>
@@ -152,7 +141,7 @@ const data: ChartData = {
       <div class="preview">
         <p>
           Inline: <MathComponent
-            tex={"E = mc^2"}
+            tex="E = mc^2"
             display={false}
           />
         </p>

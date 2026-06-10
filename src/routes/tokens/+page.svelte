@@ -80,7 +80,7 @@
       title="RWTH Color Palette"
     >
       <div class="swatch-grid">
-        {#each rwthColors as c}
+        {#each rwthColors as c (c.name)}
           <div class="swatch">
             <div
               class="swatch-color"
@@ -99,7 +99,7 @@
       title="Greys"
     >
       <div class="swatch-grid">
-        {#each greys as c}
+        {#each greys as c (c.name)}
           <div class="swatch">
             <div
               class="swatch-color"
@@ -118,7 +118,7 @@
       title="Semantic Colors"
     >
       <div class="semantic-grid">
-        {#each semanticColors as c}
+        {#each semanticColors as c (c.name)}
           <div class="semantic-row">
             <div
               class="semantic-swatch"
@@ -156,7 +156,7 @@
         </div>
       </div>
       <div class="weight-samples">
-        {#each [300, 400, 500, 600, 700] as w}
+        {#each [300, 400, 500, 600, 700] as w (w)}
           <div class="weight-row">
             <span class="type-label">weight {w}</span>
             <span
@@ -174,7 +174,7 @@
       title="Spacing Scale"
     >
       <div class="spacing-rows">
-        {#each spacingScale as n}
+        {#each spacingScale as n (n)}
           <div class="spacing-row">
             <code class="spacing-token">--space-{n}</code>
             <div
@@ -192,7 +192,7 @@
       title="Border Radius"
     >
       <div class="radius-row">
-        {#each radiusTokens as r}
+        {#each radiusTokens as r (r.name)}
           <div class="radius-item">
             <div
               class="radius-box"
@@ -210,7 +210,7 @@
       title="Shadows"
     >
       <div class="shadow-row">
-        {#each [{ name: "--shadow-sm", label: "sm" }, { name: "--shadow-md", label: "md" }, { name: "--shadow-primary", label: "primary" }] as s}
+        {#each [{ name: "--shadow-sm", label: "sm" }, { name: "--shadow-md", label: "md" }, { name: "--shadow-primary", label: "primary" }] as s (s.name)}
           <div class="shadow-item">
             <div
               class="shadow-box"

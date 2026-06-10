@@ -80,9 +80,7 @@
   function getNextId(initialBoxes: Array<Box[]>): number {
     let maxId = 0;
     for (const row of initialBoxes) {
-      for (const box of row) {
-        maxId++;
-      }
+      maxId += row.length;
     }
     return maxId;
   }
@@ -92,6 +90,8 @@
     row: number,
     span: number,
   ): number | null {
+    // transient computation local, not reactive state
+    // eslint-disable-next-line svelte/prefer-svelte-reactivity
     const occupied = new Set<number>();
     const rowBoxes = rows[row] ?? [];
     for (const box of rowBoxes) {
@@ -150,6 +150,8 @@
 
   /** Check which columns of the row are full */
   function buildOccupancy(row: number, ignoreId?: number): Set<number> {
+    // transient computation local, not reactive state
+    // eslint-disable-next-line svelte/prefer-svelte-reactivity
     const occupied = new Set<number>();
     for (const box of boxes.at(row) ?? []) {
       if (box.id === ignoreId) continue;
@@ -397,7 +399,7 @@
   class="grid"
   bind:this={gridEl}
 >
-  {#each boxes as boxRow, row}
+  {#each boxes as boxRow, row (row)}
     {#each boxRow as box (box.id)}
       <div
         class="box"

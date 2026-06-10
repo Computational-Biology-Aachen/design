@@ -129,7 +129,7 @@
       <div class="preview">
         <p>Inline <Code>code snippet</Code> inside a sentence.</p>
         <Pre
-          >const x = 42; const msg = `value is ${"{"}x{"}"}`; console.log(msg);</Pre
+          >const x = 42; const msg = `value is ${"{"}x}`; console.log(msg);</Pre
         >
         <p>
           Press <Keyboard>Ctrl</Keyboard> + <Keyboard>K</Keyboard> to open the command
@@ -245,7 +245,7 @@ preformatted block</Pre>
         <Rule />
         <p>Content below the rule</p>
       </div>
-      <pre><code>{`<Rule />`}</code></pre>
+      <pre><code>&lt;Rule /&gt;</code></pre>
     </ShowcaseSection>
 
     <ShowcaseSection

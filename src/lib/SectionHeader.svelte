@@ -28,6 +28,8 @@
   import type { Snippet } from "svelte";
 
   let {
+    // public prop, not yet applied to styling
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     variant = "light",
     width = "full",
     gap = "normal",

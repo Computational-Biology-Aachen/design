@@ -151,7 +151,7 @@
       <h3>Tab-style toggle button - use with a selected state</h3>
       <div class="preview">
         <Row gap="var(--space-1)">
-          {#each tabs as tab, i}
+          {#each tabs as tab, i (tab)}
             <ButtonTab
               selected={activeTab === i}
               onclick={() => (activeTab = i)}

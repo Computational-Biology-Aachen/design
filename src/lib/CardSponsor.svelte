@@ -25,6 +25,8 @@
   let {
     href,
     img,
+    // public prop, reserved for identification/accessibility (not yet used)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     name,
   }: {
     href: string;

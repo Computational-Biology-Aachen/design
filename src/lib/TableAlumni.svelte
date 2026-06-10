@@ -66,7 +66,7 @@
 </script>
 
 {#if small.current}
-  {#each rows as row}
+  {#each rows as row, i (i)}
     <div class="card">
       <Text><Bold>{row[1]}</Bold>, {row[2]} - {row[0]}</Text>
       <Text>{row[3]}</Text>
@@ -76,15 +76,19 @@
   <table>
     <thead>
       <tr>
-        {#each header as cell}
+        {#each header as cell (cell)}
+          <!-- trusted, component-internal table data -->
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           <td>{@html cell}</td>
         {/each}
       </tr>
     </thead>
     <tbody>
-      {#each rows as row}
+      {#each rows as row, i (i)}
         <tr>
-          {#each row as cell}
+          {#each row as cell, j (j)}
+            <!-- trusted, component-internal table data -->
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
             <td>{@html cell}</td>
           {/each}
         </tr>

@@ -69,7 +69,7 @@
 >
   {#if scrolling}
     <div class="track">
-      {#each doubled as logo}
+      {#each doubled as logo, i (i)}
         <a href={logo.href}>
           <img
             class="logo"
@@ -81,7 +81,7 @@
       {/each}
     </div>
   {:else}
-    {#each logos as logo}
+    {#each logos as logo, i (i)}
       <a href={logo.href}>
         <img
           class="logo"

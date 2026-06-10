@@ -64,6 +64,8 @@
   const cellKey = (row: number, col: number) => `${row}:${col}`;
 
   function buildOccupancy(ignoreId?: number): Set<string> {
+    // transient computation local, not reactive state
+    // eslint-disable-next-line svelte/prefer-svelte-reactivity
     const occupied = new Set<string>();
     for (const box of boxes) {
       if (box.id === ignoreId) continue;

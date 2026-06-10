@@ -62,7 +62,7 @@
           wrap
           gap="var(--space-3)"
         >
-          {#each ["Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta"] as label}
+          {#each ["Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta"] as label (label)}
             <div class="pill">{label}</div>
           {/each}
         </Row>
@@ -147,7 +147,7 @@
       <h3>Responsive auto-fill grid for person cards (300px min column)</h3>
       <div class="preview">
         <GridPerson>
-          {#each ["Anna Müller", "Jonas Weber", "Lena Schmidt", "Max Fischer"] as name}
+          {#each ["Anna Müller", "Jonas Weber", "Lena Schmidt", "Max Fischer"] as name (name)}
             <div class="person-placeholder">{name}</div>
           {/each}
         </GridPerson>

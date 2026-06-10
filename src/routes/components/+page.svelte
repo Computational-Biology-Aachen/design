@@ -78,7 +78,7 @@
   <p class="subtitle">96 components across 11 groups</p>
 
   <div class="groups">
-    {#each groups as g}
+    {#each groups as g (g.name)}
       <a
         href={g.href}
         class="group-card"
