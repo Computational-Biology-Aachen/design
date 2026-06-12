@@ -60,6 +60,8 @@ export { default as Keyboard } from "./Keyboard.svelte";
 export { default as Li } from "./Li.svelte";
 export { default as LineChart } from "./LineChart.svelte";
 export type { PhaseRegion } from "./LineChart.svelte";
+export { default as LineChartGrid } from "./LineChartGrid.svelte";
+export type { LineChartGridItem } from "./LineChartGrid.svelte";
 export { default as Link } from "./Link.svelte";
 export { default as Math } from "./Math.svelte";
 export { default as Navbar } from "./Navbar.svelte";

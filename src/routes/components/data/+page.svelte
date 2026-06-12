@@ -1,7 +1,9 @@
 <script lang="ts">
   import {
     CardModel,
+    InputCheckbox,
     LineChart,
+    LineChartGrid,
     Math as MathComponent,
     ModelGallery,
     PageNav,
@@ -16,6 +18,7 @@
 
   const links = [
     { label: "LineChart", id: "linechart" },
+    { label: "LineChartGrid", id: "linechartgrid" },
     { label: "SimChart", id: "simchart" },
     { label: "Math", id: "math" },
     { label: "TableAlumni", id: "tablealumni" },
@@ -45,6 +48,41 @@
       },
     ],
   };
+
+  const gridCharts = [
+    {
+      data: {
+        labels: t,
+        datasets: [
+          {
+            label: "ATP",
+            data: t.map((x) => 10 * (1 - Math.exp(-0.3 * x))),
+            borderColor: "rgb(0, 97, 101)",
+            backgroundColor: "rgba(0, 97, 101, 0.1)",
+            tension: 0.3,
+          },
+        ],
+      },
+      yLabel: "ATP / mM",
+    },
+    {
+      data: {
+        labels: t,
+        datasets: [
+          {
+            label: "NADPH",
+            data: t.map((x) => 3 * Math.sin(x * 0.6) + 4),
+            borderColor: "rgb(246, 168, 0)",
+            backgroundColor: "rgba(246, 168, 0, 0.1)",
+            tension: 0.3,
+          },
+        ],
+      },
+      yLabel: "NADPH / mM",
+    },
+  ];
+  let shareX = $state(true);
+  let shareY = $state(false);
 
   const simX = Array.from({ length: 201 }, (_, i) => i * 0.5);
   const simY = simX.map((x) => 5 * Math.sin(x * 0.3) * Math.exp(-0.05 * x) + 5);
@@ -98,6 +136,50 @@ const data: ChartData = {
   xLabel="Time / s"
   yLabel="Concentration / mM"
   loading={false}
+/>`}</code
+        ></pre>
+    </ShowcaseSection>
+
+    <ShowcaseSection
+      id="linechartgrid"
+      title="LineChartGrid"
+    >
+      <h3>Grid of LineCharts with optional shared axis bounds</h3>
+      <div style="margin-bottom: var(--space-3)">
+        <InputCheckbox
+          id="grid-share-x"
+          label="Share x-axis bounds"
+          bind:checked={shareX}
+        />
+        <InputCheckbox
+          id="grid-share-y"
+          label="Share y-axis bounds"
+          bind:checked={shareY}
+        />
+      </div>
+      <div
+        class="preview"
+        style="width: 100%"
+      >
+        <LineChartGrid
+          charts={gridCharts}
+          xLabel="Time / s"
+          loading={false}
+          shareX={shareX}
+          shareY={shareY}
+        />
+      </div>
+      <pre><code
+          >{`<LineChartGrid
+  columns={2}
+  xLabel="Time / s"
+  loading={isRunning}
+  shareX={true}
+  shareY={false}
+  charts={[
+    { data: atpData, yLabel: "ATP / mM" },
+    { data: nadphData, yLabel: "NADPH / mM" },
+  ]}
 />`}</code
         ></pre>
     </ShowcaseSection>
