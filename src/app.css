@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+/* Note: setting height: 100% and overflow: scroll on body / html breaks
+window.scrollTo/window.scrollY as that scrolls via the viewport.
+Set min-height: 100vh; on #app in app.html instead
+*/
 html,
 body {
   margin: 0;
