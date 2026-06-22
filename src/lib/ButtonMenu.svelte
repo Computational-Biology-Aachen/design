@@ -41,7 +41,7 @@
     children,
   }: {
     label: string | Snippet;
-    variant?: "primary" | "secondary";
+    variant?: "primary" | "secondary" | "inverted";
     href?: string;
     children: Snippet;
   } = $props();

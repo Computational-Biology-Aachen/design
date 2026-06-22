@@ -37,7 +37,7 @@
   import type { Snippet } from "svelte";
 
   interface Props {
-    variant?: "primary" | "secondary";
+    variant?: "primary" | "secondary" | "inverted";
     type?: "button" | "submit" | "reset";
     disabled?: boolean;
     loading?: boolean;
@@ -147,6 +147,15 @@
   }
 
   .secondary:hover:not(:disabled):not(.disabled) {
+    background-color: var(--color-surface);
+  }
+
+  .inverted {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+  }
+
+  .inverted:hover:not(:disabled):not(.disabled) {
     background-color: var(--color-surface);
   }
 
