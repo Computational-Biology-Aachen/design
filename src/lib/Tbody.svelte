@@ -8,6 +8,8 @@
 
   - `children: Snippet`
     The body rows.
+  - `styleVars?: {}`
+    CSS custom property overrides (reserved for future use).
   - `...rest`
     Additional attributes spread onto the `<tbody>` element.
 -->
@@ -16,9 +18,11 @@
 
   let {
     children,
+    styleVars = {},
     ...rest
   }: {
     children: Snippet;
+    styleVars?: {};
     [key: string]: unknown;
   } = $props();
 </script>
@@ -26,3 +30,6 @@
 <tbody {...rest}>
   {@render children()}
 </tbody>
+
+<style>
+</style>

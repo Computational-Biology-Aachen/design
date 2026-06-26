@@ -18,6 +18,8 @@
     Threshold below 768px. Defaults to `2`.
   - `speed?: number`
     Marquee speed factor (higher is faster). Defaults to `40`.
+  - `styleVars?: { barHeight?: string; trackGap?: string; logoHeight?: string }`
+    Override CSS custom properties. All optional.
 
   ### Example
 
@@ -36,9 +38,21 @@
     maxMd?: number;
     maxSm?: number;
     speed?: number;
+    styleVars?: {
+      barHeight?: string;
+      trackGap?: string;
+      logoHeight?: string;
+    };
   }
 
-  let { logos, max = 5, maxMd = 3, maxSm = 2, speed = 40 }: Props = $props();
+  let {
+    logos,
+    max = 5,
+    maxMd = 3,
+    maxSm = 2,
+    speed = 40,
+    styleVars = {},
+  }: Props = $props();
 
   let containerWidth = $state(1200);
 
@@ -50,6 +64,12 @@
   const doubled = $derived([...logos, ...logos]);
 
   let container: HTMLDivElement | undefined = $state();
+
+  let cssVars = $derived({
+    ...(styleVars.barHeight ? { "--row-img-scrolling-bar-height": styleVars.barHeight } : {}),
+    ...(styleVars.trackGap ? { "--row-img-scrolling-track-gap": styleVars.trackGap } : {}),
+    ...(styleVars.logoHeight ? { "--row-img-scrolling-logo-height": styleVars.logoHeight } : {}),
+  });
 
   onMount(() => {
     if (!container) return;
@@ -65,7 +85,12 @@
   bind:this={container}
   class="logo-bar"
   class:scrolling={scrolling}
-  style={scrolling ? `--duration: ${duration}s` : ""}
+  style={Object.entries({
+    ...cssVars,
+    ...(scrolling ? { "--duration": `${duration}s` } : {}),
+  })
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
 >
   {#if scrolling}
     <div class="track">
@@ -75,7 +100,7 @@
             class="logo"
             src={logo.src}
             alt={logo.alt}
-            style="height: {logo.height ?? '5rem'}"
+            style="height: {logo.height ?? 'var(--row-img-scrolling-logo-height, 5rem)'}"
           />
         </a>
       {/each}
@@ -87,7 +112,7 @@
           class="logo"
           src={logo.src}
           alt={logo.alt}
-          style="height: {logo.height ?? '5rem'}"
+          style="height: {logo.height ?? 'var(--row-img-scrolling-logo-height, 5rem)'}"
         />
       </a>
     {/each}
@@ -96,6 +121,7 @@
 
 <style>
   .logo-bar {
+    --row-img-scrolling-bar-height: 6rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -103,7 +129,7 @@
     gap: 1rem;
     width: 100%;
     max-width: var(--max-width);
-    height: 6rem;
+    height: var(--row-img-scrolling-bar-height);
   }
 
   .logo-bar.scrolling {
@@ -120,9 +146,10 @@
   }
 
   .track {
+    --row-img-scrolling-track-gap: 3rem;
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: var(--row-img-scrolling-track-gap);
     animation: marquee var(--duration, 20s) linear infinite;
     width: max-content;
   }
@@ -148,13 +175,14 @@
   }
 
   .logo {
+    --row-img-scrolling-logo-height: 5rem;
     display: block;
     transition:
       transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
       box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
     width: auto;
     max-width: none;
-    height: 5rem;
+    height: var(--row-img-scrolling-logo-height);
     object-fit: contain;
   }
 

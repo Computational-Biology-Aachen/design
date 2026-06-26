@@ -13,6 +13,8 @@
     CSS grid gap. Defaults to `"var(--gap)"`.
   - `children: Snippet`
     The grid items.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -31,14 +33,27 @@
     columns?: number;
     gap?: string;
     children: Snippet;
+    styleVars?: { [key: string]: string };
   }
 
-  let { columns = 1, gap = "var(--gap)", children }: Props = $props();
+  let {
+    columns = 1,
+    gap = "var(--gap)",
+    children,
+    styleVars = {},
+  }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <div
   class="grid cols-{columns}"
   style:gap={gap}
+  style={inlineStyle}
 >
   {@render children()}
 </div>

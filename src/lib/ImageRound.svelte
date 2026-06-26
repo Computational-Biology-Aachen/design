@@ -15,6 +15,8 @@
     `object-fit` for the image. Defaults to `"unset"`.
   - `objectPosition?: "unset" | "top"`
     `object-position` for the image. Defaults to `"unset"`.
+  - `styleVars?: { size?: string; borderWidth?: string }`
+    Override CSS custom properties. All optional.
 
   ### Example
 
@@ -28,11 +30,16 @@
     alt = "profile",
     objectFit = "unset",
     objectPosition = "unset",
+    styleVars = {},
   }: {
     path: string;
     alt?: string;
     objectFit?: "unset" | "cover";
     objectPosition?: "unset" | "top";
+    styleVars?: {
+      size?: string;
+      borderWidth?: string;
+    };
   } = $props();
 
   let imageError = $state(false);
@@ -40,10 +47,20 @@
   function handleError() {
     imageError = true;
   }
+
+  let cssVars = $derived({
+    ...(styleVars.size ? { "--image-round-size": styleVars.size } : {}),
+    ...(styleVars.borderWidth ? { "--image-round-border-width": styleVars.borderWidth } : {}),
+  });
 </script>
 
 {#if imageError}
-  <div class="placeholder">
+  <div
+    class="placeholder"
+    style={Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";")}
+  >
     <span>Image not found</span>
   </div>
 {:else}
@@ -53,27 +70,34 @@
     onerror={handleError}
     style:object-fit={objectFit}
     style:object-position={objectPosition}
+    style={Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";")}
   />
 {/if}
 
 <style>
   img {
-    border: 4px solid var(--color-bg);
+    --image-round-size: 300px;
+    --image-round-border-width: 4px;
+    border: var(--image-round-border-width) solid var(--color-bg);
     border-radius: 50%;
-    width: 300px;
-    height: 300px;
+    width: var(--image-round-size);
+    height: var(--image-round-size);
   }
 
   .placeholder {
+    --image-round-size: 300px;
+    --image-round-border-width: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 1rem;
-    border: 4px solid var(--color-bg);
+    border: var(--image-round-border-width) solid var(--color-bg);
     border-radius: 50%;
     background-color: var(--color-text);
-    width: 300px;
-    height: 300px;
+    width: var(--image-round-size);
+    height: var(--image-round-size);
     color: var(--color-bg);
   }
 </style>

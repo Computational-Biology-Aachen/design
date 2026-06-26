@@ -15,6 +15,8 @@
     Whether the section starts expanded. Defaults to `false`.
   - `children: Snippet`
     The collapsible content.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -32,12 +34,25 @@
     header?: Snippet;
     open?: boolean;
     children: Snippet;
+    styleVars?: { [key: string]: string };
   }
 
-  let { title, header, open = false, children }: Props = $props();
+  let {
+    title,
+    header,
+    open = false,
+    children,
+    styleVars = {},
+  }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<details open={open}>
+<details open={open} style={inlineStyle}>
   <summary class="accordion-summary">
     {#if header}
       {@render header()}
@@ -52,6 +67,13 @@
 
 <style>
   details {
+    --acc-gap: var(--gap);
+    --acc-summary-gap: var(--space-2);
+    --acc-summary-padding: var(--space-3) var(--space-4);
+    --acc-summary-font-weight: 500;
+    --acc-summary-chevron-size: 0.65em;
+    --acc-content-gap: var(--gap);
+    --acc-content-padding: var(--space-4);
     border: var(--border);
     border-radius: var(--radius-md);
     background: var(--color-surface);
@@ -61,12 +83,12 @@
   .accordion-summary {
     display: flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--acc-summary-gap);
     transition: background-color var(--transition);
     cursor: pointer;
     border-radius: var(--radius-md);
-    padding: var(--space-3) var(--space-4);
-    font-weight: 500;
+    padding: var(--acc-summary-padding);
+    font-weight: var(--acc-summary-font-weight);
     list-style: none;
     user-select: none;
   }
@@ -80,7 +102,7 @@
     flex-shrink: 0;
     transition: transform 0.2s;
     content: "▶";
-    font-size: 0.65em;
+    font-size: var(--acc-summary-chevron-size);
   }
 
   details[open] .accordion-summary {
@@ -98,10 +120,10 @@
   .accordion-content {
     display: flex;
     flex-direction: column;
-    gap: var(--gap);
+    gap: var(--acc-content-gap);
     border-top: var(--border);
     border-radius: 0 0 var(--radius-md) var(--radius-md);
     background: var(--color-bg);
-    padding: var(--space-4);
+    padding: var(--acc-content-padding);
   }
 </style>

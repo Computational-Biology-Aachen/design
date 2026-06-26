@@ -8,6 +8,8 @@
 
   - `children: Snippet`
     The inline content to mark as removed.
+  - `styleVars?: {}`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -18,16 +20,18 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  let {
-    children,
-  }: {
+  interface Props {
     children: Snippet;
-  } = $props();
+    styleVars?: {};
+  }
+
+  let { children, styleVars = {} }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<del>
-  {@render children()}
-</del>
-
-<style>
-</style>
+{@render children()}

@@ -8,6 +8,8 @@
 
   - `children: Snippet`
     The showcase sections.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -22,12 +24,20 @@
 
   let {
     children,
+    styleVars = {},
   }: {
     children: Snippet;
+    styleVars?: { [key: string]: string };
   } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<div>
+<div style={inlineStyle}>
   {@render children()}
 </div>
 

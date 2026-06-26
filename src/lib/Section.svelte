@@ -29,6 +29,7 @@
   ```
 -->
 <script lang="ts">
+  import type { Variant } from "$lib/variants";
   import type { Snippet } from "svelte";
 
   let {
@@ -36,18 +37,46 @@
     width = "full",
     gap = "normal",
     pad = "lg",
+    styleVars = {},
     children,
   }: {
-    variant?: "light" | "surface" | "dark" | "primary" | "accent";
+    variant?: Variant;
     width?: "full" | "narrow";
     gap?: "normal" | "large";
     pad?: "no" | "lg";
+    styleVars?: {
+      yPad?: string;
+      innerMaxWidth?: string;
+      innerGap?: string;
+    };
     children: Snippet;
   } = $props();
+
+  let sectionCssVars = $derived({
+    ...(styleVars.yPad ? { "--section-ypad": styleVars.yPad } : {}),
+  });
+  let innerCssVars = $derived({
+    ...(styleVars.innerMaxWidth
+      ? { "--section-inner-max-width": styleVars.innerMaxWidth }
+      : {}),
+    ...(styleVars.innerGap
+      ? { "--section-inner-gap": styleVars.innerGap }
+      : {}),
+  });
 </script>
 
-<section class={variant}>
-  <div class="inner width-{width} gap-{gap} pad-{pad}">
+<section
+  class={variant}
+  style={Object.entries(sectionCssVars)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
+>
+  <div
+    class="inner max-width-{width} gap-{gap} pad-{pad}"
+    style={Object.entries(innerCssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";")}
+  >
     {@render children()}
   </div>
 </section>
@@ -59,69 +88,67 @@
     justify-content: center;
     margin: 0;
     padding: 0 var(--space-4);
+    padding-top: var(--section-ypad);
+    padding-bottom: var(--section-ypad);
     width: 100%;
     min-height: 12rem;
+  }
+  /* section variants - Colors */
+  .light {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+  .dark {
+    background-color: var(--color-text);
+    color: var(--color-text-inverse);
+  }
+  .surface {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+  }
+  .primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+  .accent {
+    background-color: var(--color-accent);
+    color: var(--color-text);
+  }
+  /* section variants - Padding */
+  .pad-no {
+    --section-ypad: 0;
+  }
+  .pad-lg {
+    --section-ypad: var(--space-12);
   }
 
   .inner {
     display: flex;
     flex-direction: column;
-    gap: var(--gap);
+    gap: var(--section-inner-gap);
     margin: 0 auto;
     width: 100%;
-    max-width: var(--max-width);
+    max-width: var(--section-inner-max-width);
   }
 
-  .width-full {
+  /* inner variants - Width */
+  .max-width-full {
     padding-right: 1rem;
     padding-left: 1rem;
-    max-width: var(--max-width);
+    --section-inner-max-width: var(--max-width);
+  }
+  .max-width-narrow {
+    --section-inner-max-width: 100ch;
   }
 
-  .width-narrow {
-    max-width: 100ch;
+  /* inner variants - Gap */
+  .gap-sm {
+    --section-inner-gap: var(--gap-sm);
   }
-
-  .pad-no {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  .pad-lg {
-    padding-top: var(--space-12);
-    padding-bottom: var(--space-12);
-  }
-
-  .light {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-  }
-
-  .surface {
-    background-color: var(--color-surface);
-    color: var(--color-text);
-  }
-
-  .primary {
-    background-color: var(--color-primary);
-    color: var(--color-text-inverse);
-  }
-
-  .accent {
-    background-color: var(--color-accent);
-    color: var(--color-text);
-  }
-
-  .dark {
-    background-color: var(--color-text);
-    color: var(--color-text-inverse);
-  }
-
   .gap-normal {
-    gap: var(--gap);
+    --section-inner-gap: var(--gap);
   }
-
   .gap-large {
-    gap: var(--gap-lg);
+    --section-inner-gap: var(--gap-lg);
   }
 </style>

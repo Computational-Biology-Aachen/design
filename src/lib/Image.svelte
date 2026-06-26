@@ -9,6 +9,8 @@
     Image source URL.
   - `alt?: string`
     Alternative text. Defaults to `"profile"`.
+  - `styleVars?: {}`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -17,18 +19,29 @@
   ```
 -->
 <script lang="ts">
+  interface Props {
+    src: string;
+    alt?: string;
+    styleVars?: {};
+  }
+
   let {
     src,
     alt = "profile",
-  }: {
-    src: string;
-    alt?: string;
-  } = $props();
+    styleVars = {},
+  }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <img
   src={src}
   alt={alt}
+  style={inlineStyle}
 />
 
 <style>

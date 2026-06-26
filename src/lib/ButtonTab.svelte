@@ -12,6 +12,8 @@
     Handler that should set this tab as selected.
   - `children: Snippet`
     The tab label.
+  - `styleVars?: { gap?: string; fontSize?: string; padding?: string }`
+    Override the tab's default CSS values.
 
   ### Example
 
@@ -29,33 +31,50 @@
     selected,
     onclick,
     children,
+    styleVars = {},
   }: {
     selected: boolean;
     children: Snippet;
     onclick: MouseEventHandler<HTMLButtonElement>;
+    styleVars?: { gap?: string; fontSize?: string; padding?: string };
   } = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.gap ? { "--tab-gap": styleVars.gap } : {}),
+    ...(styleVars.fontSize ? { "--tab-font-size": styleVars.fontSize } : {}),
+    ...(styleVars.padding ? { "--tab-padding": styleVars.padding } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <button
   class:selected={selected}
   onclick={onclick}
+  style={inlineStyle}
 >
   {@render children()}
 </button>
 
 <style>
   button {
+    --tab-gap: 0.5rem;
+    --tab-font-size: 0.84rem;
+    --tab-padding: 0;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--tab-gap);
     cursor: pointer;
     margin: 0;
     border: none;
     background-color: transparent;
-    padding: 0;
+    padding: var(--tab-padding);
     color: var(--slate-500);
     font-weight: 700;
-    font-size: 0.84rem;
+    font-size: var(--tab-font-size);
     white-space: nowrap;
 
     @media (min-width: 768px) {

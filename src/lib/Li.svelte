@@ -10,6 +10,8 @@
     Text colour. Defaults to `"inherit"`.
   - `children: Snippet`
     The list-item content.
+  - `styleVars?: { color?: string }`
+    Override the text color via CSS custom property.
 
   ### Example
 
@@ -26,13 +28,24 @@
   let {
     color = "inherit",
     children,
+    styleVars = {},
   }: {
     color?: "inherit" | "dark" | "light" | "primary" | "secondary";
     children: Snippet;
+    styleVars?: { color?: string };
   } = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.color ? { "--li-color": styleVars.color } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<li class={`${color}`}>
+<li class={`${color}`} style={inlineStyle}>
   {@render children()}
 </li>
 

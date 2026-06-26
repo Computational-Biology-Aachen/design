@@ -15,6 +15,8 @@
     Options for the audience toggle.
   - `children?: Snippet`
     Optional extra content rendered above the links.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -44,11 +46,13 @@
     audienceStore,
     audienceOptions,
     children,
+    styleVars = {},
   }: {
     navLinks: { href: string; label: string }[];
     audienceStore: AudienceStore;
     audienceOptions: AudienceOption[];
     children?: Snippet;
+    styleVars?: { [key: string]: string };
   } = $props();
 
   let menuOpen = $state(false);
@@ -56,11 +60,18 @@
   function toggleMenu() {
     menuOpen = !menuOpen;
   }
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <aside
   class="sidebar"
   class:open={menuOpen}
+  style={inlineStyle}
 >
   <button
     class="hamburger"

@@ -8,6 +8,8 @@
 
   - `href: string`
     URL of the GitHub repository or organisation.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -16,10 +18,22 @@
   ```
 -->
 <script lang="ts">
-  let { href }: { href: string } = $props();
+  let {
+    href,
+    styleVars = {},
+  }: {
+    href: string;
+    styleVars?: { [key: string]: string };
+  } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<li class="gh-link">
+<li class="gh-link" style={inlineStyle}>
   <a
     href={href}
     aria-label="GitHub"

@@ -16,6 +16,8 @@
     Inner column width. Defaults to `"full"`.
   - `gap?: "normal" | "large"`
     Vertical gap between children. Defaults to `"normal"`.
+  - `styleVars?: { padding?: string; height?: string; maxHeight?: string; contentMaxWidth?: string }`
+    Override CSS custom properties. All optional.
   - `children: Snippet`
     The hero content.
 
@@ -38,6 +40,7 @@
     gap = "normal",
     src,
     cpblLogo,
+    styleVars = {},
     children,
   }: {
     src: string;
@@ -45,8 +48,25 @@
     variant?: "light" | "surface" | "dark" | "primary" | "accent";
     width?: "full" | "narrow";
     gap?: "normal" | "large";
+    styleVars?: {
+      padding?: string;
+      height?: string;
+      maxHeight?: string;
+      contentMaxWidth?: string;
+    };
     children: Snippet;
   } = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.padding ? { "--hero-gradient-padding": styleVars.padding } : {}),
+    ...(styleVars.height ? { "--hero-gradient-height": styleVars.height } : {}),
+    ...(styleVars.maxHeight
+      ? { "--hero-gradient-max-height": styleVars.maxHeight }
+      : {}),
+    ...(styleVars.contentMaxWidth
+      ? { "--hero-gradient-content-max-width": styleVars.contentMaxWidth }
+      : {}),
+  });
 </script>
 
 <div
@@ -61,7 +81,12 @@
     src={cpblLogo}
     alt="cpbl logo"
   />
-  <div class="inner width-{width} gap-{gap}">
+  <div
+    class="inner width-{width} gap-{gap}"
+    style={Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";")}
+  >
     {@render children()}
   </div>
 </div>
@@ -77,15 +102,18 @@
     width: 100%;
   }
   .inner {
+    --hero-gradient-padding: 2rem 2rem;
+    --hero-gradient-height: calc(100vh / 2);
+    --hero-gradient-max-height: 800px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: left;
     margin: 0 auto;
-    padding: 2rem 2rem;
-    max-width: var(--max-width);
-    height: calc(100vh / 2);
-    max-height: 800px;
+    padding: var(--hero-gradient-padding);
+    max-width: var(--hero-gradient-content-max-width, var(--max-width));
+    height: var(--hero-gradient-height);
+    max-height: var(--hero-gradient-max-height);
   }
   img {
     position: absolute;
@@ -102,10 +130,12 @@
   }
 
   .width-full {
-    max-width: var(--max-width);
+    --hero-gradient-content-max-width: var(--max-width);
+    max-width: var(--hero-gradient-content-max-width);
   }
 
   .width-narrow {
-    max-width: 100ch;
+    --hero-gradient-content-max-width: 100ch;
+    max-width: var(--hero-gradient-content-max-width);
   }
 </style>

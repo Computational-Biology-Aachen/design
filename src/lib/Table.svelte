@@ -9,6 +9,8 @@
 
   - `children: Snippet`
     The table rows/sections.
+  - `styleVars?: { fontSize?: string }`
+    Override CSS custom properties for the table element.
   - `...rest`
     Any additional attributes are spread onto the `<table>` element.
 
@@ -26,15 +28,29 @@
 
   let {
     children,
+    styleVars = {},
     ...rest
   }: {
     children: Snippet;
+    styleVars?: { fontSize?: string };
     [key: string]: unknown;
   } = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.fontSize ? { "--table-font-size": styleVars.fontSize } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <div class="table-wrap">
-  <table {...rest}>
+  <table
+    {...rest}
+    style={inlineStyle}
+  >
     {@render children()}
   </table>
 </div>
@@ -46,9 +62,11 @@
   }
 
   table {
+    --table-font-size: 0.9rem;
+
     border-collapse: collapse;
     width: 100%;
-    font-size: 0.9rem;
+    font-size: var(--table-font-size);
     font-family: var(--font-sans);
     text-align: left;
     text-indent: 0;

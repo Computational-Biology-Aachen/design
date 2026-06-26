@@ -6,6 +6,8 @@
 
   ### Props
 
+  - `styleVars?: { boxGap?: string }`
+    Override the gap CSS custom property.
   - `children: Snippet`
     The content to stack vertically.
 
@@ -21,21 +23,35 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   let {
+    styleVars = {},
     children,
   }: {
+    styleVars?: {
+      boxGap?: string;
+    };
     children: Snippet;
   } = $props();
+
+  let boxCssVars = $derived({
+    ...(styleVars.boxGap ? { "--box-gap": styleVars.boxGap } : {}),
+  });
 </script>
 
-<div>
+<div
+  style={Object.entries(boxCssVars)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
+>
   {@render children()}
 </div>
 
 <style>
   div {
+    --box-gap: var(--gap);
+
     display: flex;
     flex-direction: column;
-    gap: var(--gap);
+    gap: var(--box-gap);
     width: 100%;
   }
 </style>

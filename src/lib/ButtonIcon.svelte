@@ -14,6 +14,8 @@
     Native popover target id to toggle.
   - `size?: "sm" | "md" | "lg"`
     Button size. Defaults to `"sm"`.
+  - `styleVars?: { width?: string; height?: string; fontSize?: string }`
+    Override the button's default size values.
 
   ### Example
 
@@ -30,18 +32,32 @@
     onclick,
     popovertarget,
     size = "sm",
+    styleVars = {},
   }: {
     icon: string;
     onclick?: MouseEventHandler<HTMLButtonElement>;
     popovertarget?: string;
     size?: "sm" | "md" | "lg";
+    styleVars?: { width?: string; height?: string; fontSize?: string };
   } = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.width ? { "--btnicon-width": styleVars.width } : {}),
+    ...(styleVars.height ? { "--btnicon-height": styleVars.height } : {}),
+    ...(styleVars.fontSize ? { "--btnicon-font-size": styleVars.fontSize } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <button
   onclick={onclick}
   popovertarget={popovertarget}
   class="size-{size}"
+  style={inlineStyle}
 >
   <Icon
     color="inherit"
@@ -51,6 +67,9 @@
 
 <style>
   button {
+    --btnicon-width: 1.5rem;
+    --btnicon-height: 1.5rem;
+    --btnicon-font-size: 0.75rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,24 +79,27 @@
     background-color: var(--color-surface);
     color: var(--color-primary);
     white-space: nowrap;
+    width: var(--btnicon-width);
+    height: var(--btnicon-height);
+    font-size: var(--btnicon-font-size);
   }
   button:hover {
     background-color: lch(from var(--color-primary) calc(l - 10) c h);
     color: white;
   }
   .size-sm {
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 0.75rem;
+    --btnicon-width: 1.5rem;
+    --btnicon-height: 1.5rem;
+    --btnicon-font-size: 0.75rem;
   }
   .size-md {
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 1rem;
+    --btnicon-width: 1.5rem;
+    --btnicon-height: 1.5rem;
+    --btnicon-font-size: 1rem;
   }
   .size-lg {
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.5rem;
+    --btnicon-width: 2rem;
+    --btnicon-height: 2rem;
+    --btnicon-font-size: 1.5rem;
   }
 </style>

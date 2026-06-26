@@ -17,6 +17,8 @@
     Inline style passthrough. Defaults to `""`.
   - `klass?: string`
     Extra class names. Defaults to `""`.
+  - `styleVars?: {}`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -27,24 +29,34 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
+  interface Props {
+    children: Snippet;
+    color?: "primary" | "inherit" | "c1" | "c2" | "c3" | "c4";
+    fontSize?: "inherit" | "sm" | "md" | "lg";
+    style?: string;
+    klass?: string;
+    styleVars?: {};
+  }
+
   let {
     children,
     color = "primary",
     fontSize = "inherit",
     style = "",
     klass = "",
-  }: {
-    children: Snippet;
-    color?: "primary" | "inherit" | "c1" | "c2" | "c3" | "c4";
-    fontSize?: "inherit" | "sm" | "md" | "lg";
-    style?: string;
-    klass?: string;
-  } = $props();
+    styleVars = {},
+  }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <span
   class="material-symbols-outlined col-{color} ft-{fontSize} {klass}"
-  style={style}
+  style="{inlineStyle}{inlineStyle && style ? ";" : ""}{style}"
 >
   {@render children()}
 </span>

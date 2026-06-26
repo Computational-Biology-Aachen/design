@@ -11,6 +11,8 @@
     Optional brand/logo content shown at the start of the bar.
   - `children: Snippet`
     The navigation items, e.g. [[NavItem]] / [[NavGH]].
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -29,13 +31,21 @@
   let {
     brand,
     children,
+    styleVars = {},
   }: {
     brand?: Snippet;
     children: Snippet;
+    styleVars?: { [key: string]: string };
   } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<nav>
+<nav style={inlineStyle}>
   <div class="inner">
     {#if brand}
       <div class="brand">

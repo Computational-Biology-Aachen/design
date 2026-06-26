@@ -9,6 +9,8 @@
 
   - `github: string`
     URL of the maintainer's GitHub profile shown in the imprint.
+  - `styleVars?: {}`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -24,14 +26,24 @@
   import Footer from "./SectionFooter.svelte";
   import Text from "./Text.svelte";
 
+  interface Props {
+    github: string;
+    styleVars?: {};
+  }
+
   let {
     github,
-  }: {
-    github: string;
-  } = $props();
+    styleVars = {},
+  }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<Footer>
+<div style={inlineStyle}><Footer>
   <H2 color="light">Imprint</H2>
   <Text color="light">
     Anbieter i.S.d. TDG/MDStV: Prof. Dr. Anna B. Matuszyńska <br />
@@ -47,4 +59,4 @@
     ><br />
     (c) 2025 Prof. Dr. Anna B. Matuszyńska, Alle Rechte vorbehalten.
   </Text>
-</Footer>
+</Footer></div>

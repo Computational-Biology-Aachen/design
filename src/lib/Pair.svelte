@@ -13,6 +13,8 @@
     Horizontal alignment. Defaults to `"start"`.
   - `wrap?: "wrap" | "nowrap"`
     Whether items wrap onto multiple lines. Defaults to `"wrap"`.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -30,14 +32,22 @@
     children,
     justify = "start",
     wrap = "wrap",
+    styleVars = {},
   }: {
     children: Snippet;
     justify?: "start" | "end";
     wrap?: "wrap" | "nowrap";
+    styleVars?: { [key: string]: string };
   } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<div class="justify-{justify} wrap-{wrap}">
+<div class="justify-{justify} wrap-{wrap}" style={inlineStyle}>
   {@render children()}
 </div>
 

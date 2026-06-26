@@ -21,6 +21,8 @@
     to `true`.
   - `totalTime?: number`
     Fixes the x-axis maximum (seconds); otherwise derived from the data.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -77,6 +79,7 @@
     showLine?: boolean;
     /** Total time range for x axis (seconds) */
     totalTime?: number;
+    styleVars?: { [key: string]: string };
   }
 
   let {
@@ -88,7 +91,14 @@
     yLabel = "",
     showLine = true,
     totalTime,
+    styleVars = {},
   }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 
   let canvas: HTMLCanvasElement;
   let chart: Chart | null = null;
@@ -268,7 +278,7 @@
   });
 </script>
 
-<div class="chart-wrapper">
+<div class="chart-wrapper" style={inlineStyle}>
   <canvas bind:this={canvas}></canvas>
 </div>
 

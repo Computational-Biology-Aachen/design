@@ -4,6 +4,9 @@
   A thin horizontal divider (`<hr>`) used to separate content sections. Takes no
   props.
 
+  - `styleVars?: {}`
+    Optional CSS custom property overrides applied via inline style.
+
   ### Example
 
   ```svelte
@@ -12,9 +15,21 @@
   <section>…</section>
   ```
 -->
-<script lang="ts"></script>
+<script lang="ts">
+  let {
+    styleVars = {},
+  }: {
+    styleVars?: {};
+  } = $props();
 
-<hr />
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
+</script>
+
+<hr style={inlineStyle} />
 
 <style>
   hr {

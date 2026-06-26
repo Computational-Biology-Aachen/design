@@ -10,6 +10,8 @@
     The callout heading (rendered bold next to the status icon).
   - `variant?: "info" | "warning" | "success" | "error"`
     Colour scheme and icon. Defaults to `"info"`.
+  - `styleVars?: { infoGap?: string; infoPadding?: string }`
+    Override CSS custom properties for gap and padding.
   - `children?: Snippet`
     Optional body content.
 
@@ -30,17 +32,30 @@
   let {
     header,
     variant = "info",
+    styleVars = {},
     children,
   }: {
     header: string;
     variant?: Variant;
+    styleVars?: {
+      infoGap?: string;
+      infoPadding?: string;
+    };
     children?: Snippet;
   } = $props();
+
+  let infoBoxCssVars = $derived({
+    ...(styleVars.infoGap ? { "--infobox-gap": styleVars.infoGap } : {}),
+    ...(styleVars.infoPadding ? { "--infobox-padding": styleVars.infoPadding } : {}),
+  });
 </script>
 
 <div
   class="info-box {variant}"
   role="note"
+  style={Object.entries(infoBoxCssVars)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
 >
   <div class="header">
     <span
@@ -61,15 +76,18 @@
 
 <style>
   .info-box {
+    --infobox-gap: var(--gap);
+    --infobox-padding: var(--space-4);
+
     display: flex;
     flex-direction: column;
-    gap: var(--gap);
+    gap: var(--infobox-gap);
     border-left: 4px solid var(--color-primary);
     border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
     border-left-width: 4px;
     border-radius: var(--radius-md);
     background: color-mix(in srgb, var(--color-primary) 8%, var(--color-bg));
-    padding: var(--space-4);
+    padding: var(--infobox-padding);
     width: 100%;
     color: var(--color-text);
   }

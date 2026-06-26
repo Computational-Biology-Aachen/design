@@ -10,6 +10,8 @@
 
   - `src?: string`
     Optional background image URL.
+  - `styleVars?: { innerPadding?: string; innerMaxWidth?: string; innerMinHeight?: string }`
+    Override CSS custom properties for the inner content area.
   - `children: Snippet`
     The hero content (heading, tagline, CTAs).
 
@@ -24,12 +26,31 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  interface Props {
+  let {
+    src,
+    styleVars = {},
+    children,
+  }: {
     src?: string;
+    styleVars?: {
+      innerPadding?: string;
+      innerMaxWidth?: string;
+      innerMinHeight?: string;
+    };
     children: Snippet;
-  }
+  } = $props();
 
-  let { src, children }: Props = $props();
+  let innerCssVars = $derived({
+    ...(styleVars.innerPadding
+      ? { "--hero-inner-padding": styleVars.innerPadding }
+      : {}),
+    ...(styleVars.innerMaxWidth
+      ? { "--hero-inner-max-width": styleVars.innerMaxWidth }
+      : {}),
+    ...(styleVars.innerMinHeight
+      ? { "--hero-inner-min-height": styleVars.innerMinHeight }
+      : {}),
+  });
 </script>
 
 <div
@@ -42,7 +63,12 @@
       ), url(${src})`
     : undefined}
 >
-  <div class="inner">
+  <div
+    class="inner"
+    style={Object.entries(innerCssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";")}
+  >
     {@render children()}
   </div>
 </div>
@@ -57,13 +83,17 @@
   }
 
   .inner {
+    --hero-inner-padding: var(--space-8) var(--space-4);
+    --hero-inner-max-width: var(--max-width);
+    --hero-inner-min-height: 50vh;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
-    padding: var(--space-8) var(--space-4);
-    max-width: var(--max-width);
-    min-height: 50vh;
+    padding: var(--hero-inner-padding);
+    max-width: var(--hero-inner-max-width);
+    min-height: var(--hero-inner-min-height);
     max-height: 800px;
   }
 </style>

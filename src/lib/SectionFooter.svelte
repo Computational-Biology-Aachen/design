@@ -6,6 +6,8 @@
 
   ### Props
 
+  - `styleVars?: { innerMaxWidth?: string; innerGap?: string }`
+    Override CSS custom properties on the inner element.
   - `children: Snippet`
     The footer content (links, imprint, copyright).
 
@@ -21,14 +23,35 @@
   import type { Snippet } from "svelte";
 
   interface Props {
+    styleVars?: {
+      innerMaxWidth?: string;
+      innerGap?: string;
+    };
     children: Snippet;
   }
 
-  let { children }: Props = $props();
+  let {
+    styleVars = {},
+    children,
+  }: Props = $props();
+
+  let innerCssVars = $derived({
+    ...(styleVars.innerMaxWidth
+      ? { "--section-inner-max-width": styleVars.innerMaxWidth }
+      : {}),
+    ...(styleVars.innerGap
+      ? { "--section-inner-gap": styleVars.innerGap }
+      : {}),
+  });
 </script>
 
 <footer>
-  <div class="inner">
+  <div
+    class="inner"
+    style={Object.entries(innerCssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";")}
+  >
     {@render children()}
   </div>
 </footer>
@@ -49,9 +72,9 @@
   .inner {
     display: flex;
     flex-direction: column;
-    gap: var(--gap);
+    gap: var(--section-inner-gap);
     margin: 0 auto;
     width: 100%;
-    max-width: var(--max-width);
+    max-width: var(--section-inner-max-width);
   }
 </style>

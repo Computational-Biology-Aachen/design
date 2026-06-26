@@ -21,6 +21,8 @@
     Disables the slider. Defaults to `false`.
   - `callback?: () => void`
     Called once when dragging ends.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -38,6 +40,7 @@
     step,
     disabled = false,
     callback,
+    styleVars = {},
   }: {
     val: number;
     desc?: string;
@@ -47,6 +50,7 @@
     name: string;
     disabled?: boolean;
     callback?: () => void;
+    styleVars?: { [key: string]: string };
   } = $props();
 
   let liveVal = $state(finalValue);
@@ -68,9 +72,15 @@
     finalValue = liveVal;
     if (callback) callback();
   }
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<label>
+<label style={inlineStyle}>
   <div class="row">
     <span class="name">{name}{desc ? ` (${desc})` : ""}</span>
     <span class="value">{liveVal}</span>

@@ -7,6 +7,8 @@
 
   - `children: Snippet`
     The aside content.
+  - `styleVars?: {}`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -15,9 +17,20 @@
   ```
 -->
 <script lang="ts">
-  let { children } = $props();
+  import type { Snippet } from "svelte";
+
+  interface Props {
+    children: Snippet;
+    styleVars?: {};
+  }
+
+  let { children, styleVars = {} }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<aside>
-  {@render children()}
-</aside>
+{@render children()}

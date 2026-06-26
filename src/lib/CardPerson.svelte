@@ -16,6 +16,8 @@
     Destination link. Defaults to `team/{slug}`.
   - `img?: string`
     Explicit photo URL, overriding slug-based resolution.
+  - `styleVars?: { height?: string; barPadding?: string; titleFontSize?: string }`
+    Optional overrides for CSS custom properties.
 
   ### Example
 
@@ -37,11 +39,17 @@
     slug,
     href = `team/${slug}`,
     img,
+    styleVars = {},
   }: {
     title: string;
     slug: string;
     href?: string;
     img?: string;
+    styleVars?: {
+      height?: string;
+      barPadding?: string;
+      titleFontSize?: string;
+    };
   } = $props();
 
   let resolvedImg = $derived(
@@ -49,13 +57,19 @@
       images[`/src/lib/assets/people/${slug}.jpg`] ??
       "/src/lib/assets/people/placeholder.jpg",
   ) as string;
+
+  let cardCssVars = $derived({
+    ...(styleVars.height ? { "--card-person-height": styleVars.height } : {}),
+    ...(styleVars.barPadding ? { "--card-person-bar-padding": styleVars.barPadding } : {}),
+    ...(styleVars.titleFontSize ? { "--card-person-title-font-size": styleVars.titleFontSize } : {}),
+  });
 </script>
 
 <Link
   color="light"
   href={href}
 >
-  <div class="card">
+  <div class="card" style={Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}>
     <img
       src={resolvedImg}
       alt={title}
@@ -68,6 +82,9 @@
 
 <style>
   .card {
+    --card-person-height: 300px;
+    --card-person-bar-padding: 0.5rem;
+    --card-person-title-font-size: 14px;
     display: inline-flex;
     position: relative;
     flex-direction: column;
@@ -76,7 +93,7 @@
     margin: 0 auto;
     padding: 0;
     width: 100%;
-    height: 300px;
+    height: var(--card-person-height);
     overflow: hidden;
   }
   .card:hover {
@@ -98,12 +115,12 @@
     flex-direction: column;
     margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 0.5rem;
+    padding: var(--card-person-bar-padding);
     color: var(--white);
   }
   h4 {
     margin: 0;
     padding: 0;
-    font-size: 14px;
+    font-size: var(--card-person-title-font-size);
   }
 </style>

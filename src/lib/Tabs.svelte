@@ -12,6 +12,11 @@
   - `children: Snippet<[string]>`
     Renders the panel body; receives the active tab `key`.
 
+  ### Style Overrides
+
+  - `styleVars.contentGap` → overrides `--tabs-content-gap`
+  - `styleVars.contentMinHeight` → overrides `--tabs-content-min-height`
+
   ### Example
 
   ```svelte
@@ -29,9 +34,11 @@
   let {
     tabs,
     children,
+    styleVars = {},
   }: {
     tabs: { key: string; label: string }[];
     children: Snippet<[string]>;
+    styleVars?: { contentGap?: string; contentMinHeight?: string };
   } = $props();
 
   let activeKey = $state("");
@@ -41,6 +48,16 @@
       activeKey = tabs[0]?.key ?? "";
     }
   });
+
+  let cssVars = $derived({
+    ...(styleVars.contentGap ? { "--tabs-content-gap": styleVars.contentGap } : {}),
+    ...(styleVars.contentMinHeight ? { "--tabs-content-min-height": styleVars.contentMinHeight } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <div
@@ -57,7 +74,7 @@
   {/each}
 </div>
 
-<div class="tab-content">
+<div class="tab-content" style={inlineStyle}>
   {@render children(activeKey)}
 </div>
 
@@ -72,9 +89,11 @@
   }
 
   .tab-content {
+    --tabs-content-gap: var(--gap);
+    --tabs-content-min-height: 4rem;
     display: flex;
     flex-direction: column;
-    gap: var(--gap);
-    min-height: 4rem;
+    gap: var(--tabs-content-gap);
+    min-height: var(--tabs-content-min-height);
   }
 </style>

@@ -8,6 +8,9 @@
   reference/playground implementation. See [[DynBoxRow]] for a prop-driven,
   controlled version.
 
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
+
   ### Example
 
   ```svelte
@@ -325,9 +328,21 @@
   });
 
   const addBelowRow = $derived.by(() => maxRowUsed() + 1);
+
+  let {
+    styleVars = {},
+  }: {
+    styleVars?: { [key: string]: string };
+  } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<div class="page">
+  <div class="page" style={inlineStyle}>
   <div
     class="grid"
     bind:this={gridEl}
@@ -391,7 +406,8 @@
   }
 
   .page {
-    padding: 24px;
+    --dbg-page-padding: 24px;
+    padding: var(--dbg-page-padding);
   }
 
   .ghost {
@@ -416,8 +432,10 @@
   }
 
   .grid {
-    --cell: 160px;
-    --gap: 12px;
+    --dbg-cell: 160px;
+    --dbg-gap: 12px;
+    --cell: var(--dbg-cell);
+    --gap: var(--dbg-gap);
     display: grid;
     grid-template-columns: repeat(6, var(--cell));
     grid-auto-rows: var(--cell);

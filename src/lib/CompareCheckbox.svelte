@@ -13,6 +13,8 @@
     The checkbox label. Defaults to `"Compare with last simulation"`.
   - `onchange?: (checked: boolean) => void`
     Called with the new checked value when toggled.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -25,16 +27,24 @@
     checked?: boolean;
     label?: string;
     onchange?: (checked: boolean) => void;
+    styleVars?: { [key: string]: string };
   }
 
   let {
     checked = $bindable(true),
     label = "Compare with last simulation",
     onchange,
+    styleVars = {},
   }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<label class="compare-label">
+<label class="compare-label" style={inlineStyle}>
   <input
     type="checkbox"
     bind:checked={checked}
@@ -46,11 +56,13 @@
 
 <style>
   .compare-label {
+    --cmp-gap: 0.5rem;
+    --cmp-font-size: 0.95rem;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--cmp-gap);
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: var(--cmp-font-size);
     user-select: none;
   }
 

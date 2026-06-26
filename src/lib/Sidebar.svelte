@@ -10,6 +10,8 @@
 
   - `children: Snippet`
     The navigation links (`<a>` elements).
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -25,16 +27,24 @@
 
   interface Props {
     children: Snippet;
+    styleVars?: { [key: string]: string };
   }
 
-  let { children }: Props = $props();
+  let { children, styleVars = {} }: Props = $props();
 
   let open = $state(false);
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <aside
   class="sidebar"
   class:open={open}
+  style={inlineStyle}
 >
   <button
     class="hamburger"

@@ -18,6 +18,8 @@
     `hidePopover()` calls.
   - `children: Snippet`
     The popover content.
+  - `styleVars?: { gap?: string; padding?: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -36,12 +38,23 @@
     children,
     popovertarget,
     el = $bindable<HTMLDivElement | null | undefined>(),
+    styleVars = {},
   }: {
     size: "xs" | "sm" | "md" | "lg";
     popovertarget: string;
     children: Snippet;
     el?: HTMLDivElement | null;
+    styleVars?: { gap?: string; padding?: string };
   } = $props();
+
+  let inlineStyle = $derived(
+    [
+      ...(styleVars.gap ? ["--popover-gap", styleVars.gap] : []),
+      ...(styleVars.padding ? ["--popover-padding", styleVars.padding] : []),
+    ]
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <div
@@ -50,7 +63,7 @@
   id={popovertarget}
   class={size}
 >
-  <section>
+  <section style={inlineStyle}>
     {@render children()}
   </section>
 </div>
@@ -107,9 +120,11 @@
     }
   }
   section {
+    --popover-gap: 1rem;
+    --popover-padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    padding: 2rem;
+    gap: var(--popover-gap);
+    padding: var(--popover-padding);
   }
 </style>

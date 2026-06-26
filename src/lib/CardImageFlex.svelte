@@ -13,6 +13,8 @@
     Destination the whole card links to.
   - `image?: string`
     Optional image URL; omitted shows the placeholder.
+  - `styleVars?: { height?: string; mediaHeight?: string; fallbackIconSize?: string }`
+    Optional overrides for CSS custom properties.
 
   ### Example
 
@@ -25,16 +27,29 @@
     name,
     href,
     image,
+    styleVars = {},
   }: {
     name: string;
     href: string;
     image?: string;
+    styleVars?: {
+      height?: string;
+      mediaHeight?: string;
+      fallbackIconSize?: string;
+    };
   } = $props();
+
+  let cardCssVars = $derived({
+    ...(styleVars.height ? { "--card-image-flex-height": styleVars.height } : {}),
+    ...(styleVars.mediaHeight ? { "--card-image-flex-media-height": styleVars.mediaHeight } : {}),
+    ...(styleVars.fallbackIconSize ? { "--card-image-flex-fallback-icon-size": styleVars.fallbackIconSize } : {}),
+  });
 </script>
 
 <a
   href={href}
   class="card"
+  style={Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}
 >
   <div class="media">
     {#if image}
@@ -55,6 +70,9 @@
 
 <style>
   .card {
+    --card-image-flex-height: 10rem;
+    --card-image-flex-media-height: 160px;
+    --card-image-flex-fallback-icon-size: 3rem;
     display: flex;
     flex-direction: column;
     transition:
@@ -64,7 +82,7 @@
     border-radius: var(--radius-lg);
     background: var(--color-bg);
     min-width: 10rem;
-    height: 10rem;
+    height: var(--card-image-flex-height);
     overflow: hidden;
     color: var(--color-text);
     text-decoration: none;
@@ -88,7 +106,7 @@
 
   .media {
     flex-shrink: 0;
-    height: 160px;
+    height: var(--card-image-flex-media-height);
     overflow: hidden;
   }
 
@@ -118,7 +136,7 @@
 
   .fallback span {
     color: rgba(255, 255, 255, 0.85);
-    font-size: 3rem;
+    font-size: var(--card-image-flex-fallback-icon-size);
   }
 
   .label {

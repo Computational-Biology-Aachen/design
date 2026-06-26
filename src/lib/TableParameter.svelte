@@ -15,6 +15,12 @@
   - `oldLabel?: string`
     Header for the old-value column. Defaults to `"Old"`.
 
+  ### Style Overrides
+
+  - `styleVars.fontSize` → overrides `--param-table-font-size`
+  - `styleVars.cellPadding` → overrides `--param-table-cell-padding`
+  - `styleVars.valFontSize` → overrides `--param-table-val-font-size`
+
   ### Example
 
   ```svelte
@@ -36,6 +42,11 @@
     showOld?: boolean;
     newLabel?: string;
     oldLabel?: string;
+    styleVars?: {
+      fontSize?: string;
+      cellPadding?: string;
+      valFontSize?: string;
+    };
   }
 
   let {
@@ -43,10 +54,22 @@
     showOld = false,
     newLabel = "New",
     oldLabel = "Old",
+    styleVars = {},
   }: Props = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.fontSize ? { "--param-table-font-size": styleVars.fontSize } : {}),
+    ...(styleVars.cellPadding ? { "--param-table-cell-padding": styleVars.cellPadding } : {}),
+    ...(styleVars.valFontSize ? { "--param-table-val-font-size": styleVars.valFontSize } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<div class="param-table-wrap">
+<div class="param-table-wrap" style={inlineStyle}>
   <table class="param-table">
     <thead>
       <tr>
@@ -77,15 +100,18 @@
   }
 
   .param-table {
+    --param-table-font-size: 0.85rem;
+    --param-table-cell-padding: 0.35rem 0.75rem;
+    --param-table-val-font-size: 0.8rem;
     border-collapse: collapse;
     width: 100%;
-    font-size: 0.85rem;
+    font-size: var(--param-table-font-size);
   }
 
   th,
   td {
     border-bottom: 1px solid var(--color-border);
-    padding: 0.35rem 0.75rem;
+    padding: var(--param-table-cell-padding);
     text-align: left;
   }
 
@@ -96,7 +122,7 @@
   }
 
   .val {
-    font-size: 0.8rem;
+    font-size: var(--param-table-val-font-size);
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
   }

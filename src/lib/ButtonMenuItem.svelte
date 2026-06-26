@@ -15,6 +15,8 @@
     When set, renders a navigation link with automatic active state.
   - `children: Snippet`
     The item label.
+  - `styleVars?: { padding?: string; fontSize?: string; borderRadius?: string }`
+    Override the item's default CSS values.
 
   ### Example
 
@@ -32,11 +34,13 @@
     active = false,
     href,
     children,
+    styleVars = {},
   }: {
     onclick?: () => void;
     active?: boolean;
     href?: string;
     children: Snippet;
+    styleVars?: { padding?: string; fontSize?: string; borderRadius?: string };
   } = $props();
 
   const menu = getContext<{ close: () => void } | undefined>("buttonMenu");
@@ -50,12 +54,24 @@
     page.url.pathname === href ||
       (href !== "/" && page.url.pathname.startsWith(href + "/")),
   );
+
+  let cssVars = $derived({
+    ...(styleVars.padding ? { "--menuitem-padding": styleVars.padding } : {}),
+    ...(styleVars.fontSize ? { "--menuitem-font-size": styleVars.fontSize } : {}),
+    ...(styleVars.borderRadius ? { "--menuitem-border-radius": styleVars.borderRadius } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 {#if href}
   <a
     href={href}
     class:active={activeUrl}
+    style={inlineStyle}
   >
     {@render children()}
   </a>
@@ -63,6 +79,7 @@
   <button
     class:active={active}
     onclick={handleClick}
+    style={inlineStyle}
   >
     {@render children()}
   </button>
@@ -71,13 +88,16 @@
 <style>
   a,
   button {
+    --menuitem-padding: 0.6rem 0.75rem;
+    --menuitem-font-size: 0.875rem;
+    --menuitem-border-radius: calc(var(--radius-lg) - 0.125rem);
     cursor: pointer;
     border: 0;
-    border-radius: calc(var(--radius-lg) - 0.125rem);
+    border-radius: var(--menuitem-border-radius);
     background: transparent;
-    padding: 0.6rem 0.75rem;
+    padding: var(--menuitem-padding);
     color: var(--text);
-    font-size: 0.875rem;
+    font-size: var(--menuitem-font-size);
     text-align: left;
     white-space: nowrap;
   }

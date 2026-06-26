@@ -15,6 +15,8 @@
     Email address (rendered as a `mailto:` link).
   - `github?: string | null`, `gitlab?: string | null`, `orcid?: string | null`, `website?: string | null`
     Optional profile links, each shown as an icon when provided.
+  - `styleVars?: { minHeight?: string; photoSize?: string; borderWidth?: string }`
+    Override CSS custom properties. All optional.
 
   ### Example
 
@@ -48,6 +50,7 @@
     gitlab = null,
     website = null,
     orcid = null,
+    styleVars = {},
   }: {
     name: string;
     img: string;
@@ -58,6 +61,11 @@
     doi?: string | null;
     website?: string | null;
     orcid?: string | null;
+    styleVars?: {
+      minHeight?: string;
+      photoSize?: string;
+      borderWidth?: string;
+    };
   } = $props();
 
   let imageError = $state(false);
@@ -65,9 +73,19 @@
   function handleError() {
     imageError = true;
   }
+
+  let cssVars = $derived({
+    ...(styleVars.minHeight ? { "--section-header-person-min-height": styleVars.minHeight } : {}),
+    ...(styleVars.photoSize ? { "--section-header-person-photo-size": styleVars.photoSize } : {}),
+    ...(styleVars.borderWidth ? { "--section-header-person-border-width": styleVars.borderWidth } : {}),
+  });
 </script>
 
-<header>
+<header
+  style={Object.entries(cssVars)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
+>
   <div class="grid">
     <div class="info">
       <H1 color="light">{name}</H1>
@@ -123,6 +141,7 @@
 
 <style>
   header {
+    --section-header-person-min-height: 12rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -130,7 +149,7 @@
     background-color: var(--color-primary);
     padding: var(--space-8) var(--space-4);
     width: 100%;
-    min-height: 12rem;
+    min-height: var(--section-header-person-min-height);
   }
   .grid {
     display: grid;
@@ -143,28 +162,32 @@
 
   @media (min-width: 768px) {
     .grid {
-      grid-template-columns: 1fr 300px;
+      grid-template-columns: 1fr var(--section-header-person-photo-size, 300px);
     }
   }
 
   img {
+    --section-header-person-photo-size: 300px;
+    --section-header-person-border-width: 4px;
     margin: 0 auto;
-    border: 4px solid var(--color-bg);
+    border: var(--section-header-person-border-width) solid var(--color-bg);
     border-radius: 50%;
-    width: 300px;
-    height: 300px;
+    width: var(--section-header-person-photo-size);
+    height: var(--section-header-person-photo-size);
   }
 
   .placeholder {
+    --section-header-person-photo-size: 300px;
+    --section-header-person-border-width: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 1rem;
-    border: 4px solid var(--color-bg);
+    border: var(--section-header-person-border-width) solid var(--color-bg);
     border-radius: 50%;
     background-color: var(--color-text);
-    width: 300px;
-    height: 300px;
+    width: var(--section-header-person-photo-size);
+    height: var(--section-header-person-photo-size);
     color: var(--color-bg);
   }
 </style>

@@ -9,6 +9,8 @@
     Optional heading rendered above the grid.
   - `children: Snippet`
     Required slot content, typically image cards or linked image tiles.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -27,13 +29,21 @@
   let {
     title,
     children,
+    styleVars = {},
   }: {
     title?: string;
     children: Snippet;
+    styleVars?: { [key: string]: string };
   } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<section>
+<section style={inlineStyle}>
   {#if title}
     <h3>{title}</h3>
   {/if}

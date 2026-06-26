@@ -25,6 +25,8 @@
     Click handler (button variant only).
   - `children: Snippet`
     The button label.
+  - `styleVars?: { fontSize?: string; padding?: string; borderRadius?: string; lineHeight?: string }`
+    Override the button's default CSS values.
 
   ### Example
 
@@ -47,6 +49,12 @@
     popovertargetaction?: "hide" | "show" | "toggle";
     onclick?: (e: MouseEvent) => void;
     children: Snippet;
+    styleVars?: {
+      fontSize?: string;
+      padding?: string;
+      borderRadius?: string;
+      lineHeight?: string;
+    };
   }
 
   let {
@@ -60,7 +68,20 @@
     popovertargetaction,
     onclick,
     children,
+    styleVars = {},
   }: Props = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.fontSize ? { "--btn-font-size": styleVars.fontSize } : {}),
+    ...(styleVars.padding ? { "--btn-padding": styleVars.padding } : {}),
+    ...(styleVars.borderRadius ? { "--btn-border-radius": styleVars.borderRadius } : {}),
+    ...(styleVars.lineHeight ? { "--btn-line-height": styleVars.lineHeight } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 {#if href}
@@ -69,6 +90,7 @@
     class={variant}
     class:disabled={disabled}
     class:full-width={fullWidth}
+    style={inlineStyle}
   >
     {#if loading}<span
         class="spinner"
@@ -85,6 +107,7 @@
     popovertargetaction={popovertargetaction}
     class={variant}
     class:full-width={fullWidth}
+    style={inlineStyle}
   >
     {#if loading}<span
         class="spinner"
@@ -97,6 +120,10 @@
 <style>
   button,
   a {
+    --btn-font-size: 0.9375rem;
+    --btn-line-height: 1.5;
+    --btn-padding: var(--space-2) var(--space-6);
+    --btn-border-radius: var(--radius-md);
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -105,12 +132,12 @@
     cursor: pointer;
     outline: none;
     border: none;
-    border-radius: var(--radius-md);
-    padding: var(--space-2) var(--space-6);
+    border-radius: var(--btn-border-radius);
+    padding: var(--btn-padding);
     width: 100%;
     font-weight: 500;
-    font-size: 0.9375rem;
-    line-height: 1.5;
+    font-size: var(--btn-font-size);
+    line-height: var(--btn-line-height);
     font-family: var(--font-sans);
     text-decoration: none;
     white-space: nowrap;

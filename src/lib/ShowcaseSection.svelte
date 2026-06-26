@@ -15,6 +15,8 @@
     Optional uppercased sub-label.
   - `children: Snippet`
     The section content.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -32,17 +34,26 @@
     title,
     subtitle,
     children,
+    styleVars = {},
   }: {
     id: string;
     title: string;
     subtitle?: string;
     children: Snippet;
+    styleVars?: { [key: string]: string };
   } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <div
   id={id}
   class="section"
+  style={inlineStyle}
 >
   <h2>{title}</h2>
   {#if subtitle}

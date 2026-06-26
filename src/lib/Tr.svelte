@@ -8,6 +8,8 @@
 
   - `children: Snippet`
     The [[Th]] / [[Td]] cells.
+  - `styleVars?: {}`
+    Reserved for future CSS custom property overrides.
   - `...rest`
     Additional attributes spread onto the `<tr>` element.
 -->
@@ -16,9 +18,11 @@
 
   let {
     children,
+    styleVars = {},
     ...rest
   }: {
     children: Snippet;
+    styleVars?: {};
     [key: string]: unknown;
   } = $props();
 </script>

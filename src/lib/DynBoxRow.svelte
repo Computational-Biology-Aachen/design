@@ -19,6 +19,8 @@
     Called when the user adds a box.
   - `onRemove: (box: Box) => void`
     Called when the user removes a box.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -61,17 +63,27 @@
     kind: "width" | "move";
   };
 
+  interface Props {
+    children: Snippet<[{ box: Box }]>;
+    items: BoxSeed[];
+    onAdd: (box: Box) => void;
+    onRemove: (box: Box) => void;
+    styleVars?: { [key: string]: string };
+  }
+
   let {
     children,
     items,
     onAdd,
     onRemove,
-  }: {
-    children: Snippet<[{ box: Box }]>;
-    items: BoxSeed[];
-    onAdd: (box: Box) => void;
-    onRemove: (box: Box) => void;
-  } = $props();
+    styleVars = {},
+  }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 
   const GRID_COLS = 6;
   const DEFAULT_COL_SPAN = 3;
@@ -398,6 +410,7 @@
 <div
   class="grid"
   bind:this={gridEl}
+  style={inlineStyle}
 >
   {#each boxes as boxRow, row (row)}
     {#each boxRow as box (box.id)}
@@ -475,7 +488,8 @@
 
 <style>
   .grid {
-    --gap: 1rem;
+    --dbr-gap: 1rem;
+    --gap: var(--dbr-gap);
     display: flex;
     flex-direction: column;
     gap: var(--gap);
@@ -487,16 +501,18 @@
     }
   }
   .box {
+    --dbr-box-gap: 12px;
+    --dbr-box-padding: 2rem;
     display: flex;
     position: relative;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--dbr-box-gap);
     z-index: 2;
     box-shadow: var(--shadow);
     border: 1px solid #d0d0d0;
     border-radius: var(--radius-lg);
     background-color: var(--color-surface);
-    padding: 2rem;
+    padding: var(--dbr-box-padding);
     width: 100%;
   }
 

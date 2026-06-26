@@ -12,6 +12,8 @@
     Alternative text (required).
   - `caption?: Snippet`
     Optional caption content rendered in a `<figcaption>`.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -24,18 +26,28 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
+  interface Props {
+    src: string;
+    alt: string;
+    caption?: Snippet;
+    styleVars?: { [key: string]: string };
+  }
+
   let {
     src,
     alt,
     caption,
-  }: {
-    src: string;
-    alt: string;
-    caption?: Snippet;
-  } = $props();
+    styleVars = {},
+  }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<figure>
+<figure style={inlineStyle}>
   <img
     src={src}
     alt={alt}
@@ -47,19 +59,24 @@
 
 <style>
   figure {
-    margin: var(--space-4, 16px) 0;
+    --figure-margin: var(--space-4, 16px) 0;
+    --figure-img-radius: var(--radius-md, 6px);
+    --figure-figcaption-gap: var(--space-2, 8px);
+    --figure-figcaption-color: var(--color-text-muted, #666);
+    --figure-figcaption-size: 0.875rem;
+    margin: var(--figure-margin);
     width: 100%;
     text-align: center;
   }
 
   img {
-    border-radius: var(--radius-md, 6px);
+    border-radius: var(--figure-img-radius);
     max-width: 100%;
   }
 
   figcaption {
-    margin-top: var(--space-2, 8px);
-    color: var(--color-text-muted, #666);
-    font-size: 0.875rem;
+    margin-top: var(--figure-figcaption-gap);
+    color: var(--figure-figcaption-color);
+    font-size: var(--figure-figcaption-size);
   }
 </style>

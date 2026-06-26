@@ -8,6 +8,10 @@
 
   - `children: Snippet`
     The code content.
+  - `pad?: "0" | "1"`
+    Padding variant. Defaults to `"0"`.
+  - `styleVars?: {}`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -18,29 +22,41 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
+  interface Props {
+    children: Snippet;
+    pad?: "0" | "1";
+    styleVars?: {};
+  }
+
   let {
     children,
     pad = "0",
-  }: {
-    children: Snippet;
-    pad?: "0" | "1";
-  } = $props();
+    styleVars = {},
+  }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<code class="pad-{pad}">
+<code class="pad-{pad}" style={inlineStyle}>
   {@render children()}
 </code>
 
 <style>
   code {
+    --code-pad: 0;
     font-family: monospace;
+    padding: var(--code-pad);
   }
 
   .pad-0 {
-    padding: 0;
+    --code-pad: 0;
   }
 
   .pad-1 {
-    padding: 1rem;
+    --code-pad: 1rem;
   }
 </style>

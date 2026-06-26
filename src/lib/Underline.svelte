@@ -8,6 +8,8 @@
 
   - `children: Snippet`
     The inline content to underline.
+  - `styleVars?: {}`
+    CSS custom property overrides (reserved for future use).
 
   ### Example
 
@@ -20,8 +22,10 @@
 
   let {
     children,
+    styleVars = {},
   }: {
     children: Snippet;
+    styleVars?: {};
   } = $props();
 </script>
 

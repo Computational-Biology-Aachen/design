@@ -17,6 +17,8 @@
     Optional href for the trigger button.
   - `children: Snippet`
     The menu contents, typically [[ButtonMenuItem]] entries.
+  - `styleVars?: { gap?: string; padding?: string; minWidth?: string; topOffset?: string }`
+    Override the menu's default CSS values.
 
   ### Example
 
@@ -39,11 +41,13 @@
     variant = "secondary",
     href,
     children,
+    styleVars = {},
   }: {
     label: string | Snippet;
     variant?: "primary" | "secondary" | "inverted";
     href?: string;
     children: Snippet;
+    styleVars?: { gap?: string; padding?: string; minWidth?: string; topOffset?: string };
   } = $props();
 
   let open = $state(false);
@@ -91,6 +95,18 @@
   }
 
   setContext("buttonMenu", { close });
+
+  let menuCssVars = $derived({
+    ...(styleVars.gap ? { "--menu-gap": styleVars.gap } : {}),
+    ...(styleVars.padding ? { "--menu-padding": styleVars.padding } : {}),
+    ...(styleVars.minWidth ? { "--menu-min-width": styleVars.minWidth } : {}),
+    ...(styleVars.topOffset ? { "--menu-top-offset": styleVars.topOffset } : {}),
+  });
+  let menuInlineStyle = $derived(
+    Object.entries(menuCssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <svelte:document onclick={handleDocumentClick} />
@@ -115,7 +131,7 @@
     {/if}
   </Button>
   {#if open}
-    <div class="menu">
+    <div class="menu" style={menuInlineStyle}>
       {@render children()}
     </div>
   {/if}
@@ -132,17 +148,21 @@
     }
   }
   .menu {
+    --menu-gap: 0.25rem;
+    --menu-padding: 0.35rem;
+    --menu-min-width: 10rem;
+    --menu-top-offset: 0.25rem;
     display: grid;
     position: absolute;
-    top: calc(100% + 0.25rem);
+    top: calc(100% + var(--menu-top-offset));
     right: 0;
-    gap: 0.25rem;
+    gap: var(--menu-gap);
     z-index: 20;
     box-shadow: var(--shadow);
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--color-surface);
-    padding: 0.35rem;
-    min-width: 10rem;
+    padding: var(--menu-padding);
+    min-width: var(--menu-min-width);
   }
 </style>

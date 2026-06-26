@@ -83,6 +83,9 @@
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
+
+  /* Gap */
+  --gap-sm: var(--space-2);
   --gap: var(--space-4);
   --gap-lg: var(--space-8);
 

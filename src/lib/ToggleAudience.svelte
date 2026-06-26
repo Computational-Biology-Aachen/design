@@ -12,6 +12,11 @@
   - `options: { value: "4bio" | "4math"; label: string }[]`
     The selectable audience options, in display order.
 
+  ### Style Overrides
+
+  - `styleVars.btnFontSize` → overrides `--toggle-btn-font-size`
+  - `styleVars.btnPadding` → overrides `--toggle-btn-padding`
+
   ### Example
 
   ```svelte
@@ -39,14 +44,27 @@
   let {
     audienceStore,
     options,
+    styleVars = {},
   }: {
     audienceStore: AudienceStore;
     options: AudienceOption[];
+    styleVars?: { btnFontSize?: string; btnPadding?: string };
   } = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.btnFontSize ? { "--toggle-btn-font-size": styleVars.btnFontSize } : {}),
+    ...(styleVars.btnPadding ? { "--toggle-btn-padding": styleVars.btnPadding } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <div
   class="audience-toggle"
+  style={inlineStyle}
   role="group"
   aria-label="Audience"
 >
@@ -72,16 +90,18 @@
   }
 
   .toggle-btn {
+    --toggle-btn-font-size: 0.85rem;
+    --toggle-btn-padding: var(--space-1) var(--space-3);
     transition:
       background-color 0.15s,
       color 0.15s;
     cursor: pointer;
     border: none;
     background: var(--color-bg);
-    padding: var(--space-1) var(--space-3);
+    padding: var(--toggle-btn-padding);
     color: var(--color-text-muted);
     font-weight: 500;
-    font-size: 0.85rem;
+    font-size: var(--toggle-btn-font-size);
   }
 
   .toggle-btn:hover {

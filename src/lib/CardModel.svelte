@@ -12,6 +12,8 @@
     Destination the whole card links to.
   - `image?: string`
     Optional scheme image URL; omitted shows the placeholder.
+  - `styleVars?: { mediaHeight?: string; fallbackIconSize?: string }`
+    Optional overrides for CSS custom properties.
 
   ### Example
 
@@ -24,16 +26,27 @@
     name,
     href,
     image,
+    styleVars = {},
   }: {
     name: string;
     href: string;
     image?: string;
+    styleVars?: {
+      mediaHeight?: string;
+      fallbackIconSize?: string;
+    };
   } = $props();
+
+  let cardCssVars = $derived({
+    ...(styleVars.mediaHeight ? { "--card-model-media-height": styleVars.mediaHeight } : {}),
+    ...(styleVars.fallbackIconSize ? { "--card-model-fallback-icon-size": styleVars.fallbackIconSize } : {}),
+  });
 </script>
 
 <a
   href={href}
   class="card"
+  style={Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}
 >
   <div class="media">
     {#if image}
@@ -54,6 +67,8 @@
 
 <style>
   .card {
+    --card-model-media-height: 160px;
+    --card-model-fallback-icon-size: 3rem;
     display: flex;
     flex-direction: column;
     transition:
@@ -85,7 +100,7 @@
 
   .media {
     flex-shrink: 0;
-    height: 160px;
+    height: var(--card-model-media-height);
     overflow: hidden;
   }
 
@@ -115,7 +130,7 @@
 
   .fallback span {
     color: rgba(255, 255, 255, 0.85);
-    font-size: 3rem;
+    font-size: var(--card-model-fallback-icon-size);
   }
 
   .label {

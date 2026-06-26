@@ -25,6 +25,8 @@
     `"full"`.
   - `color?: "dark" | "light" | "primary" | "secondary"`
     Background colour. Defaults to `"light"`.
+  - `styleVars?: { borderRadius?: string; borderTopWidth?: string; backgroundSize?: string; innerPadding?: string; fixedSize?: string }`
+    Optional overrides for CSS custom properties.
 
   ### Example
 
@@ -52,6 +54,7 @@
     doi = null,
     format = "full",
     color = "light",
+    styleVars = {},
   }: {
     children: Snippet;
     title: string;
@@ -62,10 +65,28 @@
     href?: string | null;
     format?: "full" | "fixed";
     color?: "dark" | "light" | "primary" | "secondary";
+    styleVars?: {
+      borderRadius?: string;
+      borderTopWidth?: string;
+      backgroundSize?: string;
+      innerPadding?: string;
+      fixedSize?: string;
+    };
   } = $props();
+
+  let cardCssVars = $derived({
+    ...(styleVars.borderRadius ? { "--card-publication-border-radius": styleVars.borderRadius } : {}),
+    ...(styleVars.borderTopWidth ? { "--card-publication-border-top-width": styleVars.borderTopWidth } : {}),
+    ...(styleVars.backgroundSize ? { "--card-publication-background-size": styleVars.backgroundSize } : {}),
+    ...(styleVars.innerPadding ? { "--card-publication-inner-padding": styleVars.innerPadding } : {}),
+    ...(styleVars.fixedSize ? { "--card-publication-fixed-size": styleVars.fixedSize } : {}),
+  });
 </script>
 
-<div class={`card ${color} ${format}`}>
+<div
+  class={`card ${color} ${format}`}
+  style={Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}
+>
   <div
     class="inner"
     style:background-image={`url(${img})`}
@@ -90,13 +111,18 @@
 
 <style>
   .card {
+    --card-publication-border-radius: 8px;
+    --card-publication-border-top-width: 8px;
+    --card-publication-background-size: 250px;
+    --card-publication-inner-padding: 2.5rem 2.5rem;
+    --card-publication-fixed-size: 26rem;
     transform: scale(1);
     transition: transform 0.3s ease;
     box-shadow:
       0px 18px 36px -18px rgba(0, 0, 0, 0.1),
       0px 30px 45px -30px rgba(50, 50, 93, 0.25);
-    border-top: 8px var(--color-primary) solid;
-    border-radius: 8px;
+    border-top: var(--card-publication-border-top-width) var(--color-primary) solid;
+    border-radius: var(--card-publication-border-radius);
     padding: 0;
   }
   .card:hover {
@@ -112,11 +138,11 @@
     background-position-x: 98%;
     background-position-y: 90%;
 
-    background-size: 250px;
+    background-size: var(--card-publication-background-size);
     background-repeat: no-repeat;
     background-color: color-mix(in srgb, var(--color-bg) 75%, transparent);
     background-blend-mode: lighten;
-    padding: 2.5rem 2.5rem;
+    padding: var(--card-publication-inner-padding);
     width: 100%;
     height: 100%;
   }
@@ -125,8 +151,8 @@
     width: 100%;
   }
   .fixed {
-    width: 26rem;
-    height: 26rem;
+    width: var(--card-publication-fixed-size);
+    height: var(--card-publication-fixed-size);
   }
   .dark {
     background-color: var(--color-text);

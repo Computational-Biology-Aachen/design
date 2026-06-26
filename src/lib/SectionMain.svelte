@@ -15,6 +15,8 @@
     Vertical gap between children. Defaults to `"normal"`.
   - `align?: "center" | "start"`
     Cross-axis alignment. Defaults to `"center"`.
+  - `styleVars?: { innerMaxWidth?: string; innerGap?: string; innerPad?: string; innerAlign?: string }`
+    Override CSS custom properties on the inner element.
   - `children: Snippet`
     The page content.
 
@@ -35,18 +37,45 @@
     pad = "full",
     gap = "normal",
     align = "center",
+    styleVars = {},
     children,
   }: {
-    pad?: "full" | "tight";
     width?: "full" | "narrow" | "90ch";
+    pad?: "full" | "tight";
     gap?: "normal" | "large";
     align?: "center" | "start";
+    styleVars?: {
+      innerMaxWidth?: string;
+      innerGap?: string;
+      innerPad?: string;
+      innerAlign?: string;
+    };
     children: Snippet;
   } = $props();
+
+  let innerCssVars = $derived({
+    ...(styleVars.innerMaxWidth
+      ? { "--sectionmain-inner-max-width": styleVars.innerMaxWidth }
+      : {}),
+    ...(styleVars.innerGap
+      ? { "--sectionmain-inner-gap": styleVars.innerGap }
+      : {}),
+    ...(styleVars.innerPad
+      ? { "--sectionmain-inner-pad": styleVars.innerPad }
+      : {}),
+    ...(styleVars.innerAlign
+      ? { "--sectionmain-inner-align": styleVars.innerAlign }
+      : {}),
+  });
 </script>
 
 <main>
-  <div class="inner width-{width} pad-{pad} gap-{gap} align-{align}">
+  <div
+    class="inner max-width-{width} pad-{pad} gap-{gap} align-{align}"
+    style={Object.entries(innerCssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";")}
+  >
     {@render children()}
   </div>
 </main>
@@ -64,50 +93,51 @@
   .inner {
     display: flex;
     flex-direction: column;
-    gap: var(--gap);
+    gap: var(--sectionmain-inner-gap);
     margin: 0 auto;
     width: 100%;
-    max-width: var(--max-width);
+    max-width: var(--sectionmain-inner-max-width);
+    padding: var(--sectionmain-inner-pad);
+    align-items: var(--sectionmain-inner-align);
   }
 
-  /* Conditional styles */
   .pad-tight {
-    padding: 1rem;
+    --sectionmain-inner-pad: 1rem;
   }
 
   .pad-full {
-    padding: 1rem;
+    --sectionmain-inner-pad: 1rem;
 
     @media (min-width: 50rem) {
-      padding: 3rem 1rem;
+      --sectionmain-inner-pad: 3rem 1rem;
     }
 
     @media (min-width: 75rem) {
-      padding: 5rem 1rem;
+      --sectionmain-inner-pad: 5rem 1rem;
     }
   }
 
   .gap-normal {
-    gap: var(--gap);
+    --sectionmain-inner-gap: var(--gap);
   }
   .gap-large {
-    gap: var(--gap-lg);
+    --sectionmain-inner-gap: var(--gap-lg);
   }
 
-  .width-full {
-    max-width: var(--max-width);
+  .max-width-full {
+    --sectionmain-inner-max-width: var(--max-width);
   }
-  .width-narrow {
-    max-width: 100ch;
+  .max-width-narrow {
+    --sectionmain-inner-max-width: 100ch;
   }
-  .width-90ch {
-    max-width: 90ch;
+  .max-width-90ch {
+    --sectionmain-inner-max-width: 90ch;
   }
 
   .align-center {
-    align-items: center;
+    --sectionmain-inner-align: center;
   }
   .align-start {
-    align-items: start;
+    --sectionmain-inner-align: start;
   }
 </style>

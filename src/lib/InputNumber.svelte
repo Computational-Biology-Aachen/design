@@ -16,6 +16,8 @@
     The numeric value.
   - `border?: "transparent" | "solid"`
     Border style. Defaults to `"solid"`.
+  - `styleVars?: { borderRadius?: string; backgroundColor?: string; padding?: string; fontSize?: string }`
+    Override the default input styles via CSS custom properties.
 
   ### Example
 
@@ -33,6 +35,12 @@
     value: number;
     border?: "transparent" | "solid";
     width?: "full" | "auto";
+    styleVars?: {
+      borderRadius?: string;
+      backgroundColor?: string;
+      padding?: string;
+      fontSize?: string;
+    };
   };
   let {
     id,
@@ -40,7 +48,24 @@
     value = $bindable(),
     border = "solid",
     width = "full",
+    styleVars = {},
   }: Props = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.borderRadius
+      ? { "--input-border-radius": styleVars.borderRadius }
+      : {}),
+    ...(styleVars.backgroundColor
+      ? { "--input-background-color": styleVars.backgroundColor }
+      : {}),
+    ...(styleVars.padding ? { "--input-padding": styleVars.padding } : {}),
+    ...(styleVars.fontSize ? { "--input-font-size": styleVars.fontSize } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 {#if label}
@@ -51,6 +76,7 @@
       class={border}
       type="number"
       bind:value={value}
+      style={inlineStyle}
     />
   </InlineGrid>
 {:else}
@@ -63,16 +89,21 @@
       class="border-{border} width-{width}"
       type="number"
       bind:value={value}
+      style={inlineStyle}
     />
   </Row>
 {/if}
 
 <style>
   input {
-    border-radius: var(--radius-lg);
-    background-color: transparent;
-    padding: 0.35rem 0.5rem;
-    font-size: 0.875rem;
+    --input-border-radius: var(--radius-lg);
+    --input-background-color: transparent;
+    --input-padding: 0.35rem 0.5rem;
+    --input-font-size: 0.875rem;
+    border-radius: var(--input-border-radius);
+    background-color: var(--input-background-color);
+    padding: var(--input-padding);
+    font-size: var(--input-font-size);
   }
 
   input:hover {

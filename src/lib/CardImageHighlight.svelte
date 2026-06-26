@@ -15,6 +15,8 @@
     Destination the whole card links to.
   - `image?: string`
     Optional image URL; omitted shows the placeholder.
+  - `styleVars?: { width?: string; height?: string; mediaHeight?: string; gap?: string }`
+    Optional overrides for CSS custom properties.
 
   ### Example
 
@@ -33,17 +35,32 @@
     desc,
     href,
     image,
+    styleVars = {},
   }: {
     name: string;
     desc: string;
     href: string;
     image?: string;
+    styleVars?: {
+      width?: string;
+      height?: string;
+      mediaHeight?: string;
+      gap?: string;
+    };
   } = $props();
+
+  let cardCssVars = $derived({
+    ...(styleVars.width ? { "--card-image-highlight-width": styleVars.width } : {}),
+    ...(styleVars.height ? { "--card-image-highlight-height": styleVars.height } : {}),
+    ...(styleVars.mediaHeight ? { "--card-image-highlight-media-height": styleVars.mediaHeight } : {}),
+    ...(styleVars.gap ? { "--card-image-highlight-gap": styleVars.gap } : {}),
+  });
 </script>
 
 <a
   href={href}
   class="card"
+  style={Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}
 >
   <div class="media">
     {#if image}
@@ -65,9 +82,13 @@
 
 <style>
   .card {
+    --card-image-highlight-width: 19rem;
+    --card-image-highlight-height: 17rem;
+    --card-image-highlight-media-height: 160px;
+    --card-image-highlight-gap: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--card-image-highlight-gap);
     transition:
       transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
       box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -75,8 +96,8 @@
     box-shadow: var(--shadow-md);
     border-radius: var(--radius-lg);
     background: var(--color-surface);
-    width: 19rem;
-    height: 17rem;
+    width: var(--card-image-highlight-width);
+    height: var(--card-image-highlight-height);
     overflow: hidden;
     color: var(--color-text);
     text-decoration: none;
@@ -92,7 +113,7 @@
 
   .media {
     flex-shrink: 0;
-    height: 160px;
+    height: var(--card-image-highlight-media-height);
     overflow: hidden;
   }
 

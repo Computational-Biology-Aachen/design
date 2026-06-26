@@ -9,6 +9,8 @@
 
   - `links: { label: string; id: string }[]`
     The section links, each pointing at a [[ShowcaseSection]] `id`.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -23,7 +25,13 @@
     label: string;
     id: string;
   }
-  let { links }: { links: Link[] } = $props();
+  let { links, styleVars = {} }: { links: Link[]; styleVars?: { [key: string]: string } } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 
   let active = $state(untrack(() => links[0]?.id ?? ""));
 
@@ -46,7 +54,7 @@
   });
 </script>
 
-<nav class="sidebar">
+<nav class="sidebar" style={inlineStyle}>
   <ul>
     {#each links as link (link.id)}
       <li>

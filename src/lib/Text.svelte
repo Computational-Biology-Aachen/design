@@ -11,6 +11,8 @@
     The paragraph content.
   - `color?: "inherit" | "black" | "white" | "dark" | "light" | "primary" | "secondary"`
     Text colour. Defaults to `"inherit"`.
+  - `styleVars?: { fontSize?: string }`
+    Override CSS custom properties for the paragraph.
 
   ### Example
 
@@ -24,6 +26,7 @@
   let {
     children,
     color = "inherit",
+    styleVars = {},
   }: {
     children: Snippet;
     color?:
@@ -34,16 +37,28 @@
       | "light"
       | "primary"
       | "secondary";
+    styleVars?: { fontSize?: string };
   } = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.fontSize ? { "--text-font-size": styleVars.fontSize } : {}),
+  });
 </script>
 
-<p class={`${color}`}>
+<p
+  class={`${color}`}
+  style={Object.entries(cssVars)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
+>
   {@render children()}
 </p>
 
 <style>
   p {
-    font-size: 1rem;
+    --text-font-size: 1rem;
+
+    font-size: var(--text-font-size);
     font-family: var(--font-sans);
     hyphens: auto;
     text-align: justify;

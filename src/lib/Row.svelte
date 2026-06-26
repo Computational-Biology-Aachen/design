@@ -19,6 +19,8 @@
     Stack vertically on mobile, row on desktop. Defaults to `false`.
   - `children: Snippet`
     The row items.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -42,6 +44,7 @@
     wrap = false,
     stack = false,
     children,
+    styleVars = {},
   }: {
     gap?: string;
     align?: Align;
@@ -49,6 +52,7 @@
     wrap?: boolean;
     stack?: boolean;
     children: Snippet;
+    styleVars?: { [key: string]: string };
   } = $props();
 
   const justifyMap: Record<Justify, string> = {
@@ -58,6 +62,12 @@
     between: "space-between",
     around: "space-around",
   };
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <div
@@ -66,6 +76,7 @@
   style:align-items={align}
   style:justify-content={justifyMap[justify]}
   style:flex-wrap={wrap ? "wrap" : "nowrap"}
+  style={inlineStyle}
 >
   {@render children()}
 </div>

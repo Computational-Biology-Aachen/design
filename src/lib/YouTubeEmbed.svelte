@@ -11,6 +11,11 @@
   - `title?: string`
     Accessible iframe title. Defaults to `"YouTube video"`.
 
+  ### Style Overrides
+
+  - `styleVars.borderRadius` → overrides `--youtube-border-radius`
+  - `styleVars.aspectRatio` → overrides `--youtube-aspect-ratio`
+
   ### Example
 
   ```svelte
@@ -21,12 +26,23 @@
   interface Props {
     videoId: string;
     title?: string;
+    styleVars?: { borderRadius?: string; aspectRatio?: string };
   }
 
-  let { videoId, title = "YouTube video" }: Props = $props();
+  let { videoId, title = "YouTube video", styleVars = {} }: Props = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.borderRadius ? { "--youtube-border-radius": styleVars.borderRadius } : {}),
+    ...(styleVars.aspectRatio ? { "--youtube-aspect-ratio": styleVars.aspectRatio } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<div class="youtube-container">
+<div class="youtube-container" style={inlineStyle}>
   <iframe
     src="https://www.youtube-nocookie.com/embed/{videoId}"
     title={title}
@@ -38,10 +54,12 @@
 
 <style>
   .youtube-container {
+    --youtube-border-radius: var(--radius-md);
+    --youtube-aspect-ratio: 56.25%;
     position: relative;
-    border-radius: var(--radius-md);
+    border-radius: var(--youtube-border-radius);
     background: #000;
-    padding-bottom: 56.25%;
+    padding-bottom: var(--youtube-aspect-ratio);
     width: 100%;
     overflow: hidden;
   }

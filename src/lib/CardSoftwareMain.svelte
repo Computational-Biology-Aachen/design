@@ -15,6 +15,8 @@
     Background image URL. Defaults to `"/placeholder.jpg"`.
   - `children: Snippet`
     Additional info-bar content.
+  - `styleVars?: { minHeight?: string; barPadding?: string }`
+    Optional overrides for CSS custom properties.
 
   ### Example
 
@@ -32,18 +34,28 @@
     url: href = "/",
     img = "/placeholder.jpg",
     children,
+    styleVars = {},
   }: {
     title: string;
     url?: string;
     img?: string;
     children: Snippet;
+    styleVars?: {
+      minHeight?: string;
+      barPadding?: string;
+    };
   } = $props();
+
+  let cardCssVars = $derived({
+    ...(styleVars.minHeight ? { "--card-software-main-min-height": styleVars.minHeight } : {}),
+    ...(styleVars.barPadding ? { "--card-software-main-bar-padding": styleVars.barPadding } : {}),
+  });
 </script>
 
 <a href={href}>
   <div
     class="card"
-    style:background-image={`url(${img})`}
+    style={`background-image: url(${img});${Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}`}
   >
     <div class="bar">
       <h4>{title}</h4>
@@ -54,6 +66,8 @@
 
 <style>
   .card {
+    --card-software-main-min-height: 400px;
+    --card-software-main-bar-padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -62,7 +76,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
-    min-height: 400px;
+    min-height: var(--card-software-main-min-height);
   }
   .card:hover {
     transform: scale(1.01);
@@ -71,7 +85,7 @@
     display: flex;
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 1rem;
+    padding: var(--card-software-main-bar-padding);
     width: 100%;
     color: var(--color-bg);
   }

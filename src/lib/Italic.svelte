@@ -8,6 +8,8 @@
 
   - `children: Snippet`
     The inline content to italicize.
+  - `styleVars?: {}`
+    No overrideable CSS properties. Present for API consistency.
 
   ### Example
 
@@ -20,12 +22,20 @@
 
   let {
     children,
+    styleVars = {},
   }: {
     children: Snippet;
+    styleVars?: {};
   } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<i>
+<i style={inlineStyle}>
   {@render children()}
 </i>
 

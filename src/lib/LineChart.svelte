@@ -25,6 +25,8 @@
   - `lineDisplay?: "current" | "last" | "first"`
     Comparison mode — overlay the first/last datasets as dashed references.
     Defaults to `"current"`.
+  - `styleVars?: { chartHeight?: string }`
+    Override the chart container height via CSS custom property.
 
   ### Example
 
@@ -59,6 +61,7 @@
     loading = true,
     loadingDelay = 500,
     lineDisplay = "current",
+    styleVars = {},
   }: {
     data: ChartData;
     yMax?: number;
@@ -73,6 +76,9 @@
     loading?: boolean;
     loadingDelay?: number;
     lineDisplay?: "current" | "last" | "first";
+    styleVars?: {
+      chartHeight?: string;
+    };
   } = $props();
 
   // svelte-ignore state_referenced_locally
@@ -95,6 +101,10 @@
   let chartInstance = $state<Chart | null>(null);
   let firstDatasets: ChartData["datasets"] | null = null;
   let lastDatasets: ChartData["datasets"] | null = null;
+
+  let cssVars = $derived({
+    ...(styleVars.chartHeight ? { "--line-chart-height": styleVars.chartHeight } : {}),
+  });
 
   $effect(() => {
     const ch = chartInstance;
@@ -225,7 +235,12 @@
   };
 </script>
 
-<div class="chart-container">
+<div
+  class="chart-container"
+  style={Object.entries(cssVars)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
+>
   {#if showLoadingSpinner}
     <div class="loading-container">
       <div class="spinner"></div>
@@ -238,11 +253,12 @@
 
 <style>
   .chart-container {
+    --line-chart-height: 300px;
     width: 100%;
-    height: 300px;
+    height: var(--line-chart-height);
 
     @media (min-width: 640px) {
-      height: 400px;
+      --line-chart-height: 400px;
     }
   }
 

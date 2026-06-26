@@ -13,6 +13,8 @@
     Inner column width. Defaults to `"full"`.
   - `gap?: "normal" | "large"`
     Vertical gap between children. Defaults to `"normal"`.
+  - `styleVars?: { innerMaxWidth?: string; innerGap?: string }`
+    Override CSS custom properties on the inner element.
   - `children: Snippet`
     The header content.
 
@@ -25,25 +27,43 @@
   ```
 -->
 <script lang="ts">
+  import type { Variant } from "$lib/variants";
   import type { Snippet } from "svelte";
 
   let {
-    // public prop, not yet applied to styling
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     variant = "light",
     width = "full",
     gap = "normal",
+    styleVars = {},
     children,
   }: {
-    variant?: "light" | "surface" | "dark" | "primary" | "accent";
+    variant?: Variant;
     width?: "full" | "narrow";
     gap?: "normal" | "large";
+    styleVars?: {
+      innerMaxWidth?: string;
+      innerGap?: string;
+    };
     children: Snippet;
   } = $props();
+
+  let innerCssVars = $derived({
+    ...(styleVars.innerMaxWidth
+      ? { "--section-inner-max-width": styleVars.innerMaxWidth }
+      : {}),
+    ...(styleVars.innerGap
+      ? { "--section-inner-gap": styleVars.innerGap }
+      : {}),
+  });
 </script>
 
 <header>
-  <div class="inner width-{width} gap-{gap}">
+  <div
+    class="inner max-width-{width} gap-{gap}"
+    style={Object.entries(innerCssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";")}
+  >
     {@render children()}
   </div>
 </header>
@@ -61,25 +81,25 @@
   .inner {
     display: flex;
     flex-direction: column;
-    gap: var(--gap);
+    gap: var(--section-inner-gap);
     margin: 0 auto;
     width: 100%;
-    max-width: var(--max-width);
+    max-width: var(--section-inner-max-width);
   }
 
   .gap-normal {
-    gap: var(--gap);
+    --section-inner-gap: var(--gap);
   }
 
   .gap-large {
-    gap: var(--gap-lg);
+    --section-inner-gap: var(--gap-lg);
   }
 
-  .width-full {
-    max-width: var(--max-width);
+  .max-width-full {
+    --section-inner-max-width: var(--max-width);
   }
 
-  .width-narrow {
-    max-width: 100ch;
+  .max-width-narrow {
+    --section-inner-max-width: 100ch;
   }
 </style>

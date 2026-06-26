@@ -15,6 +15,8 @@
     Card heading text.
   - `body: string`
     Card body text.
+  - `styleVars?: { width?: string; height?: string; borderRadius?: string; padding?: string; gap?: string }`
+    Optional overrides for CSS custom properties.
 
   ### Example
 
@@ -36,15 +38,30 @@
     icon: string;
     header: string;
     body: string;
+    styleVars?: {
+      width?: string;
+      height?: string;
+      borderRadius?: string;
+      padding?: string;
+      gap?: string;
+    };
   }
 
-  let { color, icon, header, body }: Props = $props();
+  let { color, icon, header, body, styleVars = {} }: Props = $props();
   let colorVar = $derived(`var(--color-${color})`);
+
+  let cardCssVars = $derived({
+    ...(styleVars.width ? { "--card-feature-width": styleVars.width } : {}),
+    ...(styleVars.height ? { "--card-feature-height": styleVars.height } : {}),
+    ...(styleVars.borderRadius ? { "--card-feature-border-radius": styleVars.borderRadius } : {}),
+    ...(styleVars.padding ? { "--card-feature-padding": styleVars.padding } : {}),
+    ...(styleVars.gap ? { "--card-feature-gap": styleVars.gap } : {}),
+  });
 </script>
 
 <div
   class="box"
-  style="--color: {colorVar}"
+  style="--color: {colorVar};{Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}"
 >
   <Row>
     <Icon style="font-size: 2rem; color: var(--color)">{icon}</Icon>
@@ -60,23 +77,28 @@
 
 <style>
   .box {
+    --card-feature-width: 19rem;
+    --card-feature-height: 10rem;
+    --card-feature-border-radius: 20px;
+    --card-feature-padding: 1rem;
+    --card-feature-gap: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--card-feature-gap);
     transition:
       border-color 0.5s ease,
       background 0.5s ease;
     margin: 0 auto;
     border: 1px solid rgba(from var(--color) r g b / 0.5);
-    border-radius: 20px;
+    border-radius: var(--card-feature-border-radius);
     background: linear-gradient(
       135deg,
       rgba(from var(--color) r g b / 0.01),
       rgba(from var(--color) r g b / 0.05)
     );
-    padding: 1rem;
-    width: 19rem;
-    height: 10rem;
+    padding: var(--card-feature-padding);
+    width: var(--card-feature-width);
+    height: var(--card-feature-height);
     overflow-y: hidden;
   }
 

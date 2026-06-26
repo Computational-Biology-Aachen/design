@@ -21,6 +21,8 @@
     Disables the slider. Defaults to `false`.
   - `onchange?: () => void`
     Called when the value changes.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -38,6 +40,7 @@
     step?: number | string;
     disabled?: boolean;
     onchange?: () => void;
+    styleVars?: { [key: string]: string };
   }
 
   let {
@@ -49,10 +52,17 @@
     step = "any",
     disabled = false,
     onchange,
+    styleVars = {},
   }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<label>
+<label style={inlineStyle}>
   <div class="row">
     <span class="name">{name}{desc ? ` (${desc})` : ""}</span>
     <span class="value">{value}</span>

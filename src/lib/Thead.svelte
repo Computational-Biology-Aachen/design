@@ -8,6 +8,8 @@
 
   - `children: Snippet`
     The header rows.
+  - `styleVars?: {}`
+    Reserved for future CSS custom property overrides.
   - `...rest`
     Additional attributes spread onto the `<thead>` element.
 -->
@@ -16,9 +18,11 @@
 
   let {
     children,
+    styleVars = {},
     ...rest
   }: {
     children: Snippet;
+    styleVars?: {};
     [key: string]: unknown;
   } = $props();
 </script>
@@ -26,3 +30,6 @@
 <thead {...rest}>
   {@render children()}
 </thead>
+
+<style>
+</style>

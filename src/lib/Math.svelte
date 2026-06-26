@@ -12,6 +12,8 @@
     `true` for block/display math, `false` for inline.
   - `fontSize?: string`
     CSS font size for the rendered math. Defaults to `"1rem"`.
+  - `styleVars?: { fontSize?: string }`
+    Override the default font-size via CSS custom property.
 
   ### Example
 
@@ -27,9 +29,24 @@
     tex,
     display,
     fontSize = "1rem",
-  }: { fontSize?: string; tex: string; display: boolean } = $props();
+    styleVars = {},
+  }: {
+    fontSize?: string;
+    tex: string;
+    display: boolean;
+    styleVars?: { fontSize?: string };
+  } = $props();
 
   let el: HTMLElement;
+
+  let cssVars = $derived({
+    ...(styleVars.fontSize ? { "--math-font-size": styleVars.fontSize } : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 
   $effect(() => {
     if (!el) return;
@@ -47,6 +64,7 @@
   style:font-size={fontSize}
   style:margin="0"
   style:padding="0"
+  style={inlineStyle}
 ></span>
 
 <style>
@@ -55,7 +73,5 @@
     margin: 0;
     padding: 0;
     max-width: 100%;
-    /* transform-origin: left; */
-    /* transform: scale(0.75); */
   }
 </style>

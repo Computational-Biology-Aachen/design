@@ -17,6 +17,8 @@
     Border style of the control. Defaults to `"solid"`.
   - `children: Snippet`
     The `<option>` elements.
+  - `styleVars?: { borderRadius?: string; backgroundColor?: string; padding?: string; width?: string; fontSize?: string }`
+    Override the default select styles via CSS custom properties.
 
   ### Example
 
@@ -37,6 +39,13 @@
     value: T | undefined;
     border?: "transparent" | "solid";
     children: Snippet;
+    styleVars?: {
+      borderRadius?: string;
+      backgroundColor?: string;
+      padding?: string;
+      width?: string;
+      fontSize?: string;
+    };
   };
   let {
     id,
@@ -44,7 +53,27 @@
     value = $bindable(),
     border = "solid",
     children,
+    styleVars = {},
   }: Props = $props();
+
+  let cssVars = $derived({
+    ...(styleVars.borderRadius
+      ? { "--select-border-radius": styleVars.borderRadius }
+      : {}),
+    ...(styleVars.backgroundColor
+      ? { "--select-background-color": styleVars.backgroundColor }
+      : {}),
+    ...(styleVars.padding ? { "--select-padding": styleVars.padding } : {}),
+    ...(styleVars.width ? { "--select-width": styleVars.width } : {}),
+    ...(styleVars.fontSize
+      ? { "--select-font-size": styleVars.fontSize }
+      : {}),
+  });
+  let inlineStyle = $derived(
+    Object.entries(cssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <InlineGrid>
@@ -53,6 +82,7 @@
     id={id}
     class={border}
     bind:value={value}
+    style={inlineStyle}
   >
     {@render children()}
   </select>
@@ -60,11 +90,16 @@
 
 <style>
   select {
-    border-radius: var(--radius-lg);
-    background-color: transparent;
-    padding: 0.35rem 0.5rem;
-    width: 100%;
-    font-size: 0.875rem;
+    --select-border-radius: var(--radius-lg);
+    --select-background-color: transparent;
+    --select-padding: 0.35rem 0.5rem;
+    --select-width: 100%;
+    --select-font-size: 0.875rem;
+    border-radius: var(--select-border-radius);
+    background-color: var(--select-background-color);
+    padding: var(--select-padding);
+    width: var(--select-width);
+    font-size: var(--select-font-size);
   }
   .transparent {
     border: var(--border-transparent);

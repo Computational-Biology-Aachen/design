@@ -16,6 +16,8 @@
     The resolved multiplier values shown next to each label.
   - `activationLabel: string`, `deactivationLabel: string`
     Labels for the two sliders.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -38,6 +40,7 @@
     deactivationMultiplier: number;
     activationLabel: string;
     deactivationLabel: string;
+    styleVars?: { [key: string]: string };
   }
 
   let {
@@ -47,10 +50,17 @@
     deactivationLabel,
     activationMultiplier,
     deactivationMultiplier,
+    styleVars = {},
   }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<label class="slider-label">
+<label class="slider-label" style={inlineStyle}>
   {activationLabel}:
   <strong>{activationMultiplier}</strong>
   <input

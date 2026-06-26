@@ -24,6 +24,8 @@
     `"full"`.
   - `color?: "dark" | "light" | "primary" | "secondary"`
     Background colour. Defaults to `"light"`.
+  - `styleVars?: { minHeight?: string; barPadding?: string }`
+    Optional overrides for CSS custom properties.
 
   ### Example
 
@@ -42,18 +44,28 @@
     href = "/",
     img = "/placeholder.jpg",
     children,
+    styleVars = {},
   }: {
     title: string;
     href?: string;
     img?: string;
     children: Snippet;
+    styleVars?: {
+      minHeight?: string;
+      barPadding?: string;
+    };
   } = $props();
+
+  let cardCssVars = $derived({
+    ...(styleVars.minHeight ? { "--card-publication-main-min-height": styleVars.minHeight } : {}),
+    ...(styleVars.barPadding ? { "--card-publication-main-bar-padding": styleVars.barPadding } : {}),
+  });
 </script>
 
 <Link href={href}>
   <div
     class="card"
-    style={`--card-image: url(${img})`}
+    style={`--card-image: url(${img});${Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}`}
   >
     <div class="bar">
       <h4>{title}</h4>
@@ -64,6 +76,8 @@
 
 <style>
   .card {
+    --card-publication-main-min-height: 400px;
+    --card-publication-main-bar-padding: 1rem;
     display: flex;
     position: relative;
     flex-direction: column;
@@ -72,7 +86,7 @@
     background-color: white;
     isolation: isolate;
     width: 100%;
-    min-height: 400px;
+    min-height: var(--card-publication-main-min-height);
     overflow: hidden;
   }
 
@@ -118,7 +132,7 @@
     flex-direction: column;
     z-index: 1;
     background-color: rgba(0, 0, 0, 0.8);
-    padding: 1rem;
+    padding: var(--card-publication-main-bar-padding);
     width: 100%;
     color: var(--color-bg);
   }

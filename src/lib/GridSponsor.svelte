@@ -8,6 +8,8 @@
 
   - `children: Snippet`
     The [[CardSponsor]] tiles.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -19,20 +21,34 @@
   ```
 -->
 <script lang="ts">
-  let { children } = $props();
+  import type { Snippet } from "svelte";
+
+  interface Props {
+    children: Snippet;
+    styleVars?: { [key: string]: string };
+  }
+
+  let { children, styleVars = {} }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<div>
+<div style={inlineStyle}>
   {@render children()}
 </div>
 
 <style>
   div {
+    --sponsor-gap: 10px;
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
-    grid-gap: 10px;
+    gap: var(--sponsor-gap);
   }
 
   @media (min-width: 768px) {

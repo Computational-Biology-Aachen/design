@@ -12,6 +12,8 @@
     CSS grid gap. Defaults to `"var(--gap)"`.
   - `children: Snippet`
     The [[CardPerson]] tiles.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -25,20 +27,31 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
+  interface Props {
+    columns?: number;
+    gap?: string;
+    children: Snippet;
+    styleVars?: { [key: string]: string };
+  }
+
   let {
     columns = 3,
     gap = "var(--gap)",
     children,
-  }: {
-    gap?: string;
-    columns?: number;
-    children: Snippet;
-  } = $props();
+    styleVars = {},
+  }: Props = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
 <div
   class="cols-{columns}"
   style:gap={gap}
+  style={inlineStyle}
 >
   {@render children()}
 </div>

@@ -12,6 +12,8 @@
     The next-page link (right, with a → arrow).
   - `base?: string`
     Path prefix prepended to both hrefs. Defaults to `""`.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -32,14 +34,22 @@
     prev,
     next,
     base = "",
+    styleVars = {},
   }: {
     prev?: NavLink;
     next?: NavLink;
     base?: string;
+    styleVars?: { [key: string]: string };
   } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<nav aria-label="Page navigation">
+<nav aria-label="Page navigation" style={inlineStyle}>
   <div class="page-nav-prev">
     {#if prev}
       <a

@@ -8,6 +8,8 @@
 
   - `children: Snippet`
     The preformatted content; whitespace is preserved verbatim.
+  - `styleVars?: { padding?: string; fontSize?: string; fontFamily?: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -17,25 +19,43 @@
 -->
 <script lang="ts">
   import type { Snippet } from "svelte";
+
   let {
     children,
+    styleVars = {},
   }: {
     children: Snippet;
+    styleVars?: { padding?: string; fontSize?: string; fontFamily?: string };
   } = $props();
+
+  let inlineStyle = $derived(
+    [
+      ...(styleVars.padding ? ["--pre-padding", styleVars.padding] : []),
+      ...(styleVars.fontSize ? ["--pre-font-size", styleVars.fontSize] : []),
+      ...(styleVars.fontFamily
+        ? ["--pre-font-family", styleVars.fontFamily]
+        : []),
+    ]
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<pre>{@render children()}</pre>
+<pre style={inlineStyle}>{@render children()}</pre>
 
 <style>
   pre {
+    --pre-padding: var(--space-4);
+    --pre-font-size: 0.8125rem;
+    --pre-font-family: var(--font-mono);
     margin: 0;
     border-radius: var(--radius-md);
     background-color: var(--color-text);
-    padding: var(--space-4);
+    padding: var(--pre-padding);
     width: 100%;
     overflow-x: auto;
     color: var(--color-text-inverse);
-    font-size: 0.8125rem;
-    font-family: var(--font-mono);
+    font-size: var(--pre-font-size);
+    font-family: var(--pre-font-family);
   }
 </style>

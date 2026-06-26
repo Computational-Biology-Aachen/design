@@ -11,6 +11,8 @@
     Destination route; also drives the active-state highlight.
   - `children: Snippet`
     The link label.
+  - `styleVars?: { padding?: string; fontSize?: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -25,17 +27,27 @@
   interface Props {
     href: string;
     children: Snippet;
+    styleVars?: { padding?: string; fontSize?: string };
   }
 
-  let { href, children }: Props = $props();
+  let { href, children, styleVars = {} }: Props = $props();
 
   let active = $derived(
     page.url.pathname === href ||
       (href !== "/" && page.url.pathname.startsWith(href + "/")),
   );
+
+  let inlineStyle = $derived(
+    [
+      ...(styleVars.padding ? ["--navitem-padding", styleVars.padding] : []),
+      ...(styleVars.fontSize ? ["--navitem-font-size", styleVars.fontSize] : []),
+    ]
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<li>
+<li style={inlineStyle}>
   <a
     href={href}
     class:active={active}
@@ -52,13 +64,15 @@
   }
 
   a {
+    --navitem-padding: var(--space-2) var(--space-3);
+    --navitem-font-size: 0.9375rem;
     display: block;
     transition: var(--transition);
     border-radius: var(--radius-md);
-    padding: var(--space-2) var(--space-3);
+    padding: var(--navitem-padding);
     color: var(--color-text);
     font-weight: 500;
-    font-size: 0.9375rem;
+    font-size: var(--navitem-font-size);
     text-decoration: none;
     white-space: nowrap;
   }

@@ -12,6 +12,8 @@
     The heading text (rendered uppercased).
   - `color?: "dark" | "light" | "primary" | "secondary"`
     Heading colour. Defaults to `"dark"`.
+  - `styleVars?: {}`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -23,22 +25,32 @@
   import { MediaQuery } from "svelte/reactivity";
   import H1 from "./H1.svelte";
 
+  interface Props {
+    n: string;
+    title: string;
+    color?: "dark" | "light" | "primary" | "secondary";
+    styleVars?: {};
+  }
+
   let {
     // public prop, documented but not yet rendered
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     n,
     title,
     color = "dark",
-  }: {
-    n: string;
-    title: string;
-    color?: "dark" | "light" | "primary" | "secondary";
-  } = $props();
+    styleVars = {},
+  }: Props = $props();
 
   const small = new MediaQuery("max-width: 800px");
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<div class="box">
+<div class="box" style={inlineStyle}>
   {#if small.current}
     <H1 color={color}>{title.toUpperCase()}</H1>
   {:else}
