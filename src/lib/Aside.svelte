@@ -41,4 +41,8 @@
   {@render children()}
 </aside>
 
-<style></style>
+<style>
+  aside {
+    background-color: inherit;
+  }
+</style>

@@ -41,4 +41,8 @@
   {@render children()}
 </blockquote>
 
-<style></style>
+<style>
+  blockquote {
+    background-color: inherit;
+  }
+</style>

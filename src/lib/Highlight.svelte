@@ -34,6 +34,17 @@
   );
 </script>
 
-<mark>
+<mark
+  style={Object.entries(inlineStyle)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
+>
   {@render children()}
 </mark>
+
+<style>
+  mark {
+    background-color: var(--color-primary);
+    color: white;
+  }
+</style>

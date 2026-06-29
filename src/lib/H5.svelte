@@ -33,8 +33,8 @@
   } = $props();
 
   let cssVars = $derived({
-    ...(styleVars.fontSize ? { "--h-font-size": styleVars.fontSize } : {}),
-    ...(styleVars.color ? { "--h-color": styleVars.color } : {}),
+    ...(styleVars.fontSize ? { "--h5-font-size": styleVars.fontSize } : {}),
+    ...(styleVars.color ? { "--h5-color": styleVars.color } : {}),
   });
   let inlineStyle = $derived(
     Object.entries(cssVars)
@@ -43,28 +43,32 @@
   );
 </script>
 
-<h5 class={`${color}`} style={inlineStyle}>
+<h5
+  class={`${color}`}
+  style={inlineStyle}
+>
   {@render children()}
 </h5>
 
 <style>
   h5 {
-    --h-font-size: 1.125rem;
+    --h5-font-size: 1.125rem;
     margin: 0;
     padding: 0;
-    font-size: var(--h-font-size);
+    color: var(--h5-color);
+    font-size: var(--h5-font-size);
     font-family: var(--font-sans);
   }
   .dark {
-    color: var(--color-text);
+    --h5-color: var(--color-text);
   }
   .light {
-    color: var(--color-bg);
+    --h5-color: var(--color-bg);
   }
   .primary {
-    color: var(--color-primary);
+    --h5-color: var(--color-primary);
   }
   .secondary {
-    color: var(--color-accent);
+    --h5-color: var(--color-accent);
   }
 </style>

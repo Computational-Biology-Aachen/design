@@ -30,4 +30,8 @@
 </ins>
 
 <style>
+  ins {
+    color: var(--color-primary);
+    text-decoration: underline var(--color-primary) solid 1px;
+  }
 </style>
