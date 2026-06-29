@@ -33,4 +33,12 @@
   );
 </script>
 
-{@render children()}
+<aside
+  style={Object.entries(inlineStyle)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
+>
+  {@render children()}
+</aside>
+
+<style></style>

@@ -34,4 +34,13 @@
   );
 </script>
 
-{@render children()}
+<del
+  style={Object.entries(inlineStyle)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
+>
+  {@render children()}
+</del>
+
+<style>
+</style>

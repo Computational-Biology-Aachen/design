@@ -34,4 +34,16 @@
   );
 </script>
 
-{@render children()}
+<strong
+  style={Object.entries(inlineStyle)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
+>
+  {@render children()}
+</strong>
+
+<style>
+  strong {
+    font-weight: 700;
+  }
+</style>

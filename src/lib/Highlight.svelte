@@ -34,4 +34,6 @@
   );
 </script>
 
-{@render children()}
+<mark>
+  {@render children()}
+</mark>

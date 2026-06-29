@@ -33,4 +33,12 @@
   );
 </script>
 
-{@render children()}
+<blockquote
+  style={Object.entries(inlineStyle)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
+>
+  {@render children()}
+</blockquote>
+
+<style></style>
