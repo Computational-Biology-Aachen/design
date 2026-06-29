@@ -45,7 +45,9 @@
     gap?: "normal" | "large";
     pad?: "no" | "lg";
     styleVars?: {
-      yPad?: string;
+      sectionBackgroundColor?: string;
+      sectionTextColor?: string;
+      innerYPad?: string;
       innerMaxWidth?: string;
       innerGap?: string;
     };
@@ -53,7 +55,12 @@
   } = $props();
 
   let sectionCssVars = $derived({
-    ...(styleVars.yPad ? { "--section-ypad": styleVars.yPad } : {}),
+    ...(styleVars.sectionBackgroundColor
+      ? { "--section-background-color": styleVars.sectionBackgroundColor }
+      : {}),
+    ...(styleVars.sectionTextColor
+      ? { "--section-text-color": styleVars.sectionTextColor }
+      : {}),
   });
   let innerCssVars = $derived({
     ...(styleVars.innerMaxWidth
@@ -62,6 +69,7 @@
     ...(styleVars.innerGap
       ? { "--section-inner-gap": styleVars.innerGap }
       : {}),
+    ...(styleVars.innerYPad ? { "--section-ypad": styleVars.innerYPad } : {}),
   });
 </script>
 
@@ -87,32 +95,32 @@
     flex-direction: column;
     justify-content: center;
     margin: 0;
+    background-color: var(--section-background-color);
     padding: 0 var(--space-4);
-    padding-top: var(--section-ypad);
-    padding-bottom: var(--section-ypad);
     width: 100%;
     min-height: 12rem;
+    color: var(--section-text-color);
   }
   /* section variants - Colors */
   .light {
-    background-color: var(--color-bg);
-    color: var(--color-text);
+    --section-background-color: var(--color-bg);
+    --section-text-color: var(--color-text);
   }
   .dark {
-    background-color: var(--color-text);
-    color: var(--color-text-inverse);
+    --section-background-color: var(--color-text);
+    --section-text-color: var(--color-text-inverse);
   }
   .surface {
-    background-color: var(--color-surface);
-    color: var(--color-text);
+    --section-background-color: var(--color-surface);
+    --section-text-color: var(--color-text);
   }
   .primary {
-    background-color: var(--color-primary);
-    color: var(--color-text-inverse);
+    --section-background-color: var(--color-primary);
+    --section-text-color: var(--color-text-inverse);
   }
   .accent {
-    background-color: var(--color-accent);
-    color: var(--color-text);
+    --section-background-color: var(--color-accent);
+    --section-text-color: var(--color-text);
   }
   /* section variants - Padding */
   .pad-no {
@@ -127,6 +135,8 @@
     flex-direction: column;
     gap: var(--section-inner-gap);
     margin: 0 auto;
+    padding-top: var(--section-ypad);
+    padding-bottom: var(--section-ypad);
     width: 100%;
     max-width: var(--section-inner-max-width);
   }
