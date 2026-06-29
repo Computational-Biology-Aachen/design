@@ -25,25 +25,38 @@
   import Link from "./Link.svelte";
   import Footer from "./SectionFooter.svelte";
   import Text from "./Text.svelte";
-
-  interface Props {
-    github: string;
-    styleVars?: {};
-  }
+  import type { Variant } from "./variants";
 
   let {
     github,
     styleVars = {},
-  }: Props = $props();
-
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+    variant = "dark",
+    width = "full",
+    gap = "normal",
+    pad = "no",
+  }: {
+    github: string;
+    variant?: Variant;
+    width?: "full" | "narrow";
+    gap?: "normal" | "large";
+    pad?: "no" | "lg";
+    styleVars?: {
+      sectionBackgroundColor?: string;
+      sectionTextColor?: string;
+      innerYPad?: string;
+      innerMaxWidth?: string;
+      innerGap?: string;
+    };
+  } = $props();
 </script>
 
-<div style={inlineStyle}><Footer>
+<Footer
+  variant={variant}
+  width={width}
+  gap={gap}
+  pad={pad}
+  styleVars={styleVars}
+>
   <H2 color="light">Imprint</H2>
   <Text color="light">
     Anbieter i.S.d. TDG/MDStV: Prof. Dr. Anna B. Matuszyńska <br />
@@ -59,4 +72,4 @@
     ><br />
     (c) 2025 Prof. Dr. Anna B. Matuszyńska, Alle Rechte vorbehalten.
   </Text>
-</Footer></div>
+</Footer>

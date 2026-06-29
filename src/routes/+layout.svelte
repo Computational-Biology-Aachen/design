@@ -57,7 +57,6 @@
   <NavGH href="https://github.com/Computational-Biology-Aachen/design" />
 </Navbar>
 {@render children()}
-
 <Imprint github="https://github.com/Computational-Biology-Aachen/design" />
 
 <!-- </div> -->
