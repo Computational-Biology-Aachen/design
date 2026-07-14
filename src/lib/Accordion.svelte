@@ -105,11 +105,11 @@
     font-size: var(--acc-summary-chevron-size);
   }
 
-  details[open] .accordion-summary {
+  details[open] > .accordion-summary {
     border-radius: var(--radius-md) var(--radius-md) 0 0;
   }
 
-  details[open] .accordion-summary::before {
+  details[open] > .accordion-summary::before {
     transform: rotate(90deg);
   }
 
