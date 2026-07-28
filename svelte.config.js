@@ -27,6 +27,11 @@ const config = {
     paths: {
       base: process.argv.includes("dev") ? "" : "/design",
     },
+    version: {
+      // Poll for new deploys so long-lived tabs upgrade proactively instead of
+      // only recovering reactively after a failed navigation.
+      pollInterval: 300_000,
+    },
   },
 };
 
