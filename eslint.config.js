@@ -27,6 +27,10 @@ export default ts.config(
       // This is a component library: `href` is a consumer-provided prop, so
       // route resolution is the consuming app's responsibility, not ours.
       "svelte/no-navigation-without-resolve": "off",
+      // Not enabled by svelte.configs.recommended - surfaces the Svelte
+      // compiler's own warnings (including a11y checks like missing alt
+      // text) as lint errors instead of easy-to-miss build output.
+      "svelte/valid-compile": ["error", { ignoreWarnings: false }],
     },
   },
   {
