@@ -25,11 +25,7 @@
     styleVars?: {};
   }
 
-  let {
-    src,
-    alt = "profile",
-    styleVars = {},
-  }: Props = $props();
+  let { src, alt = "profile", styleVars = {} }: Props = $props();
 
   let inlineStyle = $derived(
     Object.entries(styleVars)
@@ -42,6 +38,8 @@
   src={src}
   alt={alt}
   style={inlineStyle}
+  loading="lazy"
+  decoding="async"
 />
 
 <style>
