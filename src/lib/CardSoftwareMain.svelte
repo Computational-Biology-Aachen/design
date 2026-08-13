@@ -47,15 +47,21 @@
   } = $props();
 
   let cardCssVars = $derived({
-    ...(styleVars.minHeight ? { "--card-software-main-min-height": styleVars.minHeight } : {}),
-    ...(styleVars.barPadding ? { "--card-software-main-bar-padding": styleVars.barPadding } : {}),
+    ...(styleVars.minHeight
+      ? { "--card-software-main-min-height": styleVars.minHeight }
+      : {}),
+    ...(styleVars.barPadding
+      ? { "--card-software-main-bar-padding": styleVars.barPadding }
+      : {}),
   });
 </script>
 
 <a href={href}>
   <div
     class="card"
-    style={`background-image: url(${img});${Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}`}
+    style={`background-image: url(${img});${Object.entries(cardCssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";")}`}
   >
     <div class="bar">
       <h4>{title}</h4>

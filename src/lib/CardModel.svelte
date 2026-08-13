@@ -38,15 +38,21 @@
   } = $props();
 
   let cardCssVars = $derived({
-    ...(styleVars.mediaHeight ? { "--card-model-media-height": styleVars.mediaHeight } : {}),
-    ...(styleVars.fallbackIconSize ? { "--card-model-fallback-icon-size": styleVars.fallbackIconSize } : {}),
+    ...(styleVars.mediaHeight
+      ? { "--card-model-media-height": styleVars.mediaHeight }
+      : {}),
+    ...(styleVars.fallbackIconSize
+      ? { "--card-model-fallback-icon-size": styleVars.fallbackIconSize }
+      : {}),
   });
 </script>
 
 <a
   href={href}
   class="card"
-  style={Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}
+  style={Object.entries(cardCssVars)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
 >
   <div class="media">
     {#if image}

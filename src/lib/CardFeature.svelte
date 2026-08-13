@@ -53,15 +53,21 @@
   let cardCssVars = $derived({
     ...(styleVars.width ? { "--card-feature-width": styleVars.width } : {}),
     ...(styleVars.height ? { "--card-feature-height": styleVars.height } : {}),
-    ...(styleVars.borderRadius ? { "--card-feature-border-radius": styleVars.borderRadius } : {}),
-    ...(styleVars.padding ? { "--card-feature-padding": styleVars.padding } : {}),
+    ...(styleVars.borderRadius
+      ? { "--card-feature-border-radius": styleVars.borderRadius }
+      : {}),
+    ...(styleVars.padding
+      ? { "--card-feature-padding": styleVars.padding }
+      : {}),
     ...(styleVars.gap ? { "--card-feature-gap": styleVars.gap } : {}),
   });
 </script>
 
 <div
   class="box"
-  style="--color: {colorVar};{Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}"
+  style="--color: {colorVar};{Object.entries(cardCssVars)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(';')}"
 >
   <Row>
     <Icon style="font-size: 2rem; color: var(--color)">{icon}</Icon>

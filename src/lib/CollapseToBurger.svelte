@@ -56,14 +56,20 @@
 </script>
 
 {#if small.current}
-  <details class="mobile" style={inlineStyle}>
+  <details
+    class="mobile"
+    style={inlineStyle}
+  >
     <summary aria-label="Toggle navigation">☰</summary>
     <ul class="dropdown">
       {@render children()}
     </ul>
   </details>
 {:else}
-  <ul class="bar" style={inlineStyle}>
+  <ul
+    class="bar"
+    style={inlineStyle}
+  >
     {@render children()}
   </ul>
 {/if}

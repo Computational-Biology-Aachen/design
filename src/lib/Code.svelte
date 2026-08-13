@@ -28,11 +28,7 @@
     styleVars?: {};
   }
 
-  let {
-    children,
-    pad = "0",
-    styleVars = {},
-  }: Props = $props();
+  let { children, pad = "0", styleVars = {} }: Props = $props();
 
   let inlineStyle = $derived(
     Object.entries(styleVars)
@@ -41,15 +37,18 @@
   );
 </script>
 
-<code class="pad-{pad}" style={inlineStyle}>
+<code
+  class="pad-{pad}"
+  style={inlineStyle}
+>
   {@render children()}
 </code>
 
 <style>
   code {
     --code-pad: 0;
-    font-family: monospace;
     padding: var(--code-pad);
+    font-family: monospace;
   }
 
   .pad-0 {

@@ -29,7 +29,10 @@
   </InputChoice>
   ```
 -->
-<script lang="ts" generics="T">
+<script
+  lang="ts"
+  generics="T"
+>
   import InlineGrid from "./InlineGrid.svelte";
   import type { Snippet } from "svelte";
 
@@ -65,9 +68,7 @@
       : {}),
     ...(styleVars.padding ? { "--select-padding": styleVars.padding } : {}),
     ...(styleVars.width ? { "--select-width": styleVars.width } : {}),
-    ...(styleVars.fontSize
-      ? { "--select-font-size": styleVars.fontSize }
-      : {}),
+    ...(styleVars.fontSize ? { "--select-font-size": styleVars.fontSize } : {}),
   });
   let inlineStyle = $derived(
     Object.entries(cssVars)

@@ -15,7 +15,8 @@ export type Color =
   | "rwth-bordeaux"
   | "rwth-violet"
   | "rwth-lilac";
-export type Variant = "light" | "dark" | "primary" | "secondary" | "surface" | "accent";
+export type Variant =
+  "light" | "dark" | "primary" | "secondary" | "surface" | "accent";
 export type Gap = "sm" | "md" | "lg";
 export type Space =
   | "space-1"

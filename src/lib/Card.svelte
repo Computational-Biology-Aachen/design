@@ -46,7 +46,9 @@
   } = $props();
 
   let outerCssVars = $derived({
-    ...(styleVars.cardPadding ? { "--card-padding": styleVars.cardPadding } : {}),
+    ...(styleVars.cardPadding
+      ? { "--card-padding": styleVars.cardPadding }
+      : {}),
     ...(styleVars.cardWidth ? { "--card-width": styleVars.cardWidth } : {}),
     ...(styleVars.cardHeight ? { "--card-height": styleVars.cardHeight } : {}),
   });

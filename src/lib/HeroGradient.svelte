@@ -58,7 +58,9 @@
   } = $props();
 
   let cssVars = $derived({
-    ...(styleVars.padding ? { "--hero-gradient-padding": styleVars.padding } : {}),
+    ...(styleVars.padding
+      ? { "--hero-gradient-padding": styleVars.padding }
+      : {}),
     ...(styleVars.height ? { "--hero-gradient-height": styleVars.height } : {}),
     ...(styleVars.maxHeight
       ? { "--hero-gradient-max-height": styleVars.maxHeight }

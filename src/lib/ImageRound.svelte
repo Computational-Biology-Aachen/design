@@ -50,7 +50,9 @@
 
   let cssVars = $derived({
     ...(styleVars.size ? { "--image-round-size": styleVars.size } : {}),
-    ...(styleVars.borderWidth ? { "--image-round-border-width": styleVars.borderWidth } : {}),
+    ...(styleVars.borderWidth
+      ? { "--image-round-border-width": styleVars.borderWidth }
+      : {}),
   });
 </script>
 

@@ -57,15 +57,21 @@
   } = $props();
 
   let cardCssVars = $derived({
-    ...(styleVars.minHeight ? { "--card-publication-main-min-height": styleVars.minHeight } : {}),
-    ...(styleVars.barPadding ? { "--card-publication-main-bar-padding": styleVars.barPadding } : {}),
+    ...(styleVars.minHeight
+      ? { "--card-publication-main-min-height": styleVars.minHeight }
+      : {}),
+    ...(styleVars.barPadding
+      ? { "--card-publication-main-bar-padding": styleVars.barPadding }
+      : {}),
   });
 </script>
 
 <Link href={href}>
   <div
     class="card"
-    style={`--card-image: url(${img});${Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}`}
+    style={`--card-image: url(${img});${Object.entries(cardCssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";")}`}
   >
     <div class="bar">
       <h4>{title}</h4>

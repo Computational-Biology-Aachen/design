@@ -44,7 +44,10 @@
   );
 </script>
 
-<label class="compare-label" style={inlineStyle}>
+<label
+  class="compare-label"
+  style={inlineStyle}
+>
   <input
     type="checkbox"
     bind:checked={checked}

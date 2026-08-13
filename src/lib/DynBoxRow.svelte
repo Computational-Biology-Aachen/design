@@ -71,13 +71,7 @@
     styleVars?: { [key: string]: string };
   }
 
-  let {
-    children,
-    items,
-    onAdd,
-    onRemove,
-    styleVars = {},
-  }: Props = $props();
+  let { children, items, onAdd, onRemove, styleVars = {} }: Props = $props();
 
   let inlineStyle = $derived(
     Object.entries(styleVars)

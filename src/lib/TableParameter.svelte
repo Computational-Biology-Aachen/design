@@ -58,9 +58,15 @@
   }: Props = $props();
 
   let cssVars = $derived({
-    ...(styleVars.fontSize ? { "--param-table-font-size": styleVars.fontSize } : {}),
-    ...(styleVars.cellPadding ? { "--param-table-cell-padding": styleVars.cellPadding } : {}),
-    ...(styleVars.valFontSize ? { "--param-table-val-font-size": styleVars.valFontSize } : {}),
+    ...(styleVars.fontSize
+      ? { "--param-table-font-size": styleVars.fontSize }
+      : {}),
+    ...(styleVars.cellPadding
+      ? { "--param-table-cell-padding": styleVars.cellPadding }
+      : {}),
+    ...(styleVars.valFontSize
+      ? { "--param-table-val-font-size": styleVars.valFontSize }
+      : {}),
   });
   let inlineStyle = $derived(
     Object.entries(cssVars)
@@ -69,7 +75,10 @@
   );
 </script>
 
-<div class="param-table-wrap" style={inlineStyle}>
+<div
+  class="param-table-wrap"
+  style={inlineStyle}
+>
   <table class="param-table">
     <thead>
       <tr>

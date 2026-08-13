@@ -7,7 +7,6 @@ The approaches differ in whether
 1. the customization is a closed set of choices or open
 2. the compiler can help catch errors, i.e. passing CSS names that don't actually exist on the component
 
-
 ## Approaches - Closed set / variants
 
 This approach is heavily compiler assisted, but doesn't allow customization beyond what the component provides
@@ -80,7 +79,6 @@ Call the component like `<Element --width="200px" /> `. This has absolutely no c
     --div-width: 240px;
   }
 </style>
-
 ```
 
 ## Approaches - hybrid variant + style prop

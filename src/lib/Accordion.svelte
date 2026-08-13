@@ -52,7 +52,10 @@
   );
 </script>
 
-<details open={open} style={inlineStyle}>
+<details
+  open={open}
+  style={inlineStyle}
+>
   <summary class="accordion-summary">
     {#if header}
       {@render header()}

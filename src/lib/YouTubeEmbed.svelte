@@ -32,8 +32,12 @@
   let { videoId, title = "YouTube video", styleVars = {} }: Props = $props();
 
   let cssVars = $derived({
-    ...(styleVars.borderRadius ? { "--youtube-border-radius": styleVars.borderRadius } : {}),
-    ...(styleVars.aspectRatio ? { "--youtube-aspect-ratio": styleVars.aspectRatio } : {}),
+    ...(styleVars.borderRadius
+      ? { "--youtube-border-radius": styleVars.borderRadius }
+      : {}),
+    ...(styleVars.aspectRatio
+      ? { "--youtube-aspect-ratio": styleVars.aspectRatio }
+      : {}),
   });
   let inlineStyle = $derived(
     Object.entries(cssVars)
@@ -42,7 +46,10 @@
   );
 </script>
 
-<div class="youtube-container" style={inlineStyle}>
+<div
+  class="youtube-container"
+  style={inlineStyle}
+>
   <iframe
     src="https://www.youtube-nocookie.com/embed/{videoId}"
     title={title}

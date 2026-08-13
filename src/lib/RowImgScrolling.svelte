@@ -66,9 +66,15 @@
   let container: HTMLDivElement | undefined = $state();
 
   let cssVars = $derived({
-    ...(styleVars.barHeight ? { "--row-img-scrolling-bar-height": styleVars.barHeight } : {}),
-    ...(styleVars.trackGap ? { "--row-img-scrolling-track-gap": styleVars.trackGap } : {}),
-    ...(styleVars.logoHeight ? { "--row-img-scrolling-logo-height": styleVars.logoHeight } : {}),
+    ...(styleVars.barHeight
+      ? { "--row-img-scrolling-bar-height": styleVars.barHeight }
+      : {}),
+    ...(styleVars.trackGap
+      ? { "--row-img-scrolling-track-gap": styleVars.trackGap }
+      : {}),
+    ...(styleVars.logoHeight
+      ? { "--row-img-scrolling-logo-height": styleVars.logoHeight }
+      : {}),
   });
 
   onMount(() => {
@@ -100,7 +106,8 @@
             class="logo"
             src={logo.src}
             alt={logo.alt}
-            style="height: {logo.height ?? 'var(--row-img-scrolling-logo-height, 5rem)'}"
+            style="height: {logo.height ??
+              'var(--row-img-scrolling-logo-height, 5rem)'}"
           />
         </a>
       {/each}
@@ -112,7 +119,8 @@
           class="logo"
           src={logo.src}
           alt={logo.alt}
-          style="height: {logo.height ?? 'var(--row-img-scrolling-logo-height, 5rem)'}"
+          style="height: {logo.height ??
+            'var(--row-img-scrolling-logo-height, 5rem)'}"
         />
       </a>
     {/each}

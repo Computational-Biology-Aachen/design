@@ -38,14 +38,25 @@
     header: Snippet;
     children: Snippet;
     open?: boolean;
-    styleVars?: { gap?: string; iconSize?: string; triggerPadding?: string; contentMaxHeight?: string };
+    styleVars?: {
+      gap?: string;
+      iconSize?: string;
+      triggerPadding?: string;
+      contentMaxHeight?: string;
+    };
   } = $props();
 
   let cssVars = $derived({
     ...(styleVars.gap ? { "--accordion-gap": styleVars.gap } : {}),
-    ...(styleVars.iconSize ? { "--accordion-icon-size": styleVars.iconSize } : {}),
-    ...(styleVars.triggerPadding ? { "--accordion-trigger-padding": styleVars.triggerPadding } : {}),
-    ...(styleVars.contentMaxHeight ? { "--accordion-content-max-height": styleVars.contentMaxHeight } : {}),
+    ...(styleVars.iconSize
+      ? { "--accordion-icon-size": styleVars.iconSize }
+      : {}),
+    ...(styleVars.triggerPadding
+      ? { "--accordion-trigger-padding": styleVars.triggerPadding }
+      : {}),
+    ...(styleVars.contentMaxHeight
+      ? { "--accordion-content-max-height": styleVars.contentMaxHeight }
+      : {}),
   });
   let accordionInlineStyle = $derived(
     Object.entries(cssVars)
@@ -55,11 +66,17 @@
   let triggerInlineStyle = $derived(
     [cssVars["--accordion-gap"], cssVars["--accordion-trigger-padding"]]
       .filter(Boolean)
-      .map((v) => v)
-      .length
+      .map((v) => v).length
       ? Object.entries({
-          ...(cssVars["--accordion-gap"] ? { "--accordion-gap": cssVars["--accordion-gap"] } : {}),
-          ...(cssVars["--accordion-trigger-padding"] ? { "--accordion-trigger-padding": cssVars["--accordion-trigger-padding"] } : {}),
+          ...(cssVars["--accordion-gap"]
+            ? { "--accordion-gap": cssVars["--accordion-gap"] }
+            : {}),
+          ...(cssVars["--accordion-trigger-padding"]
+            ? {
+                "--accordion-trigger-padding":
+                  cssVars["--accordion-trigger-padding"],
+              }
+            : {}),
         })
           .map(([k, v]) => `${k}:${v}`)
           .join(";")
@@ -77,7 +94,10 @@
   );
 </script>
 
-<div class="accordion" style={accordionInlineStyle}>
+<div
+  class="accordion"
+  style={accordionInlineStyle}
+>
   <button
     class="trigger"
     onclick={() => (open = !open)}
@@ -94,7 +114,10 @@
     </span>
   </button>
   {#if open}
-    <div class="content" style={contentInlineStyle}>
+    <div
+      class="content"
+      style={contentInlineStyle}
+    >
       {@render children()}
     </div>
   {/if}

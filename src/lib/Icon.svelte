@@ -56,7 +56,7 @@
 
 <span
   class="material-symbols-outlined col-{color} ft-{fontSize} {klass}"
-  style="{inlineStyle}{inlineStyle && style ? ";" : ""}{style}"
+  style="{inlineStyle}{inlineStyle && style ? ';' : ''}{style}"
 >
   {@render children()}
 </span>

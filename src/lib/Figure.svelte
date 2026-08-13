@@ -33,12 +33,7 @@
     styleVars?: { [key: string]: string };
   }
 
-  let {
-    src,
-    alt,
-    caption,
-    styleVars = {},
-  }: Props = $props();
+  let { src, alt, caption, styleVars = {} }: Props = $props();
 
   let inlineStyle = $derived(
     Object.entries(styleVars)

@@ -342,7 +342,10 @@
   );
 </script>
 
-  <div class="page" style={inlineStyle}>
+<div
+  class="page"
+  style={inlineStyle}
+>
   <div
     class="grid"
     bind:this={gridEl}

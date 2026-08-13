@@ -93,12 +93,12 @@
   .inner {
     display: flex;
     flex-direction: column;
+    align-items: var(--sectionmain-inner-align);
     gap: var(--sectionmain-inner-gap);
     margin: 0 auto;
+    padding: var(--sectionmain-inner-pad);
     width: 100%;
     max-width: var(--sectionmain-inner-max-width);
-    padding: var(--sectionmain-inner-pad);
-    align-items: var(--sectionmain-inner-align);
   }
 
   .pad-tight {

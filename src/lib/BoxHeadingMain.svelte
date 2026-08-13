@@ -50,7 +50,10 @@
   );
 </script>
 
-<div class="box" style={inlineStyle}>
+<div
+  class="box"
+  style={inlineStyle}
+>
   {#if small.current}
     <H1 color={color}>{title.toUpperCase()}</H1>
   {:else}

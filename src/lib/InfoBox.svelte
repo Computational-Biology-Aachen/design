@@ -46,7 +46,9 @@
 
   let infoBoxCssVars = $derived({
     ...(styleVars.infoGap ? { "--infobox-gap": styleVars.infoGap } : {}),
-    ...(styleVars.infoPadding ? { "--infobox-padding": styleVars.infoPadding } : {}),
+    ...(styleVars.infoPadding
+      ? { "--infobox-padding": styleVars.infoPadding }
+      : {}),
   });
 </script>
 

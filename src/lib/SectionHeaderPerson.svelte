@@ -75,9 +75,15 @@
   }
 
   let cssVars = $derived({
-    ...(styleVars.minHeight ? { "--section-header-person-min-height": styleVars.minHeight } : {}),
-    ...(styleVars.photoSize ? { "--section-header-person-photo-size": styleVars.photoSize } : {}),
-    ...(styleVars.borderWidth ? { "--section-header-person-border-width": styleVars.borderWidth } : {}),
+    ...(styleVars.minHeight
+      ? { "--section-header-person-min-height": styleVars.minHeight }
+      : {}),
+    ...(styleVars.photoSize
+      ? { "--section-header-person-photo-size": styleVars.photoSize }
+      : {}),
+    ...(styleVars.borderWidth
+      ? { "--section-header-person-border-width": styleVars.borderWidth }
+      : {}),
   });
 </script>
 

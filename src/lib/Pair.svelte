@@ -47,7 +47,10 @@
   );
 </script>
 
-<div class="justify-{justify} wrap-{wrap}" style={inlineStyle}>
+<div
+  class="justify-{justify} wrap-{wrap}"
+  style={inlineStyle}
+>
   {@render children()}
 </div>
 

@@ -74,8 +74,12 @@
   let cssVars = $derived({
     ...(styleVars.fontSize ? { "--btn-font-size": styleVars.fontSize } : {}),
     ...(styleVars.padding ? { "--btn-padding": styleVars.padding } : {}),
-    ...(styleVars.borderRadius ? { "--btn-border-radius": styleVars.borderRadius } : {}),
-    ...(styleVars.lineHeight ? { "--btn-line-height": styleVars.lineHeight } : {}),
+    ...(styleVars.borderRadius
+      ? { "--btn-border-radius": styleVars.borderRadius }
+      : {}),
+    ...(styleVars.lineHeight
+      ? { "--btn-line-height": styleVars.lineHeight }
+      : {}),
   });
   let inlineStyle = $derived(
     Object.entries(cssVars)

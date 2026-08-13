@@ -25,7 +25,10 @@
     label: string;
     id: string;
   }
-  let { links, styleVars = {} }: { links: Link[]; styleVars?: { [key: string]: string } } = $props();
+  let {
+    links,
+    styleVars = {},
+  }: { links: Link[]; styleVars?: { [key: string]: string } } = $props();
 
   let inlineStyle = $derived(
     Object.entries(styleVars)
@@ -54,7 +57,10 @@
   });
 </script>
 
-<nav class="sidebar" style={inlineStyle}>
+<nav
+  class="sidebar"
+  style={inlineStyle}
+>
   <ul>
     {#each links as link (link.id)}
       <li>

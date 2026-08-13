@@ -49,7 +49,10 @@
   );
 </script>
 
-<nav aria-label="Page navigation" style={inlineStyle}>
+<nav
+  aria-label="Page navigation"
+  style={inlineStyle}
+>
   <div class="page-nav-prev">
     {#if prev}
       <a

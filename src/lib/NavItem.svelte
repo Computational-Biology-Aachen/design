@@ -40,7 +40,9 @@
   let inlineStyle = $derived(
     [
       ...(styleVars.padding ? ["--navitem-padding", styleVars.padding] : []),
-      ...(styleVars.fontSize ? ["--navitem-font-size", styleVars.fontSize] : []),
+      ...(styleVars.fontSize
+        ? ["--navitem-font-size", styleVars.fontSize]
+        : []),
     ]
       .map(([k, v]) => `${k}:${v}`)
       .join(";"),

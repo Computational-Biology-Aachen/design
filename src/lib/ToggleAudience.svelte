@@ -52,8 +52,12 @@
   } = $props();
 
   let cssVars = $derived({
-    ...(styleVars.btnFontSize ? { "--toggle-btn-font-size": styleVars.btnFontSize } : {}),
-    ...(styleVars.btnPadding ? { "--toggle-btn-padding": styleVars.btnPadding } : {}),
+    ...(styleVars.btnFontSize
+      ? { "--toggle-btn-font-size": styleVars.btnFontSize }
+      : {}),
+    ...(styleVars.btnPadding
+      ? { "--toggle-btn-padding": styleVars.btnPadding }
+      : {}),
   });
   let inlineStyle = $derived(
     Object.entries(cssVars)

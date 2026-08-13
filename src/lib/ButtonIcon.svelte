@@ -44,7 +44,9 @@
   let cssVars = $derived({
     ...(styleVars.width ? { "--btnicon-width": styleVars.width } : {}),
     ...(styleVars.height ? { "--btnicon-height": styleVars.height } : {}),
-    ...(styleVars.fontSize ? { "--btnicon-font-size": styleVars.fontSize } : {}),
+    ...(styleVars.fontSize
+      ? { "--btnicon-font-size": styleVars.fontSize }
+      : {}),
   });
   let inlineStyle = $derived(
     Object.entries(cssVars)
@@ -77,11 +79,11 @@
     border: none;
     border-radius: var(--radius-full);
     background-color: var(--color-surface);
-    color: var(--color-primary);
-    white-space: nowrap;
     width: var(--btnicon-width);
     height: var(--btnicon-height);
+    color: var(--color-primary);
     font-size: var(--btnicon-font-size);
+    white-space: nowrap;
   }
   button:hover {
     background-color: lch(from var(--color-primary) calc(l - 10) c h);

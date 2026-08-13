@@ -60,8 +60,12 @@
 
   let cardCssVars = $derived({
     ...(styleVars.height ? { "--card-person-height": styleVars.height } : {}),
-    ...(styleVars.barPadding ? { "--card-person-bar-padding": styleVars.barPadding } : {}),
-    ...(styleVars.titleFontSize ? { "--card-person-title-font-size": styleVars.titleFontSize } : {}),
+    ...(styleVars.barPadding
+      ? { "--card-person-bar-padding": styleVars.barPadding }
+      : {}),
+    ...(styleVars.titleFontSize
+      ? { "--card-person-title-font-size": styleVars.titleFontSize }
+      : {}),
   });
 </script>
 
@@ -69,7 +73,12 @@
   color="light"
   href={href}
 >
-  <div class="card" style={Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}>
+  <div
+    class="card"
+    style={Object.entries(cardCssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";")}
+  >
     <img
       src={resolvedImg}
       alt={title}

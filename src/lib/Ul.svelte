@@ -54,7 +54,10 @@
   );
 </script>
 
-<ul class={`${color} ${columns}`} style={inlineStyle}>
+<ul
+  class={`${color} ${columns}`}
+  style={inlineStyle}
+>
   {@render children()}
 </ul>
 

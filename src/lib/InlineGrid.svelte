@@ -42,7 +42,10 @@
   );
 </script>
 
-<div class="grid cols-{cols}" style={inlineStyle}>
+<div
+  class="grid cols-{cols}"
+  style={inlineStyle}
+>
   {@render children()}
 </div>
 

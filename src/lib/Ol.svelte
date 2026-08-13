@@ -54,7 +54,10 @@
   );
 </script>
 
-<ol class={`${color} ${columns}`} style={inlineStyle}>
+<ol
+  class={`${color} ${columns}`}
+  style={inlineStyle}
+>
   {@render children()}
 </ol>
 

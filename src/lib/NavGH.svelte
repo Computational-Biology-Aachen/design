@@ -33,7 +33,10 @@
   );
 </script>
 
-<li class="gh-link" style={inlineStyle}>
+<li
+  class="gh-link"
+  style={inlineStyle}
+>
   <a
     href={href}
     aria-label="GitHub"

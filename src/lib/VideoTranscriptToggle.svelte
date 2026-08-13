@@ -43,10 +43,18 @@
   let showTranscript = $state(false);
 
   let cssVars = $derived({
-    ...(styleVars.btnFontSize ? { "--transcript-btn-font-size": styleVars.btnFontSize } : {}),
-    ...(styleVars.contentFontSize ? { "--transcript-content-font-size": styleVars.contentFontSize } : {}),
-    ...(styleVars.contentMarginTop ? { "--transcript-content-margin-top": styleVars.contentMarginTop } : {}),
-    ...(styleVars.contentPadding ? { "--transcript-content-padding": styleVars.contentPadding } : {}),
+    ...(styleVars.btnFontSize
+      ? { "--transcript-btn-font-size": styleVars.btnFontSize }
+      : {}),
+    ...(styleVars.contentFontSize
+      ? { "--transcript-content-font-size": styleVars.contentFontSize }
+      : {}),
+    ...(styleVars.contentMarginTop
+      ? { "--transcript-content-margin-top": styleVars.contentMarginTop }
+      : {}),
+    ...(styleVars.contentPadding
+      ? { "--transcript-content-padding": styleVars.contentPadding }
+      : {}),
   });
   let inlineStyle = $derived(
     Object.entries(cssVars)
@@ -55,7 +63,10 @@
   );
 </script>
 
-<div class="transcript-toggle" style={inlineStyle}>
+<div
+  class="transcript-toggle"
+  style={inlineStyle}
+>
   <button
     type="button"
     class="transcript-btn"

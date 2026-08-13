@@ -103,7 +103,9 @@
   let lastDatasets: ChartData["datasets"] | null = null;
 
   let cssVars = $derived({
-    ...(styleVars.chartHeight ? { "--line-chart-height": styleVars.chartHeight } : {}),
+    ...(styleVars.chartHeight
+      ? { "--line-chart-height": styleVars.chartHeight }
+      : {}),
   });
 
   $effect(() => {

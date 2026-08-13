@@ -50,9 +50,15 @@
   } = $props();
 
   let cardCssVars = $derived({
-    ...(styleVars.width ? { "--card-image-highlight-width": styleVars.width } : {}),
-    ...(styleVars.height ? { "--card-image-highlight-height": styleVars.height } : {}),
-    ...(styleVars.mediaHeight ? { "--card-image-highlight-media-height": styleVars.mediaHeight } : {}),
+    ...(styleVars.width
+      ? { "--card-image-highlight-width": styleVars.width }
+      : {}),
+    ...(styleVars.height
+      ? { "--card-image-highlight-height": styleVars.height }
+      : {}),
+    ...(styleVars.mediaHeight
+      ? { "--card-image-highlight-media-height": styleVars.mediaHeight }
+      : {}),
     ...(styleVars.gap ? { "--card-image-highlight-gap": styleVars.gap } : {}),
   });
 </script>
@@ -60,7 +66,9 @@
 <a
   href={href}
   class="card"
-  style={Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}
+  style={Object.entries(cardCssVars)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
 >
   <div class="media">
     {#if image}

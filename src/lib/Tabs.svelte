@@ -50,8 +50,12 @@
   });
 
   let cssVars = $derived({
-    ...(styleVars.contentGap ? { "--tabs-content-gap": styleVars.contentGap } : {}),
-    ...(styleVars.contentMinHeight ? { "--tabs-content-min-height": styleVars.contentMinHeight } : {}),
+    ...(styleVars.contentGap
+      ? { "--tabs-content-gap": styleVars.contentGap }
+      : {}),
+    ...(styleVars.contentMinHeight
+      ? { "--tabs-content-min-height": styleVars.contentMinHeight }
+      : {}),
   });
   let inlineStyle = $derived(
     Object.entries(cssVars)
@@ -74,7 +78,10 @@
   {/each}
 </div>
 
-<div class="tab-content" style={inlineStyle}>
+<div
+  class="tab-content"
+  style={inlineStyle}
+>
   {@render children(activeKey)}
 </div>
 

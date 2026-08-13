@@ -45,7 +45,10 @@
   );
 </script>
 
-<li class={`${color}`} style={inlineStyle}>
+<li
+  class={`${color}`}
+  style={inlineStyle}
+>
   {@render children()}
 </li>
 

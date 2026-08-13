@@ -60,7 +60,10 @@
   );
 </script>
 
-<label class="slider-label" style={inlineStyle}>
+<label
+  class="slider-label"
+  style={inlineStyle}
+>
   {activationLabel}:
   <strong>{activationMultiplier}</strong>
   <input

@@ -42,15 +42,21 @@
   } = $props();
 
   let cardCssVars = $derived({
-    ...(styleVars.maxWidth ? { "--card-sponsor-max-width": styleVars.maxWidth } : {}),
-    ...(styleVars.minHeight ? { "--card-sponsor-min-height": styleVars.minHeight } : {}),
+    ...(styleVars.maxWidth
+      ? { "--card-sponsor-max-width": styleVars.maxWidth }
+      : {}),
+    ...(styleVars.minHeight
+      ? { "--card-sponsor-min-height": styleVars.minHeight }
+      : {}),
   });
 </script>
 
 <Link href={href}>
   <div
     class="card"
-    style="background-image: url({img});{Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}"
+    style="background-image: url({img});{Object.entries(cardCssVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(';')}"
   ></div>
 </Link>
 

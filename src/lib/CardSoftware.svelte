@@ -65,17 +65,29 @@
   } = $props();
 
   let cardCssVars = $derived({
-    ...(styleVars.borderRadius ? { "--card-software-border-radius": styleVars.borderRadius } : {}),
-    ...(styleVars.borderTopWidth ? { "--card-software-border-top-width": styleVars.borderTopWidth } : {}),
-    ...(styleVars.backgroundSize ? { "--card-software-background-size": styleVars.backgroundSize } : {}),
-    ...(styleVars.innerPadding ? { "--card-software-inner-padding": styleVars.innerPadding } : {}),
-    ...(styleVars.fixedSize ? { "--card-software-fixed-size": styleVars.fixedSize } : {}),
+    ...(styleVars.borderRadius
+      ? { "--card-software-border-radius": styleVars.borderRadius }
+      : {}),
+    ...(styleVars.borderTopWidth
+      ? { "--card-software-border-top-width": styleVars.borderTopWidth }
+      : {}),
+    ...(styleVars.backgroundSize
+      ? { "--card-software-background-size": styleVars.backgroundSize }
+      : {}),
+    ...(styleVars.innerPadding
+      ? { "--card-software-inner-padding": styleVars.innerPadding }
+      : {}),
+    ...(styleVars.fixedSize
+      ? { "--card-software-fixed-size": styleVars.fixedSize }
+      : {}),
   });
 </script>
 
 <div
   class={`card ${color} ${format}`}
-  style={Object.entries(cardCssVars).map(([k, v]) => `${k}:${v}`).join(";")}
+  style={Object.entries(cardCssVars)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
 >
   <div
     class="inner"

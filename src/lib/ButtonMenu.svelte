@@ -47,7 +47,12 @@
     variant?: "primary" | "secondary" | "inverted";
     href?: string;
     children: Snippet;
-    styleVars?: { gap?: string; padding?: string; minWidth?: string; topOffset?: string };
+    styleVars?: {
+      gap?: string;
+      padding?: string;
+      minWidth?: string;
+      topOffset?: string;
+    };
   } = $props();
 
   let open = $state(false);
@@ -100,7 +105,9 @@
     ...(styleVars.gap ? { "--menu-gap": styleVars.gap } : {}),
     ...(styleVars.padding ? { "--menu-padding": styleVars.padding } : {}),
     ...(styleVars.minWidth ? { "--menu-min-width": styleVars.minWidth } : {}),
-    ...(styleVars.topOffset ? { "--menu-top-offset": styleVars.topOffset } : {}),
+    ...(styleVars.topOffset
+      ? { "--menu-top-offset": styleVars.topOffset }
+      : {}),
   });
   let menuInlineStyle = $derived(
     Object.entries(menuCssVars)
@@ -131,7 +138,10 @@
     {/if}
   </Button>
   {#if open}
-    <div class="menu" style={menuInlineStyle}>
+    <div
+      class="menu"
+      style={menuInlineStyle}
+    >
       {@render children()}
     </div>
   {/if}

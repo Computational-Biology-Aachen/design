@@ -57,8 +57,12 @@
 
   let cssVars = $derived({
     ...(styleVars.padding ? { "--menuitem-padding": styleVars.padding } : {}),
-    ...(styleVars.fontSize ? { "--menuitem-font-size": styleVars.fontSize } : {}),
-    ...(styleVars.borderRadius ? { "--menuitem-border-radius": styleVars.borderRadius } : {}),
+    ...(styleVars.fontSize
+      ? { "--menuitem-font-size": styleVars.fontSize }
+      : {}),
+    ...(styleVars.borderRadius
+      ? { "--menuitem-border-radius": styleVars.borderRadius }
+      : {}),
   });
   let inlineStyle = $derived(
     Object.entries(cssVars)

@@ -278,7 +278,10 @@
   });
 </script>
 
-<div class="chart-wrapper" style={inlineStyle}>
+<div
+  class="chart-wrapper"
+  style={inlineStyle}
+>
   <canvas bind:this={canvas}></canvas>
 </div>
 
