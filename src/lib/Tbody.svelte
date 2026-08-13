@@ -8,8 +8,8 @@
 
   - `children: Snippet`
     The body rows.
-  - `styleVars?: {}`
-    CSS custom property overrides (reserved for future use).
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
   - `...rest`
     Additional attributes spread onto the `<tbody>` element.
 -->
@@ -22,12 +22,21 @@
     ...rest
   }: {
     children: Snippet;
-    styleVars?: {};
+    styleVars?: { [key: string]: string };
     [key: string]: unknown;
   } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<tbody {...rest}>
+<tbody
+  {...rest}
+  style={inlineStyle}
+>
   {@render children()}
 </tbody>
 

@@ -4,7 +4,7 @@
   A thin horizontal divider (`<hr>`) used to separate content sections. Takes no
   props.
 
-  - `styleVars?: {}`
+  - `styleVars?: { [key: string]: string }`
     Optional CSS custom property overrides applied via inline style.
 
   ### Example
@@ -19,7 +19,7 @@
   let {
     styleVars = {},
   }: {
-    styleVars?: {};
+    styleVars?: { [key: string]: string };
   } = $props();
 
   let inlineStyle = $derived(

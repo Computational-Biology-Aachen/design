@@ -17,7 +17,7 @@
     Inline style passthrough. Defaults to `""`.
   - `klass?: string`
     Extra class names. Defaults to `""`.
-  - `styleVars?: {}`
+  - `styleVars?: { [key: string]: string }`
     Optional CSS custom property overrides applied via inline style.
 
   ### Example
@@ -35,7 +35,7 @@
     fontSize?: "inherit" | "sm" | "md" | "lg";
     style?: string;
     klass?: string;
-    styleVars?: {};
+    styleVars?: { [key: string]: string };
   }
 
   let {

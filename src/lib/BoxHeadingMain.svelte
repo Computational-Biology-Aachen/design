@@ -12,7 +12,7 @@
     The heading text (rendered uppercased).
   - `color?: "dark" | "light" | "primary" | "secondary"`
     Heading colour. Defaults to `"dark"`.
-  - `styleVars?: {}`
+  - `styleVars?: { [key: string]: string }`
     Optional CSS custom property overrides applied via inline style.
 
   ### Example
@@ -29,7 +29,7 @@
     n: string;
     title: string;
     color?: "dark" | "light" | "primary" | "secondary";
-    styleVars?: {};
+    styleVars?: { [key: string]: string };
   }
 
   let {

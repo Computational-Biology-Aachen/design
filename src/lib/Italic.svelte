@@ -8,7 +8,7 @@
 
   - `children: Snippet`
     The inline content to italicize.
-  - `styleVars?: {}`
+  - `styleVars?: { [key: string]: string }`
     No overrideable CSS properties. Present for API consistency.
 
   ### Example
@@ -25,7 +25,7 @@
     styleVars = {},
   }: {
     children: Snippet;
-    styleVars?: {};
+    styleVars?: { [key: string]: string };
   } = $props();
 
   let inlineStyle = $derived(

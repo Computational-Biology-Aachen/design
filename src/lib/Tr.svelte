@@ -8,8 +8,8 @@
 
   - `children: Snippet`
     The [[Th]] / [[Td]] cells.
-  - `styleVars?: {}`
-    Reserved for future CSS custom property overrides.
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
   - `...rest`
     Additional attributes spread onto the `<tr>` element.
 -->
@@ -22,12 +22,21 @@
     ...rest
   }: {
     children: Snippet;
-    styleVars?: {};
+    styleVars?: { [key: string]: string };
     [key: string]: unknown;
   } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<tr {...rest}>
+<tr
+  {...rest}
+  style={inlineStyle}
+>
   {@render children()}
 </tr>
 

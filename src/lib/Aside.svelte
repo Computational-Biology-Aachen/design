@@ -7,7 +7,7 @@
 
   - `children: Snippet`
     The aside content.
-  - `styleVars?: {}`
+  - `styleVars?: { [key: string]: string }`
     Optional CSS custom property overrides applied via inline style.
 
   ### Example
@@ -21,7 +21,7 @@
 
   interface Props {
     children: Snippet;
-    styleVars?: {};
+    styleVars?: { [key: string]: string };
   }
 
   let { children, styleVars = {} }: Props = $props();

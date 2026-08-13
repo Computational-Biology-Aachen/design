@@ -37,7 +37,13 @@ export default ts.config(
     files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        // docs/ examples aren't part of the shipped package and so aren't
+        // covered by .svelte-kit's generated tsconfig `include`; give them
+        // a default (non-project) program instead of excluding them from
+        // linting entirely.
+        projectService: {
+          allowDefaultProject: ["docs/css-parameterisation/*.svelte"],
+        },
         extraFileExtensions: [".svelte"],
         parser: ts.parser,
         svelteConfig,

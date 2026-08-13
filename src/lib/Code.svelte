@@ -10,7 +10,7 @@
     The code content.
   - `pad?: "0" | "1"`
     Padding variant. Defaults to `"0"`.
-  - `styleVars?: {}`
+  - `styleVars?: { [key: string]: string }`
     Optional CSS custom property overrides applied via inline style.
 
   ### Example
@@ -25,7 +25,7 @@
   interface Props {
     children: Snippet;
     pad?: "0" | "1";
-    styleVars?: {};
+    styleVars?: { [key: string]: string };
   }
 
   let { children, pad = "0", styleVars = {} }: Props = $props();

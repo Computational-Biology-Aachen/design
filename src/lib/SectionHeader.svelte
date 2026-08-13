@@ -8,13 +8,13 @@
   ### Props
 
   - `variant?: "light" | "surface" | "dark" | "primary" | "accent"`
-    Colour scheme. Defaults to `"light"`.
+    Colour scheme. Defaults to `"primary"`.
   - `width?: "full" | "narrow"`
     Inner column width. Defaults to `"full"`.
   - `gap?: "normal" | "large"`
     Vertical gap between children. Defaults to `"normal"`.
-  - `styleVars?: { innerMaxWidth?: string; innerGap?: string }`
-    Override CSS custom properties on the inner element.
+  - `styleVars?: { sectionBackgroundColor?: string; sectionTextColor?: string; innerMaxWidth?: string; innerGap?: string }`
+    Override CSS custom properties on the header/inner elements.
   - `children: Snippet`
     The header content.
 
@@ -31,7 +31,7 @@
   import type { Snippet } from "svelte";
 
   let {
-    variant = "light",
+    variant = "primary",
     width = "full",
     gap = "normal",
     styleVars = {},
@@ -41,12 +41,22 @@
     width?: "full" | "narrow";
     gap?: "normal" | "large";
     styleVars?: {
+      sectionBackgroundColor?: string;
+      sectionTextColor?: string;
       innerMaxWidth?: string;
       innerGap?: string;
     };
     children: Snippet;
   } = $props();
 
+  let sectionCssVars = $derived({
+    ...(styleVars.sectionBackgroundColor
+      ? { "--section-background-color": styleVars.sectionBackgroundColor }
+      : {}),
+    ...(styleVars.sectionTextColor
+      ? { "--section-text-color": styleVars.sectionTextColor }
+      : {}),
+  });
   let innerCssVars = $derived({
     ...(styleVars.innerMaxWidth
       ? { "--section-inner-max-width": styleVars.innerMaxWidth }
@@ -57,7 +67,12 @@
   });
 </script>
 
-<header>
+<header
+  class={variant}
+  style={Object.entries(sectionCssVars)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(";")}
+>
   <div
     class="inner max-width-{width} gap-{gap}"
     style={Object.entries(innerCssVars)
@@ -74,10 +89,33 @@
     flex-direction: column;
     justify-content: center;
     margin: 0;
-    background-color: var(--color-primary);
+    background-color: var(--section-background-color);
     padding: var(--space-8) var(--space-4);
     min-height: 12rem;
+    color: var(--section-text-color);
   }
+  /* section variants - Colors */
+  .light {
+    --section-background-color: var(--color-bg);
+    --section-text-color: var(--color-text);
+  }
+  .dark {
+    --section-background-color: var(--color-text);
+    --section-text-color: var(--color-text-inverse);
+  }
+  .surface {
+    --section-background-color: var(--color-surface);
+    --section-text-color: var(--color-text);
+  }
+  .primary {
+    --section-background-color: var(--color-primary);
+    --section-text-color: var(--color-text-inverse);
+  }
+  .accent {
+    --section-background-color: var(--color-accent);
+    --section-text-color: var(--color-text);
+  }
+
   .inner {
     display: flex;
     flex-direction: column;

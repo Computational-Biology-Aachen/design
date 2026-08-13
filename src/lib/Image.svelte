@@ -9,7 +9,7 @@
     Image source URL.
   - `alt?: string`
     Alternative text. Defaults to `"profile"`.
-  - `styleVars?: {}`
+  - `styleVars?: { [key: string]: string }`
     Optional CSS custom property overrides applied via inline style.
 
   ### Example
@@ -22,7 +22,7 @@
   interface Props {
     src: string;
     alt?: string;
-    styleVars?: {};
+    styleVars?: { [key: string]: string };
   }
 
   let { src, alt = "profile", styleVars = {} }: Props = $props();

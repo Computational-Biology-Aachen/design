@@ -8,8 +8,8 @@
 
   - `children: Snippet`
     The inline content to render as superscript.
-  - `styleVars?: {}`
-    CSS custom property overrides (reserved for future use).
+  - `styleVars?: { [key: string]: string }`
+    Optional CSS custom property overrides applied via inline style.
 
   ### Example
 
@@ -25,11 +25,17 @@
     styleVars = {},
   }: {
     children: Snippet;
-    styleVars?: {};
+    styleVars?: { [key: string]: string };
   } = $props();
+
+  let inlineStyle = $derived(
+    Object.entries(styleVars)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(";"),
+  );
 </script>
 
-<sup>
+<sup style={inlineStyle}>
   {@render children()}
 </sup>
 
