@@ -33,6 +33,35 @@
   ```svelte
   <LineChart {data} yLabel="Concentration" loading={isRunning} />
   ```
+
+  ### Known issue: jumpy/redrawing charts under fast, repeated `data` updates
+
+  For a consumer that reassigns `data` frequently (e.g. once per progress tick
+  of a running fit, several times a second) with `lineDisplay` left at its
+  default `"current"`, this component currently looks broken: the chart visibly
+  jumps or appears to fully redraw on every update instead of smoothly moving.
+  Two distinct causes, both already understood and fixed once (see
+  `pages/mxl-web/src/lib/LineChart.svelte`, a local fork used by `Fit.svelte`
+  for exactly this reason — reapply from there rather than re-deriving):
+
+  1. **The mount attachment (`myChart`) reads `data` directly**, so every new
+     `data` reference re-runs the whole attachment — `chart.destroy()` +
+     `new Chart(...)` — instead of just updating. Fix: read `data` via
+     `untrack()` in the attachment so it only fires once (plus on genuine
+     structural prop changes like `xScale`/`phases`), and let the `$effect`
+     below own all `data`-driven updates.
+  2. Even with (1) fixed, calling `chart.update()` (default tweened animation)
+     on every tick still looks jumpy: Chart.js restarts its animation clock on
+     every `update()` call
+     ([chartjs/Chart.js#6104](https://github.com/chartjs/Chart.js/issues/6104)),
+     so updates arriving faster than the animation duration keep interrupting
+     each other and points visibly snap back mid-tween. Fix: call
+     `chart.update("none")` for the `"current"`-mode branch too (the
+     `lineDisplay !== "current"` branch already does this).
+
+  Neither fix has been applied here yet — deliberately scoped to mxl-web only
+  until proven safe for every consumer of this shared component (see the fork's
+  own header comment for the reasoning).
 -->
 <script lang="ts">
   import Chart, { type ChartData } from "chart.js/auto";
@@ -108,6 +137,15 @@
       : {}),
   });
 
+  // `lineDisplay === "current"` (the default) is skipped here and falls
+  // through to the mount attachment below re-running on every `data` change
+  // instead — which destroys and recreates the whole Chart.js instance. Fine
+  // for occasional updates, but see the "Known issue" section in this file's
+  // top docstring if a consumer needs to reassign `data` frequently (e.g.
+  // several times a second, as a running fit's progress callback does) —
+  // that destroy/recreate plus `chart.update()`'s tweened-animation restart
+  // (Chart.js#6104) is what makes fast updates look jumpy, and the fix is
+  // already implemented in `pages/mxl-web/src/lib/LineChart.svelte`.
   $effect(() => {
     const ch = chartInstance;
     if (!ch || lineDisplay === "current") return;
@@ -189,6 +227,13 @@
     },
   };
 
+  // Reads `data` directly (tracked), so under Svelte 5 attachment semantics
+  // this whole body — including `chart.destroy()` in the cleanup below —
+  // re-runs on every new `data` reference, not just on mount. See the "Known
+  // issue" note in this file's top docstring: wrapping this read in
+  // `untrack()` and moving update handling into the `$effect` above (for
+  // `lineDisplay === "current"` too) is the fix, already applied in
+  // `pages/mxl-web/src/lib/LineChart.svelte`.
   const myChart: Attachment = (canvas) => {
     const chart = new Chart(canvas as HTMLCanvasElement, {
       type: "line",
