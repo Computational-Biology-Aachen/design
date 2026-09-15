@@ -29,6 +29,7 @@
   let optVal = $state(1.0);
   let optCond = $state(true);
   let checkVal = $state(true);
+  let checkErrorVal = $state(false);
   let choiceVal = $state("rk45");
   let compareVal = $state(true);
 </script>
@@ -58,6 +59,24 @@
   bind:value={myString}
 />`}</code
         ></pre>
+
+      <h3>Error state</h3>
+      <div class="preview">
+        <InputText
+          id="demo-text-error"
+          label="Font family"
+          bind:value={textVal}
+          error="This field is required"
+        />
+      </div>
+      <pre><code
+          >{`<InputText
+  id="font-family"
+  label="Font family"
+  bind:value={myString}
+  error="This field is required"
+/>`}</code
+        ></pre>
     </ShowcaseSection>
 
     <ShowcaseSection
@@ -78,6 +97,24 @@
   id="step-count"
   label="Step count"
   bind:value={myNumber}
+/>`}</code
+        ></pre>
+
+      <h3>Error state</h3>
+      <div class="preview">
+        <InputNumber
+          id="demo-num-error"
+          label="Step count"
+          bind:value={numVal}
+          error="Must be greater than 0"
+        />
+      </div>
+      <pre><code
+          >{`<InputNumber
+  id="step-count"
+  label="Step count"
+  bind:value={myNumber}
+  error="Must be greater than 0"
 />`}</code
         ></pre>
     </ShowcaseSection>
@@ -158,6 +195,24 @@
   bind:checked={myBool}
 />
 <InputCheckbox ... border="transparent" />`}</code
+        ></pre>
+
+      <h3>Error state</h3>
+      <div class="preview">
+        <InputCheckbox
+          id="demo-check-error"
+          label="Accept terms"
+          bind:checked={checkErrorVal}
+          error="You must accept the terms to continue"
+        />
+      </div>
+      <pre><code
+          >{`<InputCheckbox
+  id="accept-terms"
+  label="Accept terms"
+  bind:checked={myBool}
+  error="You must accept the terms to continue"
+/>`}</code
         ></pre>
     </ShowcaseSection>
 

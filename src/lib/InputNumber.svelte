@@ -106,6 +106,7 @@
   <p
     id="{id}-error"
     class="error-message"
+    aria-live="polite"
   >
     {error}
   </p>

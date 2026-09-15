@@ -85,6 +85,7 @@
   <p
     id="{id}-error"
     class="error-message"
+    aria-live="polite"
   >
     {error}
   </p>
@@ -112,7 +113,11 @@
   }
 
   .error {
+    /* border-color alone isn't reliably rendered on a native checkbox
+       across engines; outline is, so it carries the visible signal. */
     border-color: var(--color-danger);
+    outline: 2px solid var(--color-danger);
+    outline-offset: 2px;
   }
 
   .error-message {

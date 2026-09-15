@@ -1,23 +1,28 @@
 <script lang="ts">
   import { base } from "$app/paths";
+  import * as Lib from "$lib/index.js";
 
+  // Each count is the number of distinct components that page actually
+  // imports from $lib/index.js (excluding PageNav, which every category
+  // page includes as shared in-page nav chrome, not as demoed content).
+  // Re-derive with the same rule after editing a category page's imports.
   const groups = [
     {
       name: "Typography",
       href: `${base}/components/typography`,
-      count: 22,
+      count: 26,
       desc: "Headings, text, inline elements, links",
     },
     {
       name: "Cards",
       href: `${base}/components/cards`,
-      count: 10,
+      count: 9,
       desc: "Content cards for people, publications, software, models",
     },
     {
       name: "Layout",
       href: `${base}/components/layout`,
-      count: 11,
+      count: 8,
       desc: "Grid, row, flex, spacing containers",
     },
     {
@@ -29,13 +34,13 @@
     {
       name: "Interactive",
       href: `${base}/components/interactive`,
-      count: 9,
+      count: 10,
       desc: "Accordion, popover, slider, toggles",
     },
     {
       name: "Data & Science",
       href: `${base}/components/data`,
-      count: 8,
+      count: 10,
       desc: "Charts, tables, math rendering, model gallery",
     },
     {
@@ -53,7 +58,7 @@
     {
       name: "Buttons",
       href: `${base}/components/buttons`,
-      count: 5,
+      count: 6,
       desc: "Button variants: icon, menu, tab",
     },
     {
@@ -65,19 +70,25 @@
     {
       name: "Utilities",
       href: `${base}/components/utilities`,
-      count: 3,
+      count: 5,
       desc: "Icon, info box, footer",
     },
   ];
 
-  const totalCount = groups.reduce((sum, g) => sum + g.count, 0);
+  // Source of truth for the library's real size: the number of components
+  // actually exported from $lib/index.js at runtime (type-only exports
+  // vanish at compile time, so this can't drift the way a hand-typed
+  // number did). Category counts above are demoed-per-page, not a
+  // partition of this total — several components appear in more than one
+  // category's showcase, so they don't sum to it.
+  const totalCount = Object.keys(Lib).length;
 </script>
 
 <svelte:head><title>Components - CPBL Design</title></svelte:head>
 
 <div class="index-page">
   <h1>Components</h1>
-  <p class="subtitle">{totalCount} components across {groups.length} groups</p>
+  <p class="subtitle">{totalCount} components, organized into {groups.length} groups below</p>
 
   <div class="groups">
     {#each groups as g (g.name)}

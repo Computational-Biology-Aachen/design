@@ -55,7 +55,7 @@
 
 <div
   class="info-box {variant}"
-  role="note"
+  role={variant === "error" ? "alert" : "note"}
   style={toStyleString(infoBoxCssVars)}
 >
   <div class="header">
@@ -83,9 +83,13 @@
     display: flex;
     flex-direction: column;
     gap: var(--infobox-gap);
-    border-left: 4px solid var(--color-primary);
+    /* side-tab: a 1px hairline on 3 sides, a 4px solid accent on the left
+       ("caption bar" for a callout, echoing Card's top-border treatment).
+       border-left must come after the border shorthand or it gets reset
+       to the shorthand's width/color. */
     border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
-    border-left-width: 4px;
+    /* impeccable-disable-next-line side-tab -- documented pattern, see DESIGN.md Shapes section */
+    border-left: 4px solid var(--color-primary);
     border-radius: var(--radius-md);
     background: color-mix(in srgb, var(--color-primary) 8%, var(--color-bg));
     padding: var(--infobox-padding);

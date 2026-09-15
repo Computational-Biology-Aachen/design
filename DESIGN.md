@@ -192,6 +192,8 @@ Hybrid, and deliberately so: the page structure (`Section`, `Navbar`, form input
 
 Corners are soft but restrained: `--radius-sm` (4px) is nearly unused, `--radius-md` (8px) is the default for buttons and cards, `--radius-lg` (16px) shows up on inputs and a handful of larger containers, and `--radius-full` (pill) is reserved for pill/tag-shaped controls. Card's signature form move is its 8px-solid colored top border (`border-top: 8px var(--color-primary) solid`) — a deliberate flat color bar, not a gradient or line accent — acting as the card's "caption bar" and its only non-neutral chrome besides its background. Borders elsewhere are 1px hairlines (`--border`) or, for a small set of heavier-emphasis elements, a 2px solid or dashed treatment (`--border-heavy`, `--border-dashed`).
 
+**`InfoBox`'s side-tab** is the callout equivalent of Card's caption bar: a 1px hairline on all four sides (`color-mix(in srgb, <variant color> 25%, transparent)`) with a 4px solid accent on the left only, in the variant's full-strength color (petrol/orange/green/danger red). It's an intentional, variant-scoped pattern — not a stray inline override — so it's exempt from the "hairline borders elsewhere" default above; keep it to `InfoBox` rather than reusing a colored `border-left` as a generic callout/card treatment elsewhere in the system.
+
 ## Components
 
 Buttons, cards, and inputs are all precise and unshowy: modest 150ms transitions, no scale/bounce flourish anywhere except Card's deliberate 3% hover lift, confident through consistency rather than performance.
