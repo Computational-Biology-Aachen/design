@@ -20,7 +20,7 @@
   ### Example
 
   ```svelte
-  <ToggleAudience
+  <AudienceToggle
     audienceStore={store}
     options={[
       { value: "4bio", label: "For biologists" },
@@ -30,6 +30,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   type Audience = "4bio" | "4math";
   type AudienceStore = {
     audience: Audience;
@@ -59,11 +60,7 @@
       ? { "--toggle-btn-padding": styleVars.btnPadding }
       : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <div
@@ -89,12 +86,12 @@
     display: flex;
     gap: 0;
     border: 1px solid var(--color-border);
-    border-radius: 6px;
+    border-radius: var(--radius-md);
     overflow: hidden;
   }
 
   .toggle-btn {
-    --toggle-btn-font-size: 0.85rem;
+    --toggle-btn-font-size: var(--text-sm);
     --toggle-btn-padding: var(--space-1) var(--space-3);
     transition:
       background-color 0.15s,

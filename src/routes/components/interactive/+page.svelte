@@ -22,7 +22,6 @@
     { label: "Popover", id: "popover" },
     { label: "Slider", id: "slider" },
     { label: "Slider2", id: "slider2" },
-    { label: "ToggleAudience", id: "toggleaudience" },
     { label: "ToggleLanguage", id: "togglelanguage" },
     { label: "VideoTranscriptToggle", id: "videotranscripttoggle" },
   ];
@@ -219,7 +218,7 @@
   .demo-label {
     margin: var(--space-2) 0 0;
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
     font-family: var(--font-mono);
   }
 </style>

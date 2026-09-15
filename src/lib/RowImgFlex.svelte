@@ -4,7 +4,7 @@
   Lays children out in a flex row (wrapping, space-between) above 640px and a
   centred column on mobile, with an optional [[H3]] heading. Suited to a handful
   of logos or image tiles. See [[RowImgGrid]] for an equal-column grid and
-  [[RowImgScrolling]] for a marquee.
+  [[LogoBar]] for a marquee.
 
   ### Props
 
@@ -25,6 +25,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
   import H3 from "./H3.svelte";
 
@@ -38,11 +39,7 @@
     styleVars?: { [key: string]: string };
   } = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <section style={inlineStyle}>

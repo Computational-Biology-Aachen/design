@@ -24,13 +24,14 @@
   ### Example
 
   ```svelte
-  <TableParameter
+  <ParameterTable
     rows={[{ label: "k_cat", newVal: 1.2, oldVal: 1.0 }]}
     showOld
   />
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   interface ParamRow {
     label: string;
     newVal: string | number;
@@ -68,11 +69,7 @@
       ? { "--param-table-val-font-size": styleVars.valFontSize }
       : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <div
@@ -109,9 +106,9 @@
   }
 
   .param-table {
-    --param-table-font-size: 0.85rem;
+    --param-table-font-size: var(--text-sm);
     --param-table-cell-padding: 0.35rem 0.75rem;
-    --param-table-val-font-size: 0.8rem;
+    --param-table-val-font-size: var(--text-body);
     border-collapse: collapse;
     width: 100%;
     font-size: var(--param-table-font-size);

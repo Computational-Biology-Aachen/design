@@ -104,7 +104,7 @@
           <a href="/experiments">Experiments</a>
         </Sidebar>
         <div
-          style="padding: var(--space-4); color: var(--color-text-muted); font-size: 0.875rem;"
+          style="padding: var(--space-4); color: var(--color-text-muted); font-size: var(--text-sm);"
         >
           Page content goes here
         </div>
@@ -125,8 +125,8 @@
       <h3>Sidebar with audience toggle - used in comphot</h3>
       <div class="preview note">
         <Text color="secondary">
-          <strong>Sidebar2</strong> combines a navigation link list with a
-          <code>ToggleAudience</code> widget. It requires <code>navLinks</code>,
+          <strong>Sidebar2</strong> combines a navigation link list with an
+          <code>AudienceToggle</code> widget. It requires <code>navLinks</code>,
           <code>audienceStore</code>, and <code>audienceOptions</code> props. It is
           site-specific to comphot.
         </Text>
@@ -189,6 +189,6 @@
   }
 
   .note {
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
 </style>

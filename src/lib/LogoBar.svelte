@@ -24,11 +24,12 @@
   ### Example
 
   ```svelte
-  <RowImgScrolling logos={partnerLogos} max={6} />
+  <LogoBar logos={partnerLogos} max={6} />
   ```
 -->
 <script lang="ts">
   import { onMount } from "svelte";
+  import { toStyleString } from "./utils";
 
   type Logo = { src: string; href: string; alt: string; height?: string };
 
@@ -91,12 +92,10 @@
   bind:this={container}
   class="logo-bar"
   class:scrolling={scrolling}
-  style={Object.entries({
+  style={toStyleString({
     ...cssVars,
     ...(scrolling ? { "--duration": `${duration}s` } : {}),
-  })
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
+  })}
 >
   {#if scrolling}
     <div class="track">
@@ -186,8 +185,8 @@
     --row-img-scrolling-logo-height: 5rem;
     display: block;
     transition:
-      transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      transform var(--transition),
+      box-shadow var(--transition);
     width: auto;
     max-width: none;
     height: var(--row-img-scrolling-logo-height);

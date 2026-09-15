@@ -22,7 +22,7 @@
     { label: "SimChart", id: "simchart" },
     { label: "Math", id: "math" },
     { label: "TableAlumni", id: "tablealumni" },
-    { label: "TableParameter", id: "tableparameter" },
+    { label: "ParameterTable", id: "parametertable" },
     { label: "LiteratureExpander", id: "literatureexpander" },
     { label: "ModelGallery", id: "modelgallery" },
     { label: "LogoBar", id: "logobar" },
@@ -275,8 +275,8 @@ const data: ChartData = {
     </ShowcaseSection>
 
     <ShowcaseSection
-      id="tableparameter"
-      title="TableParameter"
+      id="parametertable"
+      title="ParameterTable"
     >
       <h3>
         Parameter comparison table - shows new (and optionally old) values
@@ -387,6 +387,6 @@ const data: ChartData = {
 
 <style>
   .note {
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
 </style>

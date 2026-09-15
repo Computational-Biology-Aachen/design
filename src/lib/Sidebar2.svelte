@@ -2,7 +2,7 @@
   @component
 
   A navigation sidebar that renders links from a `navLinks` list (with automatic
-  active-state detection) plus a [[ToggleAudience]] control, collapsing to a
+  active-state detection) plus an [[AudienceToggle]] control, collapsing to a
   hamburger panel below 768px. See [[Sidebar]] for the children-driven variant.
 
   ### Props
@@ -25,10 +25,11 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import { base } from "$app/paths";
   import { page } from "$app/state";
   import type { Snippet } from "svelte";
-  import ToggleAudience from "./ToggleAudience.svelte";
+  import AudienceToggle from "./AudienceToggle.svelte";
 
   type Audience = "4bio" | "4math";
   type AudienceStore = {
@@ -61,11 +62,7 @@
     menuOpen = !menuOpen;
   }
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <aside
@@ -86,7 +83,7 @@
     class="sidebar-nav"
     aria-label="Main navigation"
   >
-    <ToggleAudience
+    <AudienceToggle
       audienceStore={audienceStore}
       options={audienceOptions}
     />
@@ -119,7 +116,7 @@
     border-right: 1px solid var(--color-border);
     background-color: var(--color-surface);
     padding: var(--space-6) 0 var(--space-4);
-    width: var(--sidebar-width);
+    width: var(--sidebar-width, 220px);
     min-height: calc(100vh - var(--nav-height));
   }
 
@@ -156,7 +153,7 @@
     padding: var(--space-2) var(--space-6);
     color: var(--color-text-muted);
     font-weight: 400;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     text-decoration: none;
   }
 

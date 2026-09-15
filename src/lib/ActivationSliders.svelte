@@ -22,7 +22,7 @@
   ### Example
 
   ```svelte
-  <SliderActivation
+  <ActivationSliders
     bind:activationIdx={aIdx}
     bind:deactivationIdx={dIdx}
     activationMultiplier={aMul}
@@ -33,6 +33,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   interface Props {
     activationIdx: number;
     deactivationIdx: number;
@@ -53,11 +54,7 @@
     styleVars = {},
   }: Props = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <label

@@ -14,13 +14,14 @@
   ### Example
 
   ```svelte
-  <Box>
+  <Div>
     <H2>Title</H2>
     <Text>Body copy.</Text>
-  </Box>
+  </Div>
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
   let {
     styleVars = {},
@@ -37,11 +38,7 @@
   });
 </script>
 
-<div
-  style={Object.entries(boxCssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
->
+<div style={toStyleString(boxCssVars)}>
   {@render children()}
 </div>
 
