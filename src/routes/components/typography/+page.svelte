@@ -91,16 +91,18 @@
       <h3>Color variants</h3>
       <div class="preview">
         <Text>Default text - color="dark"</Text>
-        <Text color="primary">Primary colored text</Text>
         <Text color="secondary">Secondary colored text</Text>
       </div>
       <div class="preview-primary">
         <Text color="light">Light text on dark background</Text>
+        <Text color="on-primary"
+          >On-primary text, for a petrol Section/Card</Text
+        >
       </div>
       <pre><code
           >{`<Text>Default text</Text>
 <Text color="light">Light text</Text>
-<Text color="primary">Primary colored text</Text>
+<Text color="on-primary">On-primary text</Text>
 <Text color="secondary">Secondary colored text</Text>`}</code
         ></pre>
     </ShowcaseSection>

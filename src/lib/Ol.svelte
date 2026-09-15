@@ -6,8 +6,9 @@
 
   ### Props
 
-  - `color?: "dark" | "light" | "primary" | "secondary"`
-    Text colour. Defaults to `"dark"`.
+  - `color?: "dark" | "light" | "on-primary" | "secondary"`
+    Text colour. Defaults to `"dark"`. `"on-primary"` is Paper White, for text
+    sitting on a `Section`/`Card` with a `"primary"` (petrol) background.
   - `columns?: "one" | "two"`
     Column layout on wide viewports. Defaults to `"one"`.
   - `children: Snippet`
@@ -25,6 +26,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -33,7 +35,7 @@
     children,
     styleVars = {},
   }: {
-    color?: "dark" | "light" | "primary" | "secondary";
+    color?: "dark" | "light" | "on-primary" | "secondary";
     columns?: "one" | "two";
     children: Snippet;
     styleVars?: { paddingBottom?: string; paddingLeft?: string };
@@ -47,11 +49,7 @@
       ? { "--ol-padding-left": styleVars.paddingLeft }
       : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <ol
@@ -83,7 +81,7 @@
   .light {
     color: var(--color-bg);
   }
-  .primary {
+  .on-primary {
     color: var(--color-surface);
   }
   .secondary {

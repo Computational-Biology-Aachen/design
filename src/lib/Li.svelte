@@ -6,8 +6,9 @@
 
   ### Props
 
-  - `color?: "inherit" | "dark" | "light" | "primary" | "secondary"`
-    Text colour. Defaults to `"inherit"`.
+  - `color?: "inherit" | "dark" | "light" | "on-primary" | "secondary"`
+    Text colour. Defaults to `"inherit"`. `"on-primary"` is Paper White, for
+    text sitting on a `Section`/`Card` with a `"primary"` (petrol) background.
   - `children: Snippet`
     The list-item content.
   - `styleVars?: { color?: string }`
@@ -23,6 +24,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -30,7 +32,7 @@
     children,
     styleVars = {},
   }: {
-    color?: "inherit" | "dark" | "light" | "primary" | "secondary";
+    color?: "inherit" | "dark" | "light" | "on-primary" | "secondary";
     children: Snippet;
     styleVars?: { color?: string };
   } = $props();
@@ -38,11 +40,7 @@
   let cssVars = $derived({
     ...(styleVars.color ? { "--li-color": styleVars.color } : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <li
@@ -62,7 +60,7 @@
   .light {
     color: var(--color-bg);
   }
-  .primary {
+  .on-primary {
     color: var(--color-surface);
   }
   .secondary {

@@ -9,8 +9,9 @@
 
   - `children: Snippet`
     The paragraph content.
-  - `color?: "inherit" | "black" | "white" | "dark" | "light" | "primary" | "secondary"`
-    Text colour. Defaults to `"inherit"`.
+  - `color?: "inherit" | "black" | "white" | "dark" | "light" | "on-primary" | "secondary"`
+    Text colour. Defaults to `"inherit"`. `"on-primary"` is Paper White, for text
+    sitting on a `Section`/`Card` with a `"primary"` (petrol) background.
   - `styleVars?: { fontSize?: string }`
     Override CSS custom properties for the paragraph.
 
@@ -21,6 +22,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -35,7 +37,7 @@
       | "white"
       | "dark"
       | "light"
-      | "primary"
+      | "on-primary"
       | "secondary";
     styleVars?: { fontSize?: string };
   } = $props();
@@ -47,9 +49,7 @@
 
 <p
   class={`${color}`}
-  style={Object.entries(cssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
+  style={toStyleString(cssVars)}
 >
   {@render children()}
 </p>
@@ -78,7 +78,7 @@
   .light {
     color: var(--color-bg);
   }
-  .primary {
+  .on-primary {
     color: var(--color-surface);
   }
   .secondary {
