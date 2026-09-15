@@ -34,7 +34,7 @@
   import { setContext } from "svelte";
   import Button from "./Button.svelte";
   import Icon from "./Icon.svelte";
-  import { isString } from "./utils";
+  import { isString, toStyleString } from "./utils";
 
   let {
     label,
@@ -99,6 +99,12 @@
     }
   }
 
+  function handleDocumentKeydown(event: KeyboardEvent) {
+    if (open && event.key === "Escape") {
+      close();
+    }
+  }
+
   setContext("buttonMenu", { close });
 
   let menuCssVars = $derived({
@@ -109,14 +115,13 @@
       ? { "--menu-top-offset": styleVars.topOffset }
       : {}),
   });
-  let menuInlineStyle = $derived(
-    Object.entries(menuCssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let menuInlineStyle = $derived(toStyleString(menuCssVars));
 </script>
 
-<svelte:document onclick={handleDocumentClick} />
+<svelte:document
+  onclick={handleDocumentClick}
+  onkeydown={handleDocumentKeydown}
+/>
 
 <div
   class="wrap"
@@ -129,6 +134,8 @@
     href={href}
     variant={variant}
     onclick={toggle}
+    aria-haspopup="true"
+    aria-expanded={open}
   >
     {#if isString(label)}
       <span>{label}</span>
@@ -168,7 +175,7 @@
     right: 0;
     gap: var(--menu-gap);
     z-index: 20;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-md);
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--color-surface);

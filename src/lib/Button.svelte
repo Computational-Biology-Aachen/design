@@ -27,6 +27,9 @@
     The button label.
   - `styleVars?: { fontSize?: string; padding?: string; borderRadius?: string; lineHeight?: string }`
     Override the button's default CSS values.
+  - `...rest`
+    Any additional attributes (e.g. `aria-expanded`, `aria-haspopup`) are
+    spread onto the rendered `<button>`/`<a>`.
 
   ### Example
 
@@ -36,6 +39,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   interface Props {
@@ -55,6 +59,7 @@
       borderRadius?: string;
       lineHeight?: string;
     };
+    [key: string]: unknown;
   }
 
   let {
@@ -69,6 +74,7 @@
     onclick,
     children,
     styleVars = {},
+    ...rest
   }: Props = $props();
 
   let cssVars = $derived({
@@ -81,11 +87,7 @@
       ? { "--btn-line-height": styleVars.lineHeight }
       : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 {#if href}
@@ -95,6 +97,7 @@
     class:disabled={disabled}
     class:full-width={fullWidth}
     style={inlineStyle}
+    {...rest}
   >
     {#if loading}<span
         class="spinner"
@@ -112,6 +115,7 @@
     class={variant}
     class:full-width={fullWidth}
     style={inlineStyle}
+    {...rest}
   >
     {#if loading}<span
         class="spinner"
@@ -134,7 +138,6 @@
     gap: var(--space-2);
     transition: var(--transition);
     cursor: pointer;
-    outline: none;
     border: none;
     border-radius: var(--btn-border-radius);
     padding: var(--btn-padding);

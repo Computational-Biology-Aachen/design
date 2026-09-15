@@ -26,6 +26,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
   import { MediaQuery } from "svelte/reactivity";
 
@@ -48,17 +49,23 @@
   // svelte-ignore state_referenced_locally
   const small = new MediaQuery(`max-width: ${collapseAt}`);
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
+  let mobileOpen = $state(false);
+
+  function handleKeydown(event: KeyboardEvent) {
+    if (mobileOpen && event.key === "Escape") {
+      mobileOpen = false;
+    }
+  }
 </script>
 
 {#if small.current}
+  <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
   <details
     class="mobile"
     style={inlineStyle}
+    bind:open={mobileOpen}
+    onkeydown={handleKeydown}
   >
     <summary aria-label="Toggle navigation">☰</summary>
     <ul class="dropdown">

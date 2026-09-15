@@ -16,6 +16,10 @@
     The numeric value.
   - `border?: "transparent" | "solid"`
     Border style. Defaults to `"solid"`.
+  - `error?: string`
+    Validation message. When set, the border turns `--color-danger`, the
+    message renders below the field, and `aria-invalid`/`aria-describedby`
+    are wired up for assistive tech.
   - `styleVars?: { borderRadius?: string; backgroundColor?: string; padding?: string; fontSize?: string }`
     Override the default input styles via CSS custom properties.
 
@@ -26,6 +30,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import InlineGrid from "./InlineGrid.svelte";
   import Row from "./Row.svelte";
 
@@ -35,6 +40,7 @@
     value: number;
     border?: "transparent" | "solid";
     width?: "full" | "auto";
+    error?: string;
     styleVars?: {
       borderRadius?: string;
       backgroundColor?: string;
@@ -48,6 +54,7 @@
     value = $bindable(),
     border = "solid",
     width = "full",
+    error,
     styleVars = {},
   }: Props = $props();
 
@@ -61,11 +68,7 @@
     ...(styleVars.padding ? { "--input-padding": styleVars.padding } : {}),
     ...(styleVars.fontSize ? { "--input-font-size": styleVars.fontSize } : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 {#if label}
@@ -73,10 +76,13 @@
     <label for={id}>{label}</label>
     <input
       id={id}
-      class={border}
+      class="border-{border}"
+      class:error={Boolean(error)}
       type="number"
       bind:value={value}
       style={inlineStyle}
+      aria-invalid={error ? "true" : undefined}
+      aria-describedby={error ? `${id}-error` : undefined}
     />
   </InlineGrid>
 {:else}
@@ -87,11 +93,22 @@
     <input
       id={id}
       class="border-{border} width-{width}"
+      class:error={Boolean(error)}
       type="number"
       bind:value={value}
       style={inlineStyle}
+      aria-invalid={error ? "true" : undefined}
+      aria-describedby={error ? `${id}-error` : undefined}
     />
   </Row>
+{/if}
+{#if error}
+  <p
+    id="{id}-error"
+    class="error-message"
+  >
+    {error}
+  </p>
 {/if}
 
 <style>
@@ -99,7 +116,7 @@
     --input-border-radius: var(--radius-lg);
     --input-background-color: transparent;
     --input-padding: 0.35rem 0.5rem;
-    --input-font-size: 0.875rem;
+    --input-font-size: var(--text-sm);
     border-radius: var(--input-border-radius);
     background-color: var(--input-background-color);
     padding: var(--input-padding);
@@ -124,5 +141,15 @@
 
   .width-auto {
     width: auto;
+  }
+
+  .error {
+    border-color: var(--color-danger);
+  }
+
+  .error-message {
+    margin-top: var(--space-1);
+    color: var(--color-danger);
+    font-size: var(--text-callout);
   }
 </style>

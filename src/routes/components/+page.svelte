@@ -28,7 +28,7 @@
     },
     {
       name: "Interactive",
-      href: "/components/interactive",
+      href: `${base}/components/interactive`,
       count: 9,
       desc: "Accordion, popover, slider, toggles",
     },
@@ -58,7 +58,7 @@
     },
     {
       name: "Media",
-      href: "/components/media",
+      href: `${base}/components/media`,
       count: 4,
       desc: "Images and video embeds",
     },
@@ -69,13 +69,15 @@
       desc: "Icon, info box, footer",
     },
   ];
+
+  const totalCount = groups.reduce((sum, g) => sum + g.count, 0);
 </script>
 
 <svelte:head><title>Components - CPBL Design</title></svelte:head>
 
 <div class="index-page">
   <h1>Components</h1>
-  <p class="subtitle">96 components across 11 groups</p>
+  <p class="subtitle">{totalCount} components across {groups.length} groups</p>
 
   <div class="groups">
     {#each groups as g (g.name)}
@@ -154,6 +156,6 @@
   .desc {
     margin-top: var(--space-1);
     color: var(--color-text-muted);
-    font-size: 0.8125rem;
+    font-size: var(--text-body);
   }
 </style>
