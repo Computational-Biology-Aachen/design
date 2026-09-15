@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-15T10:18:42Z",
+  "title": "Design System: CPBL Design System",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Deep Petrol",
+        "canonical": "rgb(0, 97, 101)",
+        "tonalRamp": [
+          "#00494c",
+          "#00898f",
+          "#00c4cc",
+          "#0af5ff",
+          "#47f8ff",
+          "#85faff",
+          "#b8fcff",
+          "#e5feff"
+        ]
+      },
+      "accent": {
+        "role": "tertiary",
+        "displayName": "Signal Orange",
+        "canonical": "rgb(246, 168, 0)",
+        "tonalRamp": [
+          "#4c3400",
+          "#8f6200",
+          "#cc8b00",
+          "#ffb10a",
+          "#ffc547",
+          "#ffd885",
+          "#ffe8b8",
+          "#fff7e5"
+        ]
+      },
+      "chart-violet": {
+        "role": "chart-series",
+        "displayName": "Chart Violet",
+        "canonical": "rgb(97, 33, 88)"
+      },
+      "chart-blue": {
+        "role": "chart-series",
+        "displayName": "Chart Blue",
+        "canonical": "rgb(0, 84, 159)"
+      },
+      "chart-magenta": {
+        "role": "chart-series",
+        "displayName": "Chart Magenta",
+        "canonical": "rgb(227, 0, 102)"
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Off-White",
+        "canonical": "#f6f6f8"
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Paper White",
+        "canonical": "#ffffff"
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Hairline Border",
+        "canonical": "#dde1e9"
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Ink Black",
+        "canonical": "#1a1d23"
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Muted Grey",
+        "canonical": "#727682"
+      },
+      "text-inverse": {
+        "role": "neutral",
+        "displayName": "Paper White (inverse text)",
+        "canonical": "#ffffff"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Deep Slate",
+        "canonical": "rgb(15 23 42)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "H1 — page-level headings only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "H2 — major section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "H3 — subsection headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraph copy (Text component); justified with automatic hyphenation."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Interactive/UI text — buttons, nav items."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ambient-sm",
+        "value": "1px 1px 3px 0 rgba(0,0,0,0.08)",
+        "purpose": "Minor separation; rarely used."
+      },
+      {
+        "name": "ambient-md",
+        "value": "2px 2px 6px 0 rgba(0,0,0,0.1)",
+        "purpose": "General-purpose lifted-element shadow (e.g. popovers)."
+      },
+      {
+        "name": "brand-glow",
+        "value": "2px 2px 6px 0 rgb(0 97 101 / 40%)",
+        "purpose": "Primary button shadow — colored, not neutral."
+      },
+      {
+        "name": "card-rest",
+        "value": "0px 18px 36px -18px rgba(0,0,0,0.1), 0px 30px 45px -30px rgba(50,50,93,0.25)",
+        "purpose": "Card at rest — soft diffuse two-layer shadow."
+      },
+      {
+        "name": "card-hover",
+        "value": "0px 18px 36px -18px rgba(0,0,0,0.4), 0px 30px 45px -30px rgba(50,50,93,0.4)",
+        "purpose": "Card on hover, paired with scale(1.03)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "transition-standard",
+        "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "The single transition speed/easing used system-wide for hover and state changes."
+      },
+      {
+        "name": "card-hover-scale",
+        "value": "transform: scale(1.03); transition: transform 0.3s ease;",
+        "purpose": "Card's signature hover lift — the one deliberate exception to the standard transition."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Filled call-to-action button — Deep Petrol background, brand-colored glow shadow.",
+      "html": "<button class=\"ds-btn-primary\">Save</button>",
+      "css": ".ds-btn-primary { display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem; transition: 150ms cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; outline: none; border: none; border-radius: 0.5rem; padding: 0.5rem 1.5rem; font-weight: 500; font-size: 0.9375rem; line-height: 1.5; font-family: 'Space Grotesk', system-ui, sans-serif; white-space: nowrap; box-shadow: 2px 2px 6px 0 rgb(0 97 101 / 40%); background-color: rgb(0, 97, 101); color: #ffffff; } .ds-btn-primary:hover { box-shadow: inset 0 0 0 10em rgba(0,0,0,0.1); } .ds-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined button — transparent fill, Deep Petrol border and text.",
+      "html": "<button class=\"ds-btn-secondary\">Cancel</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem; transition: 150ms cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; outline: none; border-radius: 0.5rem; padding: 0.5rem 1.5rem; font-weight: 500; font-size: 0.9375rem; font-family: 'Space Grotesk', system-ui, sans-serif; border: 1px solid rgb(0, 97, 101); background-color: transparent; color: rgb(0, 97, 101); } .ds-btn-secondary:hover { background-color: #ffffff; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card-primary",
+      "description": "Elevated content card with a colored top border, soft shadow, and a 3% hover lift.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-inner\"><h3 style=\"font-family:'Space Grotesk',sans-serif;font-size:1.5rem;margin-bottom:0.5rem;\">Project</h3><p style=\"font-family:'Space Grotesk',sans-serif;color:#1a1d23;\">Description of the card content goes here.</p></div></div>",
+      "css": ".ds-card { transform: scale(1); transition: transform 0.3s ease; box-shadow: 0px 18px 36px -18px rgba(0,0,0,0.1), 0px 30px 45px -30px rgba(50,50,93,0.25); border-top: 8px solid rgb(0, 97, 101); border-radius: 8px; padding: 2rem 2.5rem; background-color: color-mix(in srgb, #f6f6f8, white 10%); width: 26rem; height: 26rem; } .ds-card:hover { transform: scale(1.03); box-shadow: 0px 18px 36px -18px rgba(0,0,0,0.4), 0px 30px 45px -30px rgba(50,50,93,0.4); } .ds-card-inner { display: flex; flex-direction: column; justify-content: space-around; height: 100%; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-text",
+      "description": "Labelled text field — transparent fill, large radius, hairline border.",
+      "html": "<div class=\"ds-input-group\"><label for=\"ds-name\" class=\"ds-input-label\">Model name</label><input id=\"ds-name\" class=\"ds-input\" type=\"text\" placeholder=\"e.g. glycolysis-v2\" /></div>",
+      "css": ".ds-input-group { display: grid; gap: 0.5rem; font-family: 'Space Grotesk', system-ui, sans-serif; } .ds-input-label { font-size: 0.875rem; color: #1a1d23; } .ds-input { border: 1px solid #dde1e9; border-radius: 1rem; background-color: transparent; padding: 0.35rem 0.5rem; width: 100%; font-size: 0.875rem; font-family: inherit; } .ds-input:focus-visible { outline: 2px solid rgb(0, 97, 101); outline-offset: 1px; }"
+    },
+    {
+      "name": "Nav Item",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Navigation link — hover fills Paper White and turns Deep Petrol; active state is Deep Petrol + weight 600, no background.",
+      "html": "<nav class=\"ds-navbar\"><a href=\"#\" class=\"ds-nav-item\">Team</a><a href=\"#\" class=\"ds-nav-item ds-nav-item-active\">Publications</a></nav>",
+      "css": ".ds-navbar { display: flex; gap: 0.5rem; font-family: 'Space Grotesk', system-ui, sans-serif; } .ds-nav-item { display: block; transition: 150ms cubic-bezier(0.4, 0, 0.2, 1); border-radius: 0.5rem; padding: 0.5rem 0.75rem; color: #1a1d23; font-weight: 500; font-size: 0.9375rem; text-decoration: none; } .ds-nav-item:hover { background-color: #ffffff; color: rgb(0, 97, 101); } .ds-nav-item-active { color: rgb(0, 97, 101); font-weight: 600; }"
+    },
+    {
+      "name": "Section Band",
+      "kind": "custom",
+      "refersTo": "section",
+      "description": "Full-width color band with a centered max-width inner column — the page-composition primitive.",
+      "html": "<section class=\"ds-section\"><div class=\"ds-section-inner\"><h2 style=\"font-family:'Space Grotesk',sans-serif;font-size:1.75rem;font-weight:700;\">About</h2><p style=\"font-family:'Space Grotesk',sans-serif;\">Section content.</p></div></section>",
+      "css": ".ds-section { display: flex; flex-direction: column; justify-content: center; background-color: #f6f6f8; padding: 0 1rem; width: 100%; min-height: 12rem; color: #1a1d23; } .ds-section-inner { display: flex; flex-direction: column; gap: 1rem; margin: 0 auto; padding-top: 3rem; padding-bottom: 3rem; width: 100%; max-width: 90rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Journal Figure",
+    "overview": "The system reads like a well-typeset scientific figure: precise, credible, quietly technical, with data and content doing the talking rather than the chrome around them. Structure is institutional and flat — sections are solid color bands with no drop shadow, exactly the way a paper's sections sit on a page — while the one thing that gets to lift off the surface is a Card, which behaves like a figure panel: a colored top rule (the \"caption bar\"), a soft shadow, and a 3% scale-up on hover that says \"this is a distinct, selectable unit\" without any bounce or flourish. Everything else — buttons, inputs, nav — moves on a single fast 150ms ease and otherwise sits still.\n\nThe palette is RWTH's official university palette, held loosely rather than as a compliance obligation: Deep Petrol carries nearly every interactive and brand moment, Signal Orange is reserved for the rare highlight, and three more RWTH hues (violet, blue, magenta) exist specifically as an ordered chart-series palette, not as UI decoration. Confirmed anti-references: no playful/whimsical illustration, no brutalist or maximalist treatment, no marketing-agency gloss — this is a lab tool for researchers and students, not a campaign site.",
+    "keyCharacteristics": [
+      "Flat by default; lift is reserved for Card as a signal of \"distinct, interactive content.\"",
+      "One accent color (Signal Orange), used sparingly against a petrol-and-neutral base.",
+      "Space Grotesk throughout, in one weight pairing (400 body / 700 headings / 500 labels) — no secondary display face.",
+      "A fixed, unmodified 4-color ordered palette (petrol, violet, blue, magenta) reserved for chart/plot series, never for UI chrome.",
+      "Fast, single-speed motion (150ms cubic-bezier(0.4,0,0.2,1)) everywhere; no per-component custom easing."
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Signal Orange appears in at most one place per view — a single highlighted card, a single accent section — never paired with itself twice on screen. Its rarity is what makes it register as a signal rather than decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Series-Colors-Stay-In-Charts Rule",
+        "body": "The four ordered chart colors (petrol, violet, blue, magenta) are a fixed palette for plot/data series only. Never repurpose one as a UI accent color outside of LineChart/SimChart.",
+        "section": "colors"
+      },
+      {
+        "name": "The Bold-Heading Rule",
+        "body": "Every heading level (H1–H6) uses the browser-default bold weight with no explicit font-weight override; body and label text stay at 400/500.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-Unless-Selectable Rule",
+        "body": "Nothing gets a shadow just for being a container. A shadow (or the colored button glow) only appears on an element the user is meant to notice as its own discrete, often-interactive unit — Card, primary Button, floating surfaces like Popover.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep Signal Orange to one appearance per view (The One Accent Rule).",
+      "Do reserve shadows for Card, primary Button, and genuinely floating surfaces — never for a static container (The Flat-Unless-Selectable Rule).",
+      "Do use the four ordered chart colors (petrol/violet/blue/magenta) only inside LineChart/SimChart, in that order, for data series (The Series-Colors-Stay-In-Charts Rule).",
+      "Do use bold weight exclusively for H1–H6; keep body/label text at 400/500 (The Bold-Heading Rule).",
+      "Do compose pages as a vertical stack of Section bands rather than freeform layout."
+    ],
+    "donts": [
+      "Don't introduce a second display typeface — Space Grotesk carries every role in this system.",
+      "Don't give Section, Navbar, or form inputs a resting shadow; flat is the default state.",
+      "Don't add bounce, spring, or multi-step easing to hover/transition states — the system uses one transition everywhere (150ms cubic-bezier(0.4, 0, 0.2, 1)).",
+      "Don't treat RWTH-derived colors as a compliance boundary — the palette is a starting aesthetic the lab can diverge from, not an official corporate-design lock."
+    ]
+  }
+}

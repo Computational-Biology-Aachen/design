@@ -13,3 +13,7 @@ build/
 
 # Local Claude Code settings
 .claude/
+
+# Impeccable design-tooling state (generated cache, not source)
+.impeccable/hook.cache.json
+.impeccable/critique/
