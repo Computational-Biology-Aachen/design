@@ -29,7 +29,7 @@
   ```
 -->
 <script lang="ts">
-  import type { Variant } from "$lib/variants";
+  import type { Variant } from "./variants";
   import type { Snippet } from "svelte";
 
   let {
