@@ -24,6 +24,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
   import Bold from "./Bold.svelte";
 
@@ -55,9 +56,7 @@
 <div
   class="info-box {variant}"
   role="note"
-  style={Object.entries(infoBoxCssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
+  style={toStyleString(infoBoxCssVars)}
 >
   <div class="header">
     <span
@@ -123,7 +122,7 @@
   }
 
   .error {
-    --_err: #c0392b;
+    --_err: var(--color-danger);
     border-color: color-mix(in srgb, var(--_err) 25%, transparent);
     border-left-color: var(--_err);
     background: color-mix(in srgb, var(--_err) 8%, var(--color-bg));
@@ -143,6 +142,6 @@
     color: var(--rwth-green);
   }
   .error .info-icon {
-    color: #c0392b;
+    color: var(--color-danger);
   }
 </style>

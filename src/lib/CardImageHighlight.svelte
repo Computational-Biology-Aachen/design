@@ -30,6 +30,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   let {
     name,
     desc,
@@ -66,9 +67,7 @@
 <a
   href={href}
   class="card"
-  style={Object.entries(cardCssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
+  style={toStyleString(cardCssVars)}
 >
   <div class="media">
     {#if image}
@@ -98,8 +97,8 @@
     flex-direction: column;
     gap: var(--card-image-highlight-gap);
     transition:
-      transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      transform var(--transition),
+      box-shadow var(--transition);
     margin: 0 auto;
     box-shadow: var(--shadow-md);
     border-radius: var(--radius-lg);
@@ -138,8 +137,8 @@
     justify-content: center;
     align-items: center;
     transition:
-      transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      transform var(--transition),
+      box-shadow var(--transition);
     background: linear-gradient(
       135deg,
       rgba(from var(--color-text) r g b / var(--alpha)) 0%,

@@ -23,6 +23,7 @@
 -->
 <script lang="ts">
   import Link from "./Link.svelte";
+  import { toStyleString } from "./utils";
 
   let {
     href,
@@ -54,9 +55,7 @@
 <Link href={href}>
   <div
     class="card"
-    style="background-image: url({img});{Object.entries(cardCssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(';')}"
+    style="background-image: url({img});{toStyleString(cardCssVars)}"
   ></div>
 </Link>
 

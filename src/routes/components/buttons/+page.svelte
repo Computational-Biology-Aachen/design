@@ -195,7 +195,7 @@ const tabs = ["Euler", "RK45", "Tsit5"];
   .demo-label {
     margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
     font-family: var(--font-mono);
   }
 </style>

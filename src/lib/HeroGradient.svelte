@@ -30,6 +30,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -85,9 +86,7 @@
   />
   <div
     class="inner width-{width} gap-{gap}"
-    style={Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";")}
+    style={toStyleString(cssVars)}
   >
     {@render children()}
   </div>

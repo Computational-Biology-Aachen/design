@@ -18,6 +18,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   type Box = {
     id: number;
     row: number;
@@ -335,11 +336,7 @@
     styleVars?: { [key: string]: string };
   } = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <div
@@ -480,7 +477,7 @@
 
   .subtitle {
     color: #5a5a5a;
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
   }
 
   .resize-handle {

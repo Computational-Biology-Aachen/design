@@ -23,6 +23,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   interface Props {
@@ -34,11 +35,7 @@
 
   let open = $state(false);
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <aside
@@ -108,7 +105,7 @@
     padding: var(--space-2) var(--space-6);
     color: var(--color-text-muted);
     font-weight: 400;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     text-decoration: none;
   }
 

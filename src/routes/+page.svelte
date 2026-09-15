@@ -92,12 +92,12 @@
   .card p {
     margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
 
   .card a {
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
 
   a {

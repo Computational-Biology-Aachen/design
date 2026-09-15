@@ -25,6 +25,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   let {
     path,
     alt = "profile",
@@ -59,9 +60,7 @@
 {#if imageError}
   <div
     class="placeholder"
-    style={Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";")}
+    style={toStyleString(cssVars)}
   >
     <span>Image not found</span>
   </div>
@@ -72,9 +71,7 @@
     onerror={handleError}
     style:object-fit={objectFit}
     style:object-position={objectPosition}
-    style={Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";")}
+    style={toStyleString(cssVars)}
   />
 {/if}
 

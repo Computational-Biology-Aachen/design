@@ -31,6 +31,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import {
     Chart,
     Filler,
@@ -94,11 +95,7 @@
     styleVars = {},
   }: Props = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 
   let canvas: HTMLCanvasElement;
   let chart: Chart | null = null;

@@ -72,14 +72,14 @@
   [popover] {
     position: fixed;
     inset: unset;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-md);
     border: var(--border-heavy);
     border-radius: var(--radius-lg);
     max-height: 100vh; /* Fallback, should be set in xs/sm/md/lg */
     overflow-y: scroll;
   }
   [popover]::backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--scrim-backdrop);
   }
   .xs {
     top: 50%;

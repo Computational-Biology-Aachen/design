@@ -217,10 +217,10 @@ import cpblLogo from "$lib/assets/cpbl-logo.svg";
 
   .section-demo p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
 
   .note {
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
 </style>

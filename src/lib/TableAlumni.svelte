@@ -18,6 +18,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import Bold from "./Bold.svelte";
   import Text from "./Text.svelte";
   import { MediaQuery } from "svelte/reactivity";
@@ -82,11 +83,7 @@
       ? { "--table-alumni-card-padding": styleVars.tableCardPadding }
       : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 {#if small.current}
@@ -137,7 +134,7 @@
   .card {
     box-shadow: 0px 18px 36px -18px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--color-border);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: var(--table-alumni-card-padding);
   }
 </style>

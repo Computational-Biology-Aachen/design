@@ -324,13 +324,13 @@
     border-radius: var(--radius-full);
     background-color: var(--color-surface);
     padding: var(--space-1) var(--space-3);
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
   }
 
   .demo-label {
     margin: 0 0 var(--space-3) 0;
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
     font-family: var(--font-mono);
   }
 
@@ -340,7 +340,7 @@
     background: var(--color-surface);
     padding: var(--space-4);
     color: var(--color-text-muted);
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     text-align: center;
   }
 
@@ -350,7 +350,7 @@
     background: var(--color-surface);
     padding: var(--space-6);
     color: var(--color-text-muted);
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     text-align: center;
   }
 
@@ -359,6 +359,6 @@
   }
 
   .note {
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
 </style>

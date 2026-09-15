@@ -314,7 +314,7 @@
 <style>
   .note {
     color: var(--color-text-muted);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
 
   .note p {

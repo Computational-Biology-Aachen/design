@@ -64,6 +64,7 @@
   own header comment for the reasoning).
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import Chart, { type ChartData } from "chart.js/auto";
   import type { Attachment } from "svelte/attachments";
 
@@ -284,9 +285,7 @@
 
 <div
   class="chart-container"
-  style={Object.entries(cssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
+  style={toStyleString(cssVars)}
 >
   {#if showLoadingSpinner}
     <div class="loading-container">
@@ -325,7 +324,7 @@
 
   .loading-container p {
     margin: 0;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--color-text-muted);
     font-size: 0.95rem;
   }
 

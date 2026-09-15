@@ -24,6 +24,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { MouseEventHandler } from "svelte/elements";
   import Icon from "./Icon.svelte";
 
@@ -48,11 +49,7 @@
       ? { "--btnicon-font-size": styleVars.fontSize }
       : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <button
@@ -71,7 +68,7 @@
   button {
     --btnicon-width: 1.5rem;
     --btnicon-height: 1.5rem;
-    --btnicon-font-size: 0.75rem;
+    --btnicon-font-size: var(--text-callout);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,7 +89,7 @@
   .size-sm {
     --btnicon-width: 1.5rem;
     --btnicon-height: 1.5rem;
-    --btnicon-font-size: 0.75rem;
+    --btnicon-font-size: var(--text-callout);
   }
   .size-md {
     --btnicon-width: 1.5rem;

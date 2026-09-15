@@ -25,6 +25,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   interface NavLink {
     href: string;
     label: string;
@@ -42,11 +43,7 @@
     styleVars?: { [key: string]: string };
   } = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <nav
@@ -109,7 +106,7 @@
     padding: var(--space-2) var(--space-4);
     color: var(--color-primary);
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     text-decoration: none;
   }
 

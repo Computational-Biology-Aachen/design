@@ -22,6 +22,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import { MediaQuery } from "svelte/reactivity";
   import H1 from "./H1.svelte";
 
@@ -43,11 +44,7 @@
 
   const small = new MediaQuery("max-width: 800px");
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <div

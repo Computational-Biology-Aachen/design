@@ -46,7 +46,7 @@
 <style>
   pre {
     --pre-padding: var(--space-4);
-    --pre-font-size: 0.8125rem;
+    --pre-font-size: var(--text-body);
     --pre-font-family: var(--font-mono);
     margin: 0;
     border-radius: var(--radius-md);

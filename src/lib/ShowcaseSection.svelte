@@ -27,6 +27,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -43,11 +44,7 @@
     styleVars?: { [key: string]: string };
   } = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <div
@@ -100,7 +97,7 @@
     margin-bottom: var(--space-4);
     color: var(--color-text-muted);
     font-weight: 500;
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }

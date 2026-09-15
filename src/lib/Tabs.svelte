@@ -28,6 +28,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
   import ButtonTab from "./ButtonTab.svelte";
 
@@ -57,11 +58,7 @@
       ? { "--tabs-content-min-height": styleVars.contentMinHeight }
       : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <div

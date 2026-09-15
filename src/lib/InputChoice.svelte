@@ -35,6 +35,7 @@
 >
   import InlineGrid from "./InlineGrid.svelte";
   import type { Snippet } from "svelte";
+  import { toStyleString } from "./utils";
 
   type Props = {
     id: string;
@@ -70,11 +71,7 @@
     ...(styleVars.width ? { "--select-width": styleVars.width } : {}),
     ...(styleVars.fontSize ? { "--select-font-size": styleVars.fontSize } : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <InlineGrid>
@@ -95,7 +92,7 @@
     --select-background-color: transparent;
     --select-padding: 0.35rem 0.5rem;
     --select-width: 100%;
-    --select-font-size: 0.875rem;
+    --select-font-size: var(--text-sm);
     border-radius: var(--select-border-radius);
     background-color: var(--select-background-color);
     padding: var(--select-padding);

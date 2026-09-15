@@ -27,6 +27,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Variant } from "./variants";
   import type { Snippet } from "svelte";
 
@@ -69,15 +70,11 @@
 
 <header
   class={variant}
-  style={Object.entries(sectionCssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
+  style={toStyleString(sectionCssVars)}
 >
   <div
     class="inner max-width-{width} gap-{gap}"
-    style={Object.entries(innerCssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";")}
+    style={toStyleString(innerCssVars)}
   >
     {@render children()}
   </div>

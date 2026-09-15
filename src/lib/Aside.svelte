@@ -17,6 +17,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   interface Props {
@@ -26,18 +27,10 @@
 
   let { children, styleVars = {} }: Props = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
-<aside
-  style={Object.entries(inlineStyle)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
->
+<aside style={inlineStyle}>
   {@render children()}
 </aside>
 

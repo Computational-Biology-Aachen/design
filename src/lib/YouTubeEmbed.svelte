@@ -23,6 +23,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   interface Props {
     videoId: string;
     title?: string;
@@ -39,11 +40,7 @@
       ? { "--youtube-aspect-ratio": styleVars.aspectRatio }
       : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <div

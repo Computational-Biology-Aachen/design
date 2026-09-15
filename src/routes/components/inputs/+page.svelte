@@ -222,7 +222,7 @@
   .demo-label {
     margin: var(--space-2) 0 0;
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
     font-family: var(--font-mono);
   }
 </style>

@@ -25,6 +25,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import { page } from "$app/state";
   import type { Snippet } from "svelte";
   import { getContext } from "svelte";
@@ -64,11 +65,7 @@
       ? { "--menuitem-border-radius": styleVars.borderRadius }
       : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 {#if href}
@@ -93,14 +90,14 @@
   a,
   button {
     --menuitem-padding: 0.6rem 0.75rem;
-    --menuitem-font-size: 0.875rem;
+    --menuitem-font-size: var(--text-sm);
     --menuitem-border-radius: calc(var(--radius-lg) - 0.125rem);
     cursor: pointer;
     border: 0;
     border-radius: var(--menuitem-border-radius);
     background: transparent;
     padding: var(--menuitem-padding);
-    color: var(--text);
+    color: var(--color-text);
     font-size: var(--menuitem-font-size);
     text-align: left;
     white-space: nowrap;

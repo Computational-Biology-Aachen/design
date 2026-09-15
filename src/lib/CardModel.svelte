@@ -22,6 +22,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   let {
     name,
     href,
@@ -50,9 +51,7 @@
 <a
   href={href}
   class="card"
-  style={Object.entries(cardCssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
+  style={toStyleString(cardCssVars)}
 >
   <div class="media">
     {#if image}
@@ -78,9 +77,9 @@
     display: flex;
     flex-direction: column;
     transition:
-      transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: var(--shadow);
+      transform var(--transition),
+      box-shadow var(--transition);
+    box-shadow: var(--shadow-md);
     border-radius: var(--radius-lg);
     background: var(--color-surface);
     overflow: hidden;
@@ -123,8 +122,8 @@
     justify-content: center;
     align-items: center;
     transition:
-      transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      transform var(--transition),
+      box-shadow var(--transition);
     background: linear-gradient(
       135deg,
       rgba(from var(--slate-500) r g b / var(--alpha)) 0%,

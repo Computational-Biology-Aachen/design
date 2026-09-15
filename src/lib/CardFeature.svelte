@@ -32,6 +32,7 @@
 <script lang="ts">
   import Icon from "./Icon.svelte";
   import Row from "./Row.svelte";
+  import { toStyleString } from "./utils";
 
   interface Props {
     color: "c1" | "c2" | "c3" | "c4";
@@ -65,9 +66,7 @@
 
 <div
   class="box"
-  style="--color: {colorVar};{Object.entries(cardCssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(';')}"
+  style="--color: {colorVar};{toStyleString(cardCssVars)}"
 >
   <Row>
     <Icon style="font-size: 2rem; color: var(--color)">{icon}</Icon>
@@ -85,7 +84,7 @@
   .box {
     --card-feature-width: 19rem;
     --card-feature-height: 10rem;
-    --card-feature-border-radius: 20px;
+    --card-feature-border-radius: var(--radius-lg);
     --card-feature-padding: 1rem;
     --card-feature-gap: 1rem;
     display: flex;

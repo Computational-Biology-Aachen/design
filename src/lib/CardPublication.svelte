@@ -37,6 +37,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import H2 from "./H2.svelte";
   import Link from "./Link.svelte";
   import { faGithub, faGitlab } from "@fortawesome/free-brands-svg-icons";
@@ -95,9 +96,7 @@
 
 <div
   class={`card ${color} ${format}`}
-  style={Object.entries(cardCssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
+  style={toStyleString(cardCssVars)}
 >
   <div
     class="inner"
@@ -123,13 +122,13 @@
 
 <style>
   .card {
-    --card-publication-border-radius: 8px;
+    --card-publication-border-radius: var(--radius-md);
     --card-publication-border-top-width: 8px;
     --card-publication-background-size: 250px;
     --card-publication-inner-padding: 2.5rem 2.5rem;
     --card-publication-fixed-size: 26rem;
     transform: scale(1);
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-lift);
     box-shadow:
       0px 18px 36px -18px rgba(0, 0, 0, 0.1),
       0px 30px 45px -30px rgba(50, 50, 93, 0.25);

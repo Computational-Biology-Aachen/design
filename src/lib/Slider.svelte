@@ -31,6 +31,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   interface Props {
     name: string;
     desc?: string;
@@ -55,11 +56,7 @@
     styleVars = {},
   }: Props = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <label style={inlineStyle}>

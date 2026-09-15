@@ -33,6 +33,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import Icon from "./Icon.svelte";
   import type { Snippet } from "svelte";
   import { MediaQuery } from "svelte/reactivity";
@@ -73,11 +74,7 @@
 
   let { children, items, onAdd, onRemove, styleVars = {} }: Props = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 
   const GRID_COLS = 6;
   const DEFAULT_COL_SPAN = 3;
@@ -502,7 +499,7 @@
     flex-direction: column;
     gap: var(--dbr-box-gap);
     z-index: 2;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-md);
     border: 1px solid #d0d0d0;
     border-radius: var(--radius-lg);
     background-color: var(--color-surface);
@@ -541,7 +538,7 @@
     width: 1.5rem;
     height: 1.5rem;
     color: black;
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
   }
   button.close:hover {
     background-color: lch(from var(--color-surface) calc(l - 10) c h);

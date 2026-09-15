@@ -20,6 +20,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -36,11 +37,7 @@
     ...(styleVars.fontSize ? { "--h3-font-size": styleVars.fontSize } : {}),
     ...(styleVars.color ? { "--h3-color": styleVars.color } : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <h3

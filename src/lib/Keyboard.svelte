@@ -18,6 +18,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -32,11 +33,7 @@
     ...(styleVars.padding ? { "--kb-padding": styleVars.padding } : {}),
     ...(styleVars.fontSize ? { "--kb-font-size": styleVars.fontSize } : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <kdb style={inlineStyle}>

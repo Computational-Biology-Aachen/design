@@ -14,6 +14,7 @@
     Additional attributes (e.g. `colspan`, `scope`) spread onto the `<th>`.
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -29,11 +30,7 @@
   let cssVars = $derived({
     ...(styleVars.padding ? { "--th-padding": styleVars.padding } : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <th

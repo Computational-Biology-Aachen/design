@@ -31,6 +31,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   let {
     name,
     desc = "",
@@ -73,11 +74,7 @@
     if (callback) callback();
   }
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <label style={inlineStyle}>

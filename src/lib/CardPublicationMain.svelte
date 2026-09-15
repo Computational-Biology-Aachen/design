@@ -36,6 +36,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import Link from "./Link.svelte";
   import type { Snippet } from "svelte";
 
@@ -69,9 +70,7 @@
 <Link href={href}>
   <div
     class="card"
-    style={`--card-image: url(${img});${Object.entries(cardCssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";")}`}
+    style={`--card-image: url(${img});${toStyleString(cardCssVars)}`}
   >
     <div class="bar">
       <h4>{title}</h4>
@@ -88,7 +87,7 @@
     position: relative;
     flex-direction: column;
     justify-content: end;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-lift);
     background-color: white;
     isolation: isolate;
     width: 100%;
@@ -137,7 +136,7 @@
     position: relative;
     flex-direction: column;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--scrim-caption);
     padding: var(--card-publication-main-bar-padding);
     width: 100%;
     color: var(--color-bg);

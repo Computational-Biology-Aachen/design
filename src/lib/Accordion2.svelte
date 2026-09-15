@@ -26,6 +26,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
   import Icon from "./Icon.svelte";
 
@@ -58,16 +59,12 @@
       ? { "--accordion-content-max-height": styleVars.contentMaxHeight }
       : {}),
   });
-  let accordionInlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let accordionInlineStyle = $derived(toStyleString(cssVars));
   let triggerInlineStyle = $derived(
     [cssVars["--accordion-gap"], cssVars["--accordion-trigger-padding"]]
       .filter(Boolean)
       .map((v) => v).length
-      ? Object.entries({
+      ? toStyleString({
           ...(cssVars["--accordion-gap"]
             ? { "--accordion-gap": cssVars["--accordion-gap"] }
             : {}),
@@ -78,8 +75,6 @@
               }
             : {}),
         })
-          .map(([k, v]) => `${k}:${v}`)
-          .join(";")
       : "",
   );
   let contentInlineStyle = $derived(

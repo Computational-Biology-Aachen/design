@@ -35,6 +35,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import InlineGrid from "./InlineGrid.svelte";
   import Row from "./Row.svelte";
 
@@ -74,11 +75,7 @@
     ...(styleVars.width ? { "--input-width": styleVars.width } : {}),
     ...(styleVars.fontSize ? { "--input-font-size": styleVars.fontSize } : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <InlineGrid cols={3}>
@@ -113,7 +110,7 @@
     --input-background-color: transparent;
     --input-padding: 0.35rem 0.5rem;
     --input-width: 100%;
-    --input-font-size: 0.875rem;
+    --input-font-size: var(--text-sm);
     border-radius: var(--input-border-radius);
     background-color: var(--input-background-color);
     padding: var(--input-padding);

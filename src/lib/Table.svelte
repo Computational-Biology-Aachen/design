@@ -24,6 +24,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -39,11 +40,7 @@
   let cssVars = $derived({
     ...(styleVars.fontSize ? { "--table-font-size": styleVars.fontSize } : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <div class="table-wrap">
@@ -62,7 +59,7 @@
   }
 
   table {
-    --table-font-size: 0.9rem;
+    --table-font-size: var(--text-sm);
 
     border-collapse: collapse;
     width: 100%;

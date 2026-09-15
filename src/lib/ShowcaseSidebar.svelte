@@ -19,6 +19,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import { onMount, untrack } from "svelte";
 
   interface Link {
@@ -30,11 +31,7 @@
     styleVars = {},
   }: { links: Link[]; styleVars?: { [key: string]: string } } = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 
   let active = $state(untrack(() => links[0]?.id ?? ""));
 
@@ -97,7 +94,7 @@
     border-left: 2px solid transparent;
     padding: var(--space-2) var(--space-3);
     color: var(--color-text-muted);
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     text-decoration: none;
   }
 

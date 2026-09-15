@@ -30,6 +30,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import {
     faGithub,
     faGitlab,
@@ -87,11 +88,7 @@
   });
 </script>
 
-<header
-  style={Object.entries(cssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
->
+<header style={toStyleString(cssVars)}>
   <div class="grid">
     <div class="info">
       <H1 color="light">{name}</H1>

@@ -19,6 +19,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   interface Props {
     src: string;
     alt?: string;
@@ -27,11 +28,7 @@
 
   let { src, alt = "profile", styleVars = {} }: Props = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <img

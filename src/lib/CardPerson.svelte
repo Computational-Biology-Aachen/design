@@ -26,6 +26,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import Link from "./Link.svelte";
 
   const images = import.meta.glob(["$lib/assets/people/*"], {
@@ -75,16 +76,14 @@
 >
   <div
     class="card"
-    style={Object.entries(cardCssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";")}
+    style={toStyleString(cardCssVars)}
   >
     <img
       src={resolvedImg}
       alt={title}
     />
     <div class="bar">
-      <h4 class="white">{title}</h4>
+      <h4>{title}</h4>
     </div>
   </div>
 </Link>
@@ -93,12 +92,12 @@
   .card {
     --card-person-height: 300px;
     --card-person-bar-padding: 0.5rem;
-    --card-person-title-font-size: 14px;
+    --card-person-title-font-size: var(--text-sm);
     display: inline-flex;
     position: relative;
     flex-direction: column;
     justify-content: end;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-lift);
     margin: 0 auto;
     padding: 0;
     width: 100%;
@@ -123,9 +122,9 @@
     left: 0;
     flex-direction: column;
     margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: var(--scrim-caption);
     padding: var(--card-person-bar-padding);
-    color: var(--white);
+    color: var(--color-text-inverse);
   }
   h4 {
     margin: 0;

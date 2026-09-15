@@ -16,23 +16,20 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   let {
     styleVars = {},
   }: {
     styleVars?: { [key: string]: string };
   } = $props();
 
-  let inlineStyle = $derived(
-    Object.entries(styleVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
 <hr style={inlineStyle} />
 
 <style>
   hr {
-    border: 1px solid #e7ecf1;
+    border: 1px solid var(--color-border);
   }
 </style>

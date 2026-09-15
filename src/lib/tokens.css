@@ -50,6 +50,11 @@
   --color-text: #1a1d23;
   --color-text-muted: #727682;
   --color-text-inverse: #ffffff;
+  --color-danger: var(--rwth-red);
+
+  /* Scrims — translucent black overlays for legibility over photos/backdrops */
+  --scrim-caption: rgba(0, 0, 0, 0.7);
+  --scrim-backdrop: rgba(0, 0, 0, 0.5);
 
   /* ── Typography ──────────────────────────────────────────── */
   font-size: 16px;
@@ -113,6 +118,7 @@
 
   /* ── Motion ──────────────────────────────────────────────── */
   --transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-lift: 0.3s ease;
 
   /* Icon chevron for dropdown */
   --icon-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(136, 145, 164)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
@@ -129,6 +135,11 @@
 :hover {
   transition-duration: 150ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* Default styles as fallbacks */

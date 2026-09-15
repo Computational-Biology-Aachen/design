@@ -24,6 +24,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -65,9 +66,7 @@
 >
   <div
     class="inner"
-    style={Object.entries(innerCssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";")}
+    style={toStyleString(innerCssVars)}
   >
     {@render children()}
   </div>

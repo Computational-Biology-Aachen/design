@@ -26,6 +26,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -61,15 +62,11 @@
 
 <div
   class={`card ${color} ${format}`}
-  style={Object.entries(outerCssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";")}
+  style={toStyleString(outerCssVars)}
 >
   <div
     class="inner"
-    style={Object.entries(innerCssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";")}
+    style={toStyleString(innerCssVars)}
   >
     {@render children()}
   </div>
@@ -82,13 +79,13 @@
     --card-height: 26rem;
 
     transform: scale(1);
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-lift);
     box-shadow:
       0px 18px 36px -18px rgba(0, 0, 0, 0.1),
       0px 30px 45px -30px rgba(50, 50, 93, 0.25);
     /* cursor: pointer; */
     border-top: 8px var(--color-primary) solid;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: var(--card-padding);
   }
   .card:hover {

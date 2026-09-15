@@ -24,6 +24,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
   import type { MouseEventHandler } from "svelte/elements";
 
@@ -44,11 +45,7 @@
     ...(styleVars.fontSize ? { "--tab-font-size": styleVars.fontSize } : {}),
     ...(styleVars.padding ? { "--tab-padding": styleVars.padding } : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <button
@@ -62,7 +59,7 @@
 <style>
   button {
     --tab-gap: 0.5rem;
-    --tab-font-size: 0.84rem;
+    --tab-font-size: var(--text-sm);
     --tab-padding: 0;
     display: flex;
     align-items: center;

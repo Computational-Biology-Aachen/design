@@ -25,6 +25,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   let {
     message,
     transcript,
@@ -56,11 +57,7 @@
       ? { "--transcript-content-padding": styleVars.contentPadding }
       : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <div
@@ -85,8 +82,8 @@
 
 <style>
   .transcript-toggle {
-    --transcript-btn-font-size: 0.9rem;
-    --transcript-content-font-size: 0.9rem;
+    --transcript-btn-font-size: var(--text-sm);
+    --transcript-content-font-size: var(--text-sm);
     --transcript-content-margin-top: var(--space-3);
     --transcript-content-padding: var(--space-4);
   }
@@ -100,7 +97,7 @@
       color 0.15s;
     cursor: pointer;
     border: 1px solid var(--color-border);
-    border-radius: 6px;
+    border-radius: var(--radius-md);
     background: none;
     padding: var(--space-2) var(--space-4);
     color: var(--color-text-muted);
@@ -115,7 +112,7 @@
   .transcript-content {
     margin-top: var(--transcript-content-margin-top);
     border: 1px solid var(--color-border);
-    border-radius: 6px;
+    border-radius: var(--radius-md);
     background: var(--color-surface);
     padding: var(--transcript-content-padding);
     font-size: var(--transcript-content-font-size);

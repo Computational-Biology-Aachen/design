@@ -15,10 +15,11 @@
 
   ```svelte
   <Small>Last updated June 2026.</Small>
-  <Small styleVars={{ fontSize: "0.75rem" }}>Tiny text</Small>
+  <Small styleVars={{ fontSize: "var(--text-callout)" }}>Tiny text</Small>
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
 
   let {
@@ -32,11 +33,7 @@
   let cssVars = $derived({
     ...(styleVars.fontSize ? { "--small-font-size": styleVars.fontSize } : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
 <small style={inlineStyle}>
@@ -45,7 +42,7 @@
 
 <style>
   small {
-    --small-font-size: 0.875rem;
+    --small-font-size: var(--text-sm);
     font-size: var(--small-font-size);
   }
 </style>

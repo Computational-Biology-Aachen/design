@@ -22,6 +22,7 @@
   ```
 -->
 <script lang="ts">
+  import { toStyleString } from "./utils";
   import katex from "katex";
   import "katex/dist/katex.min.css";
 
@@ -42,11 +43,7 @@
   let cssVars = $derived({
     ...(styleVars.fontSize ? { "--math-font-size": styleVars.fontSize } : {}),
   });
-  let inlineStyle = $derived(
-    Object.entries(cssVars)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(";"),
-  );
+  let inlineStyle = $derived(toStyleString(cssVars));
 
   $effect(() => {
     if (!el) return;

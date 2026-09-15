@@ -240,18 +240,18 @@
 
   .swatch-label {
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
   }
 
   .swatch-token {
     display: block;
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
   }
 
   .swatch-value {
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
   }
 
   .semantic-grid {
@@ -276,7 +276,7 @@
     width: 64px;
     height: 40px;
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
   }
 
   .semantic-info {
@@ -286,12 +286,12 @@
   }
 
   .semantic-info code {
-    font-size: 0.8125rem;
+    font-size: var(--text-body);
   }
 
   .semantic-info span {
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
   }
 
   .type-samples,
@@ -313,7 +313,7 @@
     flex-shrink: 0;
     min-width: 120px;
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
     font-family: var(--font-mono);
   }
 
@@ -332,12 +332,12 @@
   .spacing-token {
     flex-shrink: 0;
     min-width: 90px;
-    font-size: 0.8125rem;
+    font-size: var(--text-body);
   }
 
   .spacing-value {
     color: var(--color-text-muted);
-    font-size: 0.8125rem;
+    font-size: var(--text-body);
   }
 
   .radius-row {
@@ -361,7 +361,7 @@
   .radius-item code,
   .radius-item span {
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
   }
 
   .shadow-row {
@@ -386,6 +386,6 @@
 
   .shadow-item code {
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: var(--text-callout);
   }
 </style>
