@@ -88,7 +88,9 @@
 
 <div class="index-page">
   <h1>Components</h1>
-  <p class="subtitle">{totalCount} components, organized into {groups.length} groups below</p>
+  <p class="subtitle">
+    {totalCount} components, organized into {groups.length} groups below
+  </p>
 
   <div class="groups">
     {#each groups as g (g.name)}
