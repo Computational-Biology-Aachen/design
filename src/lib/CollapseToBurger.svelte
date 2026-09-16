@@ -28,7 +28,6 @@
 <script lang="ts">
   import { toStyleString } from "./utils";
   import type { Snippet } from "svelte";
-  import { MediaQuery } from "svelte/reactivity";
 
   interface Props {
     brand?: Snippet;
@@ -46,9 +45,6 @@
     styleVars = {},
   }: Props = $props();
 
-  // svelte-ignore state_referenced_locally
-  const small = new MediaQuery(`max-width: ${collapseAt}`);
-
   let inlineStyle = $derived(toStyleString(styleVars));
   let mobileOpen = $state(false);
 
@@ -59,27 +55,46 @@
   }
 </script>
 
-{#if small.current}
-  <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-  <details
-    class="mobile"
-    style={inlineStyle}
-    bind:open={mobileOpen}
-    onkeydown={handleKeydown}
-  >
-    <summary aria-label="Toggle navigation">☰</summary>
-    <ul class="dropdown">
-      {@render children()}
-    </ul>
-  </details>
-{:else}
-  <ul
-    class="bar"
-    style={inlineStyle}
-  >
+<!--
+  Both variants render unconditionally and are toggled by a real @media
+  query (injected here since `collapseAt` is a runtime prop and CSS media
+  conditions can't reference a custom property). A JS-computed `MediaQuery`
+  boolean would decide the mobile/desktop split during SSR too, but
+  `svelte/reactivity`'s server stub always resolves that to `false` — every
+  page would ship the desktop bar's markup regardless of viewport, and only
+  correct itself once client JS hydrates and re-evaluates it. On slower or
+  more JS-heavy pages that gap is long enough for visitors to see the
+  unhydrated desktop bar overflow off a narrow viewport. Pure CSS has no
+  such gap.
+-->
+{@html `<style>
+  @media (max-width: ${collapseAt}) {
+    .collapse-bar { display: none !important; }
+  }
+  @media (min-width: calc(${collapseAt} + 0.02px)) {
+    .collapse-mobile { display: none !important; }
+  }
+</style>`}
+
+<ul
+  class="bar collapse-bar"
+  style={inlineStyle}
+>
+  {@render children()}
+</ul>
+
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<details
+  class="mobile collapse-mobile"
+  style={inlineStyle}
+  bind:open={mobileOpen}
+  onkeydown={handleKeydown}
+>
+  <summary aria-label="Toggle navigation">☰</summary>
+  <ul class="dropdown">
     {@render children()}
   </ul>
-{/if}
+</details>
 
 <style>
   .bar {
@@ -122,7 +137,12 @@
   .dropdown {
     --ctb-dropdown-min-width: 15rem;
     --ctb-dropdown-padding: var(--space-2);
-    display: flex;
+    /* A plain "display: flex" here would outrank the browser's native
+       details:not([open]) > *:not(summary) collapse rule (an author class
+       selector always beats a UA-stylesheet tag selector), so the menu
+       would stay laid out, just hidden behind whatever paints over it,
+       even while closed. Gate it on [open] explicitly instead. */
+    display: none;
     position: absolute;
     top: calc(100% + var(--space-1));
     right: 0;
@@ -135,5 +155,9 @@
     padding: var(--ctb-dropdown-padding);
     min-width: var(--ctb-dropdown-min-width);
     list-style: none;
+  }
+
+  details[open] > .dropdown {
+    display: flex;
   }
 </style>

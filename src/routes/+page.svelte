@@ -1,6 +1,6 @@
 <script lang="ts">
   import { base } from "$app/paths";
-  import { Button, Row, Section } from "$lib/index.js";
+  import { Row, Section } from "$lib/index.js";
 </script>
 
 <svelte:head>
@@ -12,9 +12,17 @@
   <p>Shared tokens and components for CPBL lab websites.</p>
   <div style="margin-top: var(--space-6)">
     <Row gap="var(--space-3)">
-      <a href="{base}/tokens"><Button>Browse tokens</Button></a>
+      <a href="{base}/tokens"
+        ><button
+          type="button"
+          class="browse-components">Browse tokens</button
+        ></a
+      >
       <a href="{base}/components"
-        ><Button variant="secondary">Browse components</Button></a
+        ><button
+          type="button"
+          class="browse-components">Browse components</button
+        ></a
       >
     </Row>
   </div>
@@ -102,5 +110,34 @@
 
   a {
     text-decoration: none;
+  }
+
+  .browse-components {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-2);
+    transition: var(--transition);
+    cursor: pointer;
+    border: 1px solid var(--color-surface);
+    border-radius: var(--radius-md);
+    background: transparent;
+    padding: var(--space-2) var(--space-6);
+    color: var(--color-text-inverse);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    font-family: var(--font-sans);
+    white-space: nowrap;
+  }
+
+  .browse-components:hover {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+  }
+
+  .browse-components:focus-visible {
+    outline: 2px solid var(--color-surface);
+    outline-offset: 2px;
   }
 </style>

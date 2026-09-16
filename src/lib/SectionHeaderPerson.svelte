@@ -30,7 +30,6 @@
   ```
 -->
 <script lang="ts">
-  import { toStyleString } from "./utils";
   import {
     faGithub,
     faGitlab,
@@ -41,6 +40,7 @@
   import H1 from "./H1.svelte";
   import Link from "./Link.svelte";
   import Text from "./Text.svelte";
+  import { toStyleString } from "./utils";
 
   // eslint-disable-next-line svelte/no-unused-props -- `doi` is reserved for future use
   let {
@@ -160,7 +160,7 @@
     gap: var(--gap);
     margin: 0 auto;
     width: 100%;
-    max-width: var(--max-width);
+    max-width: 100ch;
   }
 
   @media (min-width: 768px) {

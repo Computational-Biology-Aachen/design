@@ -48,7 +48,7 @@
   --color-surface: #ffffff;
   --color-border: #dde1e9;
   --color-text: #1a1d23;
-  --color-text-muted: #727682;
+  --color-text-muted: #676b77;
   --color-text-inverse: #ffffff;
   --color-danger: var(--rwth-red);
 
@@ -156,4 +156,18 @@ a:hover {
 
 img {
   max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Excludes .spinner/.track: their looping animation IS the information
+     (in-progress state) — killing the loop would make a fresh page look
+     like a frozen/broken one. */
+  *:not(.spinner):not(.track),
+  *:not(.spinner):not(.track)::before,
+  *:not(.spinner):not(.track)::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

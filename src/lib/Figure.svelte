@@ -43,6 +43,7 @@
   <img
     src={src}
     alt={alt}
+    loading="lazy"
   />
   {#if caption}
     <figcaption>{@render caption()}</figcaption>
