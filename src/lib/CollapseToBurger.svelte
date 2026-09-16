@@ -48,6 +48,20 @@
   let inlineStyle = $derived(toStyleString(styleVars));
   let mobileOpen = $state(false);
 
+  // `collapseAt` gets spliced into a raw style-tag string below (see
+  // comment there for why). Restricting it to a plain CSS length keeps
+  // that injection-safe regardless of where the prop value ends up coming
+  // from.
+  const CSS_LENGTH = /^\d+(\.\d+)?(px|rem|em)$/;
+  let safeCollapseAt = $derived.by(() => {
+    if (!CSS_LENGTH.test(collapseAt)) {
+      throw new Error(
+        `CollapseToBurger: collapseAt must be a plain CSS length (e.g. "768px"), got ${JSON.stringify(collapseAt)}`,
+      );
+    }
+    return collapseAt;
+  });
+
   function handleKeydown(event: KeyboardEvent) {
     if (mobileOpen && event.key === "Escape") {
       mobileOpen = false;
@@ -67,11 +81,14 @@
   unhydrated desktop bar overflow off a narrow viewport. Pure CSS has no
   such gap.
 -->
+<!-- safeCollapseAt is validated above to be a plain CSS length, so no
+     markup or script can break out of the injected style tag. -->
+<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 {@html `<style>
-  @media (max-width: ${collapseAt}) {
+  @media (max-width: ${safeCollapseAt}) {
     .collapse-bar { display: none !important; }
   }
-  @media (min-width: calc(${collapseAt} + 0.02px)) {
+  @media (min-width: calc(${safeCollapseAt} + 0.02px)) {
     .collapse-mobile { display: none !important; }
   }
 </style>`}
