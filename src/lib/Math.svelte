@@ -21,7 +21,10 @@
   <Math tex="\\frac{dC}{dt} = v_1 - v_2" display={true} />
   ```
 -->
-<script module lang="ts">
+<script
+  module
+  lang="ts"
+>
   import katex from "katex";
   import "katex/dist/katex.min.css";
 
