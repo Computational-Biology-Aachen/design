@@ -7,6 +7,11 @@
   back in when not dragging. See [[Slider]] for the commit-on-every-change
   variant.
 
+  The displayed value can also be edited directly: click it (or focus it with
+  Tab and press Enter/Space) to reveal a number input. Enter or blur commits
+  the typed value — clamped to `[min, max]`, otherwise left as typed — and
+  fires `callback` immediately, same as a drag release. Escape cancels.
+
   ### Props
 
   - `name: string`
@@ -57,11 +62,19 @@
   let liveVal = $state(finalValue);
   let dragging = false;
 
+  let editing = $state(false);
+  let editValue = $state("");
+  let editInput: HTMLInputElement | undefined = $state();
+
   // Sync liveVal with finalValue when not dragging (external updates like reset)
   $effect(() => {
     if (!dragging) {
       liveVal = finalValue;
     }
+  });
+
+  $effect(() => {
+    if (editing) editInput?.focus();
   });
 
   function startDrag() {
@@ -74,16 +87,79 @@
     if (callback) callback();
   }
 
+  function startEdit() {
+    if (disabled) return;
+    editValue = String(liveVal);
+    editing = true;
+  }
+
+  function commitEdit() {
+    const parsed = Number(editValue);
+    if (!Number.isNaN(parsed)) {
+      const lo = Number(min);
+      const hi = Number(max);
+      const clamped =
+        Number.isNaN(lo) || Number.isNaN(hi)
+          ? parsed
+          : Math.min(Math.max(parsed, lo), hi);
+      liveVal = clamped;
+      finalValue = clamped;
+      if (callback) callback();
+    }
+    editing = false;
+  }
+
+  function onEditKeydown(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      commitEdit();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      editing = false;
+    }
+  }
+
+  function onValueKeydown(event: KeyboardEvent) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      startEdit();
+    }
+  }
+
   let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
-<label style={inlineStyle}>
+<div
+  class="slider"
+  style={inlineStyle}
+>
   <div class="row">
     <span class="name">{name}{desc ? ` (${desc})` : ""}</span>
-    <span class="value">{liveVal}</span>
+    {#if editing}
+      <input
+        class="value-input"
+        type="number"
+        step="any"
+        min={min}
+        max={max}
+        bind:value={editValue}
+        bind:this={editInput}
+        onkeydown={onEditKeydown}
+        onblur={commitEdit}
+      />
+    {:else}
+      <span
+        class="value"
+        role="button"
+        tabindex={disabled ? -1 : 0}
+        onclick={startEdit}
+        onkeydown={onValueKeydown}>{liveVal}</span
+      >
+    {/if}
   </div>
   <input
     type="range"
+    aria-label="{name}{desc ? ` (${desc})` : ''}"
     min={min}
     max={max}
     step={step}
@@ -94,10 +170,10 @@
     ontouchend={stopDrag}
     disabled={disabled}
   />
-</label>
+</div>
 
 <style>
-  label {
+  .slider {
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
@@ -115,8 +191,31 @@
     font-weight: var(--weight-medium);
   }
   span.value {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 0 var(--space-1);
     color: var(--color-primary);
     font-weight: var(--weight-bold);
+  }
+  span.value:hover,
+  span.value:focus-visible {
+    border-color: var(--color-primary);
+  }
+  .value-input {
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    padding: 0 var(--space-1);
+    width: 4.5em;
+    color: var(--color-primary);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-sm);
+    font-family: inherit;
+    text-align: right;
+  }
+  .value-input:focus {
+    outline: none;
   }
   input[type="range"] {
     cursor: pointer;
