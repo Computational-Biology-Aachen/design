@@ -103,7 +103,7 @@
     box-shadow: var(--shadow-md);
     border-radius: var(--radius-lg);
     background: var(--color-surface);
-    width: var(--card-image-highlight-width);
+    width: min(100%, var(--card-image-highlight-width));
     height: var(--card-image-highlight-height);
     overflow: hidden;
     color: var(--color-text);

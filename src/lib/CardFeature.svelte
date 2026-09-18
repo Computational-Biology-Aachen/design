@@ -102,7 +102,7 @@
       rgba(from var(--color) r g b / 0.05)
     );
     padding: var(--card-feature-padding);
-    width: var(--card-feature-width);
+    width: min(100%, var(--card-feature-width));
     height: var(--card-feature-height);
     overflow-y: hidden;
   }
