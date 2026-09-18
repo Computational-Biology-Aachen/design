@@ -19,6 +19,10 @@
     The menu contents, typically [[ButtonMenuItem]] entries.
   - `styleVars?: { gap?: string; padding?: string; minWidth?: string; topOffset?: string }`
     Override the menu's default CSS values.
+  - `...rest`
+    Any additional attributes (e.g. `aria-label`, needed when `label` is an
+    icon-only Snippet with no visible text) are spread onto the trigger
+    [[Button]].
 
   ### Example
 
@@ -42,6 +46,7 @@
     href,
     children,
     styleVars = {},
+    ...rest
   }: {
     label: string | Snippet;
     variant?: "primary" | "secondary" | "inverted";
@@ -53,6 +58,7 @@
       minWidth?: string;
       topOffset?: string;
     };
+    [key: string]: unknown;
   } = $props();
 
   let open = $state(false);
@@ -136,6 +142,7 @@
     onclick={toggle}
     aria-haspopup="true"
     aria-expanded={open}
+    {...rest}
   >
     {#if isString(label)}
       <span>{label}</span>

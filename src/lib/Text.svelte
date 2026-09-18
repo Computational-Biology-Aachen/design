@@ -62,6 +62,7 @@
     font-family: var(--font-sans);
     hyphens: auto;
     text-align: justify;
+    overflow-wrap: break-word;
   }
   .inherit {
     color: inherit;

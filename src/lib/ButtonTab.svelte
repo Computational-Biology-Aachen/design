@@ -14,6 +14,11 @@
     The tab label.
   - `styleVars?: { gap?: string; fontSize?: string; padding?: string }`
     Override the tab's default CSS values.
+  - `...rest`
+    Any additional attributes (e.g. `aria-pressed`, `role`) are spread onto
+    the rendered `<button>` — this component renders an underlined toggle,
+    not ARIA tab semantics, so a consumer using it as a real tab bar (see
+    [[Tabs]]) or a toggle-filter must supply its own `role`/`aria-*` state.
 
   ### Example
 
@@ -28,17 +33,21 @@
   import type { Snippet } from "svelte";
   import type { MouseEventHandler } from "svelte/elements";
 
+  interface Props {
+    selected: boolean;
+    children: Snippet;
+    onclick: MouseEventHandler<HTMLButtonElement>;
+    styleVars?: { gap?: string; fontSize?: string; padding?: string };
+    [key: string]: unknown;
+  }
+
   let {
     selected,
     onclick,
     children,
     styleVars = {},
-  }: {
-    selected: boolean;
-    children: Snippet;
-    onclick: MouseEventHandler<HTMLButtonElement>;
-    styleVars?: { gap?: string; fontSize?: string; padding?: string };
-  } = $props();
+    ...rest
+  }: Props = $props();
 
   let cssVars = $derived({
     ...(styleVars.gap ? { "--tab-gap": styleVars.gap } : {}),
@@ -52,6 +61,7 @@
   class:selected={selected}
   onclick={onclick}
   style={inlineStyle}
+  {...rest}
 >
   {@render children()}
 </button>

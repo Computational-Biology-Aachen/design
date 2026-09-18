@@ -131,11 +131,15 @@
   }
 
   summary {
-    --ctb-summary-padding: var(--space-2) var(--space-3);
+    --ctb-summary-padding: 0 var(--space-3);
     --ctb-summary-font-size: 1.25rem;
+    --ctb-summary-height: 2.5rem;
+    display: flex;
+    align-items: center;
     cursor: pointer;
     border-radius: var(--radius-md);
     padding: var(--ctb-summary-padding);
+    height: var(--ctb-summary-height);
     color: var(--color-text);
     font-size: var(--ctb-summary-font-size);
     line-height: 1;

@@ -142,6 +142,7 @@
     border-radius: var(--btn-border-radius);
     padding: var(--btn-padding);
     width: 100%;
+    min-height: 2.5rem;
     font-weight: 500;
     font-size: var(--btn-font-size);
     line-height: var(--btn-line-height);

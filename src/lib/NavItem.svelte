@@ -11,7 +11,7 @@
     Destination route; also drives the active-state highlight.
   - `children: Snippet`
     The link label.
-  - `styleVars?: { padding?: string; fontSize?: string }`
+  - `styleVars?: { padding?: string; fontSize?: string; height?: string }`
     Optional CSS custom property overrides applied via inline style.
 
   ### Example
@@ -27,7 +27,7 @@
   interface Props {
     href: string;
     children: Snippet;
-    styleVars?: { padding?: string; fontSize?: string };
+    styleVars?: { padding?: string; fontSize?: string; height?: string };
   }
 
   let { href, children, styleVars = {} }: Props = $props();
@@ -43,6 +43,7 @@
       ...(styleVars.fontSize
         ? ["--navitem-font-size", styleVars.fontSize]
         : []),
+      ...(styleVars.height ? ["--navitem-height", styleVars.height] : []),
     ]
       .map(([k, v]) => `${k}:${v}`)
       .join(";"),
@@ -66,12 +67,15 @@
   }
 
   a {
-    --navitem-padding: var(--space-2) var(--space-3);
+    --navitem-padding: 0 var(--space-3);
     --navitem-font-size: 0.9375rem;
-    display: block;
+    --navitem-height: 2.5rem;
+    display: flex;
+    align-items: center;
     transition: var(--transition);
     border-radius: var(--radius-md);
     padding: var(--navitem-padding);
+    height: var(--navitem-height);
     color: var(--color-text);
     font-weight: 500;
     font-size: var(--navitem-font-size);

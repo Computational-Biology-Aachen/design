@@ -59,14 +59,20 @@
   }
 
   .gh-link a {
+    --navgh-padding: 0 var(--space-3);
+    --navgh-height: 2.5rem;
     display: flex;
+    justify-content: center;
     align-items: center;
     transition: var(--transition);
     border-radius: var(--radius-md);
+    padding: var(--navgh-padding);
+    height: var(--navgh-height);
     color: var(--color-text-muted);
   }
 
   .gh-link a:hover {
+    background-color: var(--color-surface);
     color: var(--color-text);
   }
 </style>
