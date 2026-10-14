@@ -8,7 +8,7 @@
   ### Props
 
   - `navLinks: { href: string; label: string }[]`
-    Navigation links (hrefs are prefixed with the app `base`).
+    Navigation links (hrefs are passed through `resolve` from `$app/paths`).
   - `audienceStore: { audience: "4bio" | "4math"; setAudience: (v) => void }`
     Store backing the audience toggle.
   - `audienceOptions: { value: "4bio" | "4math"; label: string }[]`
@@ -26,10 +26,13 @@
 -->
 <script lang="ts">
   import { toStyleString } from "./utils";
-  import { base } from "$app/paths";
+  import { resolve } from "$app/paths";
   import { page } from "$app/state";
   import type { Snippet } from "svelte";
   import AudienceToggle from "./AudienceToggle.svelte";
+
+  // navLinks come from the consuming app, so they aren't in this package's route types
+  const resolvePath = resolve as (path: string) => string;
 
   type Audience = "4bio" | "4math";
   type AudienceStore = {
@@ -89,7 +92,7 @@
     />
     {@render children?.()}
     {#each navLinks as link (link.href)}
-      {@const href = `${base}${link.href}`}
+      {@const href = resolvePath(link.href)}
       {@const isActive =
         page.url.pathname === href ||
         (link.href !== "/" && page.url.pathname.startsWith(href))}
