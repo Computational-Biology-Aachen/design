@@ -1,7 +1,7 @@
 <script lang="ts">
-  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
-  import ShowcaseSection from "$lib/ShowcaseSection.svelte";
-  import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
+  import ShowcaseContainer from "#lib/ShowcaseContainer.svelte";
+  import ShowcaseSection from "#lib/ShowcaseSection.svelte";
+  import ShowcaseSidebar from "#lib/ShowcaseSidebar.svelte";
 
   const links = [
     { label: "RWTH Palette", id: "rwth-palette" },

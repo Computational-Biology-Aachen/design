@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { base } from "$app/paths";
-  import * as Lib from "$lib/index.js";
+  import { resolve } from "$app/paths";
+  import * as Lib from "#lib/index.js";
 
   // Each count is the number of distinct components that page actually
   // imports from $lib/index.js (excluding PageNav, which every category
@@ -9,67 +9,67 @@
   const groups = [
     {
       name: "Typography",
-      href: `${base}/components/typography`,
+      href: resolve("/components/typography"),
       count: 26,
       desc: "Headings, text, inline elements, links",
     },
     {
       name: "Cards",
-      href: `${base}/components/cards`,
+      href: resolve("/components/cards"),
       count: 9,
       desc: "Content cards for people, publications, software, models",
     },
     {
       name: "Layout",
-      href: `${base}/components/layout`,
+      href: resolve("/components/layout"),
       count: 8,
       desc: "Grid, row, flex, spacing containers",
     },
     {
       name: "Inputs",
-      href: `${base}/components/inputs`,
+      href: resolve("/components/inputs"),
       count: 7,
       desc: "Form controls: text, number, checkbox, select",
     },
     {
       name: "Interactive",
-      href: `${base}/components/interactive`,
+      href: resolve("/components/interactive"),
       count: 10,
       desc: "Accordion, popover, slider, toggles",
     },
     {
       name: "Data & Science",
-      href: `${base}/components/data`,
+      href: resolve("/components/data"),
       count: 10,
       desc: "Charts, tables, math rendering, model gallery",
     },
     {
       name: "Navigation",
-      href: `${base}/components/navigation`,
+      href: resolve("/components/navigation"),
       count: 6,
       desc: "Navbar, sidebar, page navigation",
     },
     {
       name: "Heroes",
-      href: `${base}/components/heroes`,
+      href: resolve("/components/heroes"),
       count: 6,
       desc: "Hero banners and section headers",
     },
     {
       name: "Buttons",
-      href: `${base}/components/buttons`,
+      href: resolve("/components/buttons"),
       count: 6,
       desc: "Button variants: icon, menu, tab",
     },
     {
       name: "Media",
-      href: `${base}/components/media`,
+      href: resolve("/components/media"),
       count: 4,
       desc: "Images and video embeds",
     },
     {
       name: "Utilities",
-      href: `${base}/components/utilities`,
+      href: resolve("/components/utilities"),
       count: 5,
       desc: "Icon, info box, footer",
     },

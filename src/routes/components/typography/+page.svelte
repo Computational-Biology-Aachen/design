@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { base } from "$app/paths";
+  import { resolve } from "$app/paths";
   import {
     Aside,
     Blockquote,
@@ -28,10 +28,10 @@
     Text,
     Ul,
     Underline,
-  } from "$lib/index.js";
-  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
-  import ShowcaseSection from "$lib/ShowcaseSection.svelte";
-  import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
+  } from "#lib/index.js";
+  import ShowcaseContainer from "#lib/ShowcaseContainer.svelte";
+  import ShowcaseSection from "#lib/ShowcaseSection.svelte";
+  import ShowcaseSidebar from "#lib/ShowcaseSidebar.svelte";
 
   const links = [
     { label: "H1–H6", id: "headings" },
@@ -152,16 +152,16 @@ preformatted block</Pre>
     >
       <h3>Color variants</h3>
       <div class="preview">
-        <p><Link href="{base}/">Primary link (default)</Link></p>
+        <p><Link href={resolve("/")}>Primary link (default)</Link></p>
         <p>
           <Link
-            href="{base}/"
+            href={resolve("/")}
             color="secondary">Secondary link</Link
           >
         </p>
         <p>
           <Link
-            href="{base}/"
+            href={resolve("/")}
             color="dark">Dark link</Link
           >
         </p>
@@ -169,7 +169,7 @@ preformatted block</Pre>
       <div class="preview-primary">
         <p>
           <Link
-            href="{base}/"
+            href={resolve("/")}
             color="light">Light link on dark background</Link
           >
         </p>

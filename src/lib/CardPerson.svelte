@@ -2,9 +2,9 @@
   @component
 
   A linked team-member card showing a cover photo with the person's name in an
-  overlay bar. The photo is resolved automatically from
-  `$lib/assets/people/{slug}.jpg` (falling back to `placeholder.jpg`) unless an
-  explicit `img` is given.
+  overlay bar. The photo is resolved automatically from the consuming app's
+  `src/lib/assets/people/{slug}.jpg` (falling back to `placeholder.jpg`) unless
+  an explicit `img` is given.
 
   ### Props
 
@@ -29,7 +29,7 @@
   import { toStyleString } from "./utils";
   import Link from "./Link.svelte";
 
-  const images = import.meta.glob(["$lib/assets/people/*"], {
+  const images = import.meta.glob(["/src/lib/assets/people/*"], {
     eager: true,
     query: "?url",
     import: "default",

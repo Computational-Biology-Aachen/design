@@ -5,10 +5,10 @@
     ImageRoundPlaceholder,
     PageNav,
     YouTubeEmbed,
-  } from "$lib/index.js";
-  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
-  import ShowcaseSection from "$lib/ShowcaseSection.svelte";
-  import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
+  } from "#lib/index.js";
+  import ShowcaseContainer from "#lib/ShowcaseContainer.svelte";
+  import ShowcaseSection from "#lib/ShowcaseSection.svelte";
+  import ShowcaseSidebar from "#lib/ShowcaseSidebar.svelte";
 
   const links = [
     { label: "Image", id: "image" },
@@ -37,7 +37,7 @@
         </div>
       </div>
       <pre><code
-          >{`import myImage from "$lib/assets/photo.jpg";
+          >{`import myImage from "#lib/assets/photo.jpg";
 <Image src={myImage} alt="Description of image" />`}</code
         ></pre>
     </ShowcaseSection>

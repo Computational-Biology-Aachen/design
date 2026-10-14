@@ -1,7 +1,7 @@
 <script lang="ts">
-  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
-  import ShowcaseSection from "$lib/ShowcaseSection.svelte";
-  import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
+  import ShowcaseContainer from "#lib/ShowcaseContainer.svelte";
+  import ShowcaseSection from "#lib/ShowcaseSection.svelte";
+  import ShowcaseSidebar from "#lib/ShowcaseSidebar.svelte";
   import {
     CardImage,
     CardImageHighlight,
@@ -13,7 +13,7 @@
     CardSponsor,
     PageNav,
     Row,
-  } from "$lib/index.js";
+  } from "#lib/index.js";
   const links = [
     { label: "CardImage", id: "cardimage" },
     { label: "CardImageHighlight", id: "cardimagehighlight" },

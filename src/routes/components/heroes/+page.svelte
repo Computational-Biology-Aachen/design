@@ -7,10 +7,10 @@
     SectionHeader,
     SectionHeaderPerson,
     Text,
-  } from "$lib/index.js";
-  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
-  import ShowcaseSection from "$lib/ShowcaseSection.svelte";
-  import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
+  } from "#lib/index.js";
+  import ShowcaseContainer from "#lib/ShowcaseContainer.svelte";
+  import ShowcaseSection from "#lib/ShowcaseSection.svelte";
+  import ShowcaseSidebar from "#lib/ShowcaseSidebar.svelte";
 
   const sectionVariants = ["light", "surface", "primary", "accent"] as const;
 
@@ -67,8 +67,8 @@
         </Text>
       </div>
       <pre><code
-          >{`import heroImg from "$lib/assets/hero.jpg";
-import cpblLogo from "$lib/assets/cpbl-logo.svg";
+          >{`import heroImg from "#lib/assets/hero.jpg";
+import cpblLogo from "#lib/assets/cpbl-logo.svg";
 
 <HeroGradient src={heroImg} cpblLogo={cpblLogo}>
   <h1>The Matuszyńska Lab</h1>

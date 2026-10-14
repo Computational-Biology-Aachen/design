@@ -2,7 +2,7 @@
   @component
 
   Previous/next pager links shown at the bottom of a page (e.g. tutorial steps).
-  Each link is optional; `base` is prefixed to both hrefs.
+  Each link is optional; hrefs are passed through `resolve` from `$app/paths`.
 
   ### Props
 
@@ -10,8 +10,6 @@
     The previous-page link (left, with a ← arrow).
   - `next?: { href: string; label: string }`
     The next-page link (right, with a → arrow).
-  - `base?: string`
-    Path prefix prepended to both hrefs. Defaults to `""`.
   - `styleVars?: { [key: string]: string }`
     Optional CSS custom property overrides applied via inline style.
 
@@ -25,7 +23,12 @@
   ```
 -->
 <script lang="ts">
+  import { resolve } from "$app/paths";
   import { toStyleString } from "./utils";
+
+  // hrefs come from the consuming app, so they aren't in this package's route types
+  const resolvePath = resolve as (path: string) => string;
+
   interface NavLink {
     href: string;
     label: string;
@@ -34,12 +37,10 @@
   let {
     prev,
     next,
-    base = "",
     styleVars = {},
   }: {
     prev?: NavLink;
     next?: NavLink;
-    base?: string;
     styleVars?: { [key: string]: string };
   } = $props();
 
@@ -53,7 +54,7 @@
   <div class="page-nav-prev">
     {#if prev}
       <a
-        href="{base}{prev.href}"
+        href={resolvePath(prev.href)}
         class="page-nav-btn"
       >
         <span
@@ -67,7 +68,7 @@
   <div class="page-nav-next">
     {#if next}
       <a
-        href="{base}{next.href}"
+        href={resolvePath(next.href)}
         class="page-nav-btn"
       >
         {next.label}

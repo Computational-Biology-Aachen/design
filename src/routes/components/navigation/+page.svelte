@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { base } from "$app/paths";
+  import { resolve } from "$app/paths";
   import {
     Navbar,
     NavGH,
@@ -7,10 +7,10 @@
     PageNav,
     Sidebar,
     Text,
-  } from "$lib/index.js";
-  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
-  import ShowcaseSection from "$lib/ShowcaseSection.svelte";
-  import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
+  } from "#lib/index.js";
+  import ShowcaseContainer from "#lib/ShowcaseContainer.svelte";
+  import ShowcaseSection from "#lib/ShowcaseSection.svelte";
+  import ShowcaseSidebar from "#lib/ShowcaseSidebar.svelte";
 
   const links = [
     { label: "Navbar + NavItem", id: "navbar" },
@@ -39,10 +39,10 @@
           {#snippet brand()}
             <span class="brand-demo">Lab Name</span>
           {/snippet}
-          <NavItem href="{base}/">Home</NavItem>
-          <NavItem href="{base}/research">Research</NavItem>
-          <NavItem href="{base}/team">Team</NavItem>
-          <NavItem href="{base}/publications">Publications</NavItem>
+          <NavItem href={resolve("/")}>Home</NavItem>
+          <NavItem href="/research">Research</NavItem>
+          <NavItem href="/team">Team</NavItem>
+          <NavItem href="/publications">Publications</NavItem>
         </Navbar>
       </div>
       <pre><code
@@ -168,10 +168,7 @@
 />
 
 <!-- First page - no prev -->
-<PageNav next={{ href: "/photosynthesis", label: "Photosynthesis" }} />
-
-<!-- With base path (e.g. comphot) -->
-<PageNav {base} prev={…} next={…} />`}</code
+<PageNav next={{ href: "/photosynthesis", label: "Photosynthesis" }} />`}</code
         ></pre>
     </ShowcaseSection>
 

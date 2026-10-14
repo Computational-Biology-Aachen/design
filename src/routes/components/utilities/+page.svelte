@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { base } from "$app/paths";
-  import { Footer, Icon, InfoBox, Link, PageNav, Row } from "$lib/index.js";
-  import ShowcaseContainer from "$lib/ShowcaseContainer.svelte";
-  import ShowcaseSection from "$lib/ShowcaseSection.svelte";
-  import ShowcaseSidebar from "$lib/ShowcaseSidebar.svelte";
+  import { Footer, Icon, InfoBox, Link, PageNav, Row } from "#lib/index.js";
+  import ShowcaseContainer from "#lib/ShowcaseContainer.svelte";
+  import ShowcaseSection from "#lib/ShowcaseSection.svelte";
+  import ShowcaseSidebar from "#lib/ShowcaseSidebar.svelte";
 
   const links = [
     { label: "Icon", id: "icon" },
@@ -125,7 +124,7 @@
             color="light">GitHub</Link
           > <br />
           <Link
-            href="{base}/imprint"
+            href="/imprint"
             color="light">Imprint</Link
           > <br />
         </Footer>

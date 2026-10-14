@@ -1,14 +1,14 @@
 <script lang="ts">
   import { beforeNavigate } from "$app/navigation";
-  import { base } from "$app/paths";
+  import { resolve } from "$app/paths";
   import { updated } from "$app/state";
-  import favicon from "$lib/assets/cpbl-favicon.svg";
-  import ButtonMenu from "$lib/ButtonMenu.svelte";
-  import ButtonMenuItem from "$lib/ButtonMenuItem.svelte";
-  import CollapseToBurger from "$lib/CollapseToBurger.svelte";
-  import Imprint from "$lib/Imprint.svelte";
-  import { Navbar, NavItem } from "$lib/index.js";
-  import NavGH from "$lib/NavGH.svelte";
+  import favicon from "#lib/assets/cpbl-favicon.svg";
+  import ButtonMenu from "#lib/ButtonMenu.svelte";
+  import ButtonMenuItem from "#lib/ButtonMenuItem.svelte";
+  import CollapseToBurger from "#lib/CollapseToBurger.svelte";
+  import Imprint from "#lib/Imprint.svelte";
+  import { Navbar, NavItem } from "#lib/index.js";
+  import NavGH from "#lib/NavGH.svelte";
   import "../app.css";
 
   let { children } = $props();
@@ -38,27 +38,37 @@
   {/snippet}
 
   <CollapseToBurger collapseAt="512px">
-    <NavItem href="{base}/">Overview</NavItem>
-    <NavItem href="{base}/tokens">Tokens</NavItem>
+    <NavItem href={resolve("/")}>Overview</NavItem>
+    <NavItem href={resolve("/tokens")}>Tokens</NavItem>
     <ButtonMenu
-      href="{base}/components"
+      href={resolve("/components")}
       label="Components"
     >
-      <ButtonMenuItem href="{base}/components/buttons">Buttons</ButtonMenuItem>
-      <ButtonMenuItem href="{base}/components/cards">Cards</ButtonMenuItem>
-      <ButtonMenuItem href="{base}/components/data">Data</ButtonMenuItem>
-      <ButtonMenuItem href="{base}/components/heroes">Heroes</ButtonMenuItem>
-      <ButtonMenuItem href="{base}/components/inputs">Inputs</ButtonMenuItem>
-      <ButtonMenuItem href="{base}/components/interactive"
+      <ButtonMenuItem href={resolve("/components/buttons")}
+        >Buttons</ButtonMenuItem
+      >
+      <ButtonMenuItem href={resolve("/components/cards")}>Cards</ButtonMenuItem>
+      <ButtonMenuItem href={resolve("/components/data")}>Data</ButtonMenuItem>
+      <ButtonMenuItem href={resolve("/components/heroes")}
+        >Heroes</ButtonMenuItem
+      >
+      <ButtonMenuItem href={resolve("/components/inputs")}
+        >Inputs</ButtonMenuItem
+      >
+      <ButtonMenuItem href={resolve("/components/interactive")}
         >Interactive
       </ButtonMenuItem>
-      <ButtonMenuItem href="{base}/components/layout">Layout</ButtonMenuItem>
-      <ButtonMenuItem href="{base}/components/media">Media</ButtonMenuItem>
-      <ButtonMenuItem href="{base}/components/navigation">Nav</ButtonMenuItem>
-      <ButtonMenuItem href="{base}/components/typography"
+      <ButtonMenuItem href={resolve("/components/layout")}
+        >Layout</ButtonMenuItem
+      >
+      <ButtonMenuItem href={resolve("/components/media")}>Media</ButtonMenuItem>
+      <ButtonMenuItem href={resolve("/components/navigation")}
+        >Nav</ButtonMenuItem
+      >
+      <ButtonMenuItem href={resolve("/components/typography")}
         >Typography
       </ButtonMenuItem>
-      <ButtonMenuItem href="{base}/components/utilities"
+      <ButtonMenuItem href={resolve("/components/utilities")}
         >Utilities
       </ButtonMenuItem>
     </ButtonMenu>

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { base } from "$app/paths";
-  import { Row, Section } from "$lib/index.js";
+  import { resolve } from "$app/paths";
+  import { Row, Section } from "#lib/index.js";
 </script>
 
 <svelte:head>
@@ -12,13 +12,13 @@
   <p>Shared tokens and components for CPBL lab websites.</p>
   <div style="margin-top: var(--space-6)">
     <Row gap="var(--space-3)">
-      <a href="{base}/tokens"
+      <a href={resolve("/tokens")}
         ><button
           type="button"
           class="browse-components">Browse tokens</button
         ></a
       >
-      <a href="{base}/components"
+      <a href={resolve("/components")}
         ><button
           type="button"
           class="browse-components">Browse components</button
@@ -36,7 +36,7 @@
         CSS custom properties for color, typography, spacing, shadows, and
         borders - all anchored to the RWTH institutional palette.
       </p>
-      <a href="{base}/tokens">View tokens →</a>
+      <a href={resolve("/tokens")}>View tokens →</a>
     </div>
     <div class="card">
       <h3>Svelte components</h3>
@@ -45,7 +45,7 @@
         <code>Button</code>, <code>Section</code>, <code>Row</code>,
         <code>Footer</code>.
       </p>
-      <a href="{base}/components">View components →</a>
+      <a href={resolve("/components")}>View components →</a>
     </div>
     <div class="card">
       <h3>Package</h3>
