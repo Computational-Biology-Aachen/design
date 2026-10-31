@@ -36,8 +36,6 @@
         datasets: stacks.map((s) => ({
           label: s.label,
           data: s.values,
-          borderWidth: 1,
-          borderColor: "transparent",
         })),
       },
       options: {
