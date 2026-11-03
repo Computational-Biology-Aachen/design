@@ -86,10 +86,15 @@
   .tab-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 0;
+    /* ButtonTab only has margins from 768px up; keep tabs apart below that. */
+    gap: 0 1rem;
     margin-bottom: var(--space-4, 16px);
     border-bottom: 1px solid var(--color-border);
     width: 100%;
+
+    @media (min-width: 768px) {
+      gap: 0;
+    }
   }
 
   .tab-content {
