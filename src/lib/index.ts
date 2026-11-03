@@ -63,7 +63,15 @@ export { default as LineChart } from "./LineChart.svelte";
 export type { PhaseRegion } from "./LineChart.svelte";
 export { default as HeatmapChart } from "./HeatmapChart.svelte";
 export { default as PlotChart } from "./PlotChart.svelte";
-export type { PlotPhase, PlotSeries } from "./PlotChart.svelte";
+export type {
+  PlotAnnotation,
+  PlotAxis,
+  PlotDash,
+  PlotMarker,
+  PlotPhase,
+  PlotRule,
+  PlotSeries,
+} from "./PlotChart.svelte";
 export { default as StackedBarChart } from "./StackedBarChart.svelte";
 export { default as LineChartGrid } from "./LineChartGrid.svelte";
 export type { LineChartGridItem } from "./LineChartGrid.svelte";
