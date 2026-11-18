@@ -1,5 +1,6 @@
 <script lang="ts">
   import {
+    Button,
     Accordion,
     ButtonIcon,
     Icon,
@@ -106,13 +107,20 @@
         >
           <ButtonIcon
             icon="info"
+            label="About this model"
             popovertarget="demo-popover"
           />
           <Text color="secondary">Click the icon to open the popover</Text>
+          <Button
+            variant="secondary"
+            command="show-modal"
+            commandfor="demo-modal">Open modal editor</Button
+          >
         </Row>
         <Popover
           size="sm"
           popovertarget="demo-popover"
+          label="About this model"
         >
           <p><strong>About this model</strong></p>
           <p>
@@ -120,11 +128,41 @@
             Popover API.
           </p>
         </Popover>
+        <Popover
+          modal
+          size="xs"
+          popovertarget="demo-modal"
+          label="Modal editor"
+        >
+          <Row
+            align="center"
+            gap="var(--space-3)"
+          >
+            <strong style="flex: 1">Modal editor</strong>
+            <ButtonIcon
+              icon="close"
+              label="Close"
+              command="close"
+              commandfor="demo-modal"
+            />
+          </Row>
+          <p>
+            Outside clicks don't close a modal dialog, so unsaved edits are
+            safe; <kbd>Esc</kbd> or the close button do.
+          </p>
+          <label>Name <input name="demo-name" /></label>
+        </Popover>
       </div>
       <pre><code
           >{`<ButtonIcon icon="info" popovertarget="my-popover" />
-<Popover size="sm" popovertarget="my-popover">
+<Popover size="sm" popovertarget="my-popover" label="About">
   <p>Popover content</p>
+</Popover>
+
+<!-- Modal: page inert, Esc closes, outside clicks don't -->
+<Button command="show-modal" commandfor="editor">Edit</Button>
+<Popover modal size="lg" popovertarget="editor" label="Model editor">
+  <ButtonIcon icon="close" label="Close" command="close" commandfor="editor" />
 </Popover>
 <!-- size: "xs" | "sm" | "md" | "lg" -->`}</code
         ></pre>

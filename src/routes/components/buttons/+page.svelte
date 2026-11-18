@@ -67,29 +67,34 @@
         >
           <ButtonIcon
             icon="settings"
+            label="Settings"
             size="lg"
             onclick={() => alert("settings")}
           />
           <ButtonIcon
             icon="info"
+            label="Info"
             size="lg"
             onclick={() => alert("info")}
           />
           <ButtonIcon
             icon="delete"
+            label="Delete"
             size="lg"
             onclick={() => alert("delete")}
           />
           <ButtonIcon
             icon="add"
+            label="Add"
             size="lg"
             onclick={() => alert("add")}
           />
         </Row>
       </div>
       <pre><code
-          >{`<ButtonIcon icon="settings" onclick={openSettings} />
-<ButtonIcon icon="info" popovertarget="my-popover" />`}</code
+          >{`<!-- Always pass a label: the icon ligature alone is read out as "settings" -->
+<ButtonIcon icon="settings" label="Settings" onclick={openSettings} />
+<ButtonIcon icon="info" label="About" popovertarget="my-popover" />`}</code
         ></pre>
     </ShowcaseSection>
 

@@ -9,12 +9,16 @@
 
   ### Props
 
-  - `tabs: { key: string; label: string }[]`
+  - `tabs: { key: string; label: string; icon?: string }[]`
     The tab definitions, in display order.
   - `children: Snippet<[string]>`
     Renders the panel body; receives the active tab `key`.
   - `label?: string`
     Accessible name of the tab list (`aria-label`).
+  - `activeKey?: string` (bindable)
+    The selected tab's key. Defaults to the first tab.
+  - `...rest`
+    Spread onto the tab list element (e.g. `data-*` hooks).
 
   ### Style Overrides
 
@@ -36,23 +40,27 @@
   import type { Snippet } from "svelte";
   import { tick, untrack } from "svelte";
   import ButtonTab from "./ButtonTab.svelte";
+  import Icon from "./Icon.svelte";
 
   let {
     tabs,
     children,
     label,
+    activeKey = $bindable(untrack(() => tabs[0]?.key ?? "")),
     styleVars = {},
+    ...rest
   }: {
-    tabs: { key: string; label: string }[];
+    tabs: { key: string; label: string; icon?: string }[];
     children: Snippet<[string]>;
     label?: string;
+    activeKey?: string;
     styleVars?: { contentGap?: string; contentMinHeight?: string };
+    [key: string]: unknown;
   } = $props();
 
   const uid = $props.id();
   const tabId = (key: string) => `tabs-${uid}-${key}`;
 
-  let activeKey = $state(untrack(() => tabs[0]?.key ?? ""));
   let tabBar = $state<HTMLDivElement | null>(null);
 
   $effect(() => {
@@ -96,6 +104,7 @@
   aria-label={label}
   bind:this={tabBar}
   onkeydown={onKeydown}
+  {...rest}
 >
   {#each tabs as tab (tab.key)}
     <ButtonTab
@@ -106,6 +115,7 @@
       selected={activeKey === tab.key}
       onclick={() => (activeKey = tab.key)}
     >
+      {#if tab.icon}<Icon>{tab.icon}</Icon>{/if}
       {tab.label}
     </ButtonTab>
   {/each}

@@ -1,10 +1,18 @@
 <!--
   @component
 
-  A dialog overlay built on `<dialog popover>` (native popover API: top layer,
-  light dismiss, `Esc`), sized via presets and dimmed with a backdrop. Open/close it by pointing a [[Button]] (or
-  [[ButtonIcon]]) `popovertarget` at this popover's id. The element is `$bindable`
-  via `el` for imperative control.
+  A dialog overlay, sized via presets, dimmed with a backdrop and faded in/out.
+
+  - Default: `<dialog popover>` (top layer, light dismiss, `Esc`). Open/close it
+    by pointing a [[Button]] (or [[ButtonIcon]]) `popovertarget` at its id, or
+    call `el.showPopover()`.
+  - `modal`: a modal `<dialog>` (page inert, focus contained, `Esc` closes,
+    outside clicks do NOT) for forms whose edits must not be lost to a stray
+    click. Open it with `command="show-modal" commandfor={id}` on a [[Button]]
+    or `el.showModal()`; close with `command="close" commandfor={id}` or
+    `el.close()`.
+
+  The element is `$bindable` via `el` for imperative control.
 
   ### Props
 
@@ -12,7 +20,10 @@
     Size/position preset, from a small centred dialog (`xs`) to near-fullscreen
     (`lg`).
   - `popovertarget: string`
-    The popover's id; a trigger's `popovertarget` must match this.
+    The dialog's id; a trigger's `popovertarget` (or `commandfor` when
+    `modal`) must match this.
+  - `modal?: boolean`
+    Render a modal dialog instead of a popover. Defaults to `false`.
   - `label?: string`
     Accessible name of the dialog (`aria-label`). Set it unless the content
     starts with a heading that already names it.
@@ -28,8 +39,13 @@
 
   ```svelte
   <Button popovertarget="settings" popovertargetaction="show">Settings</Button>
-  <Popover size="sm" popovertarget="settings">
+  <Popover size="sm" popovertarget="settings" label="Settings">
     <H3>Settings</H3>
+  </Popover>
+
+  <Button command="show-modal" commandfor="editor">Edit model</Button>
+  <Popover modal size="lg" popovertarget="editor" label="Model editor">
+    <ButtonIcon icon="close" label="Close" command="close" commandfor="editor" />
   </Popover>
   ```
 -->
@@ -40,12 +56,14 @@
     size,
     children,
     popovertarget,
+    modal = false,
     label,
     el = $bindable<HTMLDialogElement | null | undefined>(),
     styleVars = {},
   }: {
     size: "xs" | "sm" | "md" | "lg";
     popovertarget: string;
+    modal?: boolean;
     children: Snippet;
     label?: string;
     el?: HTMLDialogElement | null;
@@ -63,7 +81,7 @@
 </script>
 
 <dialog
-  popover
+  popover={modal ? undefined : "auto"}
   bind:this={el}
   id={popovertarget}
   aria-label={label}
@@ -103,7 +121,7 @@
     }
   }
 
-  dialog:popover-open {
+  dialog:is(:popover-open, [open]) {
     opacity: 1;
 
     @starting-style {
@@ -117,13 +135,16 @@
     transition-property: background-color, display, overlay;
     transition-timing-function: ease-out;
     background-color: transparent;
+    /* Without these, scrolling over the backdrop scrolls the page behind. */
+    overflow: hidden;
+    overscroll-behavior: contain;
 
     @media (prefers-reduced-motion: reduce) {
       transition-duration: 0.1s;
     }
   }
 
-  dialog:popover-open::backdrop {
+  dialog:is(:popover-open, [open])::backdrop {
     background-color: var(--scrim-backdrop);
 
     @starting-style {

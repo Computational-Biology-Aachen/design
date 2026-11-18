@@ -8,6 +8,9 @@
 
   - `icon: string`
     Material Symbols ligature name (e.g. `"close"`, `"menu"`).
+  - `label?: string`
+    Accessible name (`aria-label` + tooltip). Always set it: the icon
+    ligature alone is read out as e.g. "close" or "edit_note".
   - `onclick?: MouseEventHandler<HTMLButtonElement>`
     Click handler.
   - `popovertarget?: string`
@@ -16,11 +19,13 @@
     Button size. Defaults to `"sm"`.
   - `styleVars?: { width?: string; height?: string; fontSize?: string }`
     Override the button's default size values.
+  - `...rest`
+    Spread onto the `<button>` (e.g. `command`/`commandfor` invokers).
 
   ### Example
 
   ```svelte
-  <ButtonIcon icon="close" size="md" onclick={dismiss} />
+  <ButtonIcon icon="close" label="Close" size="md" onclick={dismiss} />
   ```
 -->
 <script lang="ts">
@@ -30,16 +35,20 @@
 
   let {
     icon,
+    label,
     onclick,
     popovertarget,
     size = "sm",
     styleVars = {},
+    ...rest
   }: {
     icon: string;
+    label?: string;
     onclick?: MouseEventHandler<HTMLButtonElement>;
     popovertarget?: string;
     size?: "sm" | "md" | "lg";
     styleVars?: { width?: string; height?: string; fontSize?: string };
+    [key: string]: unknown;
   } = $props();
 
   let cssVars = $derived({
@@ -53,10 +62,14 @@
 </script>
 
 <button
+  type="button"
+  aria-label={label}
+  title={label}
   onclick={onclick}
   popovertarget={popovertarget}
   class="size-{size}"
   style={inlineStyle}
+  {...rest}
 >
   <Icon
     color="inherit"

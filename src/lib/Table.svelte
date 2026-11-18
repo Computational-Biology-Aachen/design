@@ -9,6 +9,10 @@
 
   - `children: Snippet`
     The table rows/sections.
+  - `label?: string`
+    Accessible name. When set, the scroll container becomes a focusable
+    `role="region"` so keyboard users can scroll wide tables (Safari doesn't
+    make scrollers focusable on its own).
   - `styleVars?: { fontSize?: string }`
     Override CSS custom properties for the table element.
   - `...rest`
@@ -29,10 +33,12 @@
 
   let {
     children,
+    label,
     styleVars = {},
     ...rest
   }: {
     children: Snippet;
+    label?: string;
     styleVars?: { fontSize?: string };
     [key: string]: unknown;
   } = $props();
@@ -43,7 +49,14 @@
   let inlineStyle = $derived(toStyleString(cssVars));
 </script>
 
-<div class="table-wrap">
+<!-- A labelled, focusable scroll region is the keyboard-scrolling pattern. -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<div
+  class="table-wrap"
+  role={label ? "region" : undefined}
+  aria-label={label}
+  tabindex={label ? 0 : undefined}
+>
   <table
     {...rest}
     style={inlineStyle}
