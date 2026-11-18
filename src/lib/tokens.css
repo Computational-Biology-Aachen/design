@@ -156,4 +156,6 @@ a:hover {
 
 img {
   max-width: 100%;
+  /* Keeps the aspect ratio when width/height attributes are set (CLS). */
+  height: auto;
 }
