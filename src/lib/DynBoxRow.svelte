@@ -5,8 +5,7 @@
   (stacked on mobile) can be moved, resized and removed, with add buttons per row
   and below. Layout is derived from the `items` seed list, and add/remove are
   delegated to callbacks so the parent owns the data. Each box's body is rendered
-  via the `children` snippet, which receives the box. See [[DynBoxGrid]] for a
-  self-contained demo variant.
+  via the `children` snippet, which receives the box.
 
   ### Props
 
@@ -260,9 +259,10 @@
     if (!box) return;
 
     event.preventDefault();
-    (event.currentTarget as HTMLElement | null)?.setPointerCapture(
-      event.pointerId,
-    );
+    // Pointer capture routes all further events for this pointer to the
+    // handle, so no window-level listeners are needed.
+    const handle = event.currentTarget as HTMLElement;
+    handle.setPointerCapture(event.pointerId);
 
     const startX = event.clientX;
     const startColSpan = box.span;
@@ -300,12 +300,18 @@
         resizeBox(row, boxId, DRAG_PREVIEW.span);
       }
       DRAG_PREVIEW = null;
-      window.removeEventListener("pointermove", handleMove);
-      window.removeEventListener("pointerup", handleUp);
     };
 
-    window.addEventListener("pointermove", handleMove);
-    window.addEventListener("pointerup", handleUp);
+    const cleanup = () => {
+      DRAG_PREVIEW = null;
+      handle.removeEventListener("pointermove", handleMove);
+      handle.removeEventListener("pointerup", handleUp);
+      handle.removeEventListener("lostpointercapture", cleanup);
+    };
+
+    handle.addEventListener("pointermove", handleMove);
+    handle.addEventListener("pointerup", handleUp);
+    handle.addEventListener("lostpointercapture", cleanup);
   }
 
   function startMove(event: PointerEvent, startRow: number, boxId: number) {
@@ -316,9 +322,10 @@
     if (!box) return;
 
     event.preventDefault();
-    (event.currentTarget as HTMLElement | null)?.setPointerCapture(
-      event.pointerId,
-    );
+    // Pointer capture routes all further events for this pointer to the
+    // handle, so no window-level listeners are needed.
+    const handle = event.currentTarget as HTMLElement;
+    handle.setPointerCapture(event.pointerId);
 
     const startX = event.clientX;
     const startY = event.clientY;
@@ -357,12 +364,18 @@
         moveBox(boxId, startRow, DRAG_PREVIEW.row, DRAG_PREVIEW.col);
       }
       DRAG_PREVIEW = null;
-      window.removeEventListener("pointermove", handleMove);
-      window.removeEventListener("pointerup", handlePointerUp);
     };
 
-    window.addEventListener("pointermove", handleMove);
-    window.addEventListener("pointerup", handlePointerUp);
+    const cleanup = () => {
+      DRAG_PREVIEW = null;
+      handle.removeEventListener("pointermove", handleMove);
+      handle.removeEventListener("pointerup", handlePointerUp);
+      handle.removeEventListener("lostpointercapture", cleanup);
+    };
+
+    handle.addEventListener("pointermove", handleMove);
+    handle.addEventListener("pointerup", handlePointerUp);
+    handle.addEventListener("lostpointercapture", cleanup);
   }
 
   function rowNotFull(row: number): boolean {

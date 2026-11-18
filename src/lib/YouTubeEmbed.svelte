@@ -14,7 +14,7 @@
   ### Style Overrides
 
   - `styleVars.borderRadius` → overrides `--youtube-border-radius`
-  - `styleVars.aspectRatio` → overrides `--youtube-aspect-ratio`
+  - `styleVars.aspectRatio` → overrides `--youtube-aspect-ratio` (a CSS ratio, e.g. `"4 / 3"`)
 
   ### Example
 
@@ -59,19 +59,16 @@
 <style>
   .youtube-container {
     --youtube-border-radius: var(--radius-md);
-    --youtube-aspect-ratio: 56.25%;
-    position: relative;
+    --youtube-aspect-ratio: 16 / 9;
     border-radius: var(--youtube-border-radius);
     background: #000;
-    padding-bottom: var(--youtube-aspect-ratio);
+    aspect-ratio: var(--youtube-aspect-ratio);
     width: 100%;
     overflow: hidden;
   }
 
   iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: block;
     border: 0;
     width: 100%;
     height: 100%;

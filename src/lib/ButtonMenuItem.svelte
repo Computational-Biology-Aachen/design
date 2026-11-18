@@ -72,12 +72,14 @@
   <a
     href={href}
     class:active={activeUrl}
+    onclick={() => menu?.close()}
     style={inlineStyle}
   >
     {@render children()}
   </a>
 {:else}
   <button
+    type="button"
     class:active={active}
     onclick={handleClick}
     style={inlineStyle}

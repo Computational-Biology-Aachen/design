@@ -119,13 +119,6 @@
     }
   }
 
-  function onValueKeydown(event: KeyboardEvent) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      startEdit();
-    }
-  }
-
   let inlineStyle = $derived(toStyleString(styleVars));
 </script>
 
@@ -139,6 +132,7 @@
       <input
         class="value-input"
         type="number"
+        aria-label="{name}{desc ? ` (${desc})` : ''}"
         step="any"
         min={min}
         max={max}
@@ -148,12 +142,12 @@
         onblur={commitEdit}
       />
     {:else}
-      <span
+      <button
+        type="button"
         class="value"
-        role="button"
-        tabindex={disabled ? -1 : 0}
-        onclick={startEdit}
-        onkeydown={onValueKeydown}>{liveVal}</span
+        disabled={disabled}
+        aria-label="Edit {name}{desc ? ` (${desc})` : ''}: {liveVal}"
+        onclick={startEdit}>{liveVal}</button
       >
     {/if}
   </div>
@@ -190,16 +184,18 @@
   span.name {
     font-weight: var(--weight-medium);
   }
-  span.value {
+  button.value {
     cursor: pointer;
     border: 2px solid transparent;
     border-radius: var(--radius-sm);
+    background: none;
     padding: 0 var(--space-1);
     color: var(--color-primary);
+    font: inherit;
     font-weight: var(--weight-bold);
   }
-  span.value:hover,
-  span.value:focus-visible {
+  button.value:hover,
+  button.value:focus-visible {
     border-color: var(--color-primary);
   }
   .value-input {

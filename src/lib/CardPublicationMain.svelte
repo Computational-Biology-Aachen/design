@@ -122,7 +122,9 @@
   }
 
   .card:hover {
-    transform: scale(1.01);
+    @media (prefers-reduced-motion: no-preference) {
+      transform: scale(1.01);
+    }
   }
 
   @media (min-width: 768px) {

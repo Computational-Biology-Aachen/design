@@ -2,9 +2,11 @@
   @component
 
   A responsive logo bar that displays logos statically when they fit, and
-  switches to an infinite marquee (paused on hover, edge-masked) when there are
-  more than the per-breakpoint threshold. Uses a ResizeObserver to pick the
-  threshold.
+  switches to an infinite marquee (edge-masked) when there are more than the
+  per-breakpoint threshold. Uses a ResizeObserver to pick the threshold. The
+  marquee pauses on hover/focus and has a Pause/Play button (WCAG 2.2.2); with
+  `prefers-reduced-motion: reduce` it never animates and becomes a
+  horizontally scrollable row instead.
 
   ### Props
 
@@ -29,6 +31,7 @@
 -->
 <script lang="ts">
   import { onMount } from "svelte";
+  import Icon from "./Icon.svelte";
   import { toStyleString } from "./utils";
 
   type Logo = { src: string; href: string; alt: string; height?: string };
@@ -56,13 +59,13 @@
   }: Props = $props();
 
   let containerWidth = $state(1200);
+  let paused = $state(false);
 
   const threshold = $derived(
     containerWidth < 768 ? maxSm : containerWidth < 1024 ? maxMd : max,
   );
   const scrolling = $derived(logos.length > threshold);
   const duration = $derived((logos.length * 150) / speed);
-  const doubled = $derived([...logos, ...logos]);
 
   let container: HTMLDivElement | undefined = $state();
 
@@ -88,41 +91,57 @@
   });
 </script>
 
+{#snippet logoLinks()}
+  {#each logos as logo, i (i)}
+    <a href={logo.href}>
+      <img
+        class="logo"
+        src={logo.src}
+        alt={logo.alt}
+        loading="lazy"
+        decoding="async"
+        style:height={logo.height}
+      />
+    </a>
+  {/each}
+{/snippet}
+
 <div
   bind:this={container}
   class="logo-bar"
   class:scrolling={scrolling}
+  class:paused={paused}
   style={toStyleString({
     ...cssVars,
     ...(scrolling ? { "--duration": `${duration}s` } : {}),
   })}
 >
   {#if scrolling}
-    <div class="track">
-      {#each doubled as logo, i (i)}
-        <a href={logo.href}>
-          <img
-            class="logo"
-            src={logo.src}
-            alt={logo.alt}
-            style="height: {logo.height ??
-              'var(--row-img-scrolling-logo-height, 5rem)'}"
-          />
-        </a>
-      {/each}
+    <div class="viewport">
+      <div class="track">
+        <div class="group">{@render logoLinks()}</div>
+        <div
+          class="group duplicate"
+          aria-hidden="true"
+          inert
+        >
+          {@render logoLinks()}
+        </div>
+      </div>
     </div>
+    <button
+      type="button"
+      class="pause"
+      aria-label={paused ? "Play logo animation" : "Pause logo animation"}
+      onclick={() => (paused = !paused)}
+    >
+      <Icon
+        color="inherit"
+        fontSize="inherit">{paused ? "play_arrow" : "pause"}</Icon
+      >
+    </button>
   {:else}
-    {#each logos as logo, i (i)}
-      <a href={logo.href}>
-        <img
-          class="logo"
-          src={logo.src}
-          alt={logo.alt}
-          style="height: {logo.height ??
-            'var(--row-img-scrolling-logo-height, 5rem)'}"
-        />
-      </a>
-    {/each}
+    {@render logoLinks()}
   {/if}
 </div>
 
@@ -142,31 +161,86 @@
   .logo-bar.scrolling {
     position: relative;
     justify-content: flex-start;
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 10%,
-      black 90%,
-      transparent
-    );
-    overflow: hidden;
+  }
+
+  .viewport {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    align-self: stretch;
+    min-width: 0;
+    overflow-x: auto;
+
+    @media (prefers-reduced-motion: no-preference) {
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 10%,
+        black 90%,
+        transparent
+      );
+      overflow: hidden;
+    }
   }
 
   .track {
-    --row-img-scrolling-track-gap: 3rem;
     display: flex;
     align-items: center;
-    gap: var(--row-img-scrolling-track-gap);
-    animation: marquee var(--duration, 20s) linear infinite;
     width: max-content;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: marquee var(--duration, 20s) linear infinite;
+    }
   }
 
-  .track:hover {
+  .logo-bar.paused .track,
+  .viewport:hover .track,
+  .viewport:focus-within .track {
     animation-play-state: paused;
   }
 
+  .group {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: var(--row-img-scrolling-track-gap, 3rem);
+    /* Trailing gap so the two groups tile seamlessly at translateX(-50%). */
+    padding-inline-end: var(--row-img-scrolling-track-gap, 3rem);
+  }
+
+  .duplicate {
+    display: none;
+
+    @media (prefers-reduced-motion: no-preference) {
+      display: flex;
+    }
+  }
+
+  .pause {
+    display: none;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: var(--border);
+    border-radius: var(--radius-full);
+    background: var(--color-bg);
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-text-muted);
+    font-size: 1.25rem;
+
+    @media (prefers-reduced-motion: no-preference) {
+      display: inline-flex;
+    }
+  }
+
+  .pause:hover {
+    color: var(--color-primary);
+  }
+
   .logo-bar > a,
-  .track > a {
+  .group > a {
     display: inline-flex;
     flex: 0 0 auto;
     align-items: center;
@@ -182,18 +256,19 @@
   }
 
   .logo {
-    --row-img-scrolling-logo-height: 5rem;
     display: block;
     transition:
       transform var(--transition),
       box-shadow var(--transition);
     width: auto;
     max-width: none;
-    height: var(--row-img-scrolling-logo-height);
+    height: var(--row-img-scrolling-logo-height, 5rem);
     object-fit: contain;
   }
 
   .logo:hover {
-    transform: translateY(-3px);
+    @media (prefers-reduced-motion: no-preference) {
+      transform: translateY(-3px);
+    }
   }
 </style>

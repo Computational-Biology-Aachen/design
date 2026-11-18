@@ -202,6 +202,10 @@
     border-radius: 50%;
     width: 0.875em;
     height: 0.875em;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation-duration: 6s;
+    }
   }
 
   @keyframes spin {

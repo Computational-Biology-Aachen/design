@@ -1,5 +1,6 @@
 <script lang="ts">
   import {
+    LogoBar,
     CardModel,
     InputCheckbox,
     LineChart,
@@ -12,6 +13,7 @@
     TableAlumni,
     Text,
   } from "#lib/index.js";
+  import logo from "#lib/assets/cpbl-favicon.svg";
   import ShowcaseContainer from "#lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "#lib/ShowcaseSection.svelte";
   import ShowcaseSidebar from "#lib/ShowcaseSidebar.svelte";
@@ -363,15 +365,25 @@ const data: ChartData = {
       <div class="preview note">
         <Text color="secondary">
           <strong>LogoBar</strong> accepts an array of
-          <code>{"{ href, img, name }[]"}</code> and animates as a marquee when
+          <code>{"{ src, href, alt }[]"}</code> and animates as a marquee when
           the number of logos exceeds the <code>max</code> threshold for the current
-          breakpoint.
+          breakpoint, with a Pause button (static under reduced motion).
         </Text>
+      </div>
+      <div class="preview">
+        <LogoBar
+          logos={Array.from({ length: 7 }, (_, i) => ({
+            src: logo,
+            href: "#logobar",
+            alt: `Partner ${i + 1}`,
+            height: "3rem",
+          }))}
+        />
       </div>
       <pre><code
           >{`const logos = [
-  { href: "https://rwth-aachen.de", img: "/rwth.svg", name: "RWTH Aachen" },
-  { href: "https://dfg.de",         img: "/dfg.svg",  name: "DFG" },
+  { href: "https://rwth-aachen.de", src: "/rwth.svg", alt: "RWTH Aachen" },
+  { href: "https://dfg.de",         src: "/dfg.svg",  alt: "DFG" },
 ];
 
 <LogoBar {logos} max={5} maxMd={3} maxSm={2} speed={40} />`}</code

@@ -58,6 +58,7 @@
 </script>
 
 <button
+  type="button"
   class:selected={selected}
   onclick={onclick}
   style={inlineStyle}

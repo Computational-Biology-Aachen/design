@@ -335,6 +335,10 @@
     border-radius: var(--radius-full);
     width: 40px;
     height: 40px;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation-duration: 6s;
+    }
   }
 
   @keyframes spin {

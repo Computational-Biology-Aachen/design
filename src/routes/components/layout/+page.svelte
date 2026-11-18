@@ -23,7 +23,7 @@
     { label: "Narrow", id: "narrow" },
     { label: "Main", id: "main" },
     { label: "CardFeature", id: "featurebox" },
-    { label: "DynBoxGrid / DynBoxRow", id: "dynbox" },
+    { label: "DynBoxRow", id: "dynbox" },
   ];
 </script>
 
@@ -279,23 +279,21 @@
 
     <ShowcaseSection
       id="dynbox"
-      title="DynBoxGrid / DynBoxRow"
+      title="DynBoxRow"
     >
       <h3>Interactive drag-and-resize box grid - used in the model editor</h3>
       <div class="preview note">
         <Text color="secondary">
-          <strong>DynBoxGrid</strong> and <strong>DynBoxRow</strong> implement a
-          6-column drag-and-resize layout for the mxlweb model editor. They
-          manage internal row/box state and require <code>items</code>,
-          <code>onAdd</code>, and <code>onRemove</code> callbacks.
+          <strong>DynBoxRow</strong> implements a controlled 6-column drag-and-resize
+          layout for the mxlweb analysis dashboards.
         </Text>
       </div>
       <pre><code
-          >{`<DynBoxGrid {items} {onAdd} {onRemove}>
+          >{`<DynBoxRow {items} {onAdd} {onRemove}>
   {#snippet children({ box })}
     <MyBoxContent {box} />
   {/snippet}
-</DynBoxGrid>`}</code
+</DynBoxRow>`}</code
         ></pre>
     </ShowcaseSection>
 

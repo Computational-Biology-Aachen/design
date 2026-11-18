@@ -89,7 +89,9 @@
     padding: var(--card-padding);
   }
   .card:hover {
-    transform: scale(1.03);
+    @media (prefers-reduced-motion: no-preference) {
+      transform: scale(1.03);
+    }
     box-shadow:
       0px 18px 36px -18px rgba(0, 0, 0, 0.4),
       0px 30px 45px -30px rgba(50, 50, 93, 0.4);

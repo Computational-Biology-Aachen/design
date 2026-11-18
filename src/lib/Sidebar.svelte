@@ -3,8 +3,7 @@
 
   A vertical navigation sidebar that collapses to a hamburger-toggled panel below
   768px. Consumers pass `<a>` links as children; the component styles them
-  (including `.active`/`aria-current="page"` states) via `:global`. See
-  [[Sidebar2]] for a variant with built-in links and an audience toggle.
+  (including `.active`/`aria-current="page"` states) via `:global`.
 
   ### Props
 
@@ -68,7 +67,7 @@
     background-color: var(--color-surface);
     padding: var(--space-6) 0;
     width: var(--sidebar-width, 220px);
-    min-height: calc(100vh - var(--nav-height));
+    min-height: calc(100dvh - var(--nav-height));
   }
 
   .hamburger {

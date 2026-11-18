@@ -81,6 +81,8 @@
     <img
       src={resolvedImg}
       alt={title}
+      loading="lazy"
+      decoding="async"
     />
     <div class="bar">
       <h4>{title}</h4>
@@ -105,7 +107,9 @@
     overflow: hidden;
   }
   .card:hover {
-    transform: scale(1.02);
+    @media (prefers-reduced-motion: no-preference) {
+      transform: scale(1.02);
+    }
   }
   .card img {
     display: block;

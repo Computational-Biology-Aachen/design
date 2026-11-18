@@ -84,7 +84,9 @@
     min-height: var(--card-software-main-min-height);
   }
   .card:hover {
-    transform: scale(1.01);
+    @media (prefers-reduced-motion: no-preference) {
+      transform: scale(1.01);
+    }
   }
   .bar {
     display: flex;

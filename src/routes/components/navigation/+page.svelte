@@ -6,7 +6,7 @@
     NavItem,
     PageNav,
     Sidebar,
-    Text,
+    Tabs,
   } from "#lib/index.js";
   import ShowcaseContainer from "#lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "#lib/ShowcaseSection.svelte";
@@ -16,8 +16,8 @@
     { label: "Navbar + NavItem", id: "navbar" },
     { label: "NavGH", id: "navgh" },
     { label: "Sidebar", id: "sidebar" },
-    { label: "Sidebar2", id: "sidebar2" },
     { label: "PageNav", id: "pagenav" },
+    { label: "Tabs", id: "tabs" },
   ];
 </script>
 
@@ -119,34 +119,6 @@
     </ShowcaseSection>
 
     <ShowcaseSection
-      id="sidebar2"
-      title="Sidebar2"
-    >
-      <h3>Sidebar with audience toggle - used in comphot</h3>
-      <div class="preview note">
-        <Text color="secondary">
-          <strong>Sidebar2</strong> combines a navigation link list with an
-          <code>AudienceToggle</code> widget. It requires <code>navLinks</code>,
-          <code>audienceStore</code>, and <code>audienceOptions</code> props. It is
-          site-specific to comphot.
-        </Text>
-      </div>
-      <pre><code
-          >{`<Sidebar2
-  navLinks={[
-    { href: "/home",          label: "Home" },
-    { href: "/photosynthesis", label: "Photosynthesis" },
-  ]}
-  {audienceStore}
-  audienceOptions={[
-    { value: "4bio",  label: "Biology" },
-    { value: "4math", label: "Mathematics" },
-  ]}
-/>`}</code
-        ></pre>
-    </ShowcaseSection>
-
-    <ShowcaseSection
       id="pagenav"
       title="PageNav"
     >
@@ -172,6 +144,32 @@
         ></pre>
     </ShowcaseSection>
 
+    <ShowcaseSection
+      id="tabs"
+      title="Tabs"
+    >
+      <h3>ARIA tabs: arrow keys, Home and End move and select</h3>
+      <div class="preview">
+        <Tabs
+          label="Model views"
+          tabs={[
+            { key: "eqs", label: "Equations" },
+            { key: "params", label: "Parameters" },
+            { key: "plot", label: "Plot" },
+          ]}
+        >
+          {#snippet children(key)}
+            <p>Panel content for <code>{key}</code>.</p>
+          {/snippet}
+        </Tabs>
+      </div>
+      <pre><code
+          >{`<Tabs label="Model views" tabs={[{ key: "eqs", label: "Equations" }, …]}>
+  {#snippet children(key)}…{/snippet}
+</Tabs>`}</code
+        ></pre>
+    </ShowcaseSection>
+
     <PageNav
       prev={{ href: "/components/data", label: "Data & Science" }}
       next={{ href: "/components/heroes", label: "Heroes" }}
@@ -183,9 +181,5 @@
   .brand-demo {
     color: var(--color-primary);
     font-weight: 600;
-  }
-
-  .note {
-    font-size: var(--text-sm);
   }
 </style>

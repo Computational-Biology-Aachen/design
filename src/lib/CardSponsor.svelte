@@ -77,6 +77,8 @@
     min-height: var(--card-sponsor-min-height);
   }
   .card:hover {
-    transform: scale(1.07);
+    @media (prefers-reduced-motion: no-preference) {
+      transform: scale(1.07);
+    }
   }
 </style>

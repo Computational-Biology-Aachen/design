@@ -104,7 +104,7 @@
   }
   .inner {
     --hero-gradient-padding: 2rem 2rem;
-    --hero-gradient-height: calc(100vh / 2);
+    --hero-gradient-height: 50svh;
     --hero-gradient-max-height: 800px;
     display: flex;
     flex-direction: column;

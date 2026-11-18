@@ -1,7 +1,6 @@
 <script lang="ts">
   import {
     Accordion,
-    Accordion2,
     ButtonIcon,
     Icon,
     PageNav,
@@ -10,7 +9,6 @@
     Slider,
     Slider2,
     Text,
-    VideoTranscriptToggle,
   } from "#lib/index.js";
   import ShowcaseContainer from "#lib/ShowcaseContainer.svelte";
   import ShowcaseSection from "#lib/ShowcaseSection.svelte";
@@ -18,17 +16,16 @@
 
   const links = [
     { label: "Accordion", id: "accordion" },
-    { label: "Accordion2", id: "accordion2" },
+    { label: "Accordion (plain)", id: "accordion-plain" },
     { label: "Popover", id: "popover" },
     { label: "Slider", id: "slider" },
     { label: "Slider2", id: "slider2" },
     { label: "ToggleLanguage", id: "togglelanguage" },
-    { label: "VideoTranscriptToggle", id: "videotranscripttoggle" },
   ];
 
   let sliderVal = $state(42);
   let slider2Val = $state(1.5);
-  let accordion2Open = $state(false);
+  let accordionPlainOpen = $state(false);
 </script>
 
 <svelte:head><title>Interactive - CPBL Design</title></svelte:head>
@@ -66,36 +63,34 @@
     </ShowcaseSection>
 
     <ShowcaseSection
-      id="accordion2"
-      title="Accordion2"
+      id="accordion-plain"
+      title="Accordion (plain)"
     >
-      <h3>JS-powered accordion with custom header snippet</h3>
+      <h3>Borderless variant with custom header snippet and bindable state</h3>
       <div class="preview">
-        <Accordion2 bind:open={accordion2Open}>
+        <Accordion
+          variant="plain"
+          bind:open={accordionPlainOpen}
+        >
           {#snippet header()}
-            <Row
-              align="center"
-              gap="var(--space-2)"
-            >
-              <Icon color="primary">settings</Icon>
-              <strong>Advanced settings</strong>
-            </Row>
+            <Icon color="primary">settings</Icon>
+            <h3>Advanced settings</h3>
           {/snippet}
-          <p style="padding: var(--space-4) 0 0">
-            Unlike <code>Accordion</code>, this variant accepts a full snippet
-            as its header - useful for icons, badges, or complex trigger
-            layouts.
+          <p>
+            The plain variant drops the card chrome, shows a round expand icon
+            and caps the content height (<code>--acc-content-max-height</code>,
+            default 40vh) with a scroll. Open: {accordionPlainOpen}.
           </p>
-        </Accordion2>
+        </Accordion>
       </div>
       <pre><code
-          >{`<Accordion2 bind:open>
+          >{`<Accordion variant="plain" bind:open>
   {#snippet header()}
     <Icon>settings</Icon>
-    <strong>Advanced settings</strong>
+    <h3>Advanced settings</h3>
   {/snippet}
   <p>Hidden content…</p>
-</Accordion2>`}</code
+</Accordion>`}</code
         ></pre>
     </ShowcaseSection>
 
@@ -184,25 +179,6 @@
   bind:val={myVal}
   min="0" max="10" step="0.1"
   callback={() => runSimulation()}
-/>`}</code
-        ></pre>
-    </ShowcaseSection>
-
-    <ShowcaseSection
-      id="videotranscripttoggle"
-      title="VideoTranscriptToggle"
-    >
-      <h3>Expandable transcript panel below a video</h3>
-      <div class="preview">
-        <VideoTranscriptToggle
-          message="Show transcript"
-          transcript="In this video, we explore how plants regulate photosynthesis in response to changing light conditions. The NPQ mechanism acts as a photoprotective valve, dissipating excess energy as heat when light is too intense..."
-        />
-      </div>
-      <pre><code
-          >{`<VideoTranscriptToggle
-  message="Show transcript"
-  transcript="Full transcript text here…"
 />`}</code
         ></pre>
     </ShowcaseSection>

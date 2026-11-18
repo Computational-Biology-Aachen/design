@@ -1,8 +1,8 @@
 <!--
   @component
 
-  A modal-style overlay built on the native HTML Popover API, sized via presets
-  and dimmed with a backdrop. Open/close it by pointing a [[Button]] (or
+  A dialog overlay built on `<dialog popover>` (native popover API: top layer,
+  light dismiss, `Esc`), sized via presets and dimmed with a backdrop. Open/close it by pointing a [[Button]] (or
   [[ButtonIcon]]) `popovertarget` at this popover's id. The element is `$bindable`
   via `el` for imperative control.
 
@@ -13,7 +13,10 @@
     (`lg`).
   - `popovertarget: string`
     The popover's id; a trigger's `popovertarget` must match this.
-  - `el?: HTMLDivElement | null` (bindable)
+  - `label?: string`
+    Accessible name of the dialog (`aria-label`). Set it unless the content
+    starts with a heading that already names it.
+  - `el?: HTMLDialogElement | null` (bindable)
     Reference to the popover element for imperative `showPopover()` /
     `hidePopover()` calls.
   - `children: Snippet`
@@ -37,13 +40,15 @@
     size,
     children,
     popovertarget,
-    el = $bindable<HTMLDivElement | null | undefined>(),
+    label,
+    el = $bindable<HTMLDialogElement | null | undefined>(),
     styleVars = {},
   }: {
     size: "xs" | "sm" | "md" | "lg";
     popovertarget: string;
     children: Snippet;
-    el?: HTMLDivElement | null;
+    label?: string;
+    el?: HTMLDialogElement | null;
     styleVars?: { gap?: string; padding?: string };
   } = $props();
 
@@ -57,44 +62,55 @@
   );
 </script>
 
-<div
+<dialog
   popover
   bind:this={el}
   id={popovertarget}
+  aria-label={label}
   class={size}
 >
   <section style={inlineStyle}>
     {@render children()}
   </section>
-</div>
+</dialog>
 
 <style>
-  [popover] {
+  dialog {
     position: fixed;
+    margin: 0;
     inset: unset;
     box-shadow: var(--shadow-md);
     border: var(--border-heavy);
     border-radius: var(--radius-lg);
-    max-height: 100vh; /* Fallback, should be set in xs/sm/md/lg */
-    overflow-y: scroll;
+    background: var(--color-bg);
+    padding: 0;
+    max-width: none;
+    max-height: 100dvh; /* Fallback, should be set in xs/sm/md/lg */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    color: var(--color-text);
   }
-  [popover]::backdrop {
+
+  dialog::backdrop {
     background-color: var(--scrim-backdrop);
   }
+
   .xs {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: min(22rem, calc(100vw - 2rem));
+    width: min(22rem, calc(100dvw - 2rem));
   }
+
   .sm {
     --width: 60rem;
-    --dist: max(0px, (100vw - var(--width)) / 2);
+    --dist: max(0px, (100dvw - var(--width)) / 2);
     top: clamp(1rem, var(--dist), 10rem);
     left: var(--dist);
     width: calc(100% - 2 * var(--dist));
-    height: calc(100vh - 2 * clamp(1rem, var(--dist), 10rem));
+    height: calc(100dvh - 2 * clamp(1rem, var(--dist), 10rem));
   }
+
   .md {
     --dist: 0rem;
     top: var(--dist);
@@ -103,22 +119,24 @@
     @media (min-width: 768px) {
       --dist: 4rem;
       width: calc(100% - 2 * var(--dist));
-      height: calc(100vh - 2 * var(--dist));
+      height: calc(100dvh - 2 * var(--dist));
     }
   }
+
   .lg {
     --dist: 0;
     top: var(--dist);
     left: var(--dist);
     width: 100%;
-    height: calc(100vh - 2 * var(--dist));
+    height: calc(100dvh - 2 * var(--dist));
 
     @media (min-width: 768px) {
       --dist: 2rem;
-      width: calc(100vw - 2 * var(--dist));
-      height: calc(100vh - 2 * var(--dist));
+      width: calc(100dvw - 2 * var(--dist));
+      height: calc(100dvh - 2 * var(--dist));
     }
   }
+
   section {
     --popover-gap: 1rem;
     --popover-padding: 2rem;
