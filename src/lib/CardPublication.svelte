@@ -25,7 +25,7 @@
     `"full"`.
   - `color?: "dark" | "light" | "primary" | "secondary"`
     Background colour. Defaults to `"light"`.
-  - `styleVars?: { borderRadius?: string; borderTopWidth?: string; backgroundSize?: string; innerPadding?: string; fixedSize?: string }`
+  - `styleVars?: { borderRadius?: string; borderTopWidth?: string; backgroundSize?: string; innerPadding?: string; fixedSize?: string; minHeight?: string }`
     Optional overrides for CSS custom properties.
 
   ### Example
@@ -72,6 +72,7 @@
       backgroundSize?: string;
       innerPadding?: string;
       fixedSize?: string;
+      minHeight?: string;
     };
   } = $props();
 
@@ -90,6 +91,9 @@
       : {}),
     ...(styleVars.fixedSize
       ? { "--card-publication-fixed-size": styleVars.fixedSize }
+      : {}),
+    ...(styleVars.minHeight
+      ? { "--card-publication-min-height": styleVars.minHeight }
       : {}),
   });
 </script>
@@ -163,6 +167,10 @@
 
   .full {
     width: 100%;
+  }
+  /* On .inner: its height: 100% can't resolve against a min-height parent. */
+  .full > .inner {
+    min-height: var(--card-publication-min-height, auto);
   }
   .fixed {
     width: var(--card-publication-fixed-size);

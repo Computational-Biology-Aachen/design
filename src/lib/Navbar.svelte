@@ -79,5 +79,7 @@
   .brand {
     display: flex;
     align-items: center;
+    /* Lets a long brand shrink (e.g. truncate) when the row is too narrow. */
+    min-width: 0;
   }
 </style>
