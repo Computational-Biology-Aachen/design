@@ -26,3 +26,6 @@ vite.config.ts.timestamp-*
 # Impeccable local/machine-specific state (not portable project config)
 .impeccable/hook.cache.json
 .impeccable/live/roots.json
+
+# Agent skills installed via `npx skills` (restore with `npx skills install -a claude-code`)
+.claude/skills/modern-web-guidance/
