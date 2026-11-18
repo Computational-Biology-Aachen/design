@@ -77,6 +77,14 @@
 <style>
   dialog {
     position: fixed;
+    /* Closed/exit state; display + overlay keep it in the top layer while
+       fading out. Firefox/Safari don't transition display yet, so there the
+       exit is instant (entry still fades). */
+    opacity: 0;
+    transition-behavior: allow-discrete;
+    transition-duration: 0.5s;
+    transition-property: opacity, display, overlay;
+    transition-timing-function: ease-out;
     margin: 0;
     inset: unset;
     box-shadow: var(--shadow-md);
@@ -89,10 +97,38 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     color: var(--color-text);
+
+    @media (prefers-reduced-motion: reduce) {
+      transition-duration: 0.1s;
+    }
+  }
+
+  dialog:popover-open {
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
   }
 
   dialog::backdrop {
+    transition-behavior: allow-discrete;
+    transition-duration: 0.5s;
+    transition-property: background-color, display, overlay;
+    transition-timing-function: ease-out;
+    background-color: transparent;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition-duration: 0.1s;
+    }
+  }
+
+  dialog:popover-open::backdrop {
     background-color: var(--scrim-backdrop);
+
+    @starting-style {
+      background-color: transparent;
+    }
   }
 
   .xs {
