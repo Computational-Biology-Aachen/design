@@ -465,6 +465,9 @@
     !hasRight || series.some((s) => scaleId(s.axis) === "y"),
   );
 
+  /** Relative spread below which data counts as flat (and ticks can't be labelled). */
+  const FLAT = 1e-9;
+
   /**
    * The data's extent plus `margin` of it on each side, or nothing to leave the
    * bound to Chart.js; on a log axis the margin is taken in decades.
@@ -484,11 +487,15 @@
     let hi = -Infinity;
     for (const v of values) {
       if (!Number.isFinite(v) || (log && v <= 0)) continue;
-      lo = Math.min(lo, t(v));
-      hi = Math.max(hi, t(v));
+      lo = Math.min(lo, v);
+      hi = Math.max(hi, v);
     }
     if (!Number.isFinite(lo)) return {};
-    const pad = (hi - lo || Math.abs(hi) || 1) * margin;
+    // Data flat up to rounding (86.00079325794448 vs ...450) is drawn as flat:
+    // a range of 1e-14 has no readable ticks
+    const flat = hi - lo <= FLAT * Math.max(Math.abs(lo), Math.abs(hi));
+    [lo, hi] = [t(lo), t(hi)];
+    const pad = (flat ? Math.abs(hi) || 1 : hi - lo) * margin;
     return { min: inv(lo - pad), max: inv(hi + pad), bounds: "data" as const };
   }
 
@@ -550,18 +557,22 @@
               const mag = 10 ** Math.floor(Math.log10(raw));
               const step =
                 mag * ([1, 2, 2.5, 5, 10].find((m) => m * mag >= raw) ?? 10);
-              if (!Number.isFinite(step)) return;
+              // A step below the values' precision (a range of 1e-14 at 86)
+              // can't be labelled, and k * step stops moving past 2^53:
+              // keep Chart.js's ticks then
+              const size = Math.max(Math.abs(axis.min), Math.abs(axis.max));
+              if (!(step > 0) || !Number.isFinite(step) || step < FLAT * size)
+                return;
               const digits = Math.max(0, 2 - Math.floor(Math.log10(step)));
               const round = (v: number) => Number(v.toFixed(digits));
-              const out: Array<{ value: number }> = [];
-              for (
-                let k = Math.ceil(axis.min / step - 1e-9);
-                k * step <= axis.max + step * 1e-9;
-                k++
-              ) {
-                out.push({ value: round(k * step) });
-              }
-              axis.ticks = out;
+              const first = Math.ceil(axis.min / step - 1e-9);
+              const n = Math.floor(axis.max / step + 1e-9) - first;
+              axis.ticks = Array.from(
+                { length: Math.max(n + 1, 0) },
+                (_, i) => ({
+                  value: round((first + i) * step),
+                }),
+              );
             },
             ticks: { callback: plain },
           };
